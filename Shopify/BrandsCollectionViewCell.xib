@@ -30,7 +30,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Brand" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nen-gU-ibE">
                         <rect key="frame" x="214" y="112" width="484" height="91"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -49,6 +49,11 @@
                 <constraint firstItem="Pja-4s-o9R" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="96" id="uBm-YJ-f34"/>
             </constraints>
             <size key="customSize" width="722" height="251"/>
+            <connections>
+                <outlet property="bgView" destination="Pja-4s-o9R" id="z3Q-om-Cle"/>
+                <outlet property="brandImage" destination="Qia-PY-Xlp" id="p2y-a2-MX7"/>
+                <outlet property="brandName" destination="Nen-gU-ibE" id="Csm-Kq-TRT"/>
+            </connections>
             <point key="canvasLocation" x="633.58778625954199" y="59.507042253521128"/>
         </collectionViewCell>
     </objects>

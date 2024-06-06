@@ -30,6 +30,9 @@
                 <constraint firstAttribute="trailing" secondItem="24r-q3-sjc" secondAttribute="trailing" constant="8" id="fcN-I9-dUf"/>
             </constraints>
             <size key="customSize" width="436" height="353"/>
+            <connections>
+                <outlet property="adImage" destination="24r-q3-sjc" id="EaA-wW-yCT"/>
+            </connections>
             <point key="canvasLocation" x="415.26717557251908" y="95.422535211267615"/>
         </collectionViewCell>
     </objects>

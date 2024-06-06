@@ -100,10 +100,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if indexPath.section==0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdsCell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdsCell", for: indexPath) as! AdsCollectionViewCell
             return cell
         }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell
+        
             return cell
         }
     }
