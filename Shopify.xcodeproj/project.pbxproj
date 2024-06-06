@@ -25,6 +25,7 @@
 		40EB4A932C123AFB009038FA /* AdsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40EB4A912C123AFB009038FA /* AdsCollectionViewCell.xib */; };
 		40EB4A962C123B72009038FA /* BrandsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB4A942C123B72009038FA /* BrandsCollectionViewCell.swift */; };
 		40EB4A972C123B72009038FA /* BrandsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40EB4A952C123B72009038FA /* BrandsCollectionViewCell.xib */; };
+		40EB4A992C123BE3009038FA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB4A982C123BE3009038FA /* ProfileViewController.swift */; };
 		653D21757C14EE1F07300ACC /* Pods_Shopify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE8DF2200CDF97D2F50F7E2 /* Pods_Shopify.framework */; };
 		AA07553DBEBE337097B63BB9 /* Pods_Shopify_ShopifyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E4699A20A7679CB3AC13F07 /* Pods_Shopify_ShopifyUITests.framework */; };
 		D488A9618AED639614A73A1B /* Pods_ShopifyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4EE0B7AB52F0226EDB94ED3 /* Pods_ShopifyTests.framework */; };
@@ -73,6 +74,7 @@
 		40EB4A912C123AFB009038FA /* AdsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsCollectionViewCell.xib; sourceTree = "<group>"; };
 		40EB4A942C123B72009038FA /* BrandsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionViewCell.swift; sourceTree = "<group>"; };
 		40EB4A952C123B72009038FA /* BrandsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrandsCollectionViewCell.xib; sourceTree = "<group>"; };
+		40EB4A982C123BE3009038FA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5AEEC5948E4F521E6689FE1E /* Pods-Shopify-ShopifyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopify-ShopifyUITests.release.xcconfig"; path = "Target Support Files/Pods-Shopify-ShopifyUITests/Pods-Shopify-ShopifyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		73932E7C5107A8B2F6CF71BE /* Pods-ShopifyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopifyTests.debug.xcconfig"; path = "Target Support Files/Pods-ShopifyTests/Pods-ShopifyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		87B4E5DFB92934BFFFC82C6E /* Pods-Shopify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopify.release.xcconfig"; path = "Target Support Files/Pods-Shopify/Pods-Shopify.release.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				40EB4A912C123AFB009038FA /* AdsCollectionViewCell.xib */,
 				40EB4A942C123B72009038FA /* BrandsCollectionViewCell.swift */,
 				40EB4A952C123B72009038FA /* BrandsCollectionViewCell.xib */,
+				40EB4A982C123BE3009038FA /* ProfileViewController.swift */,
 			);
 			path = Shopify;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				40D96F712C112E83000B8D34 /* AppDelegate.swift in Sources */,
 				40D96F7B2C112E83000B8D34 /* Shopify.xcdatamodeld in Sources */,
 				10B2E8E72C11A54100CE25D1 /* testFile.swift in Sources */,
+				40EB4A992C123BE3009038FA /* ProfileViewController.swift in Sources */,
 				40D96F732C112E83000B8D34 /* SceneDelegate.swift in Sources */,
 				40EB4A8F2C12398F009038FA /* HomeViewController.swift in Sources */,
 			);
