@@ -181,12 +181,12 @@
 				40EB4A8E2C12398F009038FA /* HomeViewController.swift */,
 				40EB4A902C123AFB009038FA /* AdsCollectionViewCell.swift */,
 				40EB4A912C123AFB009038FA /* AdsCollectionViewCell.xib */,
+				40EB4AA12C1253A7009038FA /* BrandsCollectionViewCell.swift */,
 				40EB4A952C123B72009038FA /* BrandsCollectionViewCell.xib */,
 				40EB4A982C123BE3009038FA /* ProfileViewController.swift */,
 				40EB4A9A2C123C19009038FA /* CategoriesViewController.swift */,
 				40EB4A9D2C124A6C009038FA /* CategoryCollectionViewCell.swift */,
 				40EB4A9E2C124A6C009038FA /* CategoryCollectionViewCell.xib */,
-				40EB4AA12C1253A7009038FA /* BrandsCollectionViewCell.swift */,
 			);
 			path = Shopify;
 			sourceTree = "<group>";

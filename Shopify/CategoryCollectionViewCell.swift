@@ -10,15 +10,24 @@ import UIKit
 class CategoryCollectionViewCell: UICollectionViewCell {
 
     
-    @IBOutlet weak var brandImgae: UIImageView!
+    @IBOutlet weak var categoryItemImage: UIImageView!
     
     
-    @IBOutlet weak var btnFavCategory: UIButton!
+    @IBOutlet weak var btnFavCategoryItem: UIButton!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.layer.cornerRadius = 15
+        self.clipsToBounds = true
+        
+        self.categoryItemImage.layer.cornerRadius = 25
+        self.categoryItemImage.clipsToBounds = true
+        
+        self.btnFavCategoryItem.layer.cornerRadius = 10
+        self.btnFavCategoryItem.clipsToBounds = true
     }
 
 }
