@@ -185,6 +185,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" image="house.fill" catalog="system" id="Uhx-rk-3wM"/>
+                    <connections>
+                        <outlet property="homeCollectionView" destination="FXi-ww-Vea" id="rTn-o1-tqy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRN-ni-thL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -273,12 +276,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle.fill" catalog="system" id="CIJ-d9-2CV"/>
-                    <connections>
-                        <outlet property="homeNavBar" destination="U7S-uB-dqM" id="B9F-ky-cuy"/>
-                        <outlet property="ordersTableView" destination="fOD-K2-jsz" id="fcU-tZ-B4j"/>
-                        <outlet property="welcomeLabel" destination="JJH-LY-2Fy" id="blm-1X-Ide"/>
-                        <outlet property="wishListTableView" destination="Uuf-KT-H5Y" id="gw1-i6-dbE"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFG-6i-AZF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
