@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10B2E8E72C11A54100CE25D1 /* testFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B2E8E62C11A54100CE25D1 /* testFile.swift */; };
 		40D96F712C112E83000B8D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D96F702C112E83000B8D34 /* AppDelegate.swift */; };
 		40D96F732C112E83000B8D34 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D96F722C112E83000B8D34 /* SceneDelegate.swift */; };
 		40D96F752C112E83000B8D34 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D96F742C112E83000B8D34 /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		05D4DF40988DDEA774FF42CD /* Pods-Shopify-ShopifyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopify-ShopifyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Shopify-ShopifyUITests/Pods-Shopify-ShopifyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0FE8DF2200CDF97D2F50F7E2 /* Pods_Shopify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10B2E8E62C11A54100CE25D1 /* testFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFile.swift; sourceTree = "<group>"; };
 		1AF4386D2EEFBA853DF7CD96 /* Pods-ShopifyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopifyTests.release.xcconfig"; path = "Target Support Files/Pods-ShopifyTests/Pods-ShopifyTests.release.xcconfig"; sourceTree = "<group>"; };
 		40D96F6D2C112E83000B8D34 /* Shopify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shopify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40D96F702C112E83000B8D34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,7 +119,6 @@
 				73932E7C5107A8B2F6CF71BE /* Pods-ShopifyTests.debug.xcconfig */,
 				1AF4386D2EEFBA853DF7CD96 /* Pods-ShopifyTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -156,6 +157,7 @@
 				40D96F792C112E83000B8D34 /* Shopify.xcdatamodeld */,
 				40D96FA32C112EDC000B8D34 /* Auth.storyboard */,
 				40D96FA52C112F2C000B8D34 /* Payment.storyboard */,
+				10B2E8E62C11A54100CE25D1 /* testFile.swift */,
 			);
 			path = Shopify;
 			sourceTree = "<group>";
@@ -421,6 +423,7 @@
 				40D96F752C112E83000B8D34 /* ViewController.swift in Sources */,
 				40D96F712C112E83000B8D34 /* AppDelegate.swift in Sources */,
 				40D96F7B2C112E83000B8D34 /* Shopify.xcdatamodeld in Sources */,
+				10B2E8E72C11A54100CE25D1 /* testFile.swift in Sources */,
 				40D96F732C112E83000B8D34 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
