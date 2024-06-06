@@ -42,7 +42,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="mina"/>
                                 <connections>
-                                    <segue destination="8cO-LZ-3b8" kind="show" id="Jvd-Ug-QRE"/>
+                                    <segue destination="KKu-nb-hgH" kind="show" id="cTG-qH-5iy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -126,26 +126,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GDG-7P-IZm">
-                                <rect key="frame" x="0.0" y="49" width="393" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="barTintColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Home" id="cQN-u8-SOX">
-                                        <rightBarButtonItems>
-                                            <barButtonItem title="Item" image="cart.fill" catalog="system" id="I2X-Mm-sBI">
-                                                <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            </barButtonItem>
-                                            <barButtonItem title="Item" image="magnifyingglass" catalog="system" id="GOH-6F-Z00">
-                                                <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            </barButtonItem>
-                                        </rightBarButtonItems>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FXi-ww-Vea">
                                 <rect key="frame" x="20" y="120" width="352" height="629"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -183,6 +163,26 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GDG-7P-IZm">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Home" id="cQN-u8-SOX">
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="Item" image="cart.fill" catalog="system" id="I2X-Mm-sBI">
+                                                <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            </barButtonItem>
+                                            <barButtonItem title="Item" image="magnifyingglass" catalog="system" id="GOH-6F-Z00">
+                                                <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d0n-8y-6Fr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -292,6 +292,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="KKu-nb-hgH" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="8PO-cn-GbY"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FAf-u3-xfW">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
