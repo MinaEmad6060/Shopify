@@ -246,30 +246,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fOD-K2-jsz">
-                                <rect key="frame" x="38" y="243" width="327" height="214"/>
+                                <rect key="frame" x="16" y="243" width="349" height="214"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderCell" id="D8c-0g-thS">
-                                        <rect key="frame" x="0.0" y="50" width="327" height="47.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="349" height="47.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D8c-0g-thS" id="e4w-gp-d2k">
-                                            <rect key="frame" x="0.0" y="0.0" width="327" height="47.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="47.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Uuf-KT-H5Y">
-                                <rect key="frame" x="38" y="540" width="339" height="217"/>
+                                <rect key="frame" x="16" y="540" width="361" height="217"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="wishListCell" id="ozH-jO-JGW">
-                                        <rect key="frame" x="0.0" y="50" width="339" height="47.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="361" height="47.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ozH-jO-JGW" id="aau-Gn-950">
-                                            <rect key="frame" x="0.0" y="0.0" width="339" height="47.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="47.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -315,10 +315,13 @@
                     <connections>
                         <outlet property="noOrders" destination="hKb-z2-6Gq" id="r4V-SY-gMy"/>
                         <outlet property="noWishList" destination="4dG-g5-3iC" id="ee9-xM-WUM"/>
+                        <outlet property="orderTitle" destination="u1Z-pn-Vg9" id="NJD-cq-WFc"/>
                         <outlet property="ordersTableView" destination="fOD-K2-jsz" id="LMV-1Z-6Gj"/>
                         <outlet property="seeMoreOrdersOutlit" destination="Elu-pH-6Xj" id="tvP-WI-R0x"/>
                         <outlet property="seeMoreWishListOutlit" destination="ZPV-Et-YDl" id="1Ow-2B-ToI"/>
+                        <outlet property="welcomeUserTitle" destination="JJH-LY-2Fy" id="3dK-go-CGO"/>
                         <outlet property="wishListTableView" destination="Uuf-KT-H5Y" id="07L-s2-wEJ"/>
+                        <outlet property="wishListTitle" destination="iSa-cA-Djf" id="NWr-8G-NU3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFG-6i-AZF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

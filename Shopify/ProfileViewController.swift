@@ -23,6 +23,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var noWishList: UILabel!
     
  
+    @IBOutlet weak var orderTitle: UILabel!
+    
+    @IBOutlet weak var wishListTitle: UILabel!
+    
+    
+    @IBOutlet weak var welcomeUserTitle: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ordersTableView.delegate = self
@@ -34,6 +41,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         noOrders.isHidden = true
         noWishList.isHidden = true
         
+        self.orderTitle.layer.cornerRadius = 20
+        self.orderTitle.clipsToBounds = true
+        
+        self.wishListTitle.layer.cornerRadius = 20
+        self.wishListTitle.clipsToBounds = true
+        
+        self.welcomeUserTitle.layer.cornerRadius = 20
+        self.welcomeUserTitle.clipsToBounds = true
+        
         let nibCustomCell = UINib(nibName: "OrdersTableViewCell", bundle: nil)
             ordersTableView.register(nibCustomCell, forCellReuseIdentifier: "orderCell")
         
@@ -43,15 +59,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return CGSize(width: 75, height: 130)
-//    }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//            return CGSize(width: 75, height: 130) // Set your desired width and height
-//        }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
@@ -59,11 +66,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == ordersTableView {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath)
-//                cell.textLabel?.text = "Order \(indexPath.row)"
                 return cell
             } else if tableView == wishListTableView {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath)
-                cell.textLabel?.text = "wishList \(indexPath.row)"
                 return cell
             } else {
                 return UITableViewCell()
