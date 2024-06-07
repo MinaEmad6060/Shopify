@@ -156,6 +156,29 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		40292A0B2C13A0BA004954BE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				40292A0C2C13A0C3004954BE /* NetworkService */,
+				40292A0D2C13A0D0004954BE /* CoreDataService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		40292A0C2C13A0C3004954BE /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		40292A0D2C13A0D0004954BE /* CoreDataService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreDataService;
+			sourceTree = "<group>";
+		};
 		407BF8902C139EF000DD45A7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,10 +316,11 @@
 		40D96F6F2C112E83000B8D34 /* Shopify */ = {
 			isa = PBXGroup;
 			children = (
-				407BF89B2C13A01100DD45A7 /* Utils */,
 				407BF89A2C139FFF00DD45A7 /* Model */,
 				407BF8952C139F5F00DD45A7 /* View */,
 				407BF8902C139EF000DD45A7 /* Modules */,
+				40292A0B2C13A0BA004954BE /* Services */,
+				407BF89B2C13A01100DD45A7 /* Utils */,
 				40D96F702C112E83000B8D34 /* AppDelegate.swift */,
 				40D96F722C112E83000B8D34 /* SceneDelegate.swift */,
 				40D96F742C112E83000B8D34 /* ViewController.swift */,
