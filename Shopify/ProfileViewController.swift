@@ -7,23 +7,47 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var ordersTableView: UITableView!
+    
+    @IBOutlet weak var seeMoreOrdersOutlit: UIButton!
+    
+    @IBOutlet weak var noOrders: UILabel!
+    
+    
+    @IBOutlet weak var wishListTableView: UITableView!
+    
+    @IBOutlet weak var seeMoreWishListOutlit: UIButton!
+    
+    @IBOutlet weak var noWishList: UILabel!
+    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        ordersTableView.delegate = self
+        ordersTableView.dataSource = self
+    
+        wishListTableView.delegate = self
+        wishListTableView.dataSource = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == ordersTableView {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath)
+                cell.textLabel?.text = "Order \(indexPath.row)"
+                return cell
+            } else if tableView == wishListTableView {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath)
+                cell.textLabel?.text = "wishList \(indexPath.row)"
+                return cell
+            } else {
+                return UITableViewCell()
+            }
+    }
 
 }
