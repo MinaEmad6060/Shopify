@@ -1,11 +1,13 @@
 PODS:
   - Alamofire (5.9.1)
+  - IBAnimatable (6.1.0)
   - Kingfisher (7.11.0)
   - ReachabilitySwift (5.2.2)
   - Toast-Swift (5.1.1)
 
 DEPENDENCIES:
   - Alamofire
+  - IBAnimatable
   - Kingfisher
   - ReachabilitySwift
   - Toast-Swift
@@ -13,16 +15,18 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - IBAnimatable
     - Kingfisher
     - ReachabilitySwift
     - Toast-Swift
 
 SPEC CHECKSUMS:
   Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
+  IBAnimatable: 99dddd4c0625884a301ba3ecbc1615f8a390368e
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   ReachabilitySwift: 2128f3a8c9107e1ad33574c6e58e8285d460b149
   Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
 
-PODFILE CHECKSUM: b693d11ac7a5ec42213986371e9b11ae14488ccd
+PODFILE CHECKSUM: 9632f07577af2f583bba873d3d3dd2b191b071b4
 
 COCOAPODS: 1.15.2
