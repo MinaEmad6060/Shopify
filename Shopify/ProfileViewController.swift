@@ -30,7 +30,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
         wishListTableView.delegate = self
         wishListTableView.dataSource = self
+        
+        let nibCustomCell = UINib(nibName: "OrdersTableViewCell", bundle: nil)
+            self.ordersTableView.register(nibCustomCell, forCellReuseIdentifier: "orderCell")
+        
+        let nibCustomCell2 = UINib(nibName: "WishListTableViewCell", bundle: nil)
+            self.wishListTableView.register(nibCustomCell2, forCellReuseIdentifier: "wishListCell")
+        
     }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return CGSize(width: 75, height: 130)
+//    }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//            return CGSize(width: 75, height: 130) // Set your desired width and height
+//        }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
@@ -39,7 +54,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == ordersTableView {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath)
-                cell.textLabel?.text = "Order \(indexPath.row)"
+//                cell.textLabel?.text = "Order \(indexPath.row)"
                 return cell
             } else if tableView == wishListTableView {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath)
