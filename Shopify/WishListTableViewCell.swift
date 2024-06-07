@@ -26,11 +26,18 @@ class WishListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.layer.cornerRadius = 15
-        self.clipsToBounds = true
+        layer.cornerRadius = 15
+        clipsToBounds = true
         
-        self.wishItemImage.layer.cornerRadius = 25
-        self.wishItemImage.clipsToBounds = true
+        wishItemImage.layer.cornerRadius = 25
+        wishItemImage.clipsToBounds = true
+        
+        wishItemImage.layer.cornerRadius = 25
+        wishItemImage.clipsToBounds = true
+        
+        wishItemPrice.layer.cornerRadius = 10
+        wishItemPrice.clipsToBounds = true
+        
         
     }
 
