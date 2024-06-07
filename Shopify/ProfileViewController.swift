@@ -31,13 +31,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         wishListTableView.delegate = self
         wishListTableView.dataSource = self
         
+        noOrders.isHidden = true
+        noWishList.isHidden = true
+        
         let nibCustomCell = UINib(nibName: "OrdersTableViewCell", bundle: nil)
-            self.ordersTableView.register(nibCustomCell, forCellReuseIdentifier: "orderCell")
+            ordersTableView.register(nibCustomCell, forCellReuseIdentifier: "orderCell")
         
         let nibCustomCell2 = UINib(nibName: "WishListTableViewCell", bundle: nil)
-            self.wishListTableView.register(nibCustomCell2, forCellReuseIdentifier: "wishListCell")
+            wishListTableView.register(nibCustomCell2, forCellReuseIdentifier: "wishListCell")
         
     }
+    
+    
     
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return CGSize(width: 75, height: 130)
