@@ -11,6 +11,7 @@ pod 'Kingfisher'
 pod 'Toast-Swift'
 pod 'ReachabilitySwift'
 pod 'Alamofire'
+pod 'IBAnimatable'
 
   target 'ShopifyTests' do
     inherit! :search_paths
