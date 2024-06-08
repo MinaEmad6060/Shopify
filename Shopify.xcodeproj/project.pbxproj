@@ -226,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				40EB4A8E2C12398F009038FA /* HomeViewController.swift */,
+				40B6BDB22C14079D009A0A07 /* AllProductsViewController.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -339,7 +340,6 @@
 				40D96F812C112E85000B8D34 /* Info.plist */,
 				40D96F792C112E83000B8D34 /* Shopify.xcdatamodeld */,
 				10B2E8E62C11A54100CE25D1 /* testFile.swift */,
-				40B6BDB22C14079D009A0A07 /* AllProductsViewController.swift */,
 			);
 			path = Shopify;
 			sourceTree = "<group>";
