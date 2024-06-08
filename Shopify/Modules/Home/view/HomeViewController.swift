@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import Kingfisher
+
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
+    
+    var fetchDataFromApi: FetchDataFromApi!
+    var brands: [SmartCollection]!
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +24,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
         
-          // 1
+        fetchDataFromApi = FetchDataFromApi()
+        brands = [SmartCollection]()
+        
+        fetchDataFromApi.getSportData(url: fetchDataFromApi.baseUrl){[weak self] brands in
+            self?.brands = brands.smart_collections
+            self?.homeCollectionView.reloadData()
+        }
+        
           let layout = UICollectionViewCompositionalLayout{sectionindex,enviroment in
               if sectionindex==0 {
                   return self.drawAdsSection()
@@ -90,6 +102,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == 1{
+            return self.brands.count
+        }
         return 10
     }
 
@@ -101,6 +116,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell
         
+            cell.brandName.text = brands[indexPath.row].title
+            
+            if let brandURLString = brands?[indexPath.row].image?.src, let brandURL = URL(string: brandURLString) {
+                cell.brandImage.kf.setImage(with: brandURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))
+            } else {
+                cell.brandImage.image = UIImage(named: "placeholderlogo.jpeg")
+            }
+            
             return cell
         }
     }
