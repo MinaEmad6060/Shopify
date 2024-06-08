@@ -38,6 +38,7 @@
 		653D21757C14EE1F07300ACC /* Pods_Shopify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE8DF2200CDF97D2F50F7E2 /* Pods_Shopify.framework */; };
 		AA07553DBEBE337097B63BB9 /* Pods_Shopify_ShopifyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E4699A20A7679CB3AC13F07 /* Pods_Shopify_ShopifyUITests.framework */; };
 		B08D6A312C14E1A000894358 /* CustomerS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D6A302C14E1A000894358 /* CustomerS.swift */; };
+		B08D6A372C14E93200894358 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D6A362C14E93200894358 /* Address.swift */; };
 		B09A810B2C14B96D00DB8933 /* AddNewAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09A810A2C14B96D00DB8933 /* AddNewAddress.swift */; };
 		B0B4B0C02C13696100FAFFEA /* ShoppingCartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4B0BE2C13695E00FAFFEA /* ShoppingCartViewCell.swift */; };
 		B0B4B0C12C13696100FAFFEA /* ShoppingCartViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0B4B0BF2C13696000FAFFEA /* ShoppingCartViewCell.xib */; };
@@ -104,6 +105,7 @@
 		8E4699A20A7679CB3AC13F07 /* Pods_Shopify_ShopifyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopify_ShopifyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4EE0B7AB52F0226EDB94ED3 /* Pods_ShopifyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopifyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B08D6A302C14E1A000894358 /* CustomerS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomerS.swift; path = Shopify/View/Classes/CustomerS.swift; sourceTree = SOURCE_ROOT; };
+		B08D6A362C14E93200894358 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		B09A810A2C14B96D00DB8933 /* AddNewAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddress.swift; sourceTree = "<group>"; };
 		B0B4B0BE2C13695E00FAFFEA /* ShoppingCartViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewCell.swift; sourceTree = "<group>"; };
 		B0B4B0BF2C13696000FAFFEA /* ShoppingCartViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartViewCell.xib; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		407BF8902C139EF000DD45A7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B08D6A322C14E65500894358 /* Settings */,
 				407BF8912C139F0200DD45A7 /* Home */,
 				407BF8922C139F1000DD45A7 /* Categories */,
 				407BF8932C139F1A00DD45A7 /* Profile */,
@@ -357,6 +360,38 @@
 				40D96F962C112E85000B8D34 /* ShopifyUITestsLaunchTests.swift */,
 			);
 			path = ShopifyUITests;
+			sourceTree = "<group>";
+		};
+		B08D6A322C14E65500894358 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B08D6A342C14E67500894358 /* model */,
+				B08D6A332C14E66E00894358 /* view */,
+				B08D6A352C14E68100894358 /* viewModel */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B08D6A332C14E66E00894358 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		B08D6A342C14E67500894358 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				B08D6A362C14E93200894358 /* Address.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		B08D6A352C14E68100894358 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -607,6 +642,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B08D6A372C14E93200894358 /* Address.swift in Sources */,
 				40D96F752C112E83000B8D34 /* ViewController.swift in Sources */,
 				40EB4A922C123AFB009038FA /* AdsCollectionViewCell.swift in Sources */,
 				40D96F712C112E83000B8D34 /* AppDelegate.swift in Sources */,
