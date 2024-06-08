@@ -12,11 +12,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
-    
-    
-    
-    
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -107,6 +103,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
             return cell
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+       
+            guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
+                return
+            }
+            
+       
+            allProductsViewController.modalPresentationStyle = .fullScreen
+            present(allProductsViewController, animated: true )
+
+            
     }
     
 }
