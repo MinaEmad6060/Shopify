@@ -202,7 +202,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add Address"/>
                                 <connections>
-                                    <action selector="addAddressBtn:" destination="3md-hk-ltS" eventType="touchUpInside" id="Qsj-WZ-OEd"/>
+                                    <action selector="addAddressBtn:" destination="3md-hk-ltS" eventType="touchUpInside" id="lZD-rD-sCh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -210,7 +210,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="addAdress" destination="Rfq-xT-3Y7" id="qkI-rb-Dke"/>
+                        <outlet property="addAdress" destination="Rfq-xT-3Y7" id="HEr-y7-Hsq"/>
                         <outlet property="addressTF" destination="NlF-Gs-qc2" id="G4N-v8-TcR"/>
                         <outlet property="cityTF" destination="0Bk-6c-yvu" id="Yts-EU-RAU"/>
                         <outlet property="countryTF" destination="IkM-5a-0WL" id="WmD-jm-ppA"/>
@@ -223,6 +223,9 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="0Bk-6c-yvu">
+            <size key="intrinsicContentSize" width="53.666666666666664" height="34"/>
+        </designable>
         <designable name="IkM-5a-0WL">
             <size key="intrinsicContentSize" width="79.666666666666671" height="34"/>
         </designable>
