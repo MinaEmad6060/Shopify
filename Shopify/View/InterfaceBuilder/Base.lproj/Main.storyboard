@@ -246,7 +246,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCL-Mf-fhd">
-                                <rect key="frame" x="163" y="132" width="130" height="50"/>
+                                <rect key="frame" x="163" y="132" width="182" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
@@ -262,8 +262,8 @@
                     </view>
                     <connections>
                         <outlet property="allProductsCollectionView" destination="Yb4-B3-N9I" id="a0D-xz-bze"/>
-                        <outlet property="productImage" destination="W5l-PK-y2p" id="nDc-vh-yP8"/>
-                        <outlet property="productName" destination="iCL-Mf-fhd" id="slI-jq-Yga"/>
+                        <outlet property="productBrandImage" destination="W5l-PK-y2p" id="LXz-3c-W3u"/>
+                        <outlet property="productsBrandName" destination="iCL-Mf-fhd" id="A7t-DA-Oe0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4DF-xX-6a2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

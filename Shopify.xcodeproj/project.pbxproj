@@ -16,6 +16,7 @@
 		40B6BDB32C14079D009A0A07 /* AllProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6BDB22C14079D009A0A07 /* AllProductsViewController.swift */; };
 		40B6BDB52C140C3E009A0A07 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6BDB42C140C3E009A0A07 /* Brand.swift */; };
 		40B6BDB72C140C55009A0A07 /* FetchDataFromApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6BDB62C140C55009A0A07 /* FetchDataFromApi.swift */; };
+		40B6BDB92C1417E3009A0A07 /* BrandProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6BDB82C1417E3009A0A07 /* BrandProduct.swift */; };
 		40D96F712C112E83000B8D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D96F702C112E83000B8D34 /* AppDelegate.swift */; };
 		40D96F732C112E83000B8D34 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D96F722C112E83000B8D34 /* SceneDelegate.swift */; };
 		40D96F752C112E83000B8D34 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D96F742C112E83000B8D34 /* ViewController.swift */; };
@@ -75,6 +76,7 @@
 		40B6BDB22C14079D009A0A07 /* AllProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsViewController.swift; sourceTree = "<group>"; };
 		40B6BDB42C140C3E009A0A07 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		40B6BDB62C140C55009A0A07 /* FetchDataFromApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDataFromApi.swift; sourceTree = "<group>"; };
+		40B6BDB82C1417E3009A0A07 /* BrandProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandProduct.swift; sourceTree = "<group>"; };
 		40D96F6D2C112E83000B8D34 /* Shopify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shopify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40D96F702C112E83000B8D34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40D96F722C112E83000B8D34 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				40B6BDB42C140C3E009A0A07 /* Brand.swift */,
+				40B6BDB82C1417E3009A0A07 /* BrandProduct.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40B6BDB92C1417E3009A0A07 /* BrandProduct.swift in Sources */,
 				40B6BDB52C140C3E009A0A07 /* Brand.swift in Sources */,
 				40D96F752C112E83000B8D34 /* ViewController.swift in Sources */,
 				40EB4A922C123AFB009038FA /* AdsCollectionViewCell.swift in Sources */,

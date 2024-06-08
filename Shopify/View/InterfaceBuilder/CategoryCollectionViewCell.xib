@@ -66,7 +66,9 @@
             <size key="customSize" width="177" height="84"/>
             <connections>
                 <outlet property="btnFavCategoryItem" destination="vxb-ca-UJD" id="fqa-dg-Jfb"/>
+                <outlet property="categoryItemCurrency" destination="sJg-W1-5jP" id="FlX-tW-Dlk"/>
                 <outlet property="categoryItemImage" destination="jk2-Lf-l22" id="6ul-a9-j1k"/>
+                <outlet property="categoryItemPrice" destination="jmq-kF-Yzg" id="9BA-59-SZv"/>
             </connections>
             <point key="canvasLocation" x="-9.9236641221374047" y="-26.760563380281692"/>
         </collectionViewCell>

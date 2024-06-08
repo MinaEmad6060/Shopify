@@ -12,13 +12,17 @@ import Alamofire
 class FetchDataFromApi{
     
     var baseUrl = ""
+    //smart_collections.json
+    func formatUrl(request: String, query: String="", value: String="") -> String{
+        return baseUrl+request+".json?"+query+"="+value
+    }
     
-    func getSportData(url: String, handler: @escaping (Brand)->Void){
+    func getSportData<T: Decodable>(url: String, handler: @escaping (T)->Void){
         let urlFB = URL(string: url)
         guard let urlFB = urlFB else{return}
         
         
-        AF.request(urlFB).responseDecodable(of: Brand.self) { response in
+        AF.request(urlFB).responseDecodable(of: T.self) { response in
             switch response.result {
             case .success(let upcomingMatches):
                 handler(upcomingMatches)

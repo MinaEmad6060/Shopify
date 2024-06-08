@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         fetchDataFromApi = FetchDataFromApi()
         brands = [SmartCollection]()
         
-        fetchDataFromApi.getSportData(url: fetchDataFromApi.baseUrl){[weak self] brands in
+        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(request: "smart_collections")){[weak self] (brands: Brand) in
             self?.brands = brands.smart_collections
             self?.homeCollectionView.reloadData()
         }
@@ -129,15 +129,19 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+   
+        guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
+            return
+        }
         
-       
-            guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
-                return
-            }
-            
-       
-            allProductsViewController.modalPresentationStyle = .fullScreen
-            present(allProductsViewController, animated: true )
+        allProductsViewController.query = "collection_id"
+        allProductsViewController.queryValue = "\(brands[indexPath.row].id ?? 0)"
+        allProductsViewController.brandName = brands[indexPath.row].title ?? ""
+        allProductsViewController.brandImage = brands[indexPath.row].image?.src ?? ""
+        
+        allProductsViewController.modalPresentationStyle = .fullScreen
+        present(allProductsViewController, animated: true )
 
             
     }
