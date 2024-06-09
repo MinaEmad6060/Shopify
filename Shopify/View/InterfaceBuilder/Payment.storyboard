@@ -38,7 +38,7 @@
             <objects>
                 <viewController id="Xaw-HJ-DYc" customClass="ViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aim-nw-ygZ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFO-46-zfY">
@@ -116,27 +116,50 @@
                                 <color key="backgroundColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vyt-eX-u1L">
-                                <rect key="frame" x="44" y="722" width="305" height="69"/>
+                                <rect key="frame" x="44" y="722" width="305" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.2717232752" green="0.18807447820000001" blue="0.094513776790000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Continue to payment"/>
+                                <connections>
+                                    <segue destination="HbR-6M-UEY" kind="show" id="Mbs-8d-ExD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leY-W1-GUp">
+                                <rect key="frame" x="280" y="94" width="77" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="setting"/>
+                                <connections>
+                                    <segue destination="IM1-Cc-N9T" kind="show" id="VTO-RI-4Jy"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NVj-2q-JLR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="4a7-0j-syo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSq-9r-19U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="726" y="-35"/>
+            <point key="canvasLocation" x="725.95419847328242" y="-35.211267605633807"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="hpf-lA-r79">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="IM1-Cc-N9T" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ubw-C0-oQw"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QfP-DN-hvY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1179" y="-412"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="WSZ-VZ-rKc">
             <objects>
                 <viewController id="HbR-6M-UEY" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2iP-3z-8ia">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a1C-5l-mGM">
@@ -177,6 +200,9 @@
                                         <color key="tintColor" red="0.26935744290000002" green="0.1876538992" blue="0.094467081130000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Place Order"/>
+                                        <connections>
+                                            <segue destination="V6U-MY-EjJ" kind="show" id="FK3-CF-Lot"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1045 EGP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyk-7e-SSH">
                                         <rect key="frame" x="261" y="53" width="93" height="24"/>
@@ -227,6 +253,7 @@
                         <viewLayoutGuide key="safeArea" id="Cbd-o0-njm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="77u-h3-pPV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YtJ-wd-vqF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -237,7 +264,7 @@
             <objects>
                 <viewController id="V6U-MY-EjJ" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e29-0n-LNE">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shopping Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgn-fq-0C4">
@@ -253,6 +280,9 @@
                                 <color key="tintColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
+                                <connections>
+                                    <segue destination="Xaw-HJ-DYc" kind="show" id="HIW-7n-Ubr"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="G4l-fi-TJd">
                                 <rect key="frame" x="0.0" y="110" width="393" height="482"/>
@@ -291,6 +321,7 @@
                         <viewLayoutGuide key="safeArea" id="esw-iQ-bnL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Auq-nU-f5S"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRH-6C-aCp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

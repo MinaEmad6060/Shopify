@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3md-hk-ltS">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -219,15 +219,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FqJ-nB-QBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1695.4198473282443" y="7.746478873239437"/>
+            <point key="canvasLocation" x="1900" y="8"/>
         </scene>
     </scenes>
     <designables>
         <designable name="0Bk-6c-yvu">
-            <size key="intrinsicContentSize" width="53.666666666666664" height="34"/>
+            <size key="intrinsicContentSize" width="40" height="34"/>
         </designable>
         <designable name="IkM-5a-0WL">
-            <size key="intrinsicContentSize" width="79.666666666666671" height="34"/>
+            <size key="intrinsicContentSize" width="65.666666666666671" height="34"/>
         </designable>
     </designables>
     <resources>
