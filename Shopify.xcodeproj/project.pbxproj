@@ -41,7 +41,6 @@
 		B08D6A372C14E93200894358 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D6A362C14E93200894358 /* Address.swift */; };
 		B08D6A392C15338F00894358 /* AddNewAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D6A382C15338F00894358 /* AddNewAddressViewModel.swift */; };
 		B08D6A3B2C1533CE00894358 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D6A3A2C1533CE00894358 /* NetworkManager.swift */; };
-		B08D6A3E2C15359900894358 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D6A3C2C15359900894358 /* Constants.swift */; };
 		B09A810B2C14B96D00DB8933 /* AddNewAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09A810A2C14B96D00DB8933 /* AddNewAddress.swift */; };
 		B0B4B0C02C13696100FAFFEA /* ShoppingCartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4B0BE2C13695E00FAFFEA /* ShoppingCartViewCell.swift */; };
 		B0B4B0C12C13696100FAFFEA /* ShoppingCartViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0B4B0BF2C13696000FAFFEA /* ShoppingCartViewCell.xib */; };
@@ -111,7 +110,6 @@
 		B08D6A362C14E93200894358 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		B08D6A382C15338F00894358 /* AddNewAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressViewModel.swift; sourceTree = "<group>"; };
 		B08D6A3A2C1533CE00894358 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = Shopify/Modules/Settings/viewModel/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
-		B08D6A3C2C15359900894358 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B09A810A2C14B96D00DB8933 /* AddNewAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddress.swift; sourceTree = "<group>"; };
 		B0B4B0BE2C13695E00FAFFEA /* ShoppingCartViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewCell.swift; sourceTree = "<group>"; };
 		B0B4B0BF2C13696000FAFFEA /* ShoppingCartViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartViewCell.xib; sourceTree = "<group>"; };
@@ -339,7 +337,6 @@
 				407BF8902C139EF000DD45A7 /* Modules */,
 				40292A0B2C13A0BA004954BE /* Services */,
 				407BF89B2C13A01100DD45A7 /* Utils */,
-				B08D6A3D2C15359900894358 /* Constants */,
 				40D96F702C112E83000B8D34 /* AppDelegate.swift */,
 				40D96F722C112E83000B8D34 /* SceneDelegate.swift */,
 				40D96F742C112E83000B8D34 /* ViewController.swift */,
@@ -401,14 +398,6 @@
 				B08D6A382C15338F00894358 /* AddNewAddressViewModel.swift */,
 			);
 			path = viewModel;
-			sourceTree = "<group>";
-		};
-		B08D6A3D2C15359900894358 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				B08D6A3C2C15359900894358 /* Constants.swift */,
-			);
-			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -670,7 +659,6 @@
 				B09A810B2C14B96D00DB8933 /* AddNewAddress.swift in Sources */,
 				401ACAF12C133EA500EC1B29 /* WishListTableViewCell.swift in Sources */,
 				403303C72C13642A001EE7CB /* SelectCategory.swift in Sources */,
-				B08D6A3E2C15359900894358 /* Constants.swift in Sources */,
 				10B2E8E72C11A54100CE25D1 /* testFile.swift in Sources */,
 				B08D6A3B2C1533CE00894358 /* NetworkManager.swift in Sources */,
 				40EB4A9F2C124A6C009038FA /* CategoryCollectionViewCell.swift in Sources */,
