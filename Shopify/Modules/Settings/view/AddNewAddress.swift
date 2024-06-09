@@ -10,10 +10,20 @@ import TextFieldEffects
 
 class AddNewAddress: UIViewController {
 
+    var viewModel: AddNewAddressViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        viewModel = AddNewAddressViewModel()
+        viewModel?.bindResultToNewAddressViewController = {
+            if ((self.viewModel?.success) != nil) {
+                print("Address added successfully")
+            } else {
+                print("Failed to add address")
+            }
+        }
     }
     
     @IBOutlet weak var countryTF: UITextField!
@@ -27,7 +37,7 @@ class AddNewAddress: UIViewController {
     @IBOutlet weak var addAdress: UIButton!
     
     @IBAction func addAddressBtn(_ sender: Any) {
-        
+        viewModel?.addNewAddress(customerId: 7423232082091, country: countryTF.text ?? "", city: cityTF.text ?? "", address: addressTF.text ?? "", phone: phoneTF.text ?? "")
     }
 
 }
