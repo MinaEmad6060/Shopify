@@ -202,10 +202,10 @@
             </objects>
             <point key="canvasLocation" x="1547" y="-6"/>
         </scene>
-        <!--View Controller-->
+        <!--Product Info View Controller-->
         <scene sceneID="CP2-ed-2pA">
             <objects>
-                <viewController id="9EA-VA-evB" sceneMemberID="viewController">
+                <viewController id="9EA-VA-evB" customClass="ProductInfoViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0ku-WK-VTI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -219,6 +219,9 @@
                         <viewLayoutGuide key="safeArea" id="UTS-GB-AWy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="imageSlideshow" destination="Ppc-9R-Kk9" id="Zca-pR-I7k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gly-bO-Kcj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
