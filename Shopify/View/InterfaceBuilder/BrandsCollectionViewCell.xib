@@ -25,11 +25,15 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brand" translatesAutoresizingMaskIntoConstraints="NO" id="Qia-PY-Xlp">
-                        <rect key="frame" x="8" y="8" width="170" height="141"/>
+                        <rect key="frame" x="24" y="48" width="120" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="Am5-JX-qnM"/>
+                            <constraint firstAttribute="height" constant="100" id="ZpG-F7-9eu"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Brand" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nen-gU-ibE">
-                        <rect key="frame" x="214" y="112" width="484" height="91"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Brand" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nen-gU-ibE">
+                        <rect key="frame" x="164" y="144" width="534" height="91"/>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="19"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -37,15 +41,15 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="Nen-gU-ibE" firstAttribute="leading" secondItem="Qia-PY-Xlp" secondAttribute="trailing" constant="36" id="8XW-4J-ELE"/>
-                <constraint firstItem="Qia-PY-Xlp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="Fyz-Tm-moc"/>
-                <constraint firstItem="Nen-gU-ibE" firstAttribute="top" secondItem="Pja-4s-o9R" secondAttribute="top" constant="16" id="HL4-XG-YU4"/>
-                <constraint firstAttribute="bottom" secondItem="Nen-gU-ibE" secondAttribute="bottom" constant="48" id="ayN-av-zyo"/>
+                <constraint firstItem="Nen-gU-ibE" firstAttribute="leading" secondItem="Qia-PY-Xlp" secondAttribute="trailing" constant="20" id="8XW-4J-ELE"/>
+                <constraint firstItem="Qia-PY-Xlp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="48" id="Fyz-Tm-moc"/>
+                <constraint firstItem="Nen-gU-ibE" firstAttribute="top" secondItem="Pja-4s-o9R" secondAttribute="top" constant="48" id="HL4-XG-YU4"/>
+                <constraint firstAttribute="bottom" secondItem="Nen-gU-ibE" secondAttribute="bottom" constant="16" id="ayN-av-zyo"/>
                 <constraint firstItem="Pja-4s-o9R" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cW3-JB-r1c"/>
                 <constraint firstAttribute="trailing" secondItem="Nen-gU-ibE" secondAttribute="trailing" constant="24" id="cxd-FN-LUR"/>
                 <constraint firstAttribute="bottom" secondItem="Pja-4s-o9R" secondAttribute="bottom" id="oFd-vH-jcl"/>
                 <constraint firstAttribute="trailing" secondItem="Pja-4s-o9R" secondAttribute="trailing" id="okw-FC-j5D"/>
-                <constraint firstItem="Qia-PY-Xlp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="psd-VC-mNn"/>
+                <constraint firstItem="Qia-PY-Xlp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="psd-VC-mNn"/>
                 <constraint firstItem="Pja-4s-o9R" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="96" id="uBm-YJ-f34"/>
             </constraints>
             <size key="customSize" width="722" height="251"/>

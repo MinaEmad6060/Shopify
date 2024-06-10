@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Kingfisher
+
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -13,17 +15,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
     
-    
-    
-    
-    
+    var fetchDataFromApi: FetchDataFromApi!
+    var brands: [SmartCollection]!
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
         
-          // 1
+        fetchDataFromApi = FetchDataFromApi()
+        brands = [SmartCollection]()
+        
+        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(request: "smart_collections")){[weak self] (brands: Brand) in
+            self?.brands = brands.smart_collections
+            self?.homeCollectionView.reloadData()
+        }
+        
           let layout = UICollectionViewCompositionalLayout{sectionindex,enviroment in
               if sectionindex==0 {
                   return self.drawAdsSection()
@@ -94,6 +102,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == 1{
+            return self.brands.count
+        }
         return 10
     }
 
@@ -105,8 +116,34 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell
         
+            cell.brandName.text = brands[indexPath.row].title
+            
+            if let brandURLString = brands?[indexPath.row].image?.src, let brandURL = URL(string: brandURLString) {
+                cell.brandImage.kf.setImage(with: brandURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))
+            } else {
+                cell.brandImage.image = UIImage(named: "placeholderlogo.jpeg")
+            }
+            
             return cell
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+   
+        guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
+            return
+        }
+        
+        allProductsViewController.query = "collection_id"
+        allProductsViewController.queryValue = "\(brands[indexPath.row].id ?? 0)"
+        allProductsViewController.brandName = brands[indexPath.row].title ?? ""
+        allProductsViewController.brandImage = brands[indexPath.row].image?.src ?? ""
+        
+        allProductsViewController.modalPresentationStyle = .fullScreen
+        present(allProductsViewController, animated: true )
+
+            
     }
     
 }

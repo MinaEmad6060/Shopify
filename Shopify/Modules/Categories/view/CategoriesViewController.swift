@@ -37,15 +37,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
         self.categoryCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "CategoryCell")
     }
     
-    // UICollectionViewDelegateFlowLayout method
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Set the desired size for the cells
-        return CGSize(width: 20, height: 20) // Example size
-    }
-
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: view.frame.width / 3.5, height: view.frame.height/4)
-//    }
     
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
