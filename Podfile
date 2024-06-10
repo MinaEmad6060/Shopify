@@ -13,6 +13,7 @@ pod 'ReachabilitySwift'
 pod 'Alamofire'
 pod 'IBAnimatable'
 pod 'FirebaseAuth'
+pod 'ImageSlideshow'
 
 
   target 'ShopifyTests' do

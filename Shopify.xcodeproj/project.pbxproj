@@ -151,6 +151,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		105EEAAA2C16D3FD00E19566 /* ProductInfo */ = {
+			isa = PBXGroup;
+			children = (
+				105EEAAC2C16D43400E19566 /* ViewModel */,
+				105EEAAB2C16D41800E19566 /* View */,
+			);
+			path = ProductInfo;
+			sourceTree = "<group>";
+		};
+		105EEAAB2C16D41800E19566 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		105EEAAC2C16D43400E19566 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		342BA97BB1151FF9F2DA820D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +214,7 @@
 		407BF8902C139EF000DD45A7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				105EEAAA2C16D3FD00E19566 /* ProductInfo */,
 				407BF8912C139F0200DD45A7 /* Home */,
 				407BF8922C139F1000DD45A7 /* Categories */,
 				407BF8932C139F1A00DD45A7 /* Profile */,

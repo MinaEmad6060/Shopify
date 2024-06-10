@@ -202,6 +202,28 @@
             </objects>
             <point key="canvasLocation" x="1547" y="-6"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="CP2-ed-2pA">
+            <objects>
+                <viewController id="9EA-VA-evB" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0ku-WK-VTI">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ppc-9R-Kk9" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                                <rect key="frame" x="44" y="86" width="303" height="172"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="UTS-GB-AWy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gly-bO-Kcj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2484.7328244274809" y="134.50704225352112"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Add to Cart-pana" width="500" height="500"/>
