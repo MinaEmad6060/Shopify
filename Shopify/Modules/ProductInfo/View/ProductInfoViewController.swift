@@ -7,7 +7,7 @@
 
 import UIKit
 import ImageSlideshow
-
+import Kingfisher
 class ProductInfoViewController: UIViewController {
     var productInfoViewModel : ProdutInfoViewModel?
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
@@ -15,19 +15,40 @@ class ProductInfoViewController: UIViewController {
         super.viewDidLoad()
 
         configureImageSlideshow()
+        print(productInfoViewModel?.product?.images)
     }
     
     private func configureImageSlideshow() {
            // Set up the images
-           let imageInputs = [
-               ImageSource(image: UIImage(named: "wish")!),
-               ImageSource(image: UIImage(named: "category")!),
-               ImageSource(image: UIImage(named: "Ad")!)
-           ]
-           
-           imageSlideshow.setImageInputs(imageInputs)
-           
-          
+//           let imageInputs = [
+//               ImageSource(image: UIImage(named: "wish")!),
+//               ImageSource(image: UIImage(named: "category")!),
+//               ImageSource(image: UIImage(named: "Ad")!)
+//           ]
+//           
+          // imageSlideshow.setImageInputs(imageInputs)
+        
+
+              // Convert product images to ImageSource array
+              
+        guard let productImages = productInfoViewModel?.product?.images else {
+             
+            imageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "Ad")!)])
+             return
+         }
+
+         // Convert product images to ImageSource array
+         let imageInputs = productImages.compactMap { image -> ImageSource? in
+             if let urlString = image.src, let url = URL(string: urlString) {
+                 let imageView = UIImageView()
+                 imageView.kf.setImage(with: url)
+                 return ImageSource(image: imageView.image ?? UIImage())
+             }
+             return nil
+         }
+        print("imageInputs******\(imageInputs)")
+
+         imageSlideshow.setImageInputs(imageInputs)
            imageSlideshow.slideshowInterval = 3.0
         imageSlideshow.pageIndicatorPosition = .init(horizontal: .center, vertical: .bottom)
            imageSlideshow.contentScaleMode = UIView.ContentMode.scaleAspectFill
