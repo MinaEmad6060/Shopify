@@ -27,9 +27,9 @@ class ProductInfoViewController: UIViewController {
            
            imageSlideshow.setImageInputs(imageInputs)
            
-           // Optional configurations
-           imageSlideshow.slideshowInterval = 5.0
-           imageSlideshow.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
+          
+           imageSlideshow.slideshowInterval = 3.0
+        imageSlideshow.pageIndicatorPosition = .init(horizontal: .center, vertical: .bottom)
            imageSlideshow.contentScaleMode = UIView.ContentMode.scaleAspectFill
            
            let pageIndicator = UIPageControl()
