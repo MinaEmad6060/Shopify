@@ -9,7 +9,7 @@ import UIKit
 import ImageSlideshow
 
 class ProductInfoViewController: UIViewController {
-
+    var productInfoViewModel : ProdutInfoViewModel?
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
     override func viewDidLoad() {
         super.viewDidLoad()

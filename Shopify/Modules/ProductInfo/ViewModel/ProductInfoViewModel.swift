@@ -7,8 +7,8 @@
 
 import Foundation
 class ProdutInfoViewModel {
-    var product : BrandProduct?
-    init(product: BrandProduct?) {
+    var product : Product?
+    init(product: Product?) {
         self.product = product
     }
     
