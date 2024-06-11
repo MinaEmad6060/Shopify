@@ -28,6 +28,7 @@ class ProductInfoViewController: UIViewController {
         print(productInfoViewModel?.product?.images)
         tiitleLB.text = productInfoViewModel?.product?.title
         descTextView.text = productInfoViewModel?.product?.body_html
+        priceLB.text =  productInfoViewModel?.product?.variants?[0].price
     }
     
     private func configureImageSlideshow() {
