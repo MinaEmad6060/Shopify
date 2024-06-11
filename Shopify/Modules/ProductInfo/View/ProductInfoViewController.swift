@@ -8,6 +8,7 @@
 import UIKit
 import ImageSlideshow
 import Kingfisher
+
 class ProductInfoViewController: UIViewController {
     var productInfoViewModel : ProdutInfoViewModel?
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
@@ -30,7 +31,7 @@ class ProductInfoViewController: UIViewController {
         descTextView.text = productInfoViewModel?.product?.body_html
         priceLB.text =  productInfoViewModel?.product?.variants?[0].price
     }
-    
+ /*
     private func configureImageSlideshow() {
            // Set up the images
 //           let imageInputs = [
@@ -79,7 +80,63 @@ class ProductInfoViewController: UIViewController {
         
               imageSlideshow.layer.cornerRadius = 20
               imageSlideshow.clipsToBounds = true
-       }
+       }*/
+    private func configureImageSlideshow() {
+            guard let productImages = productInfoViewModel?.product?.images else {
+                imageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "Ad")!)])
+                return
+            }
+            
+            // Convert product images to ImageSource array
+            let imageUrls = productImages.compactMap { URL(string: $0.src ?? "") }
+            
+            if imageUrls.isEmpty {
+                imageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "Ad")!)])
+            } else {
+                downloadImages(from: imageUrls) { imageSources in
+                    DispatchQueue.main.async {
+                        self.imageSlideshow.setImageInputs(imageSources)
+                    }
+                }
+            }
+            
+            imageSlideshow.slideshowInterval = 3.0
+            imageSlideshow.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
+            imageSlideshow.contentScaleMode = UIView.ContentMode.scaleAspectFill
+            
+            let pageIndicator = UIPageControl()
+            pageIndicator.currentPageIndicatorTintColor = UIColor.lightGray
+            pageIndicator.pageIndicatorTintColor = UIColor.black
+            imageSlideshow.pageIndicator = pageIndicator
+            
+            imageSlideshow.activityIndicator = DefaultActivityIndicator()
+            imageSlideshow.delegate = self
+            
+            let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
+            imageSlideshow.addGestureRecognizer(recognizer)
+            
+            imageSlideshow.layer.cornerRadius = 20
+            imageSlideshow.clipsToBounds = true
+        }
+        
+        private func downloadImages(from urls: [URL], completion: @escaping ([ImageSource]) -> Void) {
+            var imageSources: [ImageSource] = []
+            let dispatchGroup = DispatchGroup()
+            
+            for url in urls {
+                dispatchGroup.enter()
+                URLSession.shared.dataTask(with: url) { data, response, error in
+                    if let data = data, let image = UIImage(data: data) {
+                        imageSources.append(ImageSource(image: image))
+                    }
+                    dispatchGroup.leave()
+                }.resume()
+            }
+            
+            dispatchGroup.notify(queue: .main) {
+                completion(imageSources)
+            }
+        }
 
        @objc func didTap() {
            let fullScreenController = imageSlideshow.presentFullScreenController(from: self)
