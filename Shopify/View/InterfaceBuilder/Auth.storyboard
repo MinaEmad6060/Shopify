@@ -231,21 +231,20 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R5r-vF-YlY">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5r-vF-YlY">
                                 <rect key="frame" x="0.0" y="105" width="393" height="637"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bEI-i4-QPh">
                                         <rect key="frame" x="0.0" y="436" width="393" height="181"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cx1-m2-LUn">
-                                        <rect key="frame" x="16" y="334" width="108" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cx1-m2-LUn">
+                                        <rect key="frame" x="20" y="334" width="143" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -265,15 +264,14 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sizes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOi-1B-7Aq">
-                                        <rect key="frame" x="82" y="386" width="108" height="25"/>
+                                        <rect key="frame" x="26" y="386" width="87" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUq-qH-L9Y">
-                                        <rect key="frame" x="26" y="287" width="294" height="39"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUq-qH-L9Y">
+                                        <rect key="frame" x="0.0" y="287" width="393" height="20.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -281,8 +279,14 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Ppc-9R-Kk9" firstAttribute="leading" secondItem="L0x-U9-HaP" secondAttribute="leading" id="2X5-7s-0Vh"/>
+                                    <constraint firstItem="oUq-qH-L9Y" firstAttribute="leading" secondItem="L0x-U9-HaP" secondAttribute="leading" id="AT4-dg-hpr"/>
+                                    <constraint firstItem="oUq-qH-L9Y" firstAttribute="top" secondItem="Ppc-9R-Kk9" secondAttribute="bottom" constant="21" id="KAx-6C-gRc"/>
+                                    <constraint firstItem="oUq-qH-L9Y" firstAttribute="leading" secondItem="L0x-U9-HaP" secondAttribute="leading" constant="20" id="Ohu-5C-06E"/>
+                                    <constraint firstItem="cx1-m2-LUn" firstAttribute="leading" secondItem="L0x-U9-HaP" secondAttribute="leading" constant="20" id="TTq-Ag-VgH"/>
+                                    <constraint firstItem="cx1-m2-LUn" firstAttribute="top" secondItem="oUq-qH-L9Y" secondAttribute="bottom" constant="26.666666666666686" id="Vas-nn-Xcj"/>
                                     <constraint firstItem="L0x-U9-HaP" firstAttribute="trailing" secondItem="Ppc-9R-Kk9" secondAttribute="trailing" id="obv-en-c5d"/>
                                     <constraint firstItem="Ppc-9R-Kk9" firstAttribute="top" secondItem="L0x-U9-HaP" secondAttribute="top" constant="16" id="plB-W7-LdW"/>
+                                    <constraint firstItem="L0x-U9-HaP" firstAttribute="trailing" secondItem="oUq-qH-L9Y" secondAttribute="trailing" id="whS-wd-3Fd"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="6mv-aJ-Hsi"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="L0x-U9-HaP"/>
@@ -319,6 +323,7 @@
                         <outlet property="descTextView" destination="bEI-i4-QPh" id="1s9-JS-mu7"/>
                         <outlet property="imageSlideshow" destination="Ppc-9R-Kk9" id="Zca-pR-I7k"/>
                         <outlet property="priceLB" destination="cx1-m2-LUn" id="fP2-Ge-KMa"/>
+                        <outlet property="sizeLB" destination="eOi-1B-7Aq" id="bgP-gG-ZmE"/>
                         <outlet property="tiitleLB" destination="oUq-qH-L9Y" id="pYU-dU-Qf7"/>
                     </connections>
                 </viewController>

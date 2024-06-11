@@ -20,8 +20,13 @@ struct Product: Decodable{
     var body_html: String?
     var variants: [Variant]?
     var images: [ImageOfBrand]?
+    var options:[Options]
 }
 
 struct Variant: Decodable{
     var price: String?
+}
+struct Options: Decodable{
+    var name: String?
+    var values: [String]?
 }

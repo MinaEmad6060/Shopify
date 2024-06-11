@@ -22,6 +22,8 @@ class ProductInfoViewController: UIViewController {
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }
+    @IBOutlet weak var sizeLB: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +32,7 @@ class ProductInfoViewController: UIViewController {
         tiitleLB.text = productInfoViewModel?.product?.title
         descTextView.text = productInfoViewModel?.product?.body_html
         priceLB.text =  productInfoViewModel?.product?.variants?[0].price
+        sizeLB.text = productInfoViewModel?.product?.options[0].values?[0]
     }
  /*
     private func configureImageSlideshow() {
