@@ -8,31 +8,33 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    var loginViewModel: LoginViewModel?
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        loginViewModel = LoginViewModel()
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     
     @IBAction func goToSignUp(_ sender: UIButton) {
         //SignUPVC
     }
     @IBAction func signInBtn(_ sender: UIButton) {
+        loginViewModel?.getAllCustomers()
+        loginViewModel?.bindingLogin = {[weak self] in
+            DispatchQueue.main.async{
+                if self?.loginViewModel?.checkCustomerAuth(email: self?.emailTextField.text ?? "", password: self?.passwordTextField.text ?? "") == "Login Sucess"{
+                    print("sucess")
+                }else{
+                    print("failed")
+                }
+            }
+        }
     }
     
 }
