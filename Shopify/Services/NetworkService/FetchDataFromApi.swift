@@ -12,7 +12,7 @@ import Alamofire
 class FetchDataFromApi{
     
     var baseUrl = ""
-    //smart_collections.json
+
     func formatUrl(request: String, query: String="", value: String="") -> String{
         return baseUrl+request+".json?"+query+"="+value
     }

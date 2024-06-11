@@ -58,7 +58,7 @@
                 <outlet property="brandImage" destination="Qia-PY-Xlp" id="p2y-a2-MX7"/>
                 <outlet property="brandName" destination="Nen-gU-ibE" id="Csm-Kq-TRT"/>
             </connections>
-            <point key="canvasLocation" x="633.58778625954199" y="59.507042253521128"/>
+            <point key="canvasLocation" x="585" y="-33"/>
         </collectionViewCell>
     </objects>
     <resources>
