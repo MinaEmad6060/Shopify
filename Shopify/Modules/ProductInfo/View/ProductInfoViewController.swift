@@ -15,11 +15,19 @@ class ProductInfoViewController: UIViewController {
     @IBOutlet weak var tiitleLB: UILabel!
     
     @IBOutlet weak var priceLB: UILabel!
+    
+    @IBOutlet weak var descTextView: UITextView!
+    
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureImageSlideshow()
         print(productInfoViewModel?.product?.images)
+        tiitleLB.text = productInfoViewModel?.product?.title
+        descTextView.text = productInfoViewModel?.product?.body_html
     }
     
     private func configureImageSlideshow() {
@@ -55,7 +63,7 @@ class ProductInfoViewController: UIViewController {
          imageSlideshow.setImageInputs(imageInputs)
            imageSlideshow.slideshowInterval = 3.0
         imageSlideshow.pageIndicatorPosition = .init(horizontal: .center, vertical: .bottom)
-           imageSlideshow.contentScaleMode = UIView.ContentMode.scaleAspectFill
+           imageSlideshow.contentScaleMode = UIView.ContentMode.scaleAspectFit
            
            let pageIndicator = UIPageControl()
            pageIndicator.currentPageIndicatorTintColor = UIColor.lightGray
