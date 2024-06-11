@@ -6,3 +6,12 @@
 //
 
 import Foundation
+class LoginViewModel{
+    var bindingLogin:(()->()) = {}
+    var observaleLogin : LoginedCustomers?{
+        didSet{
+            bindingLogin()
+        }
+    }
+
+}
