@@ -10,13 +10,13 @@ import Alamofire
 
 class NetworkManager {
     
-    var baseUrl = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/"
+    var baseUrl = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/177564125/addresses.json"
     //smart_collections.json
     func formatUrl(request: String, query: String="", value: String="") -> String{
         return baseUrl+request+".json?"+query+"="+value
     }
     
-    func getDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
+    static func getDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
         let urlFB = URL(string: url)
         guard let urlFB = urlFB else{return}
         
