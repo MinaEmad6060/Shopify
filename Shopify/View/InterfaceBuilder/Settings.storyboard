@@ -151,10 +151,10 @@
             </objects>
             <point key="canvasLocation" x="293.89312977099235" y="7.746478873239437"/>
         </scene>
-        <!--View Controller-->
+        <!--All Addressess-->
         <scene sceneID="8ia-vg-gE8">
             <objects>
-                <viewController id="3nq-vd-lgF" sceneMemberID="viewController">
+                <viewController id="3nq-vd-lgF" customClass="AllAddressess" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GtB-tz-HB6">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -177,6 +177,28 @@
                                 <rect key="frame" x="0.0" y="102" width="393" height="750"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="l9L-OJ-Tfr" customClass="AllAddressessTableViewCell" customModule="Shopify" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l9L-OJ-Tfr" id="qh8-qK-yNf">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWY-G0-B35">
+                                                    <rect key="frame" x="20" y="13" width="249" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cityLabel" destination="SWY-G0-B35" id="gDJ-Q6-ZWW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V57-71-Sk5">
                                 <rect key="frame" x="297" y="729" width="64" height="51"/>
@@ -194,6 +216,9 @@
                         <viewLayoutGuide key="safeArea" id="ZTK-qk-GGI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="allAddressessTableView" destination="0OA-kf-h30" id="kXC-mH-amh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCd-G8-Teq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -280,14 +305,6 @@
             <point key="canvasLocation" x="1900" y="8"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="0Bk-6c-yvu">
-            <size key="intrinsicContentSize" width="40" height="34"/>
-        </designable>
-        <designable name="IkM-5a-0WL">
-            <size key="intrinsicContentSize" width="65.666666666666671" height="34"/>
-        </designable>
-    </designables>
     <resources>
         <image name="arrow.uturn.backward.circle" catalog="system" width="128" height="123"/>
         <image name="chevron.backward.circle.fill" catalog="system" width="128" height="123"/>
