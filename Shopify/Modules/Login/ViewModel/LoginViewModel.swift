@@ -7,11 +7,17 @@
 
 import Foundation
 class LoginViewModel{
+    var apiService = FetchDataFromApi()
     var bindingLogin:(()->()) = {}
-    var observaleLogin : LoginedCustomers?{
+    var observableLogin : LoginedCustomers?{
         didSet{
             bindingLogin()
         }
     }
-
+    
+    func getAllCustomers() {
+            apiService.getSportData(url: apiService.formatUrl(request: "customers"), handler: { [weak self] (customers: LoginedCustomers) in
+                self?.observableLogin = customers
+            })
+        }
 }
