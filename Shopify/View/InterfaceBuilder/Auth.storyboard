@@ -293,6 +293,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="ADD TO CART">
                                     <color key="baseBackgroundColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="0.77163052720000003" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="addToCartBtn:" destination="9EA-VA-evB" eventType="touchUpInside" id="0cs-dJ-u9k"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UTS-GB-AWy"/>

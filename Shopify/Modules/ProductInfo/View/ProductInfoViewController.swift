@@ -102,11 +102,11 @@ class ProductInfoViewController: UIViewController {
             
             imageSlideshow.slideshowInterval = 3.0
             imageSlideshow.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
-            imageSlideshow.contentScaleMode = UIView.ContentMode.scaleAspectFill
+            imageSlideshow.contentScaleMode = UIView.ContentMode.scaleAspectFit
             
             let pageIndicator = UIPageControl()
-            pageIndicator.currentPageIndicatorTintColor = UIColor.lightGray
-            pageIndicator.pageIndicatorTintColor = UIColor.black
+            pageIndicator.currentPageIndicatorTintColor = UIColor.black
+            pageIndicator.pageIndicatorTintColor = UIColor.lightGray
             imageSlideshow.pageIndicator = pageIndicator
             
             imageSlideshow.activityIndicator = DefaultActivityIndicator()
@@ -142,10 +142,14 @@ class ProductInfoViewController: UIViewController {
            let fullScreenController = imageSlideshow.presentFullScreenController(from: self)
            fullScreenController.slideshow.activityIndicator = DefaultActivityIndicator(style: .white, color: nil)
        }
-   }
+    
+    @IBAction func addToCartBtn(_ sender: UIButton) {
+    }
+}
 
    extension ProductInfoViewController: ImageSlideshowDelegate {
        func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
            print("current page:", page)
        }
+       
    }
