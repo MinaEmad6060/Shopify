@@ -11,6 +11,10 @@ import Kingfisher
 class ProductInfoViewController: UIViewController {
     var productInfoViewModel : ProdutInfoViewModel?
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
+    
+    @IBOutlet weak var tiitleLB: UILabel!
+    
+    @IBOutlet weak var priceLB: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
