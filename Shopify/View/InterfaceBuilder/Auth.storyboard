@@ -141,10 +141,10 @@
             </objects>
             <point key="canvasLocation" x="823.66412213740455" y="-6.3380281690140849"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="2Yc-2a-Yez">
             <objects>
-                <viewController storyboardIdentifier="SignUPVC" id="eOZ-32-1DN" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUPVC" id="eOZ-32-1DN" customClass="SignUpViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="39A-tz-4FT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

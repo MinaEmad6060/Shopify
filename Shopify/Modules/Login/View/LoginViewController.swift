@@ -23,6 +23,9 @@ class LoginViewController: UIViewController {
     
     @IBAction func goToSignUp(_ sender: UIButton) {
         //SignUPVC
+        let signUpViewController = self.storyboard?.instantiateViewController(withIdentifier: "SignUPVC") as! SignUpViewController
+        signUpViewController.modalPresentationStyle = .fullScreen
+        navigationController?.present(signUpViewController, animated: true)
     }
     @IBAction func signInBtn(_ sender: UIButton) {
         loginViewModel?.getAllCustomers()
