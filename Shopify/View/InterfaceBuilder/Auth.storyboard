@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="Y6W-OH-hqX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,6 +104,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="SIGN IN">
                                     <color key="baseBackgroundColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="0.77163052720000003" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="signInBtn:" destination="K7i-tU-x7o" eventType="touchUpInside" id="NVG-6H-zGi"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do not have an account," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XlK-JO-Htp">
                                 <rect key="frame" x="56" y="661" width="185" height="21"/>
@@ -117,6 +120,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="create one?"/>
+                                <connections>
+                                    <action selector="goToSignUp:" destination="K7i-tU-x7o" eventType="touchUpInside" id="a5D-dj-nvg"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Add to Cart-pana" translatesAutoresizingMaskIntoConstraints="NO" id="mKR-P8-jra">
                                 <rect key="frame" x="0.0" y="32" width="393" height="340.66666666666669"/>
@@ -126,6 +132,10 @@
                         <viewLayoutGuide key="safeArea" id="L0U-II-yI5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="jAu-B5-B9F" id="PaG-eT-y6g"/>
+                        <outlet property="passwordTextField" destination="zDX-RQ-LtN" id="l8x-Mh-3Qp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cH4-D1-mNu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -134,7 +144,7 @@
         <!--View Controller-->
         <scene sceneID="2Yc-2a-Yez">
             <objects>
-                <viewController id="eOZ-32-1DN" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUPVC" id="eOZ-32-1DN" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="39A-tz-4FT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
