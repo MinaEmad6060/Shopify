@@ -12,7 +12,9 @@ pod 'Toast-Swift'
 pod 'ReachabilitySwift'
 pod 'Alamofire'
 pod 'IBAnimatable'
+pod 'FirebaseAuth'
 pod 'TextFieldEffects'
+
 
   target 'ShopifyTests' do
     inherit! :search_paths
@@ -24,3 +26,4 @@ pod 'TextFieldEffects'
   end
 
 end
+
