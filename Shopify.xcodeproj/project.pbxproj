@@ -15,6 +15,7 @@
 		105EEAAE2C16D50300E19566 /* ProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105EEAAD2C16D50300E19566 /* ProductInfoViewController.swift */; };
 		105EEAB02C178CD300E19566 /* ProductInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105EEAAF2C178CD300E19566 /* ProductInfoViewModel.swift */; };
 		1069EEF32C19913F00A5F121 /* SignUpNetworkServie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069EEF22C19913F00A5F121 /* SignUpNetworkServie.swift */; };
+		1069EEF52C199AB000A5F121 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069EEF42C199AB000A5F121 /* Utilities.swift */; };
 		10B2E8E72C11A54100CE25D1 /* testFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B2E8E62C11A54100CE25D1 /* testFile.swift */; };
 		10BD25EE2C1909D60034FCC8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BD25ED2C1909D60034FCC8 /* SignUpViewController.swift */; };
 		401ACAEC2C133E6600EC1B29 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 401ACAEB2C133E6600EC1B29 /* OrdersTableViewCell.xib */; };
@@ -83,6 +84,7 @@
 		105EEAAD2C16D50300E19566 /* ProductInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoViewController.swift; sourceTree = "<group>"; };
 		105EEAAF2C178CD300E19566 /* ProductInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoViewModel.swift; sourceTree = "<group>"; };
 		1069EEF22C19913F00A5F121 /* SignUpNetworkServie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNetworkServie.swift; sourceTree = "<group>"; };
+		1069EEF42C199AB000A5F121 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Shopify/Modules/Auth/SignUP/Model/Utilities.swift; sourceTree = SOURCE_ROOT; };
 		10B2E8E62C11A54100CE25D1 /* testFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFile.swift; sourceTree = "<group>"; };
 		10BD25ED2C1909D60034FCC8 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		1AF4386D2EEFBA853DF7CD96 /* Pods-ShopifyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopifyTests.release.xcconfig"; path = "Target Support Files/Pods-ShopifyTests/Pods-ShopifyTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 		407BF89B2C13A01100DD45A7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1069EEF42C199AB000A5F121 /* Utilities.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				40B6BDB32C14079D009A0A07 /* AllProductsViewController.swift in Sources */,
 				105EEAB02C178CD300E19566 /* ProductInfoViewModel.swift in Sources */,
 				10090CB22C181493000ABDE6 /* LoginViewController.swift in Sources */,
+				1069EEF52C199AB000A5F121 /* Utilities.swift in Sources */,
 				40D96F7B2C112E83000B8D34 /* Shopify.xcdatamodeld in Sources */,
 				10090CBE2C18F502000ABDE6 /* SignUpViewModel.swift in Sources */,
 				401ACAF12C133EA500EC1B29 /* WishListTableViewCell.swift in Sources */,

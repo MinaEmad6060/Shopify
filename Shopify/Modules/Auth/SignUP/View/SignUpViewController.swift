@@ -22,7 +22,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var fnameTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        signUpViewModel = SignUpViewModel()
         
     }
     
@@ -31,13 +31,28 @@ class SignUpViewController: UIViewController {
     @IBAction func signUpBtn(_ sender: UIButton) {
         signUpViewModel?.customer?.first_name = fnameTextField.text
         signUpViewModel?.customer?.last_name = lnameTextField.text
-        signUpViewModel?.customer?.email = lnameTextField.text
+        signUpViewModel?.customer?.email = emailTextField.text
         signUpViewModel?.customer?.tags = passwordTextField.text
               checkConfirmPassword = confirmPasswordTextField.text
               
         guard let customer = signUpViewModel?.customer else{
                   return
               }
+        if fnameTextField.text != "" && lnameTextField.text != "" && emailTextField.text != "" && passwordTextField.text != "" && confirmPasswordTextField.text != "" {
+                   
+            if signUpViewModel?.customer?.tags == checkConfirmPassword {
+                      signUpViewModel?.addCustomer(customer: customer)
+                   }
+                   else{
+                       Utilites.displayToast(message: "Confirm Password and Password must be identical", seconds: 2.0, controller: self)
+                       print("Confirm Password and Password must be identical")
+                   }
+               }else{
+                   Utilites.displayToast(message: "Enter Full Data", seconds: 2.0, controller: self)
+                   print("Enter Full Data")
+               }
+       
+               
     }
     
 }
