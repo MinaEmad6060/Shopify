@@ -12,6 +12,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var categoryItemImage: UIImageView!
     
+    @IBOutlet weak var categoryItemName: UILabel!
     
     @IBOutlet weak var btnFavCategoryItem: UIButton!
     
