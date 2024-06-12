@@ -10,10 +10,10 @@ class LoginedCustomers :Decodable{
     let customers: [Customer]
 }
 class Customer:Decodable{
-    let id: Int?
-    let first_name: String?
-    let last_name: String?
-    let email: String?
-    let tags: String?
-    let note: String?
+    var id: Int?
+    var first_name: String?
+    var last_name: String?
+    var email: String?
+    var tags: String?
+    var note: String?
 }

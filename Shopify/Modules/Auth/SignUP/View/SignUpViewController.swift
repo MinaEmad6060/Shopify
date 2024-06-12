@@ -8,7 +8,8 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
-
+    var signUpViewModel: SignUpViewModel?
+    var checkConfirmPassword :String?
     @IBOutlet weak var emailTextField: UITextField!
 
     @IBOutlet weak var passwordTextField: UITextField!
@@ -21,11 +22,22 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var fnameTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
     }
     
 
     
-
+    @IBAction func signUpBtn(_ sender: UIButton) {
+        signUpViewModel?.customer?.first_name = fnameTextField.text
+        signUpViewModel?.customer?.last_name = lnameTextField.text
+        signUpViewModel?.customer?.email = lnameTextField.text
+        signUpViewModel?.customer?.tags = passwordTextField.text
+              checkConfirmPassword = confirmPasswordTextField.text
+              
+        guard let customer = signUpViewModel?.customer else{
+                  return
+              }
+    }
+    
 }

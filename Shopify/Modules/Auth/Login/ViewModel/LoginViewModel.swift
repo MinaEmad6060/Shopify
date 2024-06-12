@@ -7,6 +7,7 @@
 
 import Foundation
 class LoginViewModel{
+    
     var apiService = FetchDataFromApi()
     var bindingLogin:(()->()) = {}
     var observableLogin : LoginedCustomers?{

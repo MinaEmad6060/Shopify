@@ -168,6 +168,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="SIGN UP">
                                     <color key="baseBackgroundColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="0.77163052720000003" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="signUpBtn:" destination="eOZ-32-1DN" eventType="touchUpInside" id="BBE-SZ-R1i"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Already have an account," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdl-rM-brv">
                                 <rect key="frame" x="49" y="770" width="192" height="21"/>
