@@ -29,18 +29,19 @@ class SignUpViewController: UIViewController {
 
     
     @IBAction func signUpBtn(_ sender: UIButton) {
-        signUpViewModel?.customer?.first_name = fnameTextField.text
-        signUpViewModel?.customer?.last_name = lnameTextField.text
-        signUpViewModel?.customer?.email = emailTextField.text
-        signUpViewModel?.customer?.tags = passwordTextField.text
+        signUpViewModel?.customer.first_name = fnameTextField.text
+        signUpViewModel?.customer.last_name = lnameTextField.text
+        signUpViewModel?.customer.email = emailTextField.text
+        signUpViewModel?.customer.tags = passwordTextField.text
               checkConfirmPassword = confirmPasswordTextField.text
               
         guard let customer = signUpViewModel?.customer else{
+            print("customer is nullll*")
                   return
               }
         if fnameTextField.text != "" && lnameTextField.text != "" && emailTextField.text != "" && passwordTextField.text != "" && confirmPasswordTextField.text != "" {
                    
-            if signUpViewModel?.customer?.tags == checkConfirmPassword {
+            if signUpViewModel?.customer.tags == checkConfirmPassword {
                       signUpViewModel?.addCustomer(customer: customer)
                    }
                    else{

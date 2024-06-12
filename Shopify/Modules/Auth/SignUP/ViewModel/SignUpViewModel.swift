@@ -7,10 +7,10 @@
 
 import Foundation
 class SignUpViewModel{
-    var customer: Customer?
+    var customer = Customer()
 //    init(customer: Customer?) {
-//        self.customer = customer
-//    }
+    //        self.customer = customer
+    //    }
     var bindingSignUp:(()->()) = {}
         var ObservableSignUp : Int? {
             didSet {
