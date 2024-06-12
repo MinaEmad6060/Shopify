@@ -499,18 +499,25 @@
                                 </cells>
                             </collectionView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d7b-Nv-Yyj">
-                                <rect key="frame" x="61" y="174" width="271" height="36"/>
+                                <rect key="frame" x="45" y="174" width="303" height="36"/>
                                 <color key="backgroundColor" red="0.71372549019999998" green="0.61960784310000006" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="MgW-AF-FxS"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="T-Shirt"/>
-                                    <segment title="Shoes"/>
-                                    <segment title="Accessories"/>
+                                    <segment title="T-SHIRTS"/>
+                                    <segment title="SHOES"/>
+                                    <segment title="ACCESSORIES"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noData" translatesAutoresizingMaskIntoConstraints="NO" id="ouj-g2-yCI">
+                                <rect key="frame" x="46.666666666666657" y="286" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="2Sl-2T-rfs"/>
+                                    <constraint firstAttribute="height" constant="300" id="gFe-ts-qfi"/>
+                                </constraints>
+                            </imageView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nz9-cj-Alc">
                                 <rect key="frame" x="26" y="119" width="341" height="36"/>
                                 <color key="backgroundColor" red="0.71372549019999998" green="0.61960784310000006" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -518,10 +525,10 @@
                                     <constraint firstAttribute="height" constant="35" id="jEY-M5-F1F"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Women"/>
-                                    <segment title="Kids"/>
-                                    <segment title="Men"/>
-                                    <segment title="Sale"/>
+                                    <segment title="WOMEN"/>
+                                    <segment title="KID"/>
+                                    <segment title="MEN"/>
+                                    <segment title="SALE"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
@@ -533,11 +540,13 @@
                             <constraint firstItem="XJd-kr-mMH" firstAttribute="trailing" secondItem="nz9-cj-Alc" secondAttribute="trailing" constant="26" id="BxR-5n-PEb"/>
                             <constraint firstItem="d7b-Nv-Yyj" firstAttribute="top" secondItem="nz9-cj-Alc" secondAttribute="bottom" constant="20" id="HCk-yE-59N"/>
                             <constraint firstItem="XJd-kr-mMH" firstAttribute="trailing" secondItem="XZb-x7-pJA" secondAttribute="trailing" constant="32" id="JUG-nD-vx1"/>
-                            <constraint firstItem="XJd-kr-mMH" firstAttribute="trailing" secondItem="d7b-Nv-Yyj" secondAttribute="trailing" constant="61" id="Ljv-N2-eW2"/>
+                            <constraint firstItem="XJd-kr-mMH" firstAttribute="trailing" secondItem="d7b-Nv-Yyj" secondAttribute="trailing" constant="45" id="Ljv-N2-eW2"/>
                             <constraint firstItem="XZb-x7-pJA" firstAttribute="leading" secondItem="XJd-kr-mMH" secondAttribute="leading" constant="32" id="NWm-mU-4zs"/>
                             <constraint firstItem="XJd-kr-mMH" firstAttribute="bottom" secondItem="XZb-x7-pJA" secondAttribute="bottom" constant="8" id="UeF-Xa-XLn"/>
+                            <constraint firstItem="ouj-g2-yCI" firstAttribute="centerY" secondItem="XJd-kr-mMH" secondAttribute="centerY" id="XXe-vr-iBi"/>
                             <constraint firstItem="XZb-x7-pJA" firstAttribute="top" secondItem="d7b-Nv-Yyj" secondAttribute="bottom" constant="29" id="YOO-rt-x8G"/>
-                            <constraint firstItem="d7b-Nv-Yyj" firstAttribute="leading" secondItem="XJd-kr-mMH" secondAttribute="leading" constant="61" id="gwE-3i-s2Q"/>
+                            <constraint firstItem="d7b-Nv-Yyj" firstAttribute="leading" secondItem="XJd-kr-mMH" secondAttribute="leading" constant="45" id="gwE-3i-s2Q"/>
+                            <constraint firstItem="ouj-g2-yCI" firstAttribute="centerX" secondItem="XJd-kr-mMH" secondAttribute="centerX" id="olE-OU-Unp"/>
                             <constraint firstItem="nz9-cj-Alc" firstAttribute="leading" secondItem="XJd-kr-mMH" secondAttribute="leading" constant="26" id="uE1-a0-Wcp"/>
                         </constraints>
                     </view>
@@ -545,6 +554,7 @@
                     <connections>
                         <outlet property="categoryCollectionView" destination="XZb-x7-pJA" id="rWp-Pk-GLZ"/>
                         <outlet property="categoryTable" destination="XZb-x7-pJA" id="HnY-xa-Gih"/>
+                        <outlet property="noDataImage" destination="ouj-g2-yCI" id="IqB-FC-o2K"/>
                         <outlet property="selectCategory" destination="nz9-cj-Alc" id="bjR-2G-nt2"/>
                         <outlet property="selectSubCategory" destination="d7b-Nv-Yyj" id="m2p-pZ-DoQ"/>
                     </connections>
@@ -671,6 +681,7 @@
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="noData" width="360" height="360"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
