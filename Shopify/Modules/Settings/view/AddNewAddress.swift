@@ -6,10 +6,22 @@
 //
 
 import UIKit
+import DropDown
 
 class AddNewAddress: UIViewController {
 
+    @IBAction func cityBtn(_ sender: Any) {
+    }
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var cityView: UIView!
+    @IBAction func countryBtn(_ sender: Any) {
+        countryDropDown.show()
+    }
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var countryView: UIView!
     var viewModel: AddNewAddressViewModel?
+    let countryDropDown = DropDown()
+    let countries = ["Egypt" , "UAE", "Italy"]
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +35,17 @@ class AddNewAddress: UIViewController {
                 print("Failed to add address")
             }
         }
+        
+        countryDropDown.anchorView = countryView
+        countryDropDown.dataSource = countries
+        countryDropDown.bottomOffset = CGPoint(x: 0, y: (countryDropDown.anchorView?.plainView.bounds.height)!)
+        countryDropDown.topOffset = CGPoint(x: 0, y: (countryDropDown.anchorView?.plainView.bounds.height)!)
+        countryDropDown.direction = .bottom
+        countryDropDown.selectionAction = { [weak self]
+            (index: Int , item: String) in
+            self?.countryLabel.text = self!.countries[index]
+        }
+            
     }
     
     @IBOutlet weak var countryTF: UITextField!

@@ -14,6 +14,7 @@ pod 'Alamofire'
 pod 'IBAnimatable'
 pod 'FirebaseAuth'
 pod 'TextFieldEffects'
+pod 'DropDown'
 
 
   target 'ShopifyTests' do
