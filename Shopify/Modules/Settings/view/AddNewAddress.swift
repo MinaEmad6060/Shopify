@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import TextFieldEffects
 
 class AddNewAddress: UIViewController {
 

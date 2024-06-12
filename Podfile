@@ -13,7 +13,7 @@ pod 'ReachabilitySwift'
 pod 'Alamofire'
 pod 'IBAnimatable'
 pod 'FirebaseAuth'
-pod 'TextFieldEffects'
+
 
 
   target 'ShopifyTests' do
