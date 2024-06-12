@@ -7,7 +7,7 @@ target 'Shopify' do
 
   # Pods for Shopify
 
-
+pod 'Kingfisher'
 pod 'Toast-Swift'
 pod 'ReachabilitySwift'
 pod 'Alamofire'
