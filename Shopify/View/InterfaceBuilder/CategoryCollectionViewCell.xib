@@ -20,7 +20,7 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="category" translatesAutoresizingMaskIntoConstraints="NO" id="jk2-Lf-l22">
                         <rect key="frame" x="0.0" y="0.0" width="147" height="105"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="105" id="MDr-VB-vwP"/>
+                            <constraint firstAttribute="height" constant="105" id="n37-Aj-aPR"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmq-kF-Yzg">
@@ -44,9 +44,12 @@
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJl-Ew-Sul">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJl-Ew-Sul">
                         <rect key="frame" x="8" y="113" width="129" height="32"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="zni-X1-CKH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="13"/>
                         <color key="textColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>

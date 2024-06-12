@@ -544,6 +544,7 @@
                     <tabBarItem key="tabBarItem" title="Category" image="case.fill" catalog="system" id="35T-iM-KEq"/>
                     <connections>
                         <outlet property="categoryCollectionView" destination="XZb-x7-pJA" id="rWp-Pk-GLZ"/>
+                        <outlet property="categoryTable" destination="XZb-x7-pJA" id="HnY-xa-Gih"/>
                         <outlet property="selectCategory" destination="nz9-cj-Alc" id="bjR-2G-nt2"/>
                         <outlet property="selectSubCategory" destination="d7b-Nv-Yyj" id="m2p-pZ-DoQ"/>
                     </connections>

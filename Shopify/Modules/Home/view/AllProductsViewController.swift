@@ -58,7 +58,7 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return brandProducts.products?.count ?? 2
+        return brandProducts.products?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,7 +67,7 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         
         cell.categoryItemPrice.text = brandProducts.products?[indexPath.row].variants?[0].price
         
-        var productName = brandProducts.products?[indexPath.row].title
+        let productName = brandProducts.products?[indexPath.row].title
         cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
         
         if let brandProductURLString = brandProducts.products?[indexPath.row].images?[0].src, let brandProductURL = URL(string: brandProductURLString) {
