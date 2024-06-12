@@ -36,9 +36,9 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         fetchDataFromApi = FetchDataFromApi()
         brandProducts = BrandProduct()
         
-        print("URL : \(fetchDataFromApi.formatUrl(request: "products", query: query, value: queryValue))")
+//        print("URL : \(fetchDataFromApi.formatUrl(request: "products", query: query, value: queryValue))")
         
-        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(request: "products", query: query, value: queryValue)){[weak self] (brandProducts: BrandProduct) in
+        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: query, value: queryValue)){[weak self] (brandProducts: BrandProduct) in
             self?.brandProducts = brandProducts
             self?.allProductsCollectionView.reloadData()
         }

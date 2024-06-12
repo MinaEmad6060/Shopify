@@ -11,9 +11,8 @@ import Alamofire
 
 class FetchDataFromApi{
     
-    var baseUrl = ""
 
-    func formatUrl(request: String, query: String="", value: String="") -> String{
+    func formatUrl(baseUrl: String,request: String, query: String="", value: String="") -> String{
         return baseUrl+request+".json?"+query+"="+value
     }
     
