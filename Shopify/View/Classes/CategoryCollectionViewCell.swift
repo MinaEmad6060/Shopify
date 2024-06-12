@@ -15,6 +15,10 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var btnFavCategoryItem: UIButton!
     
+    @IBOutlet weak var categoryItemPrice: UILabel!
+    
+    @IBOutlet weak var categoryItemCurrency: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
