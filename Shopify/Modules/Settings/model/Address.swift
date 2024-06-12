@@ -8,10 +8,21 @@
 import Foundation
 
 struct Address: Codable {
-    let country: String
+    
+    let address1: String?
     let city: String
-    let address: String
+    let country: String
     let phone: String
+
+    enum CodingKeys: String, CodingKey {
+        case address1
+        case city
+        case country
+        case phone
+    }
+}
+struct AddressResponse: Codable {
+    let addresses: [Address]
 }
 
 struct CustomerAddressRequest: Codable {

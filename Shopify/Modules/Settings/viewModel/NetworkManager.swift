@@ -10,6 +10,28 @@ import Alamofire
 
 class NetworkManager {
     
+    var baseUrl = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/177564125/addresses.json"
+    //smart_collections.json
+    func formatUrl(request: String, query: String="", value: String="") -> String{
+        return baseUrl+request+".json?"+query+"="+value
+    }
+    
+    static func getDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
+        let urlFB = URL(string: url)
+        guard let urlFB = urlFB else{return}
+        
+        
+        AF.request(urlFB).responseDecodable(of: T.self) { response in
+            switch response.result {
+            case .success(let result):
+                handler(result)
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    
     static func addNewAddress(customerID: Int, address: Address, completion: @escaping (Bool) -> Void) {
         let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/\(customerID)/addresses.json"
         
