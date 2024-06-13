@@ -39,6 +39,9 @@ PODS:
     - GoogleUtilities/Privacy
   - GTMSessionFetcher/Core (3.4.1)
   - IBAnimatable (6.1.0)
+  - ImageSlideshow (1.9.2):
+    - ImageSlideshow/Core (= 1.9.2)
+  - ImageSlideshow/Core (1.9.2)
   - Kingfisher (7.11.0)
   - PromisesObjC (2.4.0)
   - ReachabilitySwift (5.2.2)
@@ -51,6 +54,7 @@ DEPENDENCIES:
   - DropDown
   - FirebaseAuth
   - IBAnimatable
+  - ImageSlideshow
   - Kingfisher
   - ReachabilitySwift
   - TextFieldEffects
@@ -67,6 +71,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - IBAnimatable
+    - ImageSlideshow
     - Kingfisher
     - PromisesObjC
     - ReachabilitySwift
@@ -84,6 +89,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
   GTMSessionFetcher: 8000756fc1c19d2e5697b90311f7832d2e33f6cd
   IBAnimatable: 99dddd4c0625884a301ba3ecbc1615f8a390368e
+  ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   ReachabilitySwift: 2128f3a8c9107e1ad33574c6e58e8285d460b149
@@ -91,6 +97,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
 
-PODFILE CHECKSUM: 4baafa7080dbb882bbdee4dad75063a9e1ac2480
+PODFILE CHECKSUM: ab27811af6e27e3870dc828efd65277511a535f3
 
 COCOAPODS: 1.15.2
