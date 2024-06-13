@@ -6,8 +6,21 @@
 //
 
 import Foundation
+struct AllDrafts: Codable {
+    var draftOrders: [DraftOrder]?
 
-class DraftOrder: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case draftOrders = "draft_orders"
+    }
+}
+struct Drafts: Codable {
+    var draftOrder: DraftOrder?
+
+    enum CodingKeys: String, CodingKey {
+        case draftOrder = "draft_order"
+    }
+}
+class DraftOrder: Codable {
     var id: Int?
     var note: String?
     var email: String?
@@ -27,7 +40,7 @@ class DraftOrder: Decodable {
         self.lineItems = lineItems
     }
 }
-class DraftOrderProduct: Decodable {
+class DraftOrderProduct: Codable {
     var id: Int?
     var quantity: Int?
     var price: String?
@@ -50,4 +63,5 @@ class DraftOrderProduct: Decodable {
         self.imageSrc = imageSrc
     }
 }
+
 
