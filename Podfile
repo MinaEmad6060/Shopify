@@ -13,7 +13,8 @@ pod 'ReachabilitySwift'
 pod 'Alamofire'
 pod 'IBAnimatable'
 pod 'FirebaseAuth'
-
+pod 'TextFieldEffects'
+pod 'DropDown'
 
   target 'ShopifyTests' do
     inherit! :search_paths
