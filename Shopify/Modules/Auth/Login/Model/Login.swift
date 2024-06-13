@@ -16,4 +16,5 @@ class Customer:Decodable{
     var email: String?
     var tags: String?
     var note: String?
+    var created_at: String?
 }
