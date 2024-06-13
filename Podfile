@@ -15,6 +15,7 @@ pod 'IBAnimatable'
 pod 'FirebaseAuth'
 pod 'TextFieldEffects'
 pod 'DropDown'
+pod 'ImageSlideshow'
 
 
   target 'ShopifyTests' do
