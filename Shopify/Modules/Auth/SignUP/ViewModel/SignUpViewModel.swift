@@ -23,4 +23,5 @@ class SignUpViewModel{
             self.ObservableSignUp = checkSignAblitiy
         }
         }
+    
 }
