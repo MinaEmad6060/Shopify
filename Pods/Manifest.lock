@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.9.1)
+  - DropDown (2.3.13)
   - FirebaseAppCheckInterop (10.27.0)
   - FirebaseAuth (10.27.0):
     - FirebaseAppCheckInterop (~> 10.17)
@@ -45,20 +46,24 @@ PODS:
   - PromisesObjC (2.4.0)
   - ReachabilitySwift (5.2.2)
   - RecaptchaInterop (100.0.0)
+  - TextFieldEffects (1.6.0)
   - Toast-Swift (5.1.1)
 
 DEPENDENCIES:
   - Alamofire
+  - DropDown
   - FirebaseAuth
   - IBAnimatable
   - ImageSlideshow
   - Kingfisher
   - ReachabilitySwift
+  - TextFieldEffects
   - Toast-Swift
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - DropDown
     - FirebaseAppCheckInterop
     - FirebaseAuth
     - FirebaseCore
@@ -71,10 +76,12 @@ SPEC REPOS:
     - PromisesObjC
     - ReachabilitySwift
     - RecaptchaInterop
+    - TextFieldEffects
     - Toast-Swift
 
 SPEC CHECKSUMS:
   Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   FirebaseAppCheckInterop: 0dd062c9926a76332ca5711dbed6f1a9ac540b54
   FirebaseAuth: 77a012b7e08042bf44d0db835ca2e86e6ca7bbd3
   FirebaseCore: a2b95ae4ce7c83ceecfbbbe3b6f1cddc7415a808
@@ -87,8 +94,9 @@ SPEC CHECKSUMS:
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   ReachabilitySwift: 2128f3a8c9107e1ad33574c6e58e8285d460b149
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
+  TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
 
-PODFILE CHECKSUM: 5c25cd1877ad3f86595956db3791f96c6f99c9f0
+PODFILE CHECKSUM: ab27811af6e27e3870dc828efd65277511a535f3
 
 COCOAPODS: 1.15.2

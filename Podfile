@@ -6,15 +6,15 @@ target 'Shopify' do
   use_frameworks!
 
   # Pods for Shopify
-
-pod 'Kingfisher'
-pod 'Toast-Swift'
-pod 'ReachabilitySwift'
-pod 'Alamofire'
-pod 'IBAnimatable'
-pod 'FirebaseAuth'
-pod 'ImageSlideshow'
-
+  pod 'Kingfisher'
+  pod 'Toast-Swift'
+  pod 'ReachabilitySwift'
+  pod 'Alamofire'
+  pod 'IBAnimatable'
+  pod 'FirebaseAuth'
+  pod 'TextFieldEffects'
+  pod 'DropDown'
+  pod 'ImageSlideshow'
 
   target 'ShopifyTests' do
     inherit! :search_paths
