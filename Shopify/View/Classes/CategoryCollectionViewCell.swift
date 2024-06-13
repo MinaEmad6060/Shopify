@@ -12,8 +12,13 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var categoryItemImage: UIImageView!
     
+    @IBOutlet weak var categoryItemName: UILabel!
     
     @IBOutlet weak var btnFavCategoryItem: UIButton!
+    
+    @IBOutlet weak var categoryItemPrice: UILabel!
+    
+    @IBOutlet weak var categoryItemCurrency: UILabel!
     
     
     override func awakeFromNib() {
@@ -23,7 +28,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 15
         self.clipsToBounds = true
         
-        self.categoryItemImage.layer.cornerRadius = 25
+        self.categoryItemImage.layer.cornerRadius = 15
         self.categoryItemImage.clipsToBounds = true
         
         self.btnFavCategoryItem.layer.cornerRadius = 10
