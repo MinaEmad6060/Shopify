@@ -60,4 +60,19 @@ class NetworkManager {
                 }
             }
     }
+    static func deleteCustomerAddress(customerId: Int, addressId: Int, completion: @escaping (Bool) -> Void) {
+        let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/\(customerId)/addresses/\(addressId).json"
+        
+        AF.request(url, method: .delete)
+            .validate(statusCode: 200..<300)
+            .response { response in
+                switch response.result {
+                case .success:
+                    completion(true)
+                case .failure(let error):
+                    print("Error deleting address: \(error)")
+                    completion(false)
+                }
+            }
+    }
 }

@@ -9,6 +9,9 @@ import UIKit
 
 class AllAddressessTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var cityLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
