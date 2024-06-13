@@ -35,10 +35,9 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
 
         fetchDataFromApi = FetchDataFromApi()
         brandProducts = BrandProduct()
+       
         
-        print("URL : \(fetchDataFromApi.formatUrl(request: "products", query: query, value: queryValue))")
-        
-        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(request: "products", query: query, value: queryValue)){[weak self] (brandProducts: BrandProduct) in
+        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: query, value: queryValue)){[weak self] (brandProducts: BrandProduct) in
             self?.brandProducts = brandProducts
             self?.allProductsCollectionView.reloadData()
         }
@@ -59,7 +58,7 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return brandProducts.products?.count ?? 2
+        return brandProducts.products?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,6 +66,9 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! CategoryCollectionViewCell
         
         cell.categoryItemPrice.text = brandProducts.products?[indexPath.row].variants?[0].price
+        
+        let productName = brandProducts.products?[indexPath.row].title
+        cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
         
         if let brandProductURLString = brandProducts.products?[indexPath.row].images?[0].src, let brandProductURL = URL(string: brandProductURLString) {
             cell.categoryItemImage.kf.setImage(with: brandProductURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))

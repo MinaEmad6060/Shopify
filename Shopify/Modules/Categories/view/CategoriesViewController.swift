@@ -9,112 +9,119 @@ import UIKit
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
-    
-    @IBOutlet weak var selectCategoryCollectionView: UICollectionView!
-    
-    
+    @IBOutlet weak var categoryTable: UICollectionView!
+    @IBOutlet weak var selectCategory: UISegmentedControl!
+    @IBOutlet weak var selectSubCategory: UISegmentedControl!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
+    @IBOutlet weak var noDataImage: UIImageView!
     
-    var categoryList = ["Women" , "Kids" , "Men" ,  "Sale"]
-    var subCategoryList = ["T-Shirt" , "Shoes" , "Accessories"]
-
-    var lastIndexCategoryActive:IndexPath = [1 ,0]
-    var lastIndexSubCategoryActive:IndexPath = [1 ,0]
-
-
+    var fetchDataFromApi: FetchDataFromApi!
+    var brandProducts: BrandProduct!
+    var filterdBrandProducts: [Product]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
         
+        noDataImage.isHidden = true
         
-        selectCategoryCollectionView.delegate = self
-        selectCategoryCollectionView.dataSource = self
-
+        fetchDataFromApi = FetchDataFromApi()
+        brandProducts = BrandProduct()
+        filterdBrandProducts = [Product]()
+        
+        Constants.setSelectedCategory(category: getSelectedCategoryValue(sender: selectCategory))
+        fetchProductsFromApi()
+        
         let nibCustomCell = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.categoryCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "CategoryCell")
     }
     
     
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if collectionView == selectCategoryCollectionView{
-            return 2
-        }
-        return 1
-    }
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == selectCategoryCollectionView{
-            if section == 0{
-                return self.categoryList.count
+
+        self.setSubCategory()
+
+        if let products = filterdBrandProducts{
+            if products.count > 0{
+                noDataImage.isHidden = true
+                categoryTable.isHidden = false
             }else{
-                return self.subCategoryList.count
+                noDataImage.isHidden = false
+                categoryTable.isHidden = true
             }
+            return products.count
+        }else{
+            noDataImage.isHidden = false
+            categoryTable.isHidden = true
+            return 0
         }
-        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath as IndexPath) as! CategoryCollectionViewCell
         
-        if collectionView == selectCategoryCollectionView{
-            if indexPath.section == 0{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! SelectCategory
-
-                cell.nameSelectedCell.text = self.categoryList[indexPath.row]
-                return cell
-            }else{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "subCell", for: indexPath as IndexPath) as! SelectSubCategory
-
-                cell.nameSubSelectedCell.text = self.subCategoryList[indexPath.row]
-                return cell
+        
+        if filterdBrandProducts.count > indexPath.row{
+            cell.categoryItemPrice.text = filterdBrandProducts[indexPath.row].variants?[0].price
+            
+            let productName = filterdBrandProducts[indexPath.row].title
+            cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
+            
+            if let brandProductURLString = filterdBrandProducts[indexPath.row].images?[0].src, let brandProductURL = URL(string: brandProductURLString) {
+                cell.categoryItemImage.kf.setImage(with: brandProductURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))
+            } else {
+                cell.categoryItemImage.image = UIImage(named: "placeholderlogo.jpeg")
             }
         }
         
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCollectionViewCell
-        
-       
         return cell
     }
+ 
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == selectCategoryCollectionView{
-            if self.lastIndexCategoryActive != indexPath && indexPath.section == 0 {
-                let cell = collectionView.cellForItem(at: indexPath) as! SelectCategory
-                cell.nameSelectedCell.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                cell.selectCell.backgroundColor = #colorLiteral(red: 0.5197754502, green: 0.4352019429, blue: 0.3402310014, alpha: 1)
-                cell.selectCell.layer.masksToBounds = true
-                
-                let cell1 = collectionView.cellForItem(at: self.lastIndexCategoryActive) as? SelectCategory
-                cell1?.nameSelectedCell.textColor = #colorLiteral(red: 0.5197754502, green: 0.4352019429, blue: 0.3402310014, alpha: 1)
-                cell1?.selectCell.backgroundColor = #colorLiteral(red: 0.9565492272, green: 0.9433754086, blue: 0.9277216792, alpha: 1)
-                cell1?.selectCell.layer.masksToBounds = true
-                self.lastIndexCategoryActive = indexPath
-                
-                print(cell.nameSelectedCell.text!)
-            }
-            else if self.lastIndexSubCategoryActive != indexPath && indexPath.section == 1 {
-                let cell = collectionView.cellForItem(at: indexPath) as! SelectSubCategory
-                cell.nameSubSelectedCell.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                cell.selectSubCell.backgroundColor = #colorLiteral(red: 0.5197754502, green: 0.4352019429, blue: 0.3402310014, alpha: 1)
-                cell.selectSubCell.layer.masksToBounds = true
-                
-                let cell1 = collectionView.cellForItem(at: self.lastIndexSubCategoryActive) as? SelectSubCategory
-                cell1?.nameSubSelectedCell.textColor = #colorLiteral(red: 0.5197754502, green: 0.4352019429, blue: 0.3402310014, alpha: 1)
-                cell1?.selectSubCell.backgroundColor = #colorLiteral(red: 0.9565492272, green: 0.9433754086, blue: 0.9277216792, alpha: 1)
-                cell1?.selectSubCell.layer.masksToBounds = true
-                self.lastIndexSubCategoryActive = indexPath
-                
-                print(cell.nameSubSelectedCell.text!)
-            }
+    
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl)  -> String{
+        let selectedIndex = sender.selectedSegmentIndex
+        let selectedSegmentTitle = sender.titleForSegment(at: selectedIndex) ?? ""
+        Constants.setSelectedCategory(category: selectedSegmentTitle)
+
+        if sender == selectCategory{
+            fetchProductsFromApi()
+        }else{
+            self.categoryCollectionView.reloadData()
+        }
+        return selectedSegmentTitle
+    }
+    
+    func getSelectedCategoryValue(sender: UISegmentedControl) -> String{
+        sender.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+        return segmentedControlValueChanged(sender)
+    }
+    
+    func fetchProductsFromApi(){
+        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: "collection_id", value: "\(Constants.categoryID ?? 0)")){[weak self] (brandProducts: BrandProduct) in
+            self?.brandProducts = brandProducts
+            self?.setSubCategory()
         }
     }
     
-    
-    
-    
+    func setSubCategory(){
+        let subCategory = self.getSelectedCategoryValue(sender: self.selectSubCategory ?? UISegmentedControl())
+        if let filteredProducts = self.filterdBrandProducts,
+        let allProdudts = self.brandProducts.products{
+            if(subCategory == "ALL"){
+                self.filterdBrandProducts = allProdudts
+            }else if(subCategory == "EXTRAS"){
+                self.filterdBrandProducts = allProdudts.filter { product in
+                    return product.product_type == "ACCESSORIES"
+                }
+            }else{
+                self.filterdBrandProducts = allProdudts.filter { product in
+                    return product.product_type == subCategory
+                }
+            }
+            self.categoryCollectionView.reloadData()
+        }
+    }
 }

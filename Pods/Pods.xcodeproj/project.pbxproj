@@ -1435,7 +1435,11 @@
 		3780735A27678CACC390B60FF756B166 /* FirebaseCoreInternal-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FirebaseCoreInternal-prefix.pch"; sourceTree = "<group>"; };
 		3788A5019D3082D08A596BC434485AEF /* ResourceBundle-ReachabilitySwift-ReachabilitySwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-ReachabilitySwift-ReachabilitySwift-Info.plist"; sourceTree = "<group>"; };
 		3815D4B06714CD24E29ED8DED170C175 /* FIRAuthStoredUserManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRAuthStoredUserManager.h; path = FirebaseAuth/Sources/SystemService/FIRAuthStoredUserManager.h; sourceTree = "<group>"; };
+
 		382801D37C7C7FB12DA7F82AF99BA6E5 /* IBAnimatable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IBAnimatable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+
+		382801D37C7C7FB12DA7F82AF99BA6E5 /* IBAnimatable */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IBAnimatable; path = IBAnimatable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+
 		385F899DD88158CAD2DB26EB95B874D4 /* TextFieldEffects.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TextFieldEffects.modulemap; sourceTree = "<group>"; };
 		3864DC39701BBB6F6F65D212D51FEE9C /* Pods-ShopifyTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-ShopifyTests"; path = Pods_ShopifyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C723DB5C7CA4C235264F645DB66F14 /* IBAnimatable-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IBAnimatable-dummy.m"; sourceTree = "<group>"; };
@@ -1580,7 +1584,11 @@
 		5CF5C1262A4924370B090B915F969CCC /* GTMSessionUploadFetcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GTMSessionUploadFetcher.m; path = Sources/Core/GTMSessionUploadFetcher.m; sourceTree = "<group>"; };
 		5D06333A72A9194CB89E9D6DF9CAC2F4 /* ActivityIndicatorAnimationBallScaleRippleMultiple.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ActivityIndicatorAnimationBallScaleRippleMultiple.swift; path = Sources/ActivityIndicators/Animations/ActivityIndicatorAnimationBallScaleRippleMultiple.swift; sourceTree = "<group>"; };
 		5D5EC8920D180D895F80537E35A28969 /* BorderDesignable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BorderDesignable.swift; path = Sources/Protocols/Designable/BorderDesignable.swift; sourceTree = "<group>"; };
+
 		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+
+		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+
 		5DC574F1433A585008DC82B1DDDFE4C4 /* FIRUser_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRUser_Internal.h; path = FirebaseAuth/Sources/User/FIRUser_Internal.h; sourceTree = "<group>"; };
 		5E22EAB8F6D4BF7E316D43A484825C77 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Toast/Resources/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		5EA6A6C6EA24ED9C9ABAD9B40D9D8307 /* FIRAuthProtoStartMFAPhoneRequestInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRAuthProtoStartMFAPhoneRequestInfo.m; path = FirebaseAuth/Sources/Backend/RPC/Proto/Phone/FIRAuthProtoStartMFAPhoneRequestInfo.m; sourceTree = "<group>"; };
@@ -3388,6 +3396,88 @@
 			sourceTree = "<group>";
 		};
 		9B288182E860370855A1FB7D9E4FEBDF /* Resources */ = {
+ 
+
+			isa = PBXGroup;
+			children = (
+				5E22EAB8F6D4BF7E316D43A484825C77 /* PrivacyInfo.xcprivacy */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		A2DCBCEBBD93C71E1A49C184480E2A86 /* Kingfisher */ = {
+			isa = PBXGroup;
+			children = (
+				3420058FAA77C4E3BAAA75A6498838C8 /* AnimatedImageView.swift */,
+				88D8ABD974DE14E51923B2728FB2CA3D /* AuthenticationChallengeResponsable.swift */,
+				4E88793A21C6BC6709BABD3EABA07E40 /* AVAssetImageDataProvider.swift */,
+				94574D5E4882003766020A335043A431 /* Box.swift */,
+				44BFBD81B34BB70747D46A5778CC8D53 /* CacheSerializer.swift */,
+				A4C5DEEFC39270F792FD14FDAFA90689 /* CallbackQueue.swift */,
+				24721EF6DE0810B8C813047AE2E98858 /* CPListItem+Kingfisher.swift */,
+				9CD233D833D8379C07D39B02F8A0C312 /* Delegate.swift */,
+				C80A71FE9AAE372C2F0BA9E328D1AE70 /* DiskStorage.swift */,
+				013A1B3214547AFD8BEA7E96B919ABEE /* DisplayLink.swift */,
+				E322E637CF813E2FEAE08AD84946B288 /* ExtensionHelpers.swift */,
+				51F2AC5198349D98FAD189A4A50BE92E /* Filter.swift */,
+				9EBF2CC537F19985BA0CC86255CFABFA /* FormatIndicatedCacheSerializer.swift */,
+				22B051C6E9C96F6B62940FFC938C5093 /* GIFAnimatedImage.swift */,
+				B00B57801B0B96E3A25729D609D0987E /* GraphicsContext.swift */,
+				4776E349D2772FB2E824FCA6949ACFD7 /* Image.swift */,
+				0716799C813BBCB4066E193EC3058607 /* ImageBinder.swift */,
+				1559D6807AC49848EF830A51433A4263 /* ImageCache.swift */,
+				55167AB7FE513F9DFC0CD7FC17EC1DB0 /* ImageContext.swift */,
+				21FC26585E45762BC026D40B0E83C236 /* ImageDataProcessor.swift */,
+				16D2FD15073C924EA0470E050AD49CA6 /* ImageDataProvider.swift */,
+				68E57C499D9C3A82D1EF0B8E7D86EA54 /* ImageDownloader.swift */,
+				18F5BE40D8E32A6FDF23CA01A726DD36 /* ImageDownloaderDelegate.swift */,
+				7B6E47AD30B5D08D51711506C975DA77 /* ImageDrawing.swift */,
+				A2192E86A8F4EAC57554E5340F5AAD72 /* ImageFormat.swift */,
+				CC42D77FB13CB8078ABD596BCAF0205C /* ImageModifier.swift */,
+				9D5C6AF34B4EDBA4626053888477E540 /* ImagePrefetcher.swift */,
+				AE007D05F67810217155E77CBBD1C99E /* ImageProcessor.swift */,
+				E55EB1C7262C01F56035449F78A9B90A /* ImageProgressive.swift */,
+				456A70D8849BA3BFEDCE6BA100277D68 /* ImageTransition.swift */,
+				08693A72A45A8C5F416658DBE01572B8 /* ImageView+Kingfisher.swift */,
+				08E75FFE0B02736E458D1C09990F8960 /* Indicator.swift */,
+				BC164B1EB13B7F90CCA0323C9059E593 /* KF.swift */,
+				F20E6CAE9BF6CFF0A25CADCC5A8D9C0E /* KFAnimatedImage.swift */,
+				84F57EE73AA1308C973F2F725337821A /* KFImage.swift */,
+				DC649F71CE53ABC29BADE342A00F14F7 /* KFImageOptions.swift */,
+				B089B634C90CB72C8242523C1BE4CD64 /* KFImageProtocol.swift */,
+				9A461B5D110A4D84FADBBFF137F9163F /* KFImageRenderer.swift */,
+				F58CE764308037EF4A3423F9370FA20F /* KFOptionsSetter.swift */,
+				94144A752B70DAD09194FEBDE115011C /* Kingfisher.swift */,
+				FD6E7C7DE5E74110FC7C01A378DEDF1F /* KingfisherError.swift */,
+				2EE907CB447DA2239A448EFEB89042B3 /* KingfisherManager.swift */,
+				B5573F4E0C8EA7DA93C4EB2F9C458D32 /* KingfisherOptionsInfo.swift */,
+				6283EE19C82871EFAC6B78E594D2007A /* MemoryStorage.swift */,
+				01809DC570B28C9D084AD8332AC77BFD /* NSButton+Kingfisher.swift */,
+				46985886206A294EF9FDE0FDBB97B9FD /* NSTextAttachment+Kingfisher.swift */,
+				476921EB481BC73DD21141456139D154 /* Placeholder.swift */,
+				B0C2D3255CA2F813B0AD6A87E1A00281 /* RedirectHandler.swift */,
+				A81EA8689F022D6B4A41A501F7C51DEF /* RequestModifier.swift */,
+				72F47B14308A54BF024814AB4DB85658 /* Resource.swift */,
+				DF85CCE8EB117F3B0C58D5F49C9A8334 /* Result.swift */,
+				B90EA8A6DE2F160A274C635B09B20E62 /* RetryStrategy.swift */,
+				FFD27AF21CF5505EC9F64BB66F4FEE16 /* Runtime.swift */,
+				5470118F86F99AAA56C11405ADAC0392 /* SessionDataTask.swift */,
+				9A63C23EF2FDEC056FC21F771449E783 /* SessionDelegate.swift */,
+				FA4D17BC50C026F3A5B1CDA7F25802C3 /* SizeExtensions.swift */,
+				9C4F80B75D3E669C7A709627E0E05C80 /* Source.swift */,
+				6FEBB7AA10B6DF672C645EE95642572B /* Storage.swift */,
+				5960482DEFDC3524A276EBF37000ED90 /* String+MD5.swift */,
+				842D64F463C797F4BEB98093B471AF20 /* TVMonogramView+Kingfisher.swift */,
+				3C14765D54504C706A5A196FFE73A66D /* UIButton+Kingfisher.swift */,
+				9D21FF3BEB0BBAB09D2860D62F46E569 /* WKInterfaceImage+Kingfisher.swift */,
+				DDB1EBCA3971F2DA8700C683BF534186 /* Resources */,
+				99F79A2E0504A7297A2358039F21962F /* Support Files */,
+			);
+			path = Kingfisher;
+			sourceTree = "<group>";
+		};
+		A3E5F66FEC63CC095A0E6F14105B1A31 /* Products */ = {
+
 			isa = PBXGroup;
 			children = (
 				5E22EAB8F6D4BF7E316D43A484825C77 /* PrivacyInfo.xcprivacy */,
@@ -3483,7 +3573,11 @@
 				44E291D18340EAC3F761346198515323 /* GoogleUtilities-GoogleUtilities_Privacy */,
 				C1998E0D8085221AD87F89B614C10E52 /* GTMSessionFetcher */,
 				E826FA0DCB9AA6E7829C68391B323B78 /* GTMSessionFetcher-GTMSessionFetcher_Core_Privacy */,
+
 				382801D37C7C7FB12DA7F82AF99BA6E5 /* IBAnimatable.framework */,
+
+				382801D37C7C7FB12DA7F82AF99BA6E5 /* IBAnimatable */,
+
 				C1D78A7F43807F49FDB5B04DD9BD6AC7 /* ImageSlideshow.framework */,
 				C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher */,
 				C298ABB78D9B05529B89D8322DB2E7B0 /* Kingfisher-Kingfisher */,
@@ -7739,7 +7833,11 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IBAnimatable/IBAnimatable-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IBAnimatable/IBAnimatable-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
