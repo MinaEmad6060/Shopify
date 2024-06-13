@@ -47,7 +47,6 @@
 		653D21757C14EE1F07300ACC /* Pods_Shopify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE8DF2200CDF97D2F50F7E2 /* Pods_Shopify.framework */; };
 		AA07553DBEBE337097B63BB9 /* Pods_Shopify_ShopifyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E4699A20A7679CB3AC13F07 /* Pods_Shopify_ShopifyUITests.framework */; };
 		B087E8812C1ACC6200526CF0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B087E8802C1ACC6200526CF0 /* Settings.swift */; };
-		B08D6A312C14E1A000894358 /* CustomerS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D6A302C14E1A000894358 /* CustomerS.swift */; };
 		B08D6A372C14E93200894358 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D6A362C14E93200894358 /* Address.swift */; };
 		B08D6A392C15338F00894358 /* AddNewAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D6A382C15338F00894358 /* AddNewAddressViewModel.swift */; };
 		B08D6A3B2C1533CE00894358 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D6A3A2C1533CE00894358 /* NetworkManager.swift */; };
@@ -129,7 +128,6 @@
 		8E4699A20A7679CB3AC13F07 /* Pods_Shopify_ShopifyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopify_ShopifyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4EE0B7AB52F0226EDB94ED3 /* Pods_ShopifyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopifyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B087E8802C1ACC6200526CF0 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		B08D6A302C14E1A000894358 /* CustomerS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomerS.swift; path = Shopify/View/Classes/CustomerS.swift; sourceTree = SOURCE_ROOT; };
 		B08D6A362C14E93200894358 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		B08D6A382C15338F00894358 /* AddNewAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressViewModel.swift; sourceTree = "<group>"; };
 		B08D6A3A2C1533CE00894358 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = Shopify/Modules/Settings/viewModel/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
@@ -326,7 +324,6 @@
 		407BF89A2C139FFF00DD45A7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B08D6A302C14E1A000894358 /* CustomerS.swift */,
 				40B6BDB42C140C3E009A0A07 /* Brand.swift */,
 				40B6BDB82C1417E3009A0A07 /* BrandProduct.swift */,
 				40E17CAD2C1B9CDC00DD9526 /* ComplectedOrder.swift */,
@@ -724,7 +721,6 @@
 				401ACAED2C133E6600EC1B29 /* OrdersTableViewCell.swift in Sources */,
 				40EB4A8F2C12398F009038FA /* HomeViewController.swift in Sources */,
 				B09B09822C19C7AE00A4233B /* AllAddressessViewModel.swift in Sources */,
-				B08D6A312C14E1A000894358 /* CustomerS.swift in Sources */,
 				B08D6A392C15338F00894358 /* AddNewAddressViewModel.swift in Sources */,
 				40B6BDB72C140C55009A0A07 /* FetchDataFromApi.swift in Sources */,
 				4043AB372C1A79B30037C03A /* OrderDetailsViewController.swift in Sources */,
