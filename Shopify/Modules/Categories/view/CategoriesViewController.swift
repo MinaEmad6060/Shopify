@@ -9,14 +9,11 @@ import UIKit
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
     @IBOutlet weak var categoryTable: UICollectionView!
     @IBOutlet weak var selectCategory: UISegmentedControl!
     @IBOutlet weak var selectSubCategory: UISegmentedControl!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
-    
     @IBOutlet weak var noDataImage: UIImageView!
-    
     
     var fetchDataFromApi: FetchDataFromApi!
     var brandProducts: BrandProduct!
@@ -43,10 +40,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("will")
-        self.filterdBrandProducts = self.brandProducts.products?.filter { product in
-            return product.product_type == self.getSelectedCategoryValue(sender: self.selectSubCategory ?? UISegmentedControl())
-        }
+
+        self.setSubCategory()
+
         if let products = filterdBrandProducts{
             if products.count > 0{
                 noDataImage.isHidden = true
@@ -106,11 +102,26 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     func fetchProductsFromApi(){
         fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: "collection_id", value: "\(Constants.categoryID ?? 0)")){[weak self] (brandProducts: BrandProduct) in
             self?.brandProducts = brandProducts
-            print("\(self?.getSelectedCategoryValue(sender: self?.selectSubCategory ?? UISegmentedControl()) ?? "none")")
-            self?.filterdBrandProducts = self?.brandProducts.products?.filter { product in
-                return product.product_type == self?.getSelectedCategoryValue(sender: self?.selectSubCategory ?? UISegmentedControl())
+            self?.setSubCategory()
+        }
+    }
+    
+    func setSubCategory(){
+        let subCategory = self.getSelectedCategoryValue(sender: self.selectSubCategory ?? UISegmentedControl())
+        if let filteredProducts = self.filterdBrandProducts,
+        let allProdudts = self.brandProducts.products{
+            if(subCategory == "ALL"){
+                self.filterdBrandProducts = allProdudts
+            }else if(subCategory == "EXTRAS"){
+                self.filterdBrandProducts = allProdudts.filter { product in
+                    return product.product_type == "ACCESSORIES"
+                }
+            }else{
+                self.filterdBrandProducts = allProdudts.filter { product in
+                    return product.product_type == subCategory
+                }
             }
-            self?.categoryCollectionView.reloadData()
+            self.categoryCollectionView.reloadData()
         }
     }
 }
