@@ -31,7 +31,7 @@ class FetchDataFromApi{
             }
         }
     }
-    static func createDraft(product: Product, note: String, complication: @escaping (Int) -> Void) {
+    static func createDraft(product: Product, note: String?, complication: @escaping (Int) -> Void) {
         let urlString = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/draft_orders.json"
         guard let url = URL(string: urlString) else {
             print("Invalid URL")

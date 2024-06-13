@@ -33,6 +33,7 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async{
                 if self?.loginViewModel?.checkCustomerAuth(email: self?.emailTextField.text ?? "", password: self?.passwordTextField.text ?? "") == "Login Sucess"{
                     print("sucess")
+                   
                 }else{
                     print("failed")
                 }
