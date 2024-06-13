@@ -33,6 +33,7 @@
 		40D96F972C112E85000B8D34 /* ShopifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D96F962C112E85000B8D34 /* ShopifyUITestsLaunchTests.swift */; };
 		40D96FA42C112EDC000B8D34 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40D96FA32C112EDC000B8D34 /* Auth.storyboard */; };
 		40D96FA62C112F2C000B8D34 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40D96FA52C112F2C000B8D34 /* Payment.storyboard */; };
+		40E17CAE2C1B9CDC00DD9526 /* ComplectedOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E17CAD2C1B9CDC00DD9526 /* ComplectedOrder.swift */; };
 		40EB4A8F2C12398F009038FA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB4A8E2C12398F009038FA /* HomeViewController.swift */; };
 		40EB4A922C123AFB009038FA /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EB4A902C123AFB009038FA /* AdsCollectionViewCell.swift */; };
 		40EB4A932C123AFB009038FA /* AdsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40EB4A912C123AFB009038FA /* AdsCollectionViewCell.xib */; };
@@ -101,6 +102,7 @@
 		40D96F962C112E85000B8D34 /* ShopifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		40D96FA32C112EDC000B8D34 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		40D96FA52C112F2C000B8D34 /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		40E17CAD2C1B9CDC00DD9526 /* ComplectedOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplectedOrder.swift; sourceTree = "<group>"; };
 		40EB4A8E2C12398F009038FA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		40EB4A902C123AFB009038FA /* AdsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCollectionViewCell.swift; sourceTree = "<group>"; };
 		40EB4A912C123AFB009038FA /* AdsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			children = (
 				40B6BDB42C140C3E009A0A07 /* Brand.swift */,
 				40B6BDB82C1417E3009A0A07 /* BrandProduct.swift */,
+				40E17CAD2C1B9CDC00DD9526 /* ComplectedOrder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				40EB4A9F2C124A6C009038FA /* CategoryCollectionViewCell.swift in Sources */,
 				4078A6D22C186D5400CF6D02 /* MoreOrdersViewController.swift in Sources */,
 				40EB4A992C123BE3009038FA /* ProfileViewController.swift in Sources */,
+				40E17CAE2C1B9CDC00DD9526 /* ComplectedOrder.swift in Sources */,
 				40D96F732C112E83000B8D34 /* SceneDelegate.swift in Sources */,
 				401ACAED2C133E6600EC1B29 /* OrdersTableViewCell.swift in Sources */,
 				40EB4A8F2C12398F009038FA /* HomeViewController.swift in Sources */,
