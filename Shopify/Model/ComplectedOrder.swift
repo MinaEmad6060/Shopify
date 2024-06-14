@@ -21,11 +21,11 @@ struct Order: Decodable{
 
 
 
-struct Customer:Decodable{
-    var id: UInt64?
-    var first_name: String?
-    var created_at: String?
-}
+//struct Customer:Decodable{
+//    var id: UInt64?
+//    var first_name: String?
+//    var created_at: String?
+//}
 
 
 
