@@ -7,7 +7,7 @@
 
 import Foundation
 class LoginViewModel{
-    
+    var product: Product?
     var apiService = FetchDataFromApi()
     var bindingLogin:(()->()) = {}
     var observableLogin : LoginedCustomers?{
@@ -65,4 +65,7 @@ class LoginViewModel{
                print("No user information found in UserDefaults.")
            }
        }
+    func createDraftWith(product: Product, note: String, completion: @escaping (Int) -> Void) {
+            FetchDataFromApi.CreateDraft(product: product, note: note, complication: completion)
+        }
 }
