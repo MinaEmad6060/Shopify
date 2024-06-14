@@ -10,14 +10,14 @@ import UIKit
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var ordersTableView: UITableView!
-    @IBOutlet weak var seeMoreOrdersOutlit: UIButton!
     @IBOutlet weak var noOrders: UILabel!
     @IBOutlet weak var wishListTableView: UITableView!
-    @IBOutlet weak var seeMoreWishListOutlit: UIButton!
     @IBOutlet weak var noWishList: UILabel!
     @IBOutlet weak var orderTitle: UILabel!
     @IBOutlet weak var wishListTitle: UILabel!
     @IBOutlet weak var welcomeUserTitle: UILabel!
+    
+    
     
     var fetchDataFromApi: FetchDataFromApi!
     var complectedOrders: ComplectedOrder!
@@ -94,7 +94,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("URL ::: \(fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders", query: "customer_id", value: "7435246534827"))")
         fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders", query: "customer_id", value: "7435246534827")){[weak self] (complectedOrders: ComplectedOrder) in
             self?.complectedOrders.orders = complectedOrders.orders
-            print("num of orders ::: \(complectedOrders.orders?.count ?? -1)")
+            Constants.orders = complectedOrders.orders
             self?.ordersTableView.reloadData()
         }
     }

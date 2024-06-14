@@ -361,7 +361,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="Lh1-1Q-jgr" kind="show" id="Yer-f6-xlR"/>
+                                    <segue destination="Lh1-1Q-jgr" kind="show" id="2Uu-yR-I6F"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZPV-Et-YDl">
@@ -372,9 +372,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="See More">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <segue destination="oFp-dS-Z4s" kind="show" id="NJd-F1-4f0"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dG-g5-3iC">
                                 <rect key="frame" x="172" y="511" width="87" height="21"/>
@@ -415,8 +412,6 @@
                         <outlet property="noWishList" destination="4dG-g5-3iC" id="ee9-xM-WUM"/>
                         <outlet property="orderTitle" destination="u1Z-pn-Vg9" id="NJD-cq-WFc"/>
                         <outlet property="ordersTableView" destination="fOD-K2-jsz" id="LMV-1Z-6Gj"/>
-                        <outlet property="seeMoreOrdersOutlit" destination="Elu-pH-6Xj" id="tvP-WI-R0x"/>
-                        <outlet property="seeMoreWishListOutlit" destination="ZPV-Et-YDl" id="1Ow-2B-ToI"/>
                         <outlet property="welcomeUserTitle" destination="JJH-LY-2Fy" id="3dK-go-CGO"/>
                         <outlet property="wishListTableView" destination="Uuf-KT-H5Y" id="07L-s2-wEJ"/>
                         <outlet property="wishListTitle" destination="iSa-cA-Djf" id="NWr-8G-NU3"/>
@@ -505,7 +500,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLm-hl-XLl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7142.7480916030536" y="606.33802816901414"/>
+            <point key="canvasLocation" x="7770" y="606"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bGg-QW-Gtj">
@@ -700,7 +695,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91q-t3-4MF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5174.8091603053435" y="1364.7887323943662"/>
+            <point key="canvasLocation" x="6634" y="607"/>
         </scene>
         <!--More Wishes View Controller-->
         <scene sceneID="Uh2-Gc-pPt">
@@ -754,7 +749,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eha-ck-IEo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5985" y="1365"/>
+            <point key="canvasLocation" x="5552" y="1381"/>
         </scene>
     </scenes>
     <resources>
