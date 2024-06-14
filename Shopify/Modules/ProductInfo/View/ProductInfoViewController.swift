@@ -35,6 +35,8 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
         super.viewDidLoad()
            sizeCollectionView.dataSource = self
               sizeCollectionView.delegate = self
+        colorCollectionView.dataSource = self
+        colorCollectionView.delegate = self
         configureImageSlideshow()
         print(productInfoViewModel?.product?.images)
         tiitleLB.text = productInfoViewModel?.product?.title
@@ -114,17 +116,41 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
        func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
            print("current page:", page)
        }
+//       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SizeCollectionViewCell
+//           if let size = productInfoViewModel?.product?.options[0].values?[indexPath.item] {
+//                   cell.sizeLB.text = size
+//               print("size ===\(size)")
+//               }
+//               return cell
+//       
+//           }
+           
        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+           if collectionView == sizeCollectionView {
                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SizeCollectionViewCell
-           if let size = productInfoViewModel?.product?.options[0].values?[indexPath.item] {
+               if let size = productInfoViewModel?.product?.options.first(where: { $0.name == "Size" })?.values?[indexPath.item] {
                    cell.sizeLB.text = size
-               print("size ===\(size)")
+               }
+               return cell
+           } else if collectionView == colorCollectionView {
+               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ColorsCollectionViewCell
+               if let color = productInfoViewModel?.product?.options.first(where: { $0.name == "Color" })?.values?[indexPath.item] {
+                   cell.colorLB.text = color
+                   //cell.colorView.backgroundColor = UIColor(named: color) // Assuming you have color names that match your app's color assets
                }
                return cell
            }
-           
+           return UICollectionViewCell()
+       }
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-           return   productInfoViewModel?.product?.options.first(where: { $0.name == "Size" })?.values?.count ?? 0
+//           return   productInfoViewModel?.product?.options.first(where: { $0.name == "Size" })?.values?.count ?? 0
+           if collectionView == sizeCollectionView {
+                  return productInfoViewModel?.product?.options.first(where: { $0.name == "Size" })?.values?.count ?? 0
+              } else if collectionView == colorCollectionView {
+                  return productInfoViewModel?.product?.options.first(where: { $0.name == "Color" })?.values?.count ?? 0
+              }
+              return 0
        }
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
            return CGSize(width: 50, height: 50)
