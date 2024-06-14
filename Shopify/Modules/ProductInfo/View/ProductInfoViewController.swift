@@ -26,9 +26,11 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }
-   // @IBOutlet weak var sizeLB: UILabel!
     
-    @IBOutlet weak var sizeCollectionView: UICollectionView!
+@IBOutlet weak var sizeCollectionView: UICollectionView!
+    
+    @IBOutlet weak var colorCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
            sizeCollectionView.dataSource = self
@@ -37,59 +39,10 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
         print(productInfoViewModel?.product?.images)
         tiitleLB.text = productInfoViewModel?.product?.title
         descTextView.text = productInfoViewModel?.product?.body_html
-        priceLB.text =  productInfoViewModel?.product?.variants?[0].price 
+        priceLB.text =  productInfoViewModel?.product?.variants?[0].price
        // sizeLB.text = productInfoViewModel?.product?.options[0].values?[0]
     }
- /*
-    private func configureImageSlideshow() {
-           // Set up the images
-//           let imageInputs = [
-//               ImageSource(image: UIImage(named: "wish")!),
-//               ImageSource(image: UIImage(named: "category")!),
-//               ImageSource(image: UIImage(named: "Ad")!)
-//           ]
-//           
-          // imageSlideshow.setImageInputs(imageInputs)
-        
 
-              // Convert product images to ImageSource array
-              
-        guard let productImages = productInfoViewModel?.product?.images else {
-             
-            imageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "Ad")!)])
-             return
-         }
-
-         // Convert product images to ImageSource array
-         let imageInputs = productImages.compactMap { image -> ImageSource? in
-             if let urlString = image.src, let url = URL(string: urlString) {
-                 let imageView = UIImageView()
-                 imageView.kf.setImage(with: url)
-                 return ImageSource(image: imageView.image ?? UIImage())
-             }
-             return nil
-         }
-        print("imageInputs******\(imageInputs)")
-
-         imageSlideshow.setImageInputs(imageInputs)
-           imageSlideshow.slideshowInterval = 3.0
-        imageSlideshow.pageIndicatorPosition = .init(horizontal: .center, vertical: .bottom)
-           imageSlideshow.contentScaleMode = UIView.ContentMode.scaleAspectFit
-           
-           let pageIndicator = UIPageControl()
-           pageIndicator.currentPageIndicatorTintColor = UIColor.lightGray
-           pageIndicator.pageIndicatorTintColor = UIColor.black
-           imageSlideshow.pageIndicator = pageIndicator
-           
-           imageSlideshow.activityIndicator = DefaultActivityIndicator()
-           imageSlideshow.delegate = self
-        
-           let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
-           imageSlideshow.addGestureRecognizer(recognizer)
-        
-              imageSlideshow.layer.cornerRadius = 20
-              imageSlideshow.clipsToBounds = true
-       }*/
     private func configureImageSlideshow() {
             guard let productImages = productInfoViewModel?.product?.images else {
                 imageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "Ad")!)])

@@ -498,7 +498,7 @@
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="RpE-eq-nC9">
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="RpE-eq-nC9" customClass="ColorsCollectionViewCell" customModule="Shopify" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="61.333333333333343" height="40.333333333333336"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Mdh-1w-Bdb">
@@ -520,6 +520,9 @@
                                                                         <constraint firstAttribute="trailing" secondItem="KMI-sJ-5zb" secondAttribute="trailing" constant="10" id="agQ-vi-Xkf"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
+                                                                <connections>
+                                                                    <outlet property="colorLB" destination="KMI-sJ-5zb" id="bWW-ex-aT7"/>
+                                                                </connections>
                                                             </collectionViewCell>
                                                         </cells>
                                                     </collectionView>
@@ -608,6 +611,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="colorCollectionView" destination="mC4-lU-2xj" id="NsA-Z6-H4M"/>
                         <outlet property="descTextView" destination="TwH-Ld-rjY" id="coR-dT-0f0"/>
                         <outlet property="imageSlideshow" destination="p3l-r6-HPf" id="s0L-ZR-2ih"/>
                         <outlet property="priceLB" destination="JkZ-L4-XbH" id="rzV-Gr-FGH"/>
