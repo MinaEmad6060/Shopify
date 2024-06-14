@@ -25,6 +25,7 @@ struct Product: Decodable{
     var variants: [Variant]?
     var images: [ImageOfBrand]?
     var options:[Options]
+    let image: ProductImage?
 }
 
 struct Variant: Decodable{
@@ -33,4 +34,16 @@ struct Variant: Decodable{
 struct Options: Decodable{
     var name: String?
     var values: [String]?
+}
+struct ProductImage: Codable {
+    let id, productID, position: Int?
+    let width, height: Int?
+    let src: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case productID = "product_id"
+        case position
+        case width, height, src
+    }
 }

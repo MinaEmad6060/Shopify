@@ -44,7 +44,7 @@ class LoginViewModel{
                        // Save user ID and email to UserDefaults
                        UserDefaults.standard.set(customer.id, forKey: "userID")
                        UserDefaults.standard.set(customer.email, forKey: "userEmail")
-                       returnValue = "Login Success"
+                       returnValue = "Login Sucess"
                        
                        // Print stored user info
                        printStoredUserInfo()
