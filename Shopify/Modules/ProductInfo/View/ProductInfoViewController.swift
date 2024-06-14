@@ -24,6 +24,7 @@ class ProductInfoViewController: UIViewController {
     }
    // @IBOutlet weak var sizeLB: UILabel!
     
+    @IBOutlet weak var sizeCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
