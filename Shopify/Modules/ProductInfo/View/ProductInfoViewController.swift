@@ -9,7 +9,11 @@ import UIKit
 import ImageSlideshow
 import Kingfisher
 
-class ProductInfoViewController: UIViewController {
+class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+  
+    
+  
+    
     var productInfoViewModel : ProdutInfoViewModel?
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
     
@@ -27,12 +31,13 @@ class ProductInfoViewController: UIViewController {
     @IBOutlet weak var sizeCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+           sizeCollectionView.dataSource = self
+              sizeCollectionView.delegate = self
         configureImageSlideshow()
         print(productInfoViewModel?.product?.images)
         tiitleLB.text = productInfoViewModel?.product?.title
         descTextView.text = productInfoViewModel?.product?.body_html
-        priceLB.text =  productInfoViewModel?.product?.variants?[0].price
+        priceLB.text =  productInfoViewModel?.product?.variants?[0].price 
        // sizeLB.text = productInfoViewModel?.product?.options[0].values?[0]
     }
  /*
@@ -149,11 +154,35 @@ class ProductInfoViewController: UIViewController {
     
     @IBAction func addToCartBtn(_ sender: UIButton) {
     }
+   
 }
 
    extension ProductInfoViewController: ImageSlideshowDelegate {
        func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
            print("current page:", page)
        }
-       
+       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SizeCollectionViewCell
+           if let size = productInfoViewModel?.product?.options[0].values?[indexPath.item] {
+                   cell.sizeLB.text = size
+               print("size ===\(size)")
+               }
+               return cell
+           }
+           
+       func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+           return   productInfoViewModel?.product?.options.first(where: { $0.name == "Size" })?.values?.count ?? 0
+       }
+       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+           return CGSize(width: 50, height: 50)
+       }
+
+       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+           return 10
+       }
+
+       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+           return 10
+       }
+
    }
