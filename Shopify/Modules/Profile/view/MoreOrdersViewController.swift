@@ -26,7 +26,6 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
         moreOrdersTable.delegate = self
         moreOrdersTable.dataSource = self
         
-//        orders = [Order]()
         orders = Constants.orders
 
         self.moreOrdersTable.reloadData()
@@ -61,5 +60,16 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         guard let orderDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "OrderDetailsVC") as? OrderDetailsViewController else {
+             return
+         }
+                    
+                
+        orderDetailsViewController.orderId = self.orders?[indexPath.row].id
+        orderDetailsViewController.modalPresentationStyle = .fullScreen
+        present(orderDetailsViewController, animated: true )
     }
 }

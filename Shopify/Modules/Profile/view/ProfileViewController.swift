@@ -99,4 +99,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
 
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         guard let orderDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "OrderDetailsVC") as? OrderDetailsViewController else {
+             return
+         }
+                    
+         orderDetailsViewController.orderId = self.complectedOrders.orders?[indexPath.row].id
+        print("\(self.complectedOrders.orders?[indexPath.row].line_items?.count ?? 0)")
+        orderDetailsViewController.modalPresentationStyle = .fullScreen
+         present(orderDetailsViewController, animated: true )
+    }
 }
