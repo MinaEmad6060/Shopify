@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,26 +18,89 @@
                 <rect key="frame" x="0.0" y="0.0" width="436" height="353"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ad" translatesAutoresizingMaskIntoConstraints="NO" id="24r-q3-sjc">
-                        <rect key="frame" x="8" y="8" width="420" height="337"/>
-                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATN-hU-1pB">
+                        <rect key="frame" x="0.0" y="0.0" width="277" height="353"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10% OFF" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6X-sN-6Bi">
+                                <rect key="frame" x="26" y="63" width="243" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Special Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tM-1U-IQF">
+                                <rect key="frame" x="18" y="39" width="188" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Valid for online orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lv6-UD-tkA">
+                                <rect key="frame" x="26" y="145" width="222" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Promocode jhgfdxfghjklkjh" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbl-qg-rNL">
+                                <rect key="frame" x="26" y="187" width="243" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.83656048770000002" green="0.77325910330000003" blue="0.69793713089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="353" id="QEi-u9-H9P"/>
+                            <constraint firstAttribute="width" constant="277" id="atl-Qm-Upe"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6c-IT-bWy">
+                        <rect key="frame" x="277" y="0.0" width="159" height="353"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="C O U P O N" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QoX-4g-RTH">
+                                <rect key="frame" x="72" y="55" width="36" height="298"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FREE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnd-oA-KCU">
+                                <rect key="frame" x="28" y="24" width="36" height="189"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="353" id="9lZ-zk-ZDn"/>
+                            <constraint firstAttribute="width" constant="159" id="aDs-sf-vbm"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="24r-q3-sjc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="Ccl-mS-Oq5"/>
-                <constraint firstAttribute="bottom" secondItem="24r-q3-sjc" secondAttribute="bottom" constant="8" id="R6J-xg-EtC"/>
-                <constraint firstItem="24r-q3-sjc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="YOs-FO-Nh3"/>
-                <constraint firstAttribute="trailing" secondItem="24r-q3-sjc" secondAttribute="trailing" constant="8" id="fcN-I9-dUf"/>
+                <constraint firstItem="ATN-hU-1pB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="HES-Y1-aDo"/>
+                <constraint firstItem="R6c-IT-bWy" firstAttribute="leading" secondItem="ATN-hU-1pB" secondAttribute="trailing" id="iXK-sk-0wS"/>
+                <constraint firstItem="ATN-hU-1pB" firstAttribute="top" secondItem="R6c-IT-bWy" secondAttribute="top" id="jO8-fi-vaG"/>
+                <constraint firstItem="ATN-hU-1pB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="w2X-Ea-1im"/>
             </constraints>
             <size key="customSize" width="436" height="353"/>
             <connections>
-                <outlet property="adImage" destination="24r-q3-sjc" id="EaA-wW-yCT"/>
+                <outlet property="discountCodeLabel" destination="Pbl-qg-rNL" id="kks-UK-U9i"/>
+                <outlet property="valueLabel" destination="Q6X-sN-6Bi" id="Ii1-Pa-Xi4"/>
+                <outlet property="view" destination="ATN-hU-1pB" id="aAD-xn-lo3"/>
             </connections>
             <point key="canvasLocation" x="415.26717557251908" y="95.422535211267615"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Ad" width="441" height="229"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
