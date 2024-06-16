@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         loginViewModel = LoginViewModel()
+        
     }
     
 
@@ -47,7 +48,7 @@ class LoginViewController: UIViewController {
                             print("Login Success")
                             // Call the CreateDraft function after successful login
                            
-                            let product = Product(id: 123,
+                           /* let product = Product(id: 123,
                                                                  title: "Sample Product",
                                                                  body_html: "Sample HTML",
                                                                  product_type: "Sample Type",
@@ -58,7 +59,7 @@ class LoginViewController: UIViewController {
                                            // Pass the product object to the createDraftWith function
                             self?.loginViewModel?.createDraftWith(product: product, note: "") { statusCode in
                                 // Handle the completion if needed
-                            }
+                            }*/
                         } else {
                             print("Login Failed")
                         }
