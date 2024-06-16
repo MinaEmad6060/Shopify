@@ -9,8 +9,11 @@ import Foundation
 class LoginedCustomers :Decodable{
     let customers: [Customer]
 }
+class CustomerResponse: Decodable {
+    let customer: Customer
+}
 class Customer:Decodable{
-    var id: Int?
+    var id: Int64?
     var first_name: String?
     var last_name: String?
     var email: String?

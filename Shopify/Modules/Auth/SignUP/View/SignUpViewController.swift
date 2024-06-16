@@ -172,11 +172,11 @@ class SignUpViewController: UIViewController {
 
         if (200...299).contains(statusCode) {
             
-            print("customer.id: \(customer.id)")
-            print("customer.email:\(customer.email)")
-            print("fname: \(customer.first_name)")
-            UserDefaults.standard.set(customer.id, forKey: "userID")
-            UserDefaults.standard.set(customer.email, forKey: "userEmail")
+//            print("customer.id: \(customer.id)")
+//            print("customer.email:\(customer.email)")
+//            print("fname: \(customer.first_name)")
+//            UserDefaults.standard.set(customer.id, forKey: "userID")
+//            UserDefaults.standard.set(customer.email, forKey: "userEmail")
 
             if let userID = UserDefaults.standard.object(forKey: "userID") as? Int,
                let userEmail = UserDefaults.standard.object(forKey: "userEmail") as? String {
