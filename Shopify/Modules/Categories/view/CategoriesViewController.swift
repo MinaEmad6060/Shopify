@@ -100,7 +100,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     }
     
     func fetchProductsFromApi(){
-        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: "collection_id", value: "\(Constants.categoryID ?? 0)")){[weak self] (brandProducts: BrandProduct) in
+        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: "collection_id", value: "\(Constants.categoryID ?? 0)")){[weak self] (brandProducts: BrandProduct) in
             self?.brandProducts = brandProducts
             self?.setSubCategory()
         }

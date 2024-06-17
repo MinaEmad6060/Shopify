@@ -25,6 +25,8 @@
 		401ACAF12C133EA500EC1B29 /* WishListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401ACAEE2C133EA500EC1B29 /* WishListTableViewCell.swift */; };
 		403303C72C13642A001EE7CB /* SelectCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403303C62C13642A001EE7CB /* SelectCategory.swift */; };
 		4043AB372C1A79B30037C03A /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4043AB362C1A79B30037C03A /* OrderDetailsViewController.swift */; };
+		4054538B2C20F12F00190528 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4054538A2C20F12F00190528 /* HomeViewModel.swift */; };
+		4054538D2C20F17300190528 /* HomeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4054538C2C20F17300190528 /* HomeViewModelProtocol.swift */; };
 		4078A6D22C186D5400CF6D02 /* MoreOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4078A6D12C186D5400CF6D02 /* MoreOrdersViewController.swift */; };
 		4078A6D42C186D6600CF6D02 /* MoreWishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4078A6D32C186D6600CF6D02 /* MoreWishesViewController.swift */; };
 		409326372C1D040E007463DC /* ProductOfOrderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409326352C1D040E007463DC /* ProductOfOrderViewCell.xib */; };
@@ -112,6 +114,8 @@
 		401ACAEF2C133EA500EC1B29 /* WishListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WishListTableViewCell.xib; sourceTree = "<group>"; };
 		403303C62C13642A001EE7CB /* SelectCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategory.swift; sourceTree = "<group>"; };
 		4043AB362C1A79B30037C03A /* OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewController.swift; sourceTree = "<group>"; };
+		4054538A2C20F12F00190528 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		4054538C2C20F17300190528 /* HomeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelProtocol.swift; sourceTree = "<group>"; };
 		4078A6D12C186D5400CF6D02 /* MoreOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOrdersViewController.swift; sourceTree = "<group>"; };
 		4078A6D32C186D6600CF6D02 /* MoreWishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreWishesViewController.swift; sourceTree = "<group>"; };
 		409326352C1D040E007463DC /* ProductOfOrderViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductOfOrderViewCell.xib; sourceTree = "<group>"; };
@@ -346,6 +350,15 @@
 			path = CoreDataService;
 			sourceTree = "<group>";
 		};
+		405453892C20F0F300190528 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4054538A2C20F12F00190528 /* HomeViewModel.swift */,
+				4054538C2C20F17300190528 /* HomeViewModelProtocol.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		407BF8902C139EF000DD45A7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +375,7 @@
 		407BF8912C139F0200DD45A7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				405453892C20F0F300190528 /* viewModel */,
 				407BF8942C139F4300DD45A7 /* view */,
 			);
 			path = Home;
@@ -856,6 +870,7 @@
 				401ACAF12C133EA500EC1B29 /* WishListTableViewCell.swift in Sources */,
 				403303C72C13642A001EE7CB /* SelectCategory.swift in Sources */,
 				10090CB72C1827C6000ABDE6 /* Login.swift in Sources */,
+				4054538B2C20F12F00190528 /* HomeViewModel.swift in Sources */,
 				10B2E8E72C11A54100CE25D1 /* testFile.swift in Sources */,
 				B08D6A3B2C1533CE00894358 /* NetworkManager.swift in Sources */,
 				40EB4A9F2C124A6C009038FA /* CategoryCollectionViewCell.swift in Sources */,
@@ -872,6 +887,7 @@
 				B08D6A392C15338F00894358 /* AddNewAddressViewModel.swift in Sources */,
 				40B6BDB72C140C55009A0A07 /* FetchDataFromApi.swift in Sources */,
 				4043AB372C1A79B30037C03A /* OrderDetailsViewController.swift in Sources */,
+				4054538D2C20F17300190528 /* HomeViewModelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

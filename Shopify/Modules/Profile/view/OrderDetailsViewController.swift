@@ -13,14 +13,13 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var createdDate: UILabel!
     @IBOutlet weak var customerName: UILabel!
     @IBOutlet weak var productsTableView: UITableView!
-    
+    @IBOutlet weak var orderNumber: UILabel!
     
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
     var orderId: UInt64?
-//    var numberOfProducts: Int?
     var fetchDataFromApi: FetchDataFromApi!
     var productsOfOrder: [OrderProduct]?
 
@@ -33,13 +32,14 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
         fetchDataFromApi = FetchDataFromApi()
         productsOfOrder = [OrderProduct]()
         print("url :: \(fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders/\(orderId ?? 0)"))")
-        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders/\(orderId ?? 0)")){[weak self] (orderDetails: OrderDetails) in
+        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders/\(orderId ?? 0)")){[weak self] (orderDetails: OrderDetails) in
             let dateTimeComponents = orderDetails.order?.created_at?.components(separatedBy: "T")
 
             if dateTimeComponents?.count == 2 {
                 self?.createdDate.text = dateTimeComponents?[0]
             }
             self?.customerName.text = orderDetails.order?.customer?.first_name
+            self?.orderNumber.text = "\(self?.orderId ?? 0)"
             self?.productsOfOrder = orderDetails.order?.line_items
             self?.productsTableView.reloadData()
         }

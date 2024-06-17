@@ -92,7 +92,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     //status=any&customer_id=7435246534827
     func fetchProductsFromApi(){
         print("URL ::: \(fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders", query: "customer_id", value: "7435246534827"))")
-        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders", query: "customer_id", value: "7435246534827")){[weak self] (complectedOrders: ComplectedOrder) in
+        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders", query: "customer_id", value: "7435246534827")){[weak self] (complectedOrders: ComplectedOrder) in
             self?.complectedOrders.orders = complectedOrders.orders
             Constants.orders = complectedOrders.orders
             self?.ordersTableView.reloadData()
