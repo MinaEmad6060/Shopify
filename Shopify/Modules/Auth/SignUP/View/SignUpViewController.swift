@@ -31,6 +31,11 @@ class SignUpViewController: UIViewController {
                         
                     }
                 }
+        let draftOrderIDCart = getDraftOrderIDCart()
+        let draftOrderIDFavorite = getDraftOrderIDFavorite()
+
+        print("Draft Order ID for Cart: \(draftOrderIDCart)")
+        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
         
     }
     
@@ -126,66 +131,23 @@ class SignUpViewController: UIViewController {
                return passwordTest.evaluate(with: password)
            
     }
-    /*private func handleSignUpResponse() {
-            guard let statusCode = signUpViewModel?.ObservableSignUp else { return }
-            
-            if (200...299).contains(statusCode) {
-                print("Navigating to LoginVC")
-                let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-                loginViewController.modalPresentationStyle = .fullScreen
-                self.present(loginViewController, animated: true, completion: nil)
-            } else {
-                Utilites.displayToast(message: "Failed to add customer", seconds: 2.0, controller: self)
-                print("Failed to add customer, status code: \(statusCode)")
-            }
-        }
-    */
-     
-   /* private func handleSignUpResponse() {
-          guard let statusCode = signUpViewModel?.ObservableSignUp, let customer = signUpViewModel?.customer else { return }
-          
-          if (200...299).contains(statusCode) {
-              // Save user ID and email to UserDefaults
-              UserDefaults.standard.set(customer.id, forKey: "userID")
-              UserDefaults.standard.set(customer.email, forKey: "userEmail")
-              
-              if let userID = UserDefaults.standard.object(forKey: "userID") as? Int,
-                             let userEmail = UserDefaults.standard.object(forKey: "userEmail") as? String {
-                              print("UserDefaults - userID: \(userID), userEmail: \(userEmail)")
-                          } else {
-                              print("UserDefaults data not found")
-                          }
-              // Create draft order for the new customer
-              createDraftOrder(for: customer)
-          } else {
-              DispatchQueue.main.async {
-                  Utilites.displayToast(message: "Failed to add customer", seconds: 2.0, controller: self)
-                  print("Failed to add customer, status code: \(statusCode)")
-              }
-          }
-      }
-      */
-    //*****
+   
     
     private func handleSignUpResponse() {
         guard let statusCode = signUpViewModel?.ObservableSignUp, let customer = signUpViewModel?.customer else { return }
 
         if (200...299).contains(statusCode) {
-            
-//            print("customer.id: \(customer.id)")
-//            print("customer.email:\(customer.email)")
-//            print("fname: \(customer.first_name)")
-//            UserDefaults.standard.set(customer.id, forKey: "userID")
-//            UserDefaults.standard.set(customer.email, forKey: "userEmail")
+        
 
             if let userID = UserDefaults.standard.object(forKey: "userID") as? Int,
                let userEmail = UserDefaults.standard.object(forKey: "userEmail") as? String {
                 print("UserDefaults - userID: \(userID), userEmail: \(userEmail)")
                
                 createDraftOrder(for: customer, note: "favorite")
+        
                 createDraftOrder(for: customer, note: "cart")
-               
-                            
+                
+             
                         
                 
             } else {
@@ -222,29 +184,7 @@ class SignUpViewController: UIViewController {
                   }
               }
           }
-      }/*
-    private func createDraftOrder(for customer: Customer, note: String, completion: @escaping (String) -> Void) {
-           let product = Product(id: 123,
-                                 title: "Sample Product",
-                                 body_html: "Sample HTML",
-                                 product_type: "Sample Type",
-                                 variants: [Variant(price: "20")],
-                                 options: [Options(name: "Color", values: ["Red", "Blue"])],
-                                 image: ProductImage(id: 1, productID: 123, position: 1, width: 100, height: 100, src: "sample.jpg"))
-           
-           signUpViewModel?.createDraftWith(product: product, note: note) { statusCode in
-               DispatchQueue.main.async {
-                   if (200...299).contains(statusCode) {
-                       // Assuming draftOrderID is returned from the createDraftWith function
-                       let draftOrderID = "sampleDraftOrderID" // Replace with actual draft order ID
-                       completion(draftOrderID)
-                   } else {
-                       Utilites.displayToast(message: "Failed to create draft order", seconds: 2.0, controller: self)
-                       print("Failed to create draft order, status code: \(statusCode)")
-                   }
-               }
-           }
-       }*/
+      }
     
     func printStoredUserInfo() {
         if let userID = UserDefaults.standard.string(forKey: "userID"),
@@ -255,20 +195,14 @@ class SignUpViewController: UIViewController {
             print("No user information found in UserDefaults.")
         }
     }
-    private func fetchAndPrintDraftOrderIDs() {
-        if let favoriteDraftOrderID = UserDefaults.standard.object(forKey: "favoriteDraftOrderID") as? Int {
-            print("Favorite Draft Order ID: \(favoriteDraftOrderID)")
-            
-        } else {
-            print("Favorite Draft Order ID not found")
-        }
-        
-        if let cartDraftOrderID = UserDefaults.standard.object(forKey: "cartDraftOrderID") as? Int {
-            print("Cart Draft Order ID: \(cartDraftOrderID)")
-        } else {
-            print("Cart Draft Order ID not found")
-        }
+
+    func getDraftOrderIDCart() -> Int {
+        return UserDefaults.standard.integer(forKey: "draftOrderIDCart")
     }
 
+    
+    func getDraftOrderIDFavorite() -> Int {
+        return UserDefaults.standard.integer(forKey: "draftOrderIDFavorite")
+    }
 
 }
