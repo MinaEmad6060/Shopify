@@ -182,7 +182,12 @@ class SignUpViewController: UIViewController {
                let userEmail = UserDefaults.standard.object(forKey: "userEmail") as? String {
                 print("UserDefaults - userID: \(userID), userEmail: \(userEmail)")
                
-                createDraftOrder(for: customer)
+                createDraftOrder(for: customer, note: "favorite")
+                createDraftOrder(for: customer, note: "cart")
+               
+                            
+                        
+                
             } else {
                 print("UserDefaults data not found")
                 Utilites.displayToast(message: "Failed to save user data", seconds: 2.0, controller: self)
@@ -196,7 +201,7 @@ class SignUpViewController: UIViewController {
     }
 
 
-      private func createDraftOrder(for customer: Customer) {
+   /* private func createDraftOrder(for customer: Customer ,  note:String) {
           let product = Product(id: 123,
                                 title: "Sample Product",
                                 body_html: "Sample HTML",
@@ -205,7 +210,7 @@ class SignUpViewController: UIViewController {
                                 options: [Options(name: "Color", values: ["Red", "Blue"])],
                                 image: ProductImage(id: 1, productID: 123, position: 1, width: 100, height: 100, src: "sample.jpg"))
           
-          signUpViewModel?.createDraftWith(product: product, note: "") { statusCode in
+          signUpViewModel?.createDraftWith(product: product, note: note) { statusCode in
               DispatchQueue.main.async {
                   if (200...299).contains(statusCode) {
                       let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
@@ -217,7 +222,29 @@ class SignUpViewController: UIViewController {
                   }
               }
           }
-      }
+      }*/
+    private func createDraftOrder(for customer: Customer, note: String, completion: @escaping (String) -> Void) {
+           let product = Product(id: 123,
+                                 title: "Sample Product",
+                                 body_html: "Sample HTML",
+                                 product_type: "Sample Type",
+                                 variants: [Variant(price: "20")],
+                                 options: [Options(name: "Color", values: ["Red", "Blue"])],
+                                 image: ProductImage(id: 1, productID: 123, position: 1, width: 100, height: 100, src: "sample.jpg"))
+           
+           signUpViewModel?.createDraftWith(product: product, note: note) { statusCode in
+               DispatchQueue.main.async {
+                   if (200...299).contains(statusCode) {
+                       // Assuming draftOrderID is returned from the createDraftWith function
+                       let draftOrderID = "sampleDraftOrderID" // Replace with actual draft order ID
+                       completion(draftOrderID)
+                   } else {
+                       Utilites.displayToast(message: "Failed to create draft order", seconds: 2.0, controller: self)
+                       print("Failed to create draft order, status code: \(statusCode)")
+                   }
+               }
+           }
+       }
     
     func printStoredUserInfo() {
         if let userID = UserDefaults.standard.string(forKey: "userID"),
@@ -228,6 +255,20 @@ class SignUpViewController: UIViewController {
             print("No user information found in UserDefaults.")
         }
     }
- 
+    private func fetchAndPrintDraftOrderIDs() {
+        if let favoriteDraftOrderID = UserDefaults.standard.object(forKey: "favoriteDraftOrderID") as? Int {
+            print("Favorite Draft Order ID: \(favoriteDraftOrderID)")
+            
+        } else {
+            print("Favorite Draft Order ID not found")
+        }
+        
+        if let cartDraftOrderID = UserDefaults.standard.object(forKey: "cartDraftOrderID") as? Int {
+            print("Cart Draft Order ID: \(cartDraftOrderID)")
+        } else {
+            print("Cart Draft Order ID not found")
+        }
+    }
+
 
 }
