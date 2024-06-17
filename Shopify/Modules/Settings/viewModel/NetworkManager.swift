@@ -75,4 +75,83 @@ class NetworkManager {
                 }
             }
     }
+    
+    static func updateDraftOrder(draftOrderId: Int, lineItems: [LineItem], completion: @escaping (Bool) -> Void) {
+        let url = "\(Constants.baseUrl)/draft_orders/\(draftOrderId).json"
+        guard let encodedCredentials = "\(Constants.api_key):\(Constants.password)".data(using: .utf8)?.base64EncodedString() else {
+            print("Failed to encode credentials")
+            completion(false)
+            return
+        }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Basic \(encodedCredentials)",
+            "Content-Type": "application/json"
+        ]
+        
+        let lineItemsData = lineItems.map { ["id": $0.id, "quantity": $0.quantity] }
+        let parameters: [String: Any] = [
+            "draft_order": [
+                "line_items": lineItemsData
+            ]
+        ]
+        
+        AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response { response in
+            switch response.result {
+            case .success:
+                completion(true)
+            case .failure(let error):
+                print("\(error)")
+                completion(false)
+            }
+        }
+    }
+    static func fetchDraftOrder(draftOrderId: Int, completion: @escaping (DraftOrder?) -> Void) {
+        let url = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
+        
+        
+        AF.request(url, method: .get).responseDecodable(of: DraftOrderResponse.self) { response in
+            switch response.result {
+            case .success(let draftOrderResponse):
+                completion(draftOrderResponse.draft_order)
+            case .failure(let error):
+                print("Error fetching draft order: \(error)")
+                completion(nil)
+            }
+        }
+    }
+    static func checkProductAvailability(productId: Int, completion: @escaping (Int?) -> Void) {
+        let url = "\(Constants.baseUrl)/products/\(productId).json"
+        
+        
+        AF.request(url, method: .get).responseDecodable(of: ProductResponse.self) { response in
+            switch response.result {
+            case .success(let productResponse):
+                completion(productResponse.product.variants.first?.inventoryQuantity)
+            case .failure(let error):
+                print("Error fetching product availability: \(error)")
+                completion(nil)
+            }
+        }
+    }
 }
+
+    struct ProductResponse: Codable {
+        let product: Product
+    }
+
+    struct Product: Codable {
+        let id: Int
+        let variants: [Variant]
+    }
+
+struct Variant: Codable {
+    let id: Int
+    let inventoryQuantity: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case inventoryQuantity = "inventory_quantity"
+    }
+}
+

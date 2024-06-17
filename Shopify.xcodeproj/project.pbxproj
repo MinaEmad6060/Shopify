@@ -58,6 +58,9 @@
 		B0B4B0C02C13696100FAFFEA /* ShoppingCartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4B0BE2C13695E00FAFFEA /* ShoppingCartViewCell.swift */; };
 		B0B4B0C12C13696100FAFFEA /* ShoppingCartViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0B4B0BF2C13696000FAFFEA /* ShoppingCartViewCell.xib */; };
 		B0BD90F02C147F80000C6D88 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0BD90EF2C147F80000C6D88 /* Settings.storyboard */; };
+		B0C841182C1E110C0052403E /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C841172C1E110C0052403E /* LineItem.swift */; };
+		B0C8411A2C1E11660052403E /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C841192C1E11660052403E /* ShoppingCart.swift */; };
+		B0C8411C2C1E119A0052403E /* ShoppingCartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C8411B2C1E119A0052403E /* ShoppingCartTableViewController.swift */; };
 		D488A9618AED639614A73A1B /* Pods_ShopifyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4EE0B7AB52F0226EDB94ED3 /* Pods_ShopifyTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +143,9 @@
 		B0B4B0BE2C13695E00FAFFEA /* ShoppingCartViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewCell.swift; sourceTree = "<group>"; };
 		B0B4B0BF2C13696000FAFFEA /* ShoppingCartViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartViewCell.xib; sourceTree = "<group>"; };
 		B0BD90EF2C147F80000C6D88 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		B0C841172C1E110C0052403E /* LineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
+		B0C841192C1E11660052403E /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
+		B0C8411B2C1E119A0052403E /* ShoppingCartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartTableViewController.swift; sourceTree = "<group>"; };
 		F194FB6F0CB9B7B061BD1292 /* Pods-Shopify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopify.debug.xcconfig"; path = "Target Support Files/Pods-Shopify/Pods-Shopify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -425,6 +431,8 @@
 				B09B097D2C19C75200A4233B /* AllAddressess.swift */,
 				B09B097F2C19C78000A4233B /* AllAddressessTableViewCell.swift */,
 				B087E8802C1ACC6200526CF0 /* Settings.swift */,
+				B0C841192C1E11660052403E /* ShoppingCart.swift */,
+				B0C8411B2C1E119A0052403E /* ShoppingCartTableViewController.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -434,6 +442,7 @@
 			children = (
 				B08D6A362C14E93200894358 /* Address.swift */,
 				B01F786F2C1C1E6600D9ABEA /* DiscountCodes.swift */,
+				B0C841172C1E110C0052403E /* LineItem.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -715,13 +724,16 @@
 				401ACAF12C133EA500EC1B29 /* WishListTableViewCell.swift in Sources */,
 				403303C72C13642A001EE7CB /* SelectCategory.swift in Sources */,
 				10B2E8E72C11A54100CE25D1 /* testFile.swift in Sources */,
+				B0C8411A2C1E11660052403E /* ShoppingCart.swift in Sources */,
 				B08D6A3B2C1533CE00894358 /* NetworkManager.swift in Sources */,
 				40EB4A9F2C124A6C009038FA /* CategoryCollectionViewCell.swift in Sources */,
 				4078A6D22C186D5400CF6D02 /* MoreOrdersViewController.swift in Sources */,
 				40EB4A992C123BE3009038FA /* ProfileViewController.swift in Sources */,
+				B0C841182C1E110C0052403E /* LineItem.swift in Sources */,
 				B01F78702C1C1E6600D9ABEA /* DiscountCodes.swift in Sources */,
 				40E17CAE2C1B9CDC00DD9526 /* ComplectedOrder.swift in Sources */,
 				40D96F732C112E83000B8D34 /* SceneDelegate.swift in Sources */,
+				B0C8411C2C1E119A0052403E /* ShoppingCartTableViewController.swift in Sources */,
 				401ACAED2C133E6600EC1B29 /* OrdersTableViewCell.swift in Sources */,
 				40EB4A8F2C12398F009038FA /* HomeViewController.swift in Sources */,
 				B09B09822C19C7AE00A4233B /* AllAddressessViewModel.swift in Sources */,
