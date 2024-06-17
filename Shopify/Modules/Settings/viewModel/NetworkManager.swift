@@ -121,37 +121,18 @@ class NetworkManager {
         }
     }
     static func checkProductAvailability(productId: Int, completion: @escaping (Int?) -> Void) {
-        let url = "\(Constants.baseUrl)/products/\(productId).json"
+        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/products/8100172759211.json"
         
         
         AF.request(url, method: .get).responseDecodable(of: ProductResponse.self) { response in
             switch response.result {
             case .success(let productResponse):
-                completion(productResponse.product.variants.first?.inventoryQuantity)
+                completion(productResponse.product.variants?.first?.inventory_quantity)
             case .failure(let error):
                 print("Error fetching product availability: \(error)")
                 completion(nil)
             }
         }
-    }
-}
-
-    struct ProductResponse: Codable {
-        let product: Product
-    }
-
-    struct Product: Codable {
-        let id: Int
-        let variants: [Variant]
-    }
-
-struct Variant: Codable {
-    let id: Int
-    let inventoryQuantity: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case inventoryQuantity = "inventory_quantity"
     }
 }
 

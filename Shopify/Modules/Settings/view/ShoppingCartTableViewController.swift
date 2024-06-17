@@ -64,21 +64,30 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     func updateQuantity(for lineItemId: Int, increment: Bool) {
         guard let index = lineItems.firstIndex(where: { $0.id == lineItemId }) else { return }
         
-        if increment {
-            lineItems[index].quantity += 1
-        } else {
-            lineItems[index].quantity = max(1, lineItems[index].quantity - 1)
-        }
-        
-        
-        NetworkManager.updateDraftOrder(draftOrderId: 967448690859, lineItems: lineItems) { success in
-            if success {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+        //let productId = lineItems[index].id
+        let productId = 8100172759211
+        NetworkManager.checkProductAvailability(productId: productId) { [weak self] availableQuantity in
+            guard let self = self else { return }
+            
+            if let availableQuantity = availableQuantity {
+                if increment && self.lineItems[index].quantity < availableQuantity {
+                    self.lineItems[index].quantity += 1
+                } else if !increment && self.lineItems[index].quantity > 1 {
+                    self.lineItems[index].quantity -= 1
+                } else {
+                    print("Requested quantity not available or minimum quantity is 1")
                 }
                 
-            } else {
-                print("error")
+                
+                NetworkManager.updateDraftOrder(draftOrderId: 967448690859, lineItems: self.lineItems) { success in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    } else {
+                        // Handle the error appropriately (e.g., show an alert to the user)
+                    }
+                }
             }
         }
     }

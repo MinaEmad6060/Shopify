@@ -23,5 +23,7 @@ struct Product: Decodable{
 }
 
 struct Variant: Decodable{
+    let id: Int
+    let inventory_quantity: Int
     var price: String?
 }

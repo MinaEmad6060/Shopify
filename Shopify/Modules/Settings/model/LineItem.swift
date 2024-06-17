@@ -31,3 +31,7 @@ struct LineItem: Codable {
     var quantity: Int
     let price: String
 }
+
+struct ProductResponse: Decodable {
+    let product: Product
+}
