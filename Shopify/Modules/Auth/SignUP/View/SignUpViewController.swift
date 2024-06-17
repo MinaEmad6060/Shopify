@@ -201,7 +201,7 @@ class SignUpViewController: UIViewController {
     }
 
 
-   /* private func createDraftOrder(for customer: Customer ,  note:String) {
+    private func createDraftOrder(for customer: Customer ,  note:String) {
           let product = Product(id: 123,
                                 title: "Sample Product",
                                 body_html: "Sample HTML",
@@ -222,7 +222,7 @@ class SignUpViewController: UIViewController {
                   }
               }
           }
-      }*/
+      }/*
     private func createDraftOrder(for customer: Customer, note: String, completion: @escaping (String) -> Void) {
            let product = Product(id: 123,
                                  title: "Sample Product",
@@ -244,7 +244,7 @@ class SignUpViewController: UIViewController {
                    }
                }
            }
-       }
+       }*/
     
     func printStoredUserInfo() {
         if let userID = UserDefaults.standard.string(forKey: "userID"),
