@@ -9,5 +9,8 @@ import Foundation
 
 
 protocol HomeViewModelProtocol{
-    
+    var brandsViewData: [BrandsViewData]! { get set }
+    var fetchDataFromApi: FetchDataFromApi! { get }
+    var bindBrandsToViewController : (()->())! { get set}
+    func getBrandsFromNetworkService()
 }

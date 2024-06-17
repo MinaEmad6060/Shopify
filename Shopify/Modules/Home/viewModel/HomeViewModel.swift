@@ -9,31 +9,31 @@ import Foundation
 
 
 class HomeViewModel: HomeViewModelProtocol{
-//    var competitionsViewData: [CompetitionsViewData]?
-//    var networkManager: NetworkManagerProtocol?
-//
-//    var bindCompetitionsToViewController : (()->())? = {}
-//    var bindTeamsToViewController: (() -> ())?
-//    
-//    init(){
-//        networkManager = NetworkManager()
-//    }
-//    
-//    func getCompetitionsFromNetworkService(){
-//        let url = networkManager?.setUrlFormat(baseUrl: Constants.baseUrl, request: "competitions", id: "", query: "") ?? ""
-//        competitionsViewData = [CompetitionsViewData]()
-//        networkManager?.getFootballDetailsFromApi(url:  url, headers: Constants.headers) {[weak self]  (footballCompetitions: FootballCompetitions) in
-//            var competition = CompetitionsViewData()
-//            if let competitionList = footballCompetitions.competitions {
-//                for i in 0..<competitionList.count {
-//                    competition.image = competitionList[i].emblemUrl
-//                    competition.longName = competitionList[i].name
-//                    competition.shortName = competitionList[i].area?.name
-//                    competition.id = competitionList[i].id
-//                    self?.competitionsViewData?.append(competition)
-//                }
-//                self?.bindCompetitionsToViewController?()
-//            }
-//        }
-//    }
+    var brandsViewData: [BrandsViewData]!
+    var fetchDataFromApi: FetchDataFromApi!
+
+    var bindBrandsToViewController : (()->())! = {}
+    var brands: [SmartCollection]!
+
+    
+    init(){
+        brandsViewData = [BrandsViewData]()
+        fetchDataFromApi = FetchDataFromApi()
+        brands = [SmartCollection]()
+    }
+    
+    func getBrandsFromNetworkService(){
+        fetchDataFromApi?.getDataFromApi(url: fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections") ?? ""){[weak self] (brands: Brand) in
+            print("url :: \(self?.fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections") ?? "")")
+            self?.brands = brands.smart_collections
+            var brand = BrandsViewData()
+            for i in 0..<(self?.brands.count ?? 0){
+                brand.id = self?.brands[i].id
+                brand.image = self?.brands[i].image
+                brand.title = self?.brands[i].title
+                self?.brandsViewData.append(brand)
+            }
+            self?.bindBrandsToViewController?()
+        }
+    }
 }

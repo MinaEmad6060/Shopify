@@ -9,14 +9,23 @@ import UIKit
 import Kingfisher
 
 
+
+struct BrandsViewData: Decodable{
+    var id: Int64?
+    var title: String?
+    var image: ImageOfBrand?
+}
+
+
+
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
     
-    var fetchDataFromApi: FetchDataFromApi!
-    var brands: [SmartCollection]!
+    var homeViewModel: HomeViewModelProtocol!
+    var brands: [BrandsViewData]!
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +33,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
         
-        fetchDataFromApi = FetchDataFromApi()
-        brands = [SmartCollection]()
+        homeViewModel = HomeViewModel()
+        brands = [BrandsViewData]()
         
-        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections")){[weak self] (brands: Brand) in
-            self?.brands = brands.smart_collections
-            self?.homeCollectionView.reloadData()
+
+        homeViewModel.getBrandsFromNetworkService()
+        homeViewModel.bindBrandsToViewController = {
+            self.brands = self.homeViewModel.brandsViewData
+            DispatchQueue.main.async {
+                self.homeCollectionView.reloadData()
+            }
         }
         
           let layout = UICollectionViewCompositionalLayout{sectionindex,enviroment in
@@ -50,16 +63,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     func drawAdsSection ()-> NSCollectionLayoutSection{
-        //6 item size
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        //5 create item
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        // 4 group size
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .absolute(230))
-        //3 create group
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 8 )
-        //2 create section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 0, bottom: 0, trailing: 0)
@@ -130,7 +138,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
-   
         guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
             return
         }
