@@ -166,4 +166,28 @@ class NetworkManager {
             }
         }
     }
+    static func getCustomer(customerID: Int, completion: @escaping (Customer?) -> Void) {
+            let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/\(customerID).json"
+            
+            guard let encodedCredentials = "\(Constants.api_key):\(Constants.password)".data(using: .utf8)?.base64EncodedString() else {
+                print("Failed to encode credentials")
+                completion(nil)
+                return
+            }
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "Basic \(encodedCredentials)",
+                "Content-Type": "application/json"
+            ]
+            
+            AF.request(url, headers: headers).responseDecodable(of: CustomerResponse.self) { response in
+                switch response.result {
+                case .success(let result):
+                    completion(result.customer)
+                case .failure(let error):
+                    print("Error fetching customer: \(error.localizedDescription)")
+                    completion(nil)
+                }
+            }
+        }
 }
