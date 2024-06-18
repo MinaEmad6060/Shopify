@@ -8,13 +8,22 @@
 import Foundation
 class ProdutInfoViewModel {
     var product : Product?
+    var customerId: Int
+    var draftOrderIDFavorite: Int?
+        var draftOrderIDCart: Int?
     init(product: Product?) {
         self.product = product
+        self.customerId = Utilites.getCustomerID()
+        getCurrentCustomer()
     }
-    let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
-    let draftOrderIDCart = Utilites.getDraftOrderIDCart()
-    let customerId = Utilites.getCustomerID()
+   // let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
+   // let draftOrderIDCart = Utilites.getDraftOrderIDCart()
+    //let customerId = Utilites.getCustomerID()
     func updateCartDraftOrder(product: Product){
+        guard let draftOrderIDCart = draftOrderIDCart else {
+                    print("Cart draft order ID is not available")
+                    return
+                }
         NetworkManager.updateDraftOrder(draftOrderId: draftOrderIDCart, product: product) { statusCode in
             if statusCode == 200 {
                 print("Draft order updated successfully")
@@ -48,7 +57,8 @@ class ProdutInfoViewModel {
                        let secondID = Int(components[1]) {
                         print("First ID: \(firstID)")
                         print("Second ID: \(secondID)")
-                        
+                        self.draftOrderIDFavorite = firstID
+                        self.draftOrderIDCart = secondID
                         // You can now use firstID and secondID as needed
                     } else {
                         print("Note does not contain two valid IDs")
