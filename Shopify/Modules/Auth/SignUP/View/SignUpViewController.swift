@@ -22,7 +22,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var fnameTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+      
         signUpViewModel = SignUpViewModel()
      // printStoredUserInfo()
         signUpViewModel?.bindingSignUp = {

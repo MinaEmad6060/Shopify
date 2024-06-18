@@ -111,7 +111,7 @@ class NetworkManager {
         
         let newLineItem = LineItem(
             id: nil,
-            variantID: nil,  
+            variantID:nil,  
             productID: product.id ?? 0,
             title: product.title,
             variantTitle: nil,
