@@ -17,6 +17,7 @@ class Constants{
     static var categoryID: UInt64?
     
     static func setSelectedCategory(category: String){
+        print("Static :: \(category)")
         switch(category){
             case "WOMEN":
                 categoryID = 304608936107

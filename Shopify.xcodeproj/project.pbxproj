@@ -29,6 +29,8 @@
 		4054538D2C20F17300190528 /* HomeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4054538C2C20F17300190528 /* HomeViewModelProtocol.swift */; };
 		4054538F2C21020400190528 /* AllProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4054538E2C21020400190528 /* AllProductsViewModel.swift */; };
 		405453912C21021400190528 /* AllProductsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405453902C21021400190528 /* AllProductsViewModelProtocol.swift */; };
+		405453982C211FBF00190528 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405453972C211FBF00190528 /* CategoriesViewModel.swift */; };
+		4054539A2C211FD200190528 /* CategoriesViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405453992C211FD200190528 /* CategoriesViewModelProtocol.swift */; };
 		4078A6D22C186D5400CF6D02 /* MoreOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4078A6D12C186D5400CF6D02 /* MoreOrdersViewController.swift */; };
 		4078A6D42C186D6600CF6D02 /* MoreWishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4078A6D32C186D6600CF6D02 /* MoreWishesViewController.swift */; };
 		409326372C1D040E007463DC /* ProductOfOrderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409326352C1D040E007463DC /* ProductOfOrderViewCell.xib */; };
@@ -120,6 +122,8 @@
 		4054538C2C20F17300190528 /* HomeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelProtocol.swift; sourceTree = "<group>"; };
 		4054538E2C21020400190528 /* AllProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsViewModel.swift; sourceTree = "<group>"; };
 		405453902C21021400190528 /* AllProductsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsViewModelProtocol.swift; sourceTree = "<group>"; };
+		405453972C211FBF00190528 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
+		405453992C211FD200190528 /* CategoriesViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelProtocol.swift; sourceTree = "<group>"; };
 		4078A6D12C186D5400CF6D02 /* MoreOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOrdersViewController.swift; sourceTree = "<group>"; };
 		4078A6D32C186D6600CF6D02 /* MoreWishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreWishesViewController.swift; sourceTree = "<group>"; };
 		409326352C1D040E007463DC /* ProductOfOrderViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductOfOrderViewCell.xib; sourceTree = "<group>"; };
@@ -365,6 +369,15 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
+		405453962C211F9C00190528 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				405453972C211FBF00190528 /* CategoriesViewModel.swift */,
+				405453992C211FD200190528 /* CategoriesViewModelProtocol.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		407BF8902C139EF000DD45A7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +403,7 @@
 		407BF8922C139F1000DD45A7 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				405453962C211F9C00190528 /* viewModel */,
 				407BF8992C139FEB00DD45A7 /* view */,
 			);
 			path = Categories;
@@ -854,6 +868,7 @@
 				4078A6D42C186D6600CF6D02 /* MoreWishesViewController.swift in Sources */,
 				40A9D6212C1D05A300AF401A /* ProductOfOrderViewCell.swift in Sources */,
 				40CCD8EB2C194679005513B2 /* Constants.swift in Sources */,
+				405453982C211FBF00190528 /* CategoriesViewModel.swift in Sources */,
 				40B6BDB92C1417E3009A0A07 /* BrandProduct.swift in Sources */,
 				40B6BDB52C140C3E009A0A07 /* Brand.swift in Sources */,
 				40D96F752C112E83000B8D34 /* ViewController.swift in Sources */,
@@ -891,6 +906,7 @@
 				105EEAAE2C16D50300E19566 /* ProductInfoViewController.swift in Sources */,
 				10090CC22C18F6AE000ABDE6 /* SignUp.swift in Sources */,
 				B09B09822C19C7AE00A4233B /* AllAddressessViewModel.swift in Sources */,
+				4054539A2C211FD200190528 /* CategoriesViewModelProtocol.swift in Sources */,
 				B08D6A392C15338F00894358 /* AddNewAddressViewModel.swift in Sources */,
 				4054538F2C21020400190528 /* AllProductsViewModel.swift in Sources */,
 				40B6BDB72C140C55009A0A07 /* FetchDataFromApi.swift in Sources */,

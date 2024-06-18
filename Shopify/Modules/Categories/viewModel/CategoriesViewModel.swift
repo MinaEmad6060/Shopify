@@ -1,5 +1,5 @@
 //
-//  AllProductsViewModel.swift
+//  CategoriesViewModel.swift
 //  Shopify
 //
 //  Created by Mina Emad on 17/06/2024.
@@ -8,32 +8,23 @@
 import Foundation
 
 
-class AllProductsViewModel: AllProductsViewModelProtocol{
-
+class CategoriesViewModel: CategoriesViewModelProtocol{
     
-    var brandProductsViewData: [BrandProductViewData]!
+    var categoriesViewData: [CategoriesProductViewData]!
     var fetchDataFromApi: FetchDataFromApi!
+    var bindCategoriesToViewController: (() -> ())!
     
-    var query: String!
-    var queryValue: String!
-    var brandImage: String!
-    var brandName: String!
-    
-    var bindBrandProductsToViewController: (() -> ())!
     init(){
-        brandProductsViewData = [BrandProductViewData]()
+//        categoriesViewData = [CategoriesProductViewData]()
         fetchDataFromApi = FetchDataFromApi()
-        query = ""
-        queryValue = ""
-        brandImage = ""
-        brandName = ""
     }
     
-   
-    func getBrandProductsFromNetworkService() {
-        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: query ?? "", value: queryValue ?? "")){[weak self] (brandProducts: BrandProduct) in
+    func getCategoriesFromNetworkService() {
+        categoriesViewData = [CategoriesProductViewData]()
+        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: "collection_id", value: "\(Constants.categoryID ?? 0)")){[weak self] (brandProducts: BrandProduct) in
+            
             for i in 0..<(brandProducts.products?.count ?? 0){
-                var product = BrandProductViewData()
+                var product = CategoriesProductViewData()
                 product.id = brandProducts.products?[i].id
                 product.title = brandProducts.products?[i].title
                 product.body_html = brandProducts.products?[i].body_html
@@ -46,12 +37,12 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
                     product.values.append(brandProducts.products?[i].options[0].values?[j] ?? "")
                 }
                 product.name = brandProducts.products?[i].options[0].name
-                self?.brandProductsViewData.append(product)
+                self?.categoriesViewData.append(product)
             }
             
-            self?.bindBrandProductsToViewController?()
+            self?.bindCategoriesToViewController?()
         }
     }
-   
-
+    
+    
 }
