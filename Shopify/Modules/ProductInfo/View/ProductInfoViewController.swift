@@ -114,7 +114,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
        }
     
     @IBAction func addToCartBtn(_ sender: UIButton) {
-        productInfoViewModel?.updateCartDraftOrder(productID: productId ?? 0, product: (productInfoViewModel?.product)!)
+        productInfoViewModel?.updateCartDraftOrder( product: (productInfoViewModel?.product)!)
     }
    
 }

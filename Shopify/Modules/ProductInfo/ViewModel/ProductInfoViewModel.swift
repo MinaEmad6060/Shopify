@@ -14,8 +14,8 @@ class ProdutInfoViewModel {
     let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
     let draftOrderIDCart = Utilites.getDraftOrderIDCart()
     let customerId = Utilites.getCustomerID()
-    func updateCartDraftOrder(productID:Int,product: Product){
-        NetworkManager.updateDraftOrder(draftOrderId: draftOrderIDCart,productID:productID, product: product) { statusCode in
+    func updateCartDraftOrder(product: Product){
+        NetworkManager.updateDraftOrder(draftOrderId: draftOrderIDCart, product: product) { statusCode in
             if statusCode == 200 {
                 print("Draft order updated successfully")
             } else {

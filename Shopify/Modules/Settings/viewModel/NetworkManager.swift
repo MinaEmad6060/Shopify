@@ -106,26 +106,26 @@ class NetworkManager {
                 }
             }
         }
-    static func updateDraftOrder(draftOrderId: Int,productID:Int, product: Product, complication: @escaping (Int) -> Void) {
+    static func updateDraftOrder(draftOrderId: Int,product: Product, complication: @escaping (Int) -> Void) {
         let urlString = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/draft_orders/\(draftOrderId).json"
         
         let newLineItem = LineItem(
             id: nil,
             variantID: nil,  
-            productID: productID,
+            productID: product.id ?? 0,
             title: product.title,
             variantTitle: nil,
             sku: "\(product.id ?? 0),\(product.image?.src ?? "")",
-            vendor: nil,  // Set this to the appropriate value if available
+            vendor: nil,
             quantity: 2,
-            requiresShipping: nil,  // Set this to the appropriate value if available
-            taxable: nil,  // Set this to the appropriate value if available
-            giftCard: nil,  // Set this to the appropriate value if available
-            fulfillmentService: nil,  // Set this to the appropriate value if available
-            grams: nil,  // Set this to the appropriate value if available
-            taxLines: nil,  // Set this to the appropriate value if available
-            name: nil,  // Set this to the appropriate value if available
-            custom: nil,  // Set this to the appropriate value if available
+            requiresShipping: nil,
+            taxable: nil,
+            giftCard: nil,
+            fulfillmentService: nil,
+            grams: nil,
+            taxLines: nil,
+            name: nil,
+            custom: nil,
             price: product.variants?.first?.price,
             image: product.image?.src
         )
@@ -145,7 +145,7 @@ class NetworkManager {
                 // Update the draft order with the new line items
                 draftOrder.lineItems = updatedLineItems
                 
-                // Create the updated draft order dictionary
+               
                 do {
                     let updatedDraftOrderDictionary = try draftOrder.asDictionary()
                     let requestBody: [String: Any] = ["draft_order": updatedDraftOrderDictionary]
