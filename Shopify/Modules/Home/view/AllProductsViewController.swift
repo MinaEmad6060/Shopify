@@ -90,7 +90,7 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         guard let product = brandProducts?[indexPath.row] else { return }
 
             let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-            guard let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVC") as? ProductInfoViewController else {
+            guard let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as? ProductInfoViewController else {
                 print("Could not instantiate view controller with identifier 'ProductInfoVC'")
                 return
             }

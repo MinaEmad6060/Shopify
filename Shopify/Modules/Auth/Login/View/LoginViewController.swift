@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         loginViewModel = LoginViewModel()
+        
     }
     
 
@@ -29,16 +30,23 @@ class LoginViewController: UIViewController {
     }
     @IBAction func signInBtn(_ sender: UIButton) {
         loginViewModel?.getAllCustomers()
-        loginViewModel?.bindingLogin = {[weak self] in
-            DispatchQueue.main.async{
-                if self?.loginViewModel?.checkCustomerAuth(email: self?.emailTextField.text ?? "", password: self?.passwordTextField.text ?? "") == "Login Sucess"{
-                    print("sucess")
-                   
-                }else{
-                    print("failed")
+                loginViewModel?.bindingLogin = {[weak self] in
+                    DispatchQueue.main.async{
+                        if self?.loginViewModel?.checkCustomerAuth(email: self?.emailTextField.text ?? "", password: self?.passwordTextField.text ?? "") == "Login Sucess" {
+                            print("Login Success")
+                            self?.navigateToHomeScreen()
+
+                        } else {
+                            print("Login Failed")
+                        }
+                    }
                 }
             }
-        }
-    }
-    
+    private func navigateToHomeScreen() {
+         let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+         if let homeViewController = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as? ProductInfoViewController {
+             homeViewController.modalPresentationStyle = .fullScreen
+             navigationController?.present(homeViewController, animated: true)
+         }
+     }
 }
