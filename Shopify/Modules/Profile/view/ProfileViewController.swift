@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var ordersTableView: UITableView!
@@ -17,10 +18,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var wishListTitle: UILabel!
     @IBOutlet weak var welcomeUserTitle: UILabel!
     
-    
-    
-    var fetchDataFromApi: FetchDataFromApi!
-    var complectedOrders: ComplectedOrder!
+    var profileViewModel: ProfileViewModelProtocol!
+    var complectedOrders: [OrderViewData]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +32,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         noOrders.isHidden = true
         noWishList.isHidden = true
         
-        fetchDataFromApi = FetchDataFromApi()
-        complectedOrders = ComplectedOrder()
+        profileViewModel = ProfileViewModel()
+        complectedOrders = [OrderViewData]()
         
         fetchProductsFromApi()
 
@@ -67,17 +66,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == ordersTableView {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersTableViewCell
-            if complectedOrders.orders?.count ?? 0 > indexPath.row{
-                if let item = complectedOrders.orders?[indexPath.row].line_items{
-                        cell.totalPrice.text = item[0].price_set?.shop_money?.amount
+            if complectedOrders?.count ?? 0 > indexPath.row{
+                        cell.totalPrice.text = complectedOrders?[indexPath.row].amount
                     
-                    let dateTimeComponents = complectedOrders.orders?[indexPath.row].customer?.created_at?.components(separatedBy: "T")
+                    let dateTimeComponents = complectedOrders?[indexPath.row].created_at?.components(separatedBy: "T")
 
                     if dateTimeComponents?.count == 2 {
                         cell.creationDate.text = dateTimeComponents?[0]
-                    }
-                    
-                                            
                     }
                 }
                 return cell
@@ -89,13 +84,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
     }
     
-    //status=any&customer_id=7435246534827
     func fetchProductsFromApi(){
-        print("URL ::: \(fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders", query: "customer_id", value: "7435246534827"))")
-        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders", query: "customer_id", value: "7435246534827")){[weak self] (complectedOrders: ComplectedOrder) in
-            self?.complectedOrders.orders = complectedOrders.orders
-            Constants.orders = complectedOrders.orders
-            self?.ordersTableView.reloadData()
+        profileViewModel.getOrdersFromNetworkService()
+        profileViewModel.bindOrdersToViewController = {
+            self.complectedOrders = self.profileViewModel.ordersViewData
+            Constants.orders = self.profileViewModel.ordersViewData
+            DispatchQueue.main.async {
+                self.ordersTableView.reloadData()
+            }
         }
     }
 
@@ -105,8 +101,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
              return
          }
                     
-         orderDetailsViewController.orderId = self.complectedOrders.orders?[indexPath.row].id
-        print("\(self.complectedOrders.orders?[indexPath.row].line_items?.count ?? 0)")
+         orderDetailsViewController.orderId = self.complectedOrders?[indexPath.row].id
         orderDetailsViewController.modalPresentationStyle = .fullScreen
          present(orderDetailsViewController, animated: true )
     }

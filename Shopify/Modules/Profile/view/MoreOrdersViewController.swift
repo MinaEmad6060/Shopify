@@ -12,7 +12,7 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var moreOrdersTable: UITableView!
     
-    var orders: [Order]!
+    var orders: [OrderViewData]!
     
     
     @IBAction func btnBack(_ sender: Any) {
@@ -47,17 +47,17 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "moreOrdersCell", for: indexPath) as! OrdersTableViewCell
         if orders?.count ?? 0 > indexPath.row{
-            if let item = orders?[indexPath.row].line_items{
-                    cell.totalPrice.text = item[0].price_set?.shop_money?.amount
+//            if let item = orders?[indexPath.row].line_items{
+            cell.totalPrice.text = orders[0].amount
                 
-                let dateTimeComponents = orders?[indexPath.row].customer?.created_at?.components(separatedBy: "T")
+                let dateTimeComponents = orders?[indexPath.row].created_at?.components(separatedBy: "T")
 
                 if dateTimeComponents?.count == 2 {
                     cell.creationDate.text = dateTimeComponents?[0]
                 }
                 
                                         
-                }
+//                }
             }
         return cell
     }
