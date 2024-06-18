@@ -7,6 +7,19 @@
 
 import UIKit
 
+
+struct CategoriesProductViewData{
+    var id: Int64?
+    var title: String?
+    var body_html: String?
+    var product_type: String?
+    var price: String?
+    var src: [String] = []
+    var name: String?
+    var values: [String] = []
+}
+
+
 class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var categoryTable: UICollectionView!
@@ -15,24 +28,20 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var noDataImage: UIImageView!
     
-    var fetchDataFromApi: FetchDataFromApi!
-    var brandProducts: BrandProduct!
-    var filterdBrandProducts: [Product]!
+    var categoriesViewModel: CategoriesViewModelProtocol!
+    var brandProducts: [CategoriesProductViewData]!
+    var filterdBrandProducts: [CategoriesProductViewData]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
-        
         noDataImage.isHidden = true
         
-        fetchDataFromApi = FetchDataFromApi()
-        brandProducts = BrandProduct()
-        filterdBrandProducts = [Product]()
-        
+        categoriesViewModel = CategoriesViewModel()
         Constants.setSelectedCategory(category: getSelectedCategoryValue(sender: selectCategory))
-        fetchProductsFromApi()
+   
         
         let nibCustomCell = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.categoryCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "CategoryCell")
@@ -64,12 +73,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
         
         
         if filterdBrandProducts.count > indexPath.row{
-            cell.categoryItemPrice.text = filterdBrandProducts[indexPath.row].variants?[0].price
+            cell.categoryItemPrice.text = filterdBrandProducts[indexPath.row].price
             
             let productName = filterdBrandProducts[indexPath.row].title
             cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
             
-            if let brandProductURLString = filterdBrandProducts[indexPath.row].images?[0].src, let brandProductURL = URL(string: brandProductURLString) {
+            if let brandProductURL = URL(string: filterdBrandProducts[indexPath.row].src[0]) {
                 cell.categoryItemImage.kf.setImage(with: brandProductURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))
             } else {
                 cell.categoryItemImage.image = UIImage(named: "placeholderlogo.jpeg")
@@ -100,16 +109,18 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     }
     
     func fetchProductsFromApi(){
-        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: "collection_id", value: "\(Constants.categoryID ?? 0)")){[weak self] (brandProducts: BrandProduct) in
-            self?.brandProducts = brandProducts
-            self?.setSubCategory()
+        categoriesViewModel.getCategoriesFromNetworkService()
+        categoriesViewModel.bindCategoriesToViewController = {
+            self.brandProducts = self.categoriesViewModel.categoriesViewData
+            DispatchQueue.main.async {
+                self.setSubCategory()
+            }
         }
     }
     
     func setSubCategory(){
         let subCategory = self.getSelectedCategoryValue(sender: self.selectSubCategory ?? UISegmentedControl())
-        if let filteredProducts = self.filterdBrandProducts,
-        let allProdudts = self.brandProducts.products{
+        if let allProdudts = self.brandProducts{
             if(subCategory == "ALL"){
                 self.filterdBrandProducts = allProdudts
             }else if(subCategory == "EXTRAS"){

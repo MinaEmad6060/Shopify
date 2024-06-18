@@ -361,7 +361,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="Lh1-1Q-jgr" kind="show" id="Yer-f6-xlR"/>
+                                    <segue destination="Lh1-1Q-jgr" kind="show" id="2Uu-yR-I6F"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZPV-Et-YDl">
@@ -372,9 +372,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="See More">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <segue destination="oFp-dS-Z4s" kind="show" id="NJd-F1-4f0"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dG-g5-3iC">
                                 <rect key="frame" x="172" y="511" width="87" height="21"/>
@@ -415,8 +412,6 @@
                         <outlet property="noWishList" destination="4dG-g5-3iC" id="ee9-xM-WUM"/>
                         <outlet property="orderTitle" destination="u1Z-pn-Vg9" id="NJD-cq-WFc"/>
                         <outlet property="ordersTableView" destination="fOD-K2-jsz" id="LMV-1Z-6Gj"/>
-                        <outlet property="seeMoreOrdersOutlit" destination="Elu-pH-6Xj" id="tvP-WI-R0x"/>
-                        <outlet property="seeMoreWishListOutlit" destination="ZPV-Et-YDl" id="1Ow-2B-ToI"/>
                         <outlet property="welcomeUserTitle" destination="JJH-LY-2Fy" id="3dK-go-CGO"/>
                         <outlet property="wishListTableView" destination="Uuf-KT-H5Y" id="07L-s2-wEJ"/>
                         <outlet property="wishListTitle" destination="iSa-cA-Djf" id="NWr-8G-NU3"/>
@@ -429,7 +424,7 @@
         <!--Order Details View Controller-->
         <scene sceneID="5mA-Xn-NPd">
             <objects>
-                <viewController id="pKk-Pm-6lF" customClass="OrderDetailsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderDetailsVC" id="pKk-Pm-6lF" customClass="OrderDetailsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="czb-Bt-LgU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -444,12 +439,16 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Order Details" id="HQX-0s-U9R">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.turn.up.backward.fill" catalog="system" id="imG-yM-hbO"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.turn.up.backward.fill" catalog="system" id="imG-yM-hbO">
+                                            <connections>
+                                                <action selector="btnBack:" destination="pKk-Pm-6lF" id="18Q-3K-Mud"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwV-zo-ZXG">
-                                <rect key="frame" x="16" y="136" width="361" height="116"/>
+                                <rect key="frame" x="16" y="117" width="361" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Created at:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3x-nh-P65">
@@ -460,23 +459,37 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shipping to:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbj-AI-ggP">
-                                        <rect key="frame" x="19" y="65" width="145" height="50"/>
+                                        <rect key="frame" x="19" y="47" width="145" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <color key="textColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Order No.:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3J-xR-Lns">
+                                        <rect key="frame" x="19" y="96" width="145" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <color key="textColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="26/6/2024" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKE-f1-tLF">
-                                        <rect key="frame" x="174" y="7" width="133" height="50"/>
+                                        <rect key="frame" x="172" y="15" width="174" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mina" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ck8-HF-AH6">
-                                        <rect key="frame" x="174" y="65" width="133" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="customer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ck8-HF-AH6">
+                                        <rect key="frame" x="172" y="55" width="174" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b47-cz-T5H">
+                                        <rect key="frame" x="172" y="97" width="174" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -484,7 +497,7 @@
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LV9-il-v6E">
-                                <rect key="frame" x="16" y="260" width="361" height="558"/>
+                                <rect key="frame" x="16" y="269" width="361" height="549"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -502,10 +515,16 @@
                         <viewLayoutGuide key="safeArea" id="cMo-vS-0n4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="createdDate" destination="OKE-f1-tLF" id="QKT-Xt-d0F"/>
+                        <outlet property="customerName" destination="ck8-HF-AH6" id="xoF-Nk-IcH"/>
+                        <outlet property="orderNumber" destination="b47-cz-T5H" id="Rxb-7C-xdE"/>
+                        <outlet property="productsTableView" destination="LV9-il-v6E" id="2nd-rA-ZnO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLm-hl-XLl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7142.7480916030536" y="606.33802816901414"/>
+            <point key="canvasLocation" x="7768.7022900763359" y="605.63380281690149"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bGg-QW-Gtj">
@@ -700,7 +719,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91q-t3-4MF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5174.8091603053435" y="1364.7887323943662"/>
+            <point key="canvasLocation" x="6634" y="607"/>
         </scene>
         <!--More Wishes View Controller-->
         <scene sceneID="Uh2-Gc-pPt">
@@ -754,7 +773,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eha-ck-IEo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5985" y="1365"/>
+            <point key="canvasLocation" x="5552" y="1381"/>
         </scene>
     </scenes>
     <resources>

@@ -28,11 +28,10 @@ class ProductInfoViewController: UIViewController {
         super.viewDidLoad()
 
         configureImageSlideshow()
-        print(productInfoViewModel?.product?.images)
         tiitleLB.text = productInfoViewModel?.product?.title
         descTextView.text = productInfoViewModel?.product?.body_html
-        priceLB.text =  productInfoViewModel?.product?.variants?[0].price
-        sizeLB.text = productInfoViewModel?.product?.options[0].values?[0]
+        priceLB.text =  productInfoViewModel?.product?.price
+        sizeLB.text = productInfoViewModel?.product?.values[0]
     }
  /*
     private func configureImageSlideshow() {
@@ -85,13 +84,13 @@ class ProductInfoViewController: UIViewController {
               imageSlideshow.clipsToBounds = true
        }*/
     private func configureImageSlideshow() {
-            guard let productImages = productInfoViewModel?.product?.images else {
+            guard let productImages = productInfoViewModel?.product?.src else {
                 imageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "Ad")!)])
                 return
             }
             
             // Convert product images to ImageSource array
-            let imageUrls = productImages.compactMap { URL(string: $0.src ?? "") }
+        let imageUrls = productImages.compactMap { URL(string: $0) }
             
             if imageUrls.isEmpty {
                 imageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "Ad")!)])
