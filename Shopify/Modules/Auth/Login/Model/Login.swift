@@ -13,7 +13,7 @@ class CustomerResponse: Decodable {
     let customer: Customer
 }
 class Customer:Decodable{
-    var id: Int64?
+    var id: Int?
     var first_name: String?
     var last_name: String?
     var email: String?

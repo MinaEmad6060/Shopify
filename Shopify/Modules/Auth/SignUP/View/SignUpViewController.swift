@@ -24,19 +24,22 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
        
         signUpViewModel = SignUpViewModel()
-      printStoredUserInfo()
+     // printStoredUserInfo()
         signUpViewModel?.bindingSignUp = {
                     DispatchQueue.main.async {
                         self.handleSignUpResponse()
                         
                     }
                 }
-        let draftOrderIDCart = getDraftOrderIDCart()
-        let draftOrderIDFavorite = getDraftOrderIDFavorite()
+        let draftOrderIDCart = Utilites.getDraftOrderIDCart()
+        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
 
         print("Draft Order ID for Cart: \(draftOrderIDCart)")
         print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
-        
+        let customerId = Utilites.getCustomerID()
+        print("Customer id: \(customerId)")
+        let customerEmail = Utilites.getCustomerEmail()
+        print("customer mail: \(customerEmail)")
     }
     
 
@@ -186,23 +189,7 @@ class SignUpViewController: UIViewController {
           }
       }
     
-    func printStoredUserInfo() {
-        if let userID = UserDefaults.standard.string(forKey: "userID"),
-           let userEmail = UserDefaults.standard.string(forKey: "userEmail") {
-            print("User ID: \(userID)")
-            print("User Email: \(userEmail)")
-        } else {
-            print("No user information found in UserDefaults.")
-        }
-    }
+ 
 
-    func getDraftOrderIDCart() -> Int {
-        return UserDefaults.standard.integer(forKey: "draftOrderIDCart")
-    }
-
-    
-    func getDraftOrderIDFavorite() -> Int {
-        return UserDefaults.standard.integer(forKey: "draftOrderIDFavorite")
-    }
-
+  
 }
