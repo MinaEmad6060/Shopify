@@ -20,6 +20,7 @@
 		10B2E8E72C11A54100CE25D1 /* testFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B2E8E62C11A54100CE25D1 /* testFile.swift */; };
 		10BD25EE2C1909D60034FCC8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BD25ED2C1909D60034FCC8 /* SignUpViewController.swift */; };
 		10E8E4412C1C80A200E1CC3F /* ColorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E8E4402C1C80A200E1CC3F /* ColorsCollectionViewCell.swift */; };
+		10E8E4462C2213A000E1CC3F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E8E4452C2213A000E1CC3F /* FavoriteViewController.swift */; };
 		401ACAEC2C133E6600EC1B29 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 401ACAEB2C133E6600EC1B29 /* OrdersTableViewCell.xib */; };
 		401ACAED2C133E6600EC1B29 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401ACAEA2C133E6600EC1B29 /* OrdersTableViewCell.swift */; };
 		401ACAF02C133EA500EC1B29 /* WishListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 401ACAEF2C133EA500EC1B29 /* WishListTableViewCell.xib */; };
@@ -105,6 +106,7 @@
 		10B2E8E62C11A54100CE25D1 /* testFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFile.swift; sourceTree = "<group>"; };
 		10BD25ED2C1909D60034FCC8 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		10E8E4402C1C80A200E1CC3F /* ColorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsCollectionViewCell.swift; sourceTree = "<group>"; };
+		10E8E4452C2213A000E1CC3F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		1AF4386D2EEFBA853DF7CD96 /* Pods-ShopifyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopifyTests.release.xcconfig"; path = "Target Support Files/Pods-ShopifyTests/Pods-ShopifyTests.release.xcconfig"; sourceTree = "<group>"; };
 		401ACAEA2C133E6600EC1B29 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		401ACAEB2C133E6600EC1B29 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
@@ -307,6 +309,30 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		10E8E4422C22134100E1CC3F /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				10E8E4442C22135900E1CC3F /* ViewModel */,
+				10E8E4432C22135000E1CC3F /* View */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		10E8E4432C22135000E1CC3F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				10E8E4452C2213A000E1CC3F /* FavoriteViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		10E8E4442C22135900E1CC3F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		342BA97BB1151FF9F2DA820D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +374,7 @@
 		407BF8902C139EF000DD45A7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				10E8E4422C22134100E1CC3F /* Favorite */,
 				10090CBF2C18F63A000ABDE6 /* Auth */,
 				105EEAAA2C16D3FD00E19566 /* ProductInfo */,
 				B08D6A322C14E65500894358 /* Settings */,
@@ -828,6 +855,7 @@
 				10090CB42C1822E1000ABDE6 /* LoginViewModel.swift in Sources */,
 				B08D6A372C14E93200894358 /* Address.swift in Sources */,
 				4078A6D42C186D6600CF6D02 /* MoreWishesViewController.swift in Sources */,
+				10E8E4462C2213A000E1CC3F /* FavoriteViewController.swift in Sources */,
 				40CCD8EB2C194679005513B2 /* Constants.swift in Sources */,
 				40B6BDB92C1417E3009A0A07 /* BrandProduct.swift in Sources */,
 				40B6BDB52C140C3E009A0A07 /* Brand.swift in Sources */,
