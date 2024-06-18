@@ -89,14 +89,24 @@ class NetworkManager {
             "Content-Type": "application/json"
         ]
         
-        let lineItemsData = lineItems.map { ["id": $0.id, "quantity": $0.quantity] }
+        let lineItemsData = lineItems.map {
+            [
+                "id": $0.id,
+                "quantity": $0.quantity,
+                "title": $0.name,
+                "price": $0.price,
+                "variant_id": $0.variant_id as Any,
+                "variant_title": $0.variant_title as Any
+            ]
+        }
+        
         let parameters: [String: Any] = [
             "draft_order": [
                 "line_items": lineItemsData
             ]
         ]
         
-        AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response { response in
+        AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             switch response.result {
             case .success:
                 completion(true)
@@ -134,5 +144,6 @@ class NetworkManager {
             }
         }
     }
+    
 }
 
