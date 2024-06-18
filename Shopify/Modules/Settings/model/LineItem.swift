@@ -15,16 +15,8 @@ struct DraftOrderResponse: Codable {
     }
 }
 
-struct DraftOrder: Codable {
-    let id: Int
-    var lineItems: [LineItem]
 
-    enum CodingKeys: String, CodingKey {
-        case id
-        case lineItems = "line_items"
-    }
-}
-
+/*
 struct LineItem: Codable {
     let id: Int
     let name: String
@@ -33,7 +25,7 @@ struct LineItem: Codable {
     let variant_id: String?
     let variant_title: String?
 }
-
+*/
 
 struct ProductResponse: Decodable {
     let product: Product

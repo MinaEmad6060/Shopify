@@ -25,16 +25,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
     
-
+    
     var fetchDataFromApi: FetchDataFromApi!
-    var brands: [SmartCollection]!
+    
     var discountCodes: [DiscountCode] = []
     
-
+    
     var homeViewModel: HomeViewModelProtocol!
     var brands: [BrandsViewData]!
- 
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,21 +44,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         homeViewModel = HomeViewModel()
         brands = [BrandsViewData]()
         
-
-        fetchDiscountCodes()
         
-        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections")){[weak self] (brands: Brand) in
-            self?.brands = brands.smart_collections
-            self?.homeCollectionView.reloadData()
-
-
+        fetchDiscountCodes()
+        /*
+         fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections")){[weak self] (brands: Brand) in
+         self?.brands = brands.smart_collections
+         self?.homeCollectionView.reloadData()
+         */
+        
         homeViewModel.getBrandsFromNetworkService()
         homeViewModel.bindBrandsToViewController = {
             self.brands = self.homeViewModel.brandsViewData
             DispatchQueue.main.async {
                 self.homeCollectionView.reloadData()
             }
-
+            
         }
         
         
@@ -163,52 +163,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if indexPath.section == 0 {
-            let selectedCode = discountCodes[indexPath.row].code
-            saveSelectedDiscountCode(selectedCode)
-            self.view.makeToast("Promocode \(selectedCode) Saved ")
-        } else {
-            
-            guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
-                return
-            }
-            
-            allProductsViewController.query = "collection_id"
-            allProductsViewController.queryValue = "\(brands[indexPath.row].id ?? 0)"
-            allProductsViewController.brandName = brands[indexPath.row].title ?? ""
-            allProductsViewController.brandImage = brands[indexPath.row].image?.src ?? ""
-            
-            allProductsViewController.modalPresentationStyle = .fullScreen
-            present(allProductsViewController, animated: true )
-            
-        }
-    }
-    
-
-    
-    func fetchDiscountCodes() {
-            
-        let priceRulesUrl = "\(Constants.baseUrl)/price_rules.json"
-            
-            AF.request(priceRulesUrl).responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    if let json = value as? [String: Any],
-                       let priceRules = json["price_rules"] as? [[String: Any]] {
-                        for rule in priceRules {
-                            if let id = rule["id"] as? Int,
-                               let value = rule["value"] as? String { 
-                                self.fetchDiscountCodes(for: id, with: value)
-                            }
-                        }
-                    }
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-            }
-        }
-       
-
         guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
             return
         }
@@ -224,31 +178,57 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         allProductsViewController.allProductsViewModel = allProductsViewModel
         allProductsViewController.modalPresentationStyle = .fullScreen
         present(allProductsViewController, animated: true )
-
- func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
-            
-            let discountCodesUrl = "\(Constants.baseUrl)/price_rules/\(priceRuleId)/discount_codes.json"
-            
-            AF.request(discountCodesUrl).responseJSON { response in
-                    switch response.result {
-                    case .success(let result):
-                        if let json = result as? [String: Any],
-                           let discountCodes = json["discount_codes"] as? [[String: Any]] {
-                            for code in discountCodes {
-                                if let discountCode = code["code"] as? String,
-                                   let valueString = value as? String {
-                                    self.discountCodes.append(DiscountCode(code: discountCode, value: valueString))
-                                }
-                            }
-                            DispatchQueue.main.async {
-                                self.homeCollectionView.reloadData()
-                            }
+        
+        
+    }
+    
+    
+    func fetchDiscountCodes() {
+        
+        let priceRulesUrl = "\(Constants.baseUrl)/price_rules.json"
+        
+        AF.request(priceRulesUrl).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                if let json = value as? [String: Any],
+                   let priceRules = json["price_rules"] as? [[String: Any]] {
+                    for rule in priceRules {
+                        if let id = rule["id"] as? Int,
+                           let value = rule["value"] as? String {
+                            self.fetchDiscountCodes(for: id, with: value)
                         }
-                    case .failure(let error):
-                        print("Error: \(error)")
                     }
                 }
+            case .failure(let error):
+                print("Error: \(error)")
+            }
         }
+    }
+    
+    func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
+        
+        let discountCodesUrl = "\(Constants.baseUrl)/price_rules/\(priceRuleId)/discount_codes.json"
+        
+        AF.request(discountCodesUrl).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let json = result as? [String: Any],
+                   let discountCodes = json["discount_codes"] as? [[String: Any]] {
+                    for code in discountCodes {
+                        if let discountCode = code["code"] as? String,
+                           let valueString = value as? String {
+                            self.discountCodes.append(DiscountCode(code: discountCode, value: valueString))
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.homeCollectionView.reloadData()
+                    }
+                }
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
     func saveSelectedDiscountCode(_ code: String) {
         UserDefaults.standard.set(code, forKey: "SelectedDiscountCode")
     }
@@ -283,5 +263,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         UserDefaults.standard.setValue(usedCodes, forKey: "UsedDiscountCodes")
         UserDefaults.standard.removeObject(forKey: "SelectedDiscountCode")
     }
-    
 }
+
+
+/*
+let selectedCode = discountCodes[indexPath.row].code
+saveSelectedDiscountCode(selectedCode)
+self.view.makeToast("Promocode \(selectedCode) Saved ")
+*/
