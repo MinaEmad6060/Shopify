@@ -75,4 +75,35 @@ class NetworkManager {
                 }
             }
     }
+    static func updateCustomerNote(customerId: Int, newNote: String, completion: @escaping (Int) -> Void) {
+            let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/customers/\(customerId).json"
+            
+            let customerInfoDictionary: [String: Any] = ["customer": ["id": customerId, "note": newNote]]
+            
+            AF.request(url, method: .put, parameters: customerInfoDictionary, encoding: JSONEncoding.prettyPrinted, headers: ["Content-Type": "application/json"]).responseJSON { response in
+                switch response.result {
+                case .success(let data):
+                    if let httpResponse = response.response {
+                        do {
+                            let decodedResponse = try JSONDecoder().decode(CustomerResponse.self, from: response.data!)
+                            let updatedCustomer = decodedResponse.customer
+                            
+                            // Update UserDefaults based on the note
+                            if updatedCustomer.note == "cart" {
+                                UserDefaults.standard.set(updatedCustomer.id, forKey: "draftOrderIDCart")
+                            } else if updatedCustomer.note == "favorite" {
+                                UserDefaults.standard.set(updatedCustomer.id, forKey: "draftOrderIDFavorite")
+                            }
+                            
+                            completion(httpResponse.statusCode)
+                        } catch let decodeError {
+                            print("Failed to decode response: \(decodeError.localizedDescription)")
+                        }
+                    }
+                case .failure(let error):
+                    print("Network request failed: \(error.localizedDescription)")
+                    completion(-1)
+                }
+            }
+        }
 }
