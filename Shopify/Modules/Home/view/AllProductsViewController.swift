@@ -14,9 +14,9 @@ struct BrandProductViewData: Decodable{
     var body_html: String?
     var product_type: String?
     var price: String?
-    var src: String?
+    var src: [String] = []
     var name: String?
-    var values: [String]?
+    var values: [String] = []
 }
 
 class AllProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -73,7 +73,8 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         let productName = brandProducts?[indexPath.row].title
         cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
         
-        if let brandProductURLString = brandProducts?[indexPath.row].src, let brandProductURL = URL(string: brandProductURLString) {
+        if let brandProductURLString = brandProducts?[indexPath.row].src[0], let brandProductURL = URL(string: brandProductURLString) {
+            print("image :: \(brandProductURL)")
             cell.categoryItemImage.kf.setImage(with: brandProductURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))
         } else {
             cell.categoryItemImage.image = UIImage(named: "placeholderlogo.jpeg")
@@ -85,19 +86,19 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
     
     //navigate to productInfoViewController
     //ProductInfoVC
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//            guard let product = brandProducts[indexPath.row] else { return }
-//
-//            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-//            guard let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVC") as? ProductInfoViewController else {
-//                print("Could not instantiate view controller with identifier 'ProductInfoVC'")
-//                return
-//            }
-//
-//            let productInfoViewModel = ProdutInfoViewModel(product: product)
-//            productInfoVC.productInfoViewModel = productInfoViewModel
-//
-//            productInfoVC.modalPresentationStyle = .fullScreen
-//            present(productInfoVC, animated: true, completion: nil)
-//        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let product = brandProducts?[indexPath.row] else { return }
+
+            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+            guard let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVC") as? ProductInfoViewController else {
+                print("Could not instantiate view controller with identifier 'ProductInfoVC'")
+                return
+            }
+
+            let productInfoViewModel = ProdutInfoViewModel(product: product)
+            productInfoVC.productInfoViewModel = productInfoViewModel
+
+            productInfoVC.modalPresentationStyle = .fullScreen
+            present(productInfoVC, animated: true, completion: nil)
+        }
 }

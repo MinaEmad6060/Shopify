@@ -29,32 +29,28 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
         brandName = ""
     }
     
-    
-    /**
-     var id: Int64?
-     var title: String?
-     var body_html: String?
-     var product_type: String?
-     var price: String?
-     var src: String?
-     var name: String?
-     var values: [String]?
-     */
+   
     func getBrandProductsFromNetworkService() {
         fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: query ?? "", value: queryValue ?? "")){[weak self] (brandProducts: BrandProduct) in
-            print("url :: \(self?.fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: self?.query ?? "") ?? "")")
-            var product = BrandProductViewData()
             for i in 0..<(brandProducts.products?.count ?? 0){
+                var product = BrandProductViewData()
                 product.id = brandProducts.products?[i].id
                 product.title = brandProducts.products?[i].title
                 product.body_html = brandProducts.products?[i].body_html
                 product.product_type = brandProducts.products?[i].product_type
                 product.price = brandProducts.products?[i].variants?[0].price
-                product.src = brandProducts.products?[i].images?[0].src
+                for j in 0..<(brandProducts.products?[i].images?.count ?? 0){
+                    product.src.append(brandProducts.products?[i].images?[j].src ?? "")
+                }
+                for j in 0..<(brandProducts.products?[i].options[0].values?.count ?? 0){
+                    product.values.append(brandProducts.products?[i].options[0].values?[j] ?? "")
+                }
+                print("src :: \(product.src.count)")
+                print("url :: \(brandProducts.products?[i].images?[i].src ?? "none")")
                 product.name = brandProducts.products?[i].options[0].name
-                product.values = brandProducts.products?[i].options[0].values
                 self?.brandProductsViewData.append(product)
             }
+            
             self?.bindBrandProductsToViewController?()
         }
     }
