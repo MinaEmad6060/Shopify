@@ -10,7 +10,7 @@ import Alamofire
 
 class NetworkManager {
     
-    var baseUrl = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/177564125/addresses.json"
+    var baseUrl = "\(Constants.baseUrl)customers/177564125/addresses.json"
     //smart_collections.json
     func formatUrl(request: String, query: String="", value: String="") -> String{
         return baseUrl+request+".json?"+query+"="+value
@@ -33,7 +33,7 @@ class NetworkManager {
     
     
     static func addNewAddress(customerID: Int, address: Address, completion: @escaping (Bool) -> Void) {
-        let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/\(customerID)/addresses.json"
+        let url = "\(Constants.baseUrl)customers/\(customerID)/addresses.json"
         
         let customerAddressRequest = CustomerAddressRequest(address: address)
         
@@ -61,7 +61,7 @@ class NetworkManager {
             }
     }
     static func deleteCustomerAddress(customerId: Int, addressId: Int, completion: @escaping (Bool) -> Void) {
-        let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/\(customerId)/addresses/\(addressId).json"
+        let url = "\(Constants.baseUrl)customers/\(customerId)/addresses/\(addressId).json"
         
         AF.request(url, method: .delete)
             .validate(statusCode: 200..<300)
@@ -131,7 +131,7 @@ class NetworkManager {
         }
     }
     static func checkProductAvailability(productId: Int, completion: @escaping (Int?) -> Void) {
-        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/products/8100172759211.json"
+        let url = "\(Constants.baseUrl)products/8100172759211.json"
         
         
         AF.request(url, method: .get).responseDecodable(of: ProductResponse.self) { response in
