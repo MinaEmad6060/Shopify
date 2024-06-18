@@ -10,30 +10,55 @@ import Kingfisher
 import Alamofire
 import Toast_Swift
 
+
+struct BrandsViewData: Decodable{
+    var id: Int64?
+    var title: String?
+    var image: ImageOfBrand?
+}
+
+
+
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
     
+
     var fetchDataFromApi: FetchDataFromApi!
     var brands: [SmartCollection]!
     var discountCodes: [DiscountCode] = []
     
+
+    var homeViewModel: HomeViewModelProtocol!
+    var brands: [BrandsViewData]!
+ 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
         
-        fetchDataFromApi = FetchDataFromApi()
-        brands = [SmartCollection]()
+        homeViewModel = HomeViewModel()
+        brands = [BrandsViewData]()
         
+
         fetchDiscountCodes()
         
         fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections")){[weak self] (brands: Brand) in
             self?.brands = brands.smart_collections
             self?.homeCollectionView.reloadData()
+
+
+        homeViewModel.getBrandsFromNetworkService()
+        homeViewModel.bindBrandsToViewController = {
+            self.brands = self.homeViewModel.brandsViewData
+            DispatchQueue.main.async {
+                self.homeCollectionView.reloadData()
+            }
+
         }
         
         
@@ -56,16 +81,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     func drawAdsSection ()-> NSCollectionLayoutSection{
-        //6 item size
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        //5 create item
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        // 4 group size
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .absolute(230))
-        //3 create group
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 8 )
-        //2 create section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 0, bottom: 0, trailing: 0)
@@ -164,6 +184,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
+
     
     func fetchDiscountCodes() {
             
@@ -186,8 +207,25 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 }
             }
         }
+       
+
+        guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
+            return
+        }
         
-        func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
+        let allProductsViewModel = AllProductsViewModel()
+        
+        allProductsViewModel.query = "collection_id"
+        allProductsViewModel.queryValue = "\(brands[indexPath.row].id ?? 0)"
+        allProductsViewModel.brandName = brands[indexPath.row].title ?? ""
+        allProductsViewModel.brandImage = brands[indexPath.row].image?.src ?? ""
+        
+        
+        allProductsViewController.allProductsViewModel = allProductsViewModel
+        allProductsViewController.modalPresentationStyle = .fullScreen
+        present(allProductsViewController, animated: true )
+
+ func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
             
             let discountCodesUrl = "\(Constants.baseUrl)/price_rules/\(priceRuleId)/discount_codes.json"
             
