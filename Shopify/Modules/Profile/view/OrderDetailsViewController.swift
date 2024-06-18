@@ -7,6 +7,20 @@
 
 import UIKit
 
+
+struct OrderDetailsViewData{
+    var amount: String?
+    var currency_code: String?
+    var quantity: Int8?
+    var title: String?
+}
+
+struct BasicDetailsOrderViewData{
+    var created_at: String?
+    var orderId: UInt64?
+    var first_name: String?
+}
+
 class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
 
@@ -19,30 +33,50 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
         self.dismiss(animated: true)
     }
     
-    var orderId: UInt64?
-    var fetchDataFromApi: FetchDataFromApi!
-    var productsOfOrder: [OrderProduct]?
+//    var orderId: UInt64?
+//    var fetchDataFromApi: FetchDataFromApi!
+    var orderDetailsViewModel: ProfileViewModelProtocol!
+    var orderDetails: BasicDetailsOrderViewData?
+    var productsOfOrder: [OrderDetailsViewData]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("order id ::: \(orderId ?? 0)")
+//        print("order id ::: \(orderId ?? 0)")
         
         productsTableView.delegate = self
         productsTableView.dataSource = self
-        fetchDataFromApi = FetchDataFromApi()
-        productsOfOrder = [OrderProduct]()
-        print("url :: \(fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders/\(orderId ?? 0)"))")
-        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders/\(orderId ?? 0)")){[weak self] (orderDetails: OrderDetails) in
-            let dateTimeComponents = orderDetails.order?.created_at?.components(separatedBy: "T")
-
-            if dateTimeComponents?.count == 2 {
-                self?.createdDate.text = dateTimeComponents?[0]
+//        fetchDataFromApi = FetchDataFromApi()
+        orderDetailsViewModel = ProfileViewModel()
+        productsOfOrder = [OrderDetailsViewData]()
+        orderDetails = BasicDetailsOrderViewData()
+//        print("url :: \(fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders/\(orderId ?? 0)"))")
+        
+        orderDetailsViewModel.getOrderDetailsFromNetworkService()
+        orderDetailsViewModel.bindOrderDetailsToViewController = {
+            self.orderDetails = self.orderDetailsViewModel.basicOrderDetailsViewData
+            self.productsOfOrder = self.orderDetailsViewModel.orderDetailsViewData
+            
+            DispatchQueue.main.async {
+                let dateTimeComponents = self.orderDetails?.created_at?.components(separatedBy: "T")
+                if dateTimeComponents?.count == 2 {
+                    self.createdDate.text = dateTimeComponents?[0]
+                }
+                self.customerName.text = self.orderDetails?.first_name
+                self.orderNumber.text = "\(self.orderDetails?.orderId ?? 0)"
+                self.productsTableView.reloadData()
             }
-            self?.customerName.text = orderDetails.order?.customer?.first_name
-            self?.orderNumber.text = "\(self?.orderId ?? 0)"
-            self?.productsOfOrder = orderDetails.order?.line_items
-            self?.productsTableView.reloadData()
         }
+//        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders/\(orderId ?? 0)")){[weak self] (orderDetails: OrderDetails) in
+//            let dateTimeComponents = orderDetails.order?.created_at?.components(separatedBy: "T")
+//
+//            if dateTimeComponents?.count == 2 {
+//                self?.createdDate.text = dateTimeComponents?[0]
+//            }
+//            self?.customerName.text = orderDetails.order?.customer?.first_name
+//            self?.orderNumber.text = "\(self?.orderId ?? 0)"
+//            self?.productsOfOrder = orderDetails.order?.line_items
+//            self?.productsTableView.reloadData()
+//        }
         
         let nibCustomCell = UINib(nibName: "ProductOfOrderViewCell", bundle: nil)
         productsTableView.register(nibCustomCell, forCellReuseIdentifier: "orderDetailsCell")
@@ -58,8 +92,8 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "orderDetailsCell", for: indexPath) as! ProductOfOrderViewCell
         
         cell.productName.text = self.productsOfOrder?[indexPath.row].title
-        cell.productPrice.text = self.productsOfOrder?[indexPath.row].price_set?.shop_money?.amount
-        cell.priceCurrency.text = self.productsOfOrder?[indexPath.row].price_set?.shop_money?.currency_code
+        cell.productPrice.text = self.productsOfOrder?[indexPath.row].amount
+        cell.priceCurrency.text = self.productsOfOrder?[indexPath.row].currency_code
         cell.productQuantity.text = "\(self.productsOfOrder?[indexPath.row].quantity ?? 0)"
         
         return cell

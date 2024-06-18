@@ -62,7 +62,10 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
             return
         }
                    
-        orderDetailsViewController.orderId = self.complectedOrders?[indexPath.row].id
+//        orderDetailsViewController.orderId = self.complectedOrders?[indexPath.row].id
+        if self.complectedOrders.count > indexPath.row{
+            Constants.orderId = self.complectedOrders?[indexPath.row].id
+        }
        orderDetailsViewController.modalPresentationStyle = .fullScreen
         present(orderDetailsViewController, animated: true )
     }
@@ -72,7 +75,7 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
         profileViewModel.getOrdersFromNetworkService()
         profileViewModel.bindOrdersToViewController = {
             self.complectedOrders = self.profileViewModel.ordersViewData
-            Constants.orders = self.profileViewModel.ordersViewData
+//            Constants.orders = self.profileViewModel.ordersViewData
             DispatchQueue.main.async {
                 self.moreOrdersTable.reloadData()
             }

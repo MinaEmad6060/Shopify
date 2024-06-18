@@ -12,9 +12,11 @@ class Constants{
     static var password = "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"
     static var hostname = "mad44-alex-ios-team3.myshopify.com"
     static var baseUrl = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/"
-    static var orders: [OrderViewData]?
+//    static var orders: [OrderViewData]?
     
     static var categoryID: UInt64?
+    
+    static var orderId: UInt64?
     
     static func setSelectedCategory(category: String){
         print("Static :: \(category)")
