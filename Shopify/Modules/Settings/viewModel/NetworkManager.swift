@@ -106,4 +106,64 @@ class NetworkManager {
                 }
             }
         }
+    static func updateDraftOrder(draftOrderId: Int,productID:Int, product: Product, complication: @escaping (Int) -> Void) {
+        let urlString = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/draft_orders/\(draftOrderId).json"
+        
+        let newLineItem = LineItem(
+            id: nil,
+            variantID: nil,  
+            productID: productID,
+            title: product.title,
+            variantTitle: nil,
+            sku: "\(product.id ?? 0),\(product.image?.src ?? "")",
+            vendor: nil,  // Set this to the appropriate value if available
+            quantity: 2,
+            requiresShipping: nil,  // Set this to the appropriate value if available
+            taxable: nil,  // Set this to the appropriate value if available
+            giftCard: nil,  // Set this to the appropriate value if available
+            fulfillmentService: nil,  // Set this to the appropriate value if available
+            grams: nil,  // Set this to the appropriate value if available
+            taxLines: nil,  // Set this to the appropriate value if available
+            name: nil,  // Set this to the appropriate value if available
+            custom: nil,  // Set this to the appropriate value if available
+            price: product.variants?.first?.price,
+            image: product.image?.src
+        )
+        
+        AF.request(urlString).responseDecodable(of: Drafts.self) { response in
+            switch response.result {
+            case .success(let draftResponse):
+                guard var draftOrder = draftResponse.draftOrder else {
+                    print("Draft Order not found")
+                    return
+                }
+                
+                // Add the new line item to the existing line items
+                var updatedLineItems = draftOrder.lineItems ?? []
+                updatedLineItems.append(newLineItem)
+                
+                // Update the draft order with the new line items
+                draftOrder.lineItems = updatedLineItems
+                
+                // Create the updated draft order dictionary
+                do {
+                    let updatedDraftOrderDictionary = try draftOrder.asDictionary()
+                    let requestBody: [String: Any] = ["draft_order": updatedDraftOrderDictionary]
+                    
+                    // Send the updated draft order using PUT request
+                    AF.request(urlString, method: .put, parameters: requestBody, encoding: JSONEncoding.default).response { response in
+                        if let httpResponse = response.response {
+                            complication(httpResponse.statusCode)
+                        } else if let error = response.error {
+                            print("HTTP request error: \(error.localizedDescription)")
+                        }
+                    }
+                } catch {
+                    print("Error converting draft order to dictionary: \(error.localizedDescription)")
+                }
+            case .failure(let error):
+                print("Error fetching draft order: \(error.localizedDescription)")
+            }
+        }
+    }
 }

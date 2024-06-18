@@ -456,8 +456,8 @@
 			children = (
 				40B6BDB42C140C3E009A0A07 /* Brand.swift */,
 				40B6BDB82C1417E3009A0A07 /* BrandProduct.swift */,
-				10AC405D2C1B464800F8B4B2 /* DraftOrder.swift */,
 				40E17CAD2C1B9CDC00DD9526 /* ComplectedOrder.swift */,
+				10AC405D2C1B464800F8B4B2 /* DraftOrder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

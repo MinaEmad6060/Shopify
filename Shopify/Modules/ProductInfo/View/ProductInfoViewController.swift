@@ -30,7 +30,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
 @IBOutlet weak var sizeCollectionView: UICollectionView!
     
     @IBOutlet weak var colorCollectionView: UICollectionView!
-    
+    var productId :Int?
     override func viewDidLoad() {
         super.viewDidLoad()
            sizeCollectionView.dataSource = self
@@ -43,6 +43,12 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
         descTextView.text = productInfoViewModel?.product?.body_html
         priceLB.text =  productInfoViewModel?.product?.variants?[0].price
        // sizeLB.text = productInfoViewModel?.product?.options[0].values?[0]
+       // productId = productInfoViewModel?.product?.id
+        guard let productId = productInfoViewModel?.product?.id else {
+               print("Product ID is nil")
+               return
+           }
+        print( "product id:*****\(productId)")
     }
 
     private func configureImageSlideshow() {
@@ -108,6 +114,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
        }
     
     @IBAction func addToCartBtn(_ sender: UIButton) {
+        productInfoViewModel?.updateCartDraftOrder(productID: productId ?? 0, product: (productInfoViewModel?.product)!)
     }
    
 }

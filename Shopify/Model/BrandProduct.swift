@@ -15,7 +15,7 @@ struct BrandProduct: Decodable{
 
 
 struct Product: Decodable{
-    var id: Int64?
+    var id: Int?
     var title: String?
 
     var body_html: String?
