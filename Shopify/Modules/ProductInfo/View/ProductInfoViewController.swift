@@ -33,6 +33,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     var productId :Int?
     override func viewDidLoad() {
         super.viewDidLoad()
+    
            sizeCollectionView.dataSource = self
               sizeCollectionView.delegate = self
         colorCollectionView.dataSource = self
@@ -49,6 +50,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
                return
            }
         print( "product id:*****\(productId)")
+        productInfoViewModel?.getCurrentCustomer()
     }
 
     private func configureImageSlideshow() {
