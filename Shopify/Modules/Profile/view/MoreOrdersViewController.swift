@@ -12,13 +12,8 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var moreOrdersTable: UITableView!
     
-    var orders: [OrderViewData]!
-    
-    
-    @IBAction func btnBack(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
-    
+    var profileViewModel: ProfileViewModelProtocol!
+    var complectedOrders: [OrderViewData]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +21,10 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
         moreOrdersTable.delegate = self
         moreOrdersTable.dataSource = self
         
-        orders = Constants.orders
+        profileViewModel = ProfileViewModel()
+        complectedOrders = [OrderViewData]()
+        
+        fetchProductsFromApi()
 
         self.moreOrdersTable.reloadData()
         
@@ -36,40 +34,54 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let ordersConut = orders{
+        if let ordersConut = complectedOrders{
             if ordersConut.count > 0{
-                return orders.count
+                return complectedOrders.count
             }
         }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "moreOrdersCell", for: indexPath) as! OrdersTableViewCell
-        if orders?.count ?? 0 > indexPath.row{
-//            if let item = orders?[indexPath.row].line_items{
-            cell.totalPrice.text = orders[0].amount
+        if complectedOrders?.count ?? 0 > indexPath.row{
+                    cell.totalPrice.text = complectedOrders?[indexPath.row].amount
                 
-                let dateTimeComponents = orders?[indexPath.row].created_at?.components(separatedBy: "T")
+                let dateTimeComponents = complectedOrders?[indexPath.row].created_at?.components(separatedBy: "T")
 
                 if dateTimeComponents?.count == 2 {
                     cell.creationDate.text = dateTimeComponents?[0]
                 }
-                
-                                        
-//                }
             }
-        return cell
+            return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         guard let orderDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "OrderDetailsVC") as? OrderDetailsViewController else {
-             return
-         }
-                    
-                
-        orderDetailsViewController.orderId = self.orders?[indexPath.row].id
-        orderDetailsViewController.modalPresentationStyle = .fullScreen
+        guard let orderDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "OrderDetailsVC") as? OrderDetailsViewController else {
+            return
+        }
+                   
+        orderDetailsViewController.orderId = self.complectedOrders?[indexPath.row].id
+       orderDetailsViewController.modalPresentationStyle = .fullScreen
         present(orderDetailsViewController, animated: true )
     }
+    
+    
+    func fetchProductsFromApi(){
+        profileViewModel.getOrdersFromNetworkService()
+        profileViewModel.bindOrdersToViewController = {
+            self.complectedOrders = self.profileViewModel.ordersViewData
+            Constants.orders = self.profileViewModel.ordersViewData
+            DispatchQueue.main.async {
+                self.moreOrdersTable.reloadData()
+            }
+        }
+    }
+    
+    @IBAction func btnBack(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+
 }
