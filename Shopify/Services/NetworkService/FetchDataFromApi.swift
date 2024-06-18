@@ -10,20 +10,12 @@ import Alamofire
 
 
 class FetchDataFromApi{
-    
-    //https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/
-    var baseUrl = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/"
-    //smart_collections.json
-//    func formatUrl(request: String, query: String="", value: String="") -> String{
-//        
-        
         
         func formatUrl(baseUrl: String,request: String, query: String="", value: String="") -> String{
-            
             return baseUrl+request+".json?"+query+"="+value
         }
         
-        func getSportData<T: Decodable>(url: String, handler: @escaping (T)->Void){
+        func getDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
             let urlFB = URL(string: url)
             guard let urlFB = urlFB else{return}
             

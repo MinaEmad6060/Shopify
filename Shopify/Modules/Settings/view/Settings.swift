@@ -7,6 +7,7 @@
 
 import UIKit
 import DropDown
+import Alamofire
 
 class Settings: UIViewController {
     @IBOutlet weak var curruncyLabel: UILabel!
@@ -17,12 +18,17 @@ class Settings: UIViewController {
     @IBOutlet weak var curruncyView: UIView!
     
     let curruncyDropDown = DropDown()
-    let curruncies = ["EGP" , "EUR" , "Dollar"]
+    let curruncies = ["EGP" , "EUR" , "USD"]
+    var selectedCurrency: Currency?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        fetchStoredCurrencyRate()
+        
+        
         curruncyDropDown.anchorView = curruncyView
         curruncyDropDown.dataSource = curruncies
         curruncyDropDown.bottomOffset = CGPoint(x: 0, y: (curruncyDropDown.anchorView?.plainView.bounds.height)!)
@@ -30,21 +36,51 @@ class Settings: UIViewController {
         curruncyDropDown.direction = .bottom
         curruncyDropDown.selectionAction = { [weak self]
             (index: Int , item: String) in
+            self?.fetchCurrencyRate(for: self!.curruncies[index])
             self?.curruncyLabel.text = self!.curruncies[index]
-                
             
         }
     }
+    func fetchCurrencyRate(for currency: String) {
+            let apiKey = "1340b19647a0540114fc8da0" 
+            let url = "https://v6.exchangerate-api.com/v6/\(apiKey)/latest/\(currency)"
+            
+        AF.request(url).responseJSON { response in
+                    switch response.result {
+                    case .success(let data):
+                        if let json = data as? [String: Any],
+                           let rates = json["conversion_rates"] as? [String: Any],
+                           let rate = rates["USD"] as? Double {
+                            self.selectedCurrency = Currency(code: currency, rate: rate)
+                            self.storeSelectedCurrency()
+                        }
+                    case .failure(let error):
+                        print("Error fetching currency rate: \(error)")
+                    }
+                }
+            }
     
 
-    /*
-    // MARK: - Navigation
+    func storeSelectedCurrency() {
+            if let selectedCurrency = self.selectedCurrency {
+                UserDefaults.standard.set(selectedCurrency.code, forKey: "selectedCurrencyCode")
+                UserDefaults.standard.set(selectedCurrency.rate, forKey: "selectedCurrencyRate")
+                print("Stored currency \(selectedCurrency.code) with rate \(selectedCurrency.rate)")
+            }
+        }
+    
+    func fetchStoredCurrencyRate() {
+            if let storedCurrencyCode = UserDefaults.standard.string(forKey: "selectedCurrencyCode") {
+                let storedCurrencyRate = UserDefaults.standard.double(forKey: "selectedCurrencyRate")
+                self.curruncyLabel.text = storedCurrencyCode
+                
+            } else {
+                self.curruncyLabel.text = "USD"
+            }
+        }
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+struct Currency {
+    let code: String
+    let rate: Double
 }

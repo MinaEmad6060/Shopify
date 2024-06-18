@@ -7,6 +7,7 @@
 
 import Foundation
 class ProdutInfoViewModel {
+
     var product : Product?
     var customerId: Int
    var  draftOrderIDFavorite: Int?
@@ -14,6 +15,10 @@ class ProdutInfoViewModel {
         var draftOrderIDCart: Int?
    
     init(product: Product?) {
+
+    var product : BrandProductViewData?
+    init(product: BrandProductViewData?) {
+
         self.product = product
         self.customerId = Utilites.getCustomerID()
         getCurrentCustomer()

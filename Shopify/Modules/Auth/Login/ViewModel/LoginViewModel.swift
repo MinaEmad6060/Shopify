@@ -17,7 +17,7 @@ class LoginViewModel{
     }
     
     func getAllCustomers() {
-        apiService.getSportData(url: apiService.formatUrl(baseUrl: Constants.baseUrl, request: "customers"), handler: { [weak self] (customers: LoginedCustomers) in
+        apiService.getDataFromApi(url: apiService.formatUrl(baseUrl: Constants.baseUrl, request: "customers"), handler: { [weak self] (customers: LoginedCustomers) in
             self?.observableLogin = customers
         })
     }
