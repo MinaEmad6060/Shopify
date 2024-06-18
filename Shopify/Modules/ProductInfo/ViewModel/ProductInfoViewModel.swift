@@ -31,6 +31,18 @@ class ProdutInfoViewModel {
                 print("Failed to update draft order. Status code: \(statusCode)")
             }
         }}
+    func updateFavoriteDraftOrder(product: Product){
+        guard let draftOrderIDFavorite = draftOrderIDFavorite else {
+                    print("Cart draft order ID is not available")
+                    return
+                }
+        NetworkManager.updateDraftOrder(draftOrderId: draftOrderIDFavorite , product: product) { statusCode in
+            if statusCode == 200 {
+                print("Draft order updated successfully")
+            } else {
+                print("Failed to update draft order. Status code: \(statusCode)")
+            }
+        }}
         /*
          func getCurrentCustomer(){
          NetworkManager.getCustomer(customerID: customerId) { customer in

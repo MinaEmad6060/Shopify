@@ -119,7 +119,11 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
         
         productInfoViewModel?.updateCartDraftOrder( product: (productInfoViewModel?.product)!)
     }
-   
+    
+    
+    @IBAction func favBtn(_ sender: UIBarButtonItem) {
+    }
+    
 }
 
    extension ProductInfoViewController: ImageSlideshowDelegate {

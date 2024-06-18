@@ -376,6 +376,9 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Item" id="mfK-fD-iEq">
                                             <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                                            <connections>
+                                                <action selector="favBtn:" destination="U8i-Bq-rj6" id="ui6-lC-DGU"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
