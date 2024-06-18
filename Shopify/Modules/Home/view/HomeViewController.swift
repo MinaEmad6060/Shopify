@@ -142,11 +142,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             return
         }
         
-        allProductsViewController.query = "collection_id"
-        allProductsViewController.queryValue = "\(brands[indexPath.row].id ?? 0)"
-        allProductsViewController.brandName = brands[indexPath.row].title ?? ""
-        allProductsViewController.brandImage = brands[indexPath.row].image?.src ?? ""
+        let allProductsViewModel = AllProductsViewModel()
         
+        allProductsViewModel.query = "collection_id"
+        allProductsViewModel.queryValue = "\(brands[indexPath.row].id ?? 0)"
+        allProductsViewModel.brandName = brands[indexPath.row].title ?? ""
+        allProductsViewModel.brandImage = brands[indexPath.row].image?.src ?? ""
+        
+        
+        allProductsViewController.allProductsViewModel = allProductsViewModel
         allProductsViewController.modalPresentationStyle = .fullScreen
         present(allProductsViewController, animated: true )
 

@@ -9,31 +9,47 @@ import Foundation
 
 
 class HomeViewModel: HomeViewModelProtocol{
+    
+//    var query: String!
+//    var queryValue: String!
+//    var brandImage: String!
+//    var brandName: String!
+    
     var brandsViewData: [BrandsViewData]!
     var fetchDataFromApi: FetchDataFromApi!
+//    var brandProductsViewData: [BrandProductViewData]!
 
     var bindBrandsToViewController : (()->())! = {}
-    var brands: [SmartCollection]!
+//    var bindBrandProductsToViewController : (()->())! = {}
 
     
     init(){
         brandsViewData = [BrandsViewData]()
+//        brandProductsViewData = [BrandProductViewData]()
         fetchDataFromApi = FetchDataFromApi()
-        brands = [SmartCollection]()
     }
     
     func getBrandsFromNetworkService(){
         fetchDataFromApi?.getDataFromApi(url: fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections") ?? ""){[weak self] (brands: Brand) in
-            print("url :: \(self?.fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections") ?? "")")
-            self?.brands = brands.smart_collections
             var brand = BrandsViewData()
-            for i in 0..<(self?.brands.count ?? 0){
-                brand.id = self?.brands[i].id
-                brand.image = self?.brands[i].image
-                brand.title = self?.brands[i].title
+            for i in 0..<(brands.smart_collections?.count ?? 0){
+                brand.id = brands.smart_collections?[i].id
+                brand.image = brands.smart_collections?[i].image
+                brand.title = brands.smart_collections?[i].title
                 self?.brandsViewData.append(brand)
             }
             self?.bindBrandsToViewController?()
         }
     }
+    
+//    func getBrandProductsFromNetworkService(){
+//        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: query, value: queryValue)){[weak self] (brandProducts: BrandProduct) in
+//            var product = BrandProductViewData()
+//            for i in 0..<(brandProducts.products?.count ?? 0){
+//               
+//                self?.brandProductsViewData.append(product)
+//            }
+//            self?.bindBrandProductsToViewController?()
+//        }
+//    }
 }

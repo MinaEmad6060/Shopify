@@ -27,6 +27,8 @@
 		4043AB372C1A79B30037C03A /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4043AB362C1A79B30037C03A /* OrderDetailsViewController.swift */; };
 		4054538B2C20F12F00190528 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4054538A2C20F12F00190528 /* HomeViewModel.swift */; };
 		4054538D2C20F17300190528 /* HomeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4054538C2C20F17300190528 /* HomeViewModelProtocol.swift */; };
+		4054538F2C21020400190528 /* AllProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4054538E2C21020400190528 /* AllProductsViewModel.swift */; };
+		405453912C21021400190528 /* AllProductsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405453902C21021400190528 /* AllProductsViewModelProtocol.swift */; };
 		4078A6D22C186D5400CF6D02 /* MoreOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4078A6D12C186D5400CF6D02 /* MoreOrdersViewController.swift */; };
 		4078A6D42C186D6600CF6D02 /* MoreWishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4078A6D32C186D6600CF6D02 /* MoreWishesViewController.swift */; };
 		409326372C1D040E007463DC /* ProductOfOrderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409326352C1D040E007463DC /* ProductOfOrderViewCell.xib */; };
@@ -116,6 +118,8 @@
 		4043AB362C1A79B30037C03A /* OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewController.swift; sourceTree = "<group>"; };
 		4054538A2C20F12F00190528 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4054538C2C20F17300190528 /* HomeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelProtocol.swift; sourceTree = "<group>"; };
+		4054538E2C21020400190528 /* AllProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsViewModel.swift; sourceTree = "<group>"; };
+		405453902C21021400190528 /* AllProductsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsViewModelProtocol.swift; sourceTree = "<group>"; };
 		4078A6D12C186D5400CF6D02 /* MoreOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOrdersViewController.swift; sourceTree = "<group>"; };
 		4078A6D32C186D6600CF6D02 /* MoreWishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreWishesViewController.swift; sourceTree = "<group>"; };
 		409326352C1D040E007463DC /* ProductOfOrderViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductOfOrderViewCell.xib; sourceTree = "<group>"; };
@@ -355,6 +359,8 @@
 			children = (
 				4054538A2C20F12F00190528 /* HomeViewModel.swift */,
 				4054538C2C20F17300190528 /* HomeViewModelProtocol.swift */,
+				4054538E2C21020400190528 /* AllProductsViewModel.swift */,
+				405453902C21021400190528 /* AllProductsViewModelProtocol.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -866,6 +872,7 @@
 				1069EEF52C199AB000A5F121 /* Utilities.swift in Sources */,
 				40D96F7B2C112E83000B8D34 /* Shopify.xcdatamodeld in Sources */,
 				10090CBE2C18F502000ABDE6 /* SignUpViewModel.swift in Sources */,
+				405453912C21021400190528 /* AllProductsViewModelProtocol.swift in Sources */,
 				B09A810B2C14B96D00DB8933 /* AddNewAddress.swift in Sources */,
 				401ACAF12C133EA500EC1B29 /* WishListTableViewCell.swift in Sources */,
 				403303C72C13642A001EE7CB /* SelectCategory.swift in Sources */,
@@ -885,6 +892,7 @@
 				10090CC22C18F6AE000ABDE6 /* SignUp.swift in Sources */,
 				B09B09822C19C7AE00A4233B /* AllAddressessViewModel.swift in Sources */,
 				B08D6A392C15338F00894358 /* AddNewAddressViewModel.swift in Sources */,
+				4054538F2C21020400190528 /* AllProductsViewModel.swift in Sources */,
 				40B6BDB72C140C55009A0A07 /* FetchDataFromApi.swift in Sources */,
 				4043AB372C1A79B30037C03A /* OrderDetailsViewController.swift in Sources */,
 				4054538D2C20F17300190528 /* HomeViewModelProtocol.swift in Sources */,
