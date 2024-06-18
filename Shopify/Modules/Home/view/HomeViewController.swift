@@ -243,25 +243,25 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let customerId = Utilites.getCustomerID()
         let newNote = "\(draftOrderIDFavorite),\(draftOrderIDCart)"
         NetworkManager.updateCustomerNote(customerId: customerId, newNote: newNote) { statusCode in
-                    DispatchQueue.main.async {
-                        if statusCode == 200 {
-                           
-                            print("Customer note updated successfully.")
-                            
-                            if let draftOrderIDCart = UserDefaults.standard.value(forKey: "draftOrderIDCart") as? Int {
-                                print("Draft Order ID for Cart: \(draftOrderIDCart)")
-                            }
-                            if let draftOrderIDFavorite = UserDefaults.standard.value(forKey: "draftOrderIDFavorite") as? Int {
-                                print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
-                            }
-                        } else {
-                          
-                            print("Failed to update customer note. Status code: \(statusCode)")
-                        }
+            DispatchQueue.main.async {
+                if statusCode == 200 {
+                    
+                    print("Customer note updated successfully.")
+                    
+                    if let draftOrderIDCart = UserDefaults.standard.value(forKey: "draftOrderIDCart") as? Int {
+                        print("Draft Order ID for Cart: \(draftOrderIDCart)")
                     }
+                    if let draftOrderIDFavorite = UserDefaults.standard.value(forKey: "draftOrderIDFavorite") as? Int {
+                        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
+                    }
+                } else {
+                    
+                    print("Failed to update customer note. Status code: \(statusCode)")
                 }
-       
-
+            }
+        }
+        
+    }
     
     func attemptToUseSelectedDiscountCode() {
         guard let selectedCode = getSelectedDiscountCode() else {

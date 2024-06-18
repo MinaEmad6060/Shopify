@@ -8,7 +8,7 @@
 import Foundation
 
 struct DraftOrderResponse: Codable {
-    let draft_order: DraftOrder
+    let draft_order: Drafts
 
     enum CodingKeys: String, CodingKey {
         case draft_order = "draft_order"

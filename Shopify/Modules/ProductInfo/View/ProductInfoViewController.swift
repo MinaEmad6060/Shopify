@@ -42,7 +42,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
         tiitleLB.text = productInfoViewModel?.product?.title
         descTextView.text = productInfoViewModel?.product?.body_html
 
-        priceLB.text =  productInfoViewModel?.product?.variants?[0].price
+        priceLB.text =  productInfoViewModel?.product?.price
        // sizeLB.text = productInfoViewModel?.product?.options[0].values?[0]
        // productId = productInfoViewModel?.product?.id
         guard let productId = productInfoViewModel?.product?.id else {
@@ -54,7 +54,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
        
 
         priceLB.text =  productInfoViewModel?.product?.price
-        sizeLB.text = productInfoViewModel?.product?.values[0]
+       // sizeLB.text = productInfoViewModel?.product?.values[0]
 
     }
 
@@ -149,13 +149,13 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            if collectionView == sizeCollectionView {
                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SizeCollectionViewCell
-               if let size = productInfoViewModel?.product?.options.first(where: { $0.name == "Size" })?.values?[indexPath.item] {
+               if let size = productInfoViewModel?.product?.sizes[indexPath.row] {
                    cell.sizeLB.text = size
                }
                return cell
            } else if collectionView == colorCollectionView {
                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ColorsCollectionViewCell
-               if let color = productInfoViewModel?.product?.options.first(where: { $0.name == "Color" })?.values?[indexPath.item] {
+               if let color = productInfoViewModel?.product?.colors[indexPath.row] {
                    cell.colorLB.text = color
                    //cell.colorView.backgroundColor = UIColor(named: color) // Assuming you have color names that match your app's color assets
                }
@@ -166,9 +166,9 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //           return   productInfoViewModel?.product?.options.first(where: { $0.name == "Size" })?.values?.count ?? 0
            if collectionView == sizeCollectionView {
-                  return productInfoViewModel?.product?.options.first(where: { $0.name == "Size" })?.values?.count ?? 0
+                  return productInfoViewModel?.product?.sizes.count ?? 0
               } else if collectionView == colorCollectionView {
-                  return productInfoViewModel?.product?.options.first(where: { $0.name == "Color" })?.values?.count ?? 0
+                  return productInfoViewModel?.product?.colors.count ?? 0
               }
               return 0
        }

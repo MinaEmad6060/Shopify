@@ -8,23 +8,22 @@
 import Foundation
 class ProdutInfoViewModel {
 
-    var product : Product?
+    var product : BrandProductViewData?
     var customerId: Int
    var  draftOrderIDFavorite: Int?
    
         var draftOrderIDCart: Int?
    
-    init(product: Product?) {
+    //init(product: Product?) {
 
-    var product : BrandProductViewData?
+  //  var product : BrandProductViewData?
     init(product: BrandProductViewData?) {
-
         self.product = product
         self.customerId = Utilites.getCustomerID()
         getCurrentCustomer()
     }
    
-    func updateCartDraftOrder(product: Product){
+    func updateCartDraftOrder(product: BrandProductViewData){
         guard let draftOrderIDCart = draftOrderIDCart else {
                     print("Cart draft order ID is not available")
                     return
@@ -36,7 +35,7 @@ class ProdutInfoViewModel {
                 print("Failed to update draft order. Status code: \(statusCode)")
             }
         }}
-    func updateFavoriteDraftOrder(product: Product){
+    func updateFavoriteDraftOrder(product: BrandProductViewData){
         guard let draftOrderIDFavorite = draftOrderIDFavorite else {
                     print("Cart draft order ID is not available")
                     return
