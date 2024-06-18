@@ -7,24 +7,40 @@
 
 import UIKit
 
-class FavoriteViewController: UIViewController {
+class FavoriteViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource{
+    private var viewModel = FavoriteViewModel()
 
     @IBOutlet weak var favCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.favCollectionView.delegate
+        self.favCollectionView.dataSource
+        let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+               self.favCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        bindViewModel()
+        viewModel.fetchLineItems(draftOrderId: 123456)
     }
     
 
-    /*
-    // MARK: - Navigation
+    private func bindViewModel() {
+           viewModel.didUpdateLineItems = { [weak self] in
+               DispatchQueue.main.async {
+                   self?.favCollectionView.reloadData()
+               }
+           }
+       }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+       // MARK: - UICollectionViewDataSource
 
+       func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+           return viewModel.lineItems.count
+       }
+       
+       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoryCollectionViewCell
+           let lineItem = viewModel.lineItems[indexPath.item]
+           cell.configure(with: lineItem)
+           return cell
+       }
 }

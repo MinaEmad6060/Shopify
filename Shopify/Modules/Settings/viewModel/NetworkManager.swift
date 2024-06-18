@@ -190,4 +190,22 @@ class NetworkManager {
                 }
             }
         }
+    static func fetchLineItemsInDraftOrder(draftOrderId: Int, completion: @escaping ([LineItem]?) -> Void) {
+           let urlString = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/draft_orders/\(draftOrderId).json"
+           
+           AF.request(urlString).responseDecodable(of: Drafts.self) { response in
+               switch response.result {
+               case .success(let draftResponse):
+                   if let lineItems = draftResponse.draftOrder?.lineItems {
+                       completion(lineItems)
+                   } else {
+                       print("No line items found")
+                       completion(nil)
+                   }
+               case .failure(let error):
+                   print("Error fetching line items: \(error.localizedDescription)")
+                   completion(nil)
+               }
+           }
+       }
 }
