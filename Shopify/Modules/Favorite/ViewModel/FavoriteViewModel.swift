@@ -15,6 +15,13 @@ class FavoriteViewModel {
     }
     
     var didUpdateLineItems: (() -> Void)?
+    var displayedLineItems: [LineItem] {
+         if lineItems.count > 1 {
+             return Array(lineItems.dropFirst())
+         } else {
+             return []
+         }
+     }
 
     func fetchLineItems(draftOrderId: Int) {
         NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderId) { [weak self] lineItems in
@@ -25,6 +32,9 @@ class FavoriteViewModel {
                 print("No line items found")
             }
         }
+        for item in self.lineItems {
+                print("Title: \(item.title ?? ""), Price: \(item.price ?? ""), Image: \(item.image ?? "")")
+            }
     }
 }
 

@@ -122,6 +122,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     
     @IBAction func favBtn(_ sender: UIBarButtonItem) {
+        productInfoViewModel?.updateFavoriteDraftOrder( product: (productInfoViewModel?.product)!)
     }
     
 }

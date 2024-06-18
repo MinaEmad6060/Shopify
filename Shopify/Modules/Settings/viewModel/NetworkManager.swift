@@ -198,8 +198,9 @@ class NetworkManager {
                case .success(let draftResponse):
                    if let lineItems = draftResponse.draftOrder?.lineItems {
                        completion(lineItems)
+                       print("lineItems:***\(lineItems)")
                    } else {
-                       print("No line items found")
+                       print("No line items found in api")
                        completion(nil)
                    }
                case .failure(let error):

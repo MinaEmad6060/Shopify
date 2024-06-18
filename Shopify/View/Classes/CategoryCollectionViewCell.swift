@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class CategoryCollectionViewCell: UICollectionViewCell {
 
     
@@ -35,19 +35,13 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         self.btnFavCategoryItem.clipsToBounds = true
     }
     func configure(with lineItem: LineItem) {
-            categoryItemName.text = lineItem.title
-            categoryItemPrice.text = lineItem.price
-            categoryItemCurrency.text = "Currency" // Replace with actual currency if available in LineItem
-            // Load image from URL if lineItem.image is a URL
-            if let imageUrlString = lineItem.image, let imageUrl = URL(string: imageUrlString) {
-                // Load image asynchronously (you may use a library like SDWebImage)
-                DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: imageUrl) {
-                        DispatchQueue.main.async {
-                            self.categoryItemImage.image = UIImage(data: data)
-                        }
-                    }
-                }
-            }
-        }
+           self.categoryItemName.text = lineItem.name
+           self.categoryItemPrice.text = lineItem.price
+           self.categoryItemCurrency.text = "USD"
+           if let imageUrl = lineItem.image, let url = URL(string: imageUrl) {
+               self.categoryItemImage.kf.setImage(with: url, placeholder: UIImage(named: "wish"))
+           } else {
+               self.categoryItemImage.image = UIImage(named: "wish") // Placeholder image
+           }
+       }
 }

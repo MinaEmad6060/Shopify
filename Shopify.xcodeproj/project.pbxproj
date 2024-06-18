@@ -297,8 +297,8 @@
 			isa = PBXGroup;
 			children = (
 				105EEAAD2C16D50300E19566 /* ProductInfoViewController.swift */,
-				10258C2B2C1BC861006B6966 /* SizeCollectionViewCell.swift */,
 				10E8E4402C1C80A200E1CC3F /* ColorsCollectionViewCell.swift */,
+				10258C2B2C1BC861006B6966 /* SizeCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -454,10 +454,10 @@
 				40EB4A902C123AFB009038FA /* AdsCollectionViewCell.swift */,
 				40EB4AA12C1253A7009038FA /* BrandsCollectionViewCell.swift */,
 				40EB4A9D2C124A6C009038FA /* CategoryCollectionViewCell.swift */,
-				401ACAEA2C133E6600EC1B29 /* OrdersTableViewCell.swift */,
 				401ACAEE2C133EA500EC1B29 /* WishListTableViewCell.swift */,
 				B0B4B0BE2C13695E00FAFFEA /* ShoppingCartViewCell.swift */,
 				403303C62C13642A001EE7CB /* SelectCategory.swift */,
+				401ACAEA2C133E6600EC1B29 /* OrdersTableViewCell.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TWh-dN-tF1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cPZ-kP-DCS">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -822,20 +822,20 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5qF-38-00g">
-                                <rect key="frame" x="0.0" y="125" width="393" height="693"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xFw-GO-owl">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lOD-3O-NSh">
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="X40-tL-fuG">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="5UW-P7-AIH" customClass="CategoryCollectionViewCell" customModule="Shopify" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Ftt-jE-zKp">
                                         <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="z9f-pP-mhq">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vl2-1N-lY7">
                                             <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
@@ -846,19 +846,19 @@
                         <viewLayoutGuide key="safeArea" id="j2O-MY-4Uv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="j2O-MY-4Uv" firstAttribute="bottom" secondItem="5qF-38-00g" secondAttribute="bottom" id="4bX-jg-1eg"/>
-                            <constraint firstItem="5qF-38-00g" firstAttribute="height" secondItem="Ghp-Jv-yjZ" secondAttribute="height" multiplier="0.81338" id="6kX-0m-CF9"/>
-                            <constraint firstItem="kN1-lD-Beu" firstAttribute="top" secondItem="j2O-MY-4Uv" secondAttribute="top" id="TeF-8s-vGS"/>
-                            <constraint firstItem="kN1-lD-Beu" firstAttribute="trailing" secondItem="j2O-MY-4Uv" secondAttribute="trailing" id="Xhg-rc-2nh"/>
-                            <constraint firstItem="5qF-38-00g" firstAttribute="top" secondItem="kN1-lD-Beu" secondAttribute="bottom" constant="22" id="bkG-PL-hzX"/>
-                            <constraint firstItem="5qF-38-00g" firstAttribute="width" secondItem="Ghp-Jv-yjZ" secondAttribute="width" id="ehZ-ep-qaX"/>
-                            <constraint firstItem="5qF-38-00g" firstAttribute="leading" secondItem="j2O-MY-4Uv" secondAttribute="leading" id="lI0-C4-88t"/>
-                            <constraint firstItem="5qF-38-00g" firstAttribute="trailing" secondItem="j2O-MY-4Uv" secondAttribute="trailing" id="u7X-8i-noF"/>
-                            <constraint firstItem="kN1-lD-Beu" firstAttribute="leading" secondItem="j2O-MY-4Uv" secondAttribute="leading" id="yax-Je-3H8"/>
+                            <constraint firstItem="xFw-GO-owl" firstAttribute="trailing" secondItem="j2O-MY-4Uv" secondAttribute="trailing" id="0Fs-PS-8U3"/>
+                            <constraint firstItem="j2O-MY-4Uv" firstAttribute="bottom" secondItem="xFw-GO-owl" secondAttribute="bottom" id="4fF-3Z-IWY"/>
+                            <constraint firstItem="kN1-lD-Beu" firstAttribute="trailing" secondItem="j2O-MY-4Uv" secondAttribute="trailing" id="7O6-qs-oy3"/>
+                            <constraint firstItem="xFw-GO-owl" firstAttribute="width" secondItem="Ghp-Jv-yjZ" secondAttribute="width" id="Ek4-qu-ZlW"/>
+                            <constraint firstItem="xFw-GO-owl" firstAttribute="leading" secondItem="j2O-MY-4Uv" secondAttribute="leading" id="Rjd-0Y-LB2"/>
+                            <constraint firstItem="kN1-lD-Beu" firstAttribute="top" secondItem="j2O-MY-4Uv" secondAttribute="top" id="Zud-SY-9PH"/>
+                            <constraint firstItem="kN1-lD-Beu" firstAttribute="leading" secondItem="j2O-MY-4Uv" secondAttribute="leading" id="lRB-0K-bIF"/>
+                            <constraint firstItem="xFw-GO-owl" firstAttribute="top" secondItem="kN1-lD-Beu" secondAttribute="bottom" id="mnF-E6-wRa"/>
+                            <constraint firstItem="xFw-GO-owl" firstAttribute="height" secondItem="Ghp-Jv-yjZ" secondAttribute="height" multiplier="0.839202" id="uDu-aa-ixx"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="favCollectionView" destination="5qF-38-00g" id="dkE-Jh-7k3"/>
+                        <outlet property="favCollectionView" destination="xFw-GO-owl" id="XOQ-18-41L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ivP-gs-wyn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
