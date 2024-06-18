@@ -35,7 +35,7 @@
                         <color key="textColor" red="0.72927378639999996" green="0.1814518313" blue="0.103460285" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DlO-JV-Fth">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DlO-JV-Fth" customClass="ShoppingCartViewCell" customModule="Shopify" customModuleProvider="target">
                         <rect key="frame" x="315" y="71" width="107" height="43"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -70,7 +70,7 @@
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="164.8854961832061" y="18.661971830985916"/>
+            <point key="canvasLocation" x="-208" y="-14"/>
         </tableViewCell>
     </objects>
 </document>

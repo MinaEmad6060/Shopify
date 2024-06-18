@@ -19,5 +19,19 @@ class Utilites{
                 alert.dismiss(animated: true)
             }
         }
+   static func getDraftOrderIDCart() -> Int {
+        return UserDefaults.standard.integer(forKey: "draftOrderIDCart")
+    }
+
+    
+    static  func getDraftOrderIDFavorite() -> Int {
+        return UserDefaults.standard.integer(forKey: "draftOrderIDFavorite")
+    }
+    static  func getCustomerID() -> Int{
+        return UserDefaults.standard.integer(forKey: "userID")
+    }
+    static  func getCustomerEmail() -> String{
+        return UserDefaults.standard.string(forKey: "userEmail") ?? "Guest"
+    }
         
 }

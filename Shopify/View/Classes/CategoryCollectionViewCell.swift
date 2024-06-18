@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class CategoryCollectionViewCell: UICollectionViewCell {
 
     
@@ -34,5 +34,14 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         self.btnFavCategoryItem.layer.cornerRadius = 10
         self.btnFavCategoryItem.clipsToBounds = true
     }
-
+    func configure(with lineItem: LineItem) {
+           self.categoryItemName.text = lineItem.name
+           self.categoryItemPrice.text = lineItem.price
+           self.categoryItemCurrency.text = "USD"
+           if let imageUrl = lineItem.image, let url = URL(string: imageUrl) {
+               self.categoryItemImage.kf.setImage(with: url, placeholder: UIImage(named: "wish"))
+           } else {
+               self.categoryItemImage.image = UIImage(named: "wish") // Placeholder image
+           }
+       }
 }

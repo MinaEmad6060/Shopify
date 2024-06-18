@@ -22,6 +22,10 @@ class SignUpViewModel{
         SignUpNetworkService.customerRegister(newCustomer: customer) { checkSignAblitiy in
             self.ObservableSignUp = checkSignAblitiy
         }
+
+        
         }
-    
+    func createDraftWith(product: Product, note: String, completion: @escaping (Int) -> Void) {
+            FetchDataFromApi.CreateDraft(product: product, note: note, complication: completion)
+        }
 }
