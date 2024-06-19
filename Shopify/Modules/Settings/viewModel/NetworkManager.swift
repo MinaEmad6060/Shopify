@@ -209,4 +209,19 @@ class NetworkManager {
                }
            }
        }
+   static func fetchAllProducts(completion: @escaping (Result<BrandProduct, Error>) -> Void) {
+            let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/products.json"
+       
+            
+            AF.request(url).validate().responseDecodable(of: BrandProduct.self) { response in
+                switch response.result {
+                case .success(let brandProduct):
+                    completion(.success(brandProduct))
+                   // print(brandProduct)
+                case .failure(let error):
+                    completion(.failure(error))
+                    print("errorrrr")
+                }
+            }
+        }
 }
