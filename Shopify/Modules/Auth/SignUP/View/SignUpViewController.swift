@@ -189,6 +189,11 @@ class SignUpViewController: UIViewController {
       }
     
  
-
+    @IBAction func goToLoginBn(_ sender: Any) {
+        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+        loginViewController.modalPresentationStyle = .fullScreen
+        navigationController?.present(loginViewController, animated: true)
+    }
+    
   
 }

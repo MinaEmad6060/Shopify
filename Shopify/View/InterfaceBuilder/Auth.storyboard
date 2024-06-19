@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bc3-wZ-DBe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K7i-tU-x7o">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeVC" id="Y6W-OH-hqX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,7 +81,7 @@
         <!--Login View Controller-->
         <scene sceneID="rD2-Ih-4Vb">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" id="K7i-tU-x7o" customClass="LoginViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" modalPresentationStyle="fullScreen" id="K7i-tU-x7o" customClass="LoginViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ckV-wk-wLp">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,6 +123,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="create one?"/>
                                 <connections>
                                     <action selector="goToSignUp:" destination="K7i-tU-x7o" eventType="touchUpInside" id="a5D-dj-nvg"/>
+                                    <segue destination="eOZ-32-1DN" kind="show" id="bea-lD-kqM"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Add to Cart-pana" translatesAutoresizingMaskIntoConstraints="NO" id="mKR-P8-jra">
@@ -133,6 +134,7 @@
                         <viewLayoutGuide key="safeArea" id="L0U-II-yI5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="2Np-f4-xno"/>
                     <connections>
                         <outlet property="emailTextField" destination="jAu-B5-B9F" id="PaG-eT-y6g"/>
                         <outlet property="passwordTextField" destination="zDX-RQ-LtN" id="l8x-Mh-3Qp"/>
@@ -145,7 +147,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="2Yc-2a-Yez">
             <objects>
-                <viewController storyboardIdentifier="SignUPVC" id="eOZ-32-1DN" customClass="SignUpViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUPVC" modalPresentationStyle="fullScreen" id="eOZ-32-1DN" customClass="SignUpViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="39A-tz-4FT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -207,11 +209,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="sign in ?"/>
+                                <connections>
+                                    <action selector="goToLoginBn:" destination="eOZ-32-1DN" eventType="touchUpInside" id="Zdj-Na-s28"/>
+                                    <segue destination="K7i-tU-x7o" kind="show" id="BIO-Jo-tmf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xxA-Uy-ap8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="rXn-Jc-n09"/>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="PoC-MG-TAa" id="lep-Ga-2LK"/>
                         <outlet property="emailTextField" destination="nfB-sT-ppx" id="OH1-fh-4h1"/>
@@ -947,7 +954,7 @@
         <!--Favorite View Controller-->
         <scene sceneID="gnV-35-HNj">
             <objects>
-                <viewController id="cPZ-kP-DCS" customClass="FavoriteViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavVC" id="cPZ-kP-DCS" customClass="FavoriteViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ghp-Jv-yjZ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1010,7 +1017,7 @@
         <!--Search View Controller-->
         <scene sceneID="4Df-iY-ftg">
             <objects>
-                <viewController id="hXZ-qr-340" customClass="SearchViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchVC" id="hXZ-qr-340" customClass="SearchViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F7g-cL-jll">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
