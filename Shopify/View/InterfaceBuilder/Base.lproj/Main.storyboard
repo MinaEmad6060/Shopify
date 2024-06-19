@@ -118,6 +118,16 @@
             </objects>
             <point key="canvasLocation" x="0.76335877862595414" y="-27.464788732394368"/>
         </scene>
+        <!--SearchVC-->
+        <scene sceneID="EVc-OA-RtO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Auth" referencedIdentifier="SearchVC" id="QYC-Uz-yEp" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="JFP-bG-av0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6gT-Nm-5vp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4947" y="564"/>
+        </scene>
         <!--Item-->
         <scene sceneID="AtQ-yh-gif">
             <objects>
@@ -168,13 +178,22 @@
                                     <navigationItem title="Home" id="cQN-u8-SOX">
                                         <barButtonItem key="leftBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="GOH-6F-Z00">
                                             <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <segue destination="QYC-Uz-yEp" kind="show" id="eqa-k0-62z"/>
+                                            </connections>
                                         </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem image="heart" catalog="system" id="VAA-zK-DuD">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="Gqr-85-WQa" kind="show" id="AEZ-J1-RBP"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="cart.fill" catalog="system" id="I2X-Mm-sBI">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="KNz-II-Rjd" kind="show" id="bVt-tz-v4X"/>
+                                                </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -192,6 +211,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRN-ni-thL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3290.8396946564885" y="607.04225352112678"/>
+        </scene>
+        <!--Payment-->
+        <scene sceneID="Sp5-ZH-KgY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Payment" id="KNz-II-Rjd" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="BvS-Yl-WLT"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FzT-Bu-9gI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4341" y="1059"/>
+        </scene>
+        <!--FavVC-->
+        <scene sceneID="q0c-Pw-LWr">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Auth" referencedIdentifier="FavVC" id="Gqr-85-WQa" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Y1Q-EM-aK9"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w5S-Tu-hYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6119" y="746"/>
         </scene>
         <!--All Products View Controller-->
         <scene sceneID="bZQ-Q5-l0z">
@@ -305,9 +344,15 @@
                                         <rightBarButtonItems>
                                             <barButtonItem title="Item" image="gearshape.fill" catalog="system" id="cre-sx-bab">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="cdj-Yj-ZDM" kind="show" id="3uL-ia-9zb"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="cart.fill" catalog="system" id="nRN-bW-a9A">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="KNz-II-Rjd" kind="show" id="2Q6-dy-nM6"/>
+                                                </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -329,7 +374,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wish List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSa-cA-Djf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favourites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSa-cA-Djf">
                                 <rect key="frame" x="16" y="415" width="87" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -372,6 +417,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="See More">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="Gqr-85-WQa" kind="show" id="UzW-wM-ao2"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dG-g5-3iC">
                                 <rect key="frame" x="172" y="511" width="87" height="21"/>
@@ -421,10 +469,20 @@
             </objects>
             <point key="canvasLocation" x="5551.9083969465646" y="607.04225352112678"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="2Mt-VP-0ta">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="cdj-Yj-ZDM" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="jL7-Ua-vgC"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WjW-6a-e2b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6169" y="223"/>
+        </scene>
         <!--Order Details View Controller-->
         <scene sceneID="5mA-Xn-NPd">
             <objects>
-                <viewController storyboardIdentifier="OrderDetailsVC" id="pKk-Pm-6lF" customClass="OrderDetailsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderDetailsVC" modalPresentationStyle="fullScreen" id="pKk-Pm-6lF" customClass="OrderDetailsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="czb-Bt-LgU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -529,7 +587,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="bGg-QW-Gtj">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="KKu-nb-hgH" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeVC" automaticallyAdjustsScrollViewInsets="NO" id="KKu-nb-hgH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="8PO-cn-GbY"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FAf-u3-xfW">
@@ -568,9 +626,15 @@
                                         <rightBarButtonItems>
                                             <barButtonItem title="Item" image="cart.fill" catalog="system" id="jBa-NJ-1R3">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="KNz-II-Rjd" kind="show" id="Wgj-0Q-lVw"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="magnifyingglass" catalog="system" id="9iN-Xn-xbo">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="QYC-Uz-yEp" kind="show" id="1E0-BS-SfB"/>
+                                                </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -638,7 +702,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="XJd-kr-mMH" firstAttribute="trailing" secondItem="d7b-Nv-Yyj" secondAttribute="trailing" constant="54" id="6xA-bN-k98"/>
-                            <constraint firstItem="nz9-cj-Alc" firstAttribute="top" secondItem="XJd-kr-mMH" secondAttribute="top" constant="16" id="7ii-1m-Pzr"/>
                             <constraint firstItem="d7b-Nv-Yyj" firstAttribute="leading" secondItem="XJd-kr-mMH" secondAttribute="leading" constant="54" id="8Kp-3z-bX9"/>
                             <constraint firstItem="XJd-kr-mMH" firstAttribute="trailing" secondItem="nz9-cj-Alc" secondAttribute="trailing" constant="26" id="BxR-5n-PEb"/>
                             <constraint firstItem="XJd-kr-mMH" firstAttribute="trailing" secondItem="XZb-x7-pJA" secondAttribute="trailing" constant="32" id="JUG-nD-vx1"/>
@@ -650,6 +713,7 @@
                             <constraint firstItem="XJd-kr-mMH" firstAttribute="bottom" secondItem="XZb-x7-pJA" secondAttribute="bottom" constant="8" id="UeF-Xa-XLn"/>
                             <constraint firstItem="ouj-g2-yCI" firstAttribute="centerY" secondItem="XJd-kr-mMH" secondAttribute="centerY" id="XXe-vr-iBi"/>
                             <constraint firstItem="d7b-Nv-Yyj" firstAttribute="top" secondItem="nz9-cj-Alc" secondAttribute="bottom" constant="16" id="hcN-yY-INu"/>
+                            <constraint firstItem="RAf-bM-imk" firstAttribute="top" secondItem="fP4-PV-4xC" secondAttribute="top" constant="49" id="oLl-WM-bTe"/>
                             <constraint firstItem="ouj-g2-yCI" firstAttribute="centerX" secondItem="XJd-kr-mMH" secondAttribute="centerX" id="olE-OU-Unp"/>
                             <constraint firstItem="nz9-cj-Alc" firstAttribute="leading" secondItem="XJd-kr-mMH" secondAttribute="leading" constant="26" id="uE1-a0-Wcp"/>
                         </constraints>
@@ -670,7 +734,7 @@
         <!--More Orders View Controller-->
         <scene sceneID="ztC-9Y-vJX">
             <objects>
-                <viewController storyboardIdentifier="AllOrdersVC" id="Lh1-1Q-jgr" customClass="MoreOrdersViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AllOrdersVC" modalPresentationStyle="fullScreen" id="Lh1-1Q-jgr" customClass="MoreOrdersViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oVZ-wG-C9e">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -776,6 +840,11 @@
             <point key="canvasLocation" x="5552" y="1381"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="UzW-wM-ao2"/>
+        <segue reference="2Q6-dy-nM6"/>
+        <segue reference="1E0-BS-SfB"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>
         <image name="brand" width="170" height="141"/>

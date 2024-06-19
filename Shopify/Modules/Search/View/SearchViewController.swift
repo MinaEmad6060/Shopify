@@ -12,6 +12,10 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBAction func btnBack(_ sender: Any) {
+        self.dismiss(animated: true)
+
+    }
     @IBOutlet weak var searchTableView: UITableView!
     var viewModel = SearchViewModel()
     override func viewDidLoad() {

@@ -10,6 +10,11 @@ import UIKit
 class FavoriteViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
     private var viewModel = FavoriteViewModel()
 
+    
+    @IBAction func btnBack(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     @IBOutlet weak var favCollectionView: UICollectionView!
     private let sectionInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 20.0, right: 10.0)
     private let itemsPerRow: CGFloat = 2
@@ -62,9 +67,12 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
                let imageURL = components[1]
             
                
-               cell.categoryItemName.text = lineItem.title
+               let productName = lineItem.title
+               cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
+               
+//               cell.categoryItemName.text = lineItem.title
                cell.categoryItemPrice.text = lineItem.price
-               cell.categoryItemCurrency.text = "USD" 
+               cell.categoryItemCurrency.text = "$"
                
                if let url = URL(string: imageURL) {
                    cell.categoryItemImage.kf.setImage(with: url)

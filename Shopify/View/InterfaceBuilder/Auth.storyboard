@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -954,7 +954,7 @@
         <!--Favorite View Controller-->
         <scene sceneID="gnV-35-HNj">
             <objects>
-                <viewController storyboardIdentifier="FavVC" id="cPZ-kP-DCS" customClass="FavoriteViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavVC" modalPresentationStyle="fullScreen" id="cPZ-kP-DCS" customClass="FavoriteViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ghp-Jv-yjZ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -968,27 +968,35 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Favorite List" id="sol-YU-7ak">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.turn.up.backward.fill" catalog="system" id="6i9-jf-bz1"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.turn.up.backward.fill" catalog="system" id="6i9-jf-bz1">
+                                            <connections>
+                                                <action selector="btnBack:" destination="cPZ-kP-DCS" id="ltY-7Z-GC1"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xFw-GO-owl">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xFw-GO-owl">
+                                <rect key="frame" x="32" y="103" width="329" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="715" id="gcN-24-nzX"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="X40-tL-fuG">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="224" height="230"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Ftt-jE-zKp">
-                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <rect key="frame" x="52.666666666666664" y="0.0" width="224" height="230"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vl2-1N-lY7">
-                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="224" height="230"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="224" height="230"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -996,14 +1004,13 @@
                         <viewLayoutGuide key="safeArea" id="j2O-MY-4Uv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xFw-GO-owl" firstAttribute="trailing" secondItem="j2O-MY-4Uv" secondAttribute="trailing" id="0Fs-PS-8U3"/>
-                            <constraint firstItem="j2O-MY-4Uv" firstAttribute="bottom" secondItem="xFw-GO-owl" secondAttribute="bottom" id="4fF-3Z-IWY"/>
                             <constraint firstItem="kN1-lD-Beu" firstAttribute="trailing" secondItem="j2O-MY-4Uv" secondAttribute="trailing" id="7O6-qs-oy3"/>
-                            <constraint firstItem="xFw-GO-owl" firstAttribute="width" secondItem="Ghp-Jv-yjZ" secondAttribute="width" id="Ek4-qu-ZlW"/>
-                            <constraint firstItem="xFw-GO-owl" firstAttribute="leading" secondItem="j2O-MY-4Uv" secondAttribute="leading" id="Rjd-0Y-LB2"/>
+                            <constraint firstItem="xFw-GO-owl" firstAttribute="top" secondItem="kN1-lD-Beu" secondAttribute="bottom" id="7l0-2I-N9V"/>
+                            <constraint firstItem="xFw-GO-owl" firstAttribute="leading" secondItem="j2O-MY-4Uv" secondAttribute="leading" constant="32" id="HjB-zH-7XD"/>
+                            <constraint firstItem="j2O-MY-4Uv" firstAttribute="trailing" secondItem="xFw-GO-owl" secondAttribute="trailing" constant="32" id="Y7t-Mm-H49"/>
                             <constraint firstItem="kN1-lD-Beu" firstAttribute="top" secondItem="j2O-MY-4Uv" secondAttribute="top" id="Zud-SY-9PH"/>
+                            <constraint firstItem="xFw-GO-owl" firstAttribute="bottom" secondItem="j2O-MY-4Uv" secondAttribute="bottom" id="i7f-7y-chY"/>
                             <constraint firstItem="kN1-lD-Beu" firstAttribute="leading" secondItem="j2O-MY-4Uv" secondAttribute="leading" id="lRB-0K-bIF"/>
-                            <constraint firstItem="xFw-GO-owl" firstAttribute="top" secondItem="kN1-lD-Beu" secondAttribute="bottom" id="mnF-E6-wRa"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1012,12 +1019,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ivP-gs-wyn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1497" y="845"/>
+            <point key="canvasLocation" x="1496.9465648854962" y="844.36619718309862"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="4Df-iY-ftg">
             <objects>
-                <viewController storyboardIdentifier="SearchVC" id="hXZ-qr-340" customClass="SearchViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchVC" modalPresentationStyle="fullScreen" id="hXZ-qr-340" customClass="SearchViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F7g-cL-jll">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1064,6 +1071,24 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nf1-Og-Dau">
+                                <rect key="frame" x="0.0" y="55" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.71372549019999998" green="0.61960784310000006" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.71372549019999998" green="0.61960784310000006" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Search" id="jg0-cP-IFN">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.turn.up.backward.fill" catalog="system" id="1UV-A6-n1w">
+                                            <connections>
+                                                <action selector="btnBack:" destination="hXZ-qr-340" id="haK-5N-lIh"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EL3-eM-jQ8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1105,10 +1130,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
