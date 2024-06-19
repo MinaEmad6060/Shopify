@@ -227,7 +227,7 @@ class NetworkManager {
         }
 
     
-    static func updateDraftOrder(draftOrderId: Int, lineItems: [LineItem], completion: @escaping (Bool) -> Void) {
+    static func updateDraftOrder(draftOrderId: Int, lineItems: [LineItemm], completion: @escaping (Bool) -> Void) {
         let url = "\(Constants.baseUrl)/draft_orders/\(draftOrderId).json"
         guard let encodedCredentials = "\(Constants.api_key):\(Constants.password)".data(using: .utf8)?.base64EncodedString() else {
             print("Failed to encode credentials")
@@ -246,8 +246,8 @@ class NetworkManager {
                 "quantity": $0.quantity,
                 "title": $0.name,
                 "price": $0.price,
-                //"variant_id": $0.variant_id as Any,
-                //"variant_title": $0.variant_title as Any
+                "variant_id": $0.variant_id as Any,
+                "variant_title": $0.variant_title as Any
             ]
         }
         
@@ -267,11 +267,11 @@ class NetworkManager {
             }
         }
     }
-    static func fetchDraftOrder(draftOrderId: Int, completion: @escaping (Drafts?) -> Void) {
+    static func fetchDraftOrder(draftOrderId: Int, completion: @escaping (DraftOrderr?) -> Void) {
         let url = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
         
         
-        AF.request(url, method: .get).responseDecodable(of: DraftOrderResponse.self) { response in
+        AF.request(url, method: .get).responseDecodable(of: DraftOrderResponsee.self) { response in
             switch response.result {
             case .success(let draftOrderResponse):
                 completion(draftOrderResponse.draft_order)

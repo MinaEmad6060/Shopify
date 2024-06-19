@@ -13,7 +13,7 @@ class PaymentOptionsViewController: UIViewController {
     @IBOutlet weak var cashPaymentMV: UIView!
     @IBOutlet weak var onlinePaymentMV: UIView!
     
-    var lineItems: [LineItem] = []
+    var lineItems: [LineItemm] = []
     var subTotal = 0.0
     private var payment : PKPaymentRequest = PKPaymentRequest()
     @IBAction func continuePaymentBtn(_ sender: Any) {

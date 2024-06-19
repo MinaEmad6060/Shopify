@@ -12,7 +12,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet weak var totalPrice: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
-    var lineItems: [LineItem] = []
+    var lineItems: [LineItemm] = []
     var subTotal = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
             guard let self = self else { return }
             if let draftOrder = draftOrder {
-                self.lineItems = draftOrder.draftOrder?.lineItems ?? []
+                self.lineItems = draftOrder.lineItems
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.subTotal = self.calculateTotal(lineItems: self.lineItems)
@@ -86,9 +86,9 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             
             if let availableQuantity = availableQuantity {
                 if increment && self.lineItems[index].quantity ?? 5 < availableQuantity {
-                    self.lineItems[index].quantity! += 1
+                    self.lineItems[index].quantity += 1
                 } else if !increment && self.lineItems[index].quantity ?? 5 > 1 {
-                    self.lineItems[index].quantity! -= 1
+                    self.lineItems[index].quantity -= 1
                 } else {
                     print("Requested quantity not available or minimum quantity is 1")
                 }
@@ -133,7 +133,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             }
         }
     }
-    func calculateTotal(lineItems: [LineItem]) -> Double {
+    func calculateTotal(lineItems: [LineItemm]) -> Double {
         var total: Double = 0.0
         
         for item in lineItems {

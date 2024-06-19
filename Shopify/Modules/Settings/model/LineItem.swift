@@ -7,17 +7,25 @@
 
 import Foundation
 
-struct DraftOrderResponse: Codable {
-    let draft_order: Drafts
+struct DraftOrderResponsee: Codable {
+    let draft_order: DraftOrderr
 
     enum CodingKeys: String, CodingKey {
         case draft_order = "draft_order"
     }
 }
 
+struct DraftOrderr: Codable {
+    let id: Int
+    var lineItems: [LineItemm]
 
-/*
-struct LineItem: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case lineItems = "line_items"
+    }
+}
+
+struct LineItemm: Codable {
     let id: Int
     let name: String
     var quantity: Int
@@ -25,7 +33,7 @@ struct LineItem: Codable {
     let variant_id: String?
     let variant_title: String?
 }
-*/
+
 
 struct ProductResponse: Decodable {
     let product: Product

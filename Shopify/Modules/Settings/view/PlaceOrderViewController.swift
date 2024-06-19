@@ -10,7 +10,7 @@ import UIKit
 class PlaceOrderViewController: UIViewController {
 
     @IBOutlet weak var couponErrorLabel: UILabel!
-    var lineItems: [LineItem] = []
+    var lineItems: [LineItemm] = []
     var subTotal = 0.0
     var total = 0.0
     @IBOutlet weak var couponTF: UITextField!

@@ -21,19 +21,13 @@ struct BrandsViewData: Decodable{
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
-    
-    
     var fetchDataFromApi: FetchDataFromApi!
-    
     var discountCodes: [DiscountCode] = []
-    
     
     var homeViewModel: HomeViewModelProtocol!
     var brands: [BrandsViewData]!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +38,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         homeViewModel = HomeViewModel()
         brands = [BrandsViewData]()
         
-//        FetchDataFromApi.postOrder()
+        //        FetchDataFromApi.postOrder()
         fetchDiscountCodes()
         /*
          fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections")){[weak self] (brands: Brand) in
@@ -78,6 +72,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let noDataCustomCell = UINib(nibName: "BrandsCollectionViewCell", bundle: nil)
         self.homeCollectionView.register(noDataCustomCell, forCellWithReuseIdentifier: "BrandsCell")
     }
+    
     
     
     func drawAdsSection ()-> NSCollectionLayoutSection{
@@ -182,12 +177,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     func fetchDiscountCodes() {
-
-        let priceRulesUrl = "\(Constants.baseUrl)price_rules.json"
-
         
-        let priceRulesUrl = "\(Constants.baseUrl)/price_rules.json"
-
+        let priceRulesUrl = "\(Constants.baseUrl)price_rules.json"
         
         AF.request(priceRulesUrl).responseJSON { response in
             switch response.result {
@@ -206,23 +197,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
-
-
-    func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
-        let discountCodesUrl = "\(Constants.baseUrl)price_rules/\(priceRuleId)/discount_codes.json"
-
+    
     
     func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
+        let discountCodesUrl = "\(Constants.baseUrl)price_rules/\(priceRuleId)/discount_codes.json"
         
-        let discountCodesUrl = "\(Constants.baseUrl)/price_rules/\(priceRuleId)/discount_codes.json"
-
         
         AF.request(discountCodesUrl).responseJSON { response in
             switch response.result {
             case .success(let result):
                 if let json = result as? [String: Any],
                    let discountCodes = json["discount_codes"] as? [[String: Any]] {
-
+                    
                     var discountCodesDict: [[String: String]] = []
                     for code in discountCodes {
                         if let discountCode = code["code"] as? String {
@@ -232,14 +218,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         }
                     }
                     UserDefaults.standard.set(discountCodesDict, forKey: "AvailableDiscountCodes")
-
+                    
                     for code in discountCodes {
                         if let discountCode = code["code"] as? String,
                            let valueString = value as? String {
                             self.discountCodes.append(DiscountCode(code: discountCode, value: valueString))
                         }
                     }
-
+                    
                     DispatchQueue.main.async {
                         self.homeCollectionView.reloadData()
                     }
@@ -248,11 +234,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("Error: \(error)")
             }
         }
+        
     }
-
-     
-
-
+    
+    
+    
     func saveSelectedDiscountCode(_ code: String) {
         UserDefaults.standard.set(code, forKey: "SelectedDiscountCode")
     }
@@ -260,7 +246,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func getSelectedDiscountCode() -> String? {
         return UserDefaults.standard.string(forKey: "SelectedDiscountCode")
     }
-
+    
     func UpdateCustomerNote(){
         let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
         let draftOrderIDCart = Utilites.getDraftOrderIDCart()
@@ -284,7 +270,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 }
             }
         }
-        
     }
     
     func attemptToUseSelectedDiscountCode() {
@@ -312,11 +297,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         usedCodes.append(code)
         UserDefaults.standard.setValue(usedCodes, forKey: "UsedDiscountCodes")
         UserDefaults.standard.removeObject(forKey: "SelectedDiscountCode")
-
     }
 }
-
-
 /*
 let selectedCode = discountCodes[indexPath.row].code
 saveSelectedDiscountCode(selectedCode)
