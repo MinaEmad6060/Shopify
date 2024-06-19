@@ -118,6 +118,16 @@
             </objects>
             <point key="canvasLocation" x="0.76335877862595414" y="-27.464788732394368"/>
         </scene>
+        <!--SearchVC-->
+        <scene sceneID="EVc-OA-RtO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Auth" referencedIdentifier="SearchVC" id="QYC-Uz-yEp" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="JFP-bG-av0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6gT-Nm-5vp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4947" y="564"/>
+        </scene>
         <!--Item-->
         <scene sceneID="AtQ-yh-gif">
             <objects>
@@ -168,13 +178,22 @@
                                     <navigationItem title="Home" id="cQN-u8-SOX">
                                         <barButtonItem key="leftBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="GOH-6F-Z00">
                                             <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <segue destination="QYC-Uz-yEp" kind="show" id="eqa-k0-62z"/>
+                                            </connections>
                                         </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem image="heart" catalog="system" id="VAA-zK-DuD">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="Gqr-85-WQa" kind="show" id="AEZ-J1-RBP"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="cart.fill" catalog="system" id="I2X-Mm-sBI">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="KNz-II-Rjd" kind="show" id="bVt-tz-v4X"/>
+                                                </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -192,6 +211,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRN-ni-thL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3290.8396946564885" y="607.04225352112678"/>
+        </scene>
+        <!--Payment-->
+        <scene sceneID="Sp5-ZH-KgY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Payment" id="KNz-II-Rjd" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="BvS-Yl-WLT"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FzT-Bu-9gI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4341" y="1059"/>
+        </scene>
+        <!--FavVC-->
+        <scene sceneID="q0c-Pw-LWr">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Auth" referencedIdentifier="FavVC" id="Gqr-85-WQa" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Y1Q-EM-aK9"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w5S-Tu-hYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6119" y="746"/>
         </scene>
         <!--All Products View Controller-->
         <scene sceneID="bZQ-Q5-l0z">
@@ -305,9 +344,15 @@
                                         <rightBarButtonItems>
                                             <barButtonItem title="Item" image="gearshape.fill" catalog="system" id="cre-sx-bab">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="cdj-Yj-ZDM" kind="show" id="3uL-ia-9zb"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="cart.fill" catalog="system" id="nRN-bW-a9A">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="KNz-II-Rjd" kind="show" id="2Q6-dy-nM6"/>
+                                                </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -329,7 +374,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wish List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSa-cA-Djf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favourites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSa-cA-Djf">
                                 <rect key="frame" x="16" y="415" width="87" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -361,7 +406,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="Lh1-1Q-jgr" kind="show" id="Yer-f6-xlR"/>
+                                    <segue destination="Lh1-1Q-jgr" kind="show" id="2Uu-yR-I6F"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZPV-Et-YDl">
@@ -373,7 +418,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="oFp-dS-Z4s" kind="show" id="NJd-F1-4f0"/>
+                                    <segue destination="Gqr-85-WQa" kind="show" id="UzW-wM-ao2"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dG-g5-3iC">
@@ -415,8 +460,6 @@
                         <outlet property="noWishList" destination="4dG-g5-3iC" id="ee9-xM-WUM"/>
                         <outlet property="orderTitle" destination="u1Z-pn-Vg9" id="NJD-cq-WFc"/>
                         <outlet property="ordersTableView" destination="fOD-K2-jsz" id="LMV-1Z-6Gj"/>
-                        <outlet property="seeMoreOrdersOutlit" destination="Elu-pH-6Xj" id="tvP-WI-R0x"/>
-                        <outlet property="seeMoreWishListOutlit" destination="ZPV-Et-YDl" id="1Ow-2B-ToI"/>
                         <outlet property="welcomeUserTitle" destination="JJH-LY-2Fy" id="3dK-go-CGO"/>
                         <outlet property="wishListTableView" destination="Uuf-KT-H5Y" id="07L-s2-wEJ"/>
                         <outlet property="wishListTitle" destination="iSa-cA-Djf" id="NWr-8G-NU3"/>
@@ -426,10 +469,20 @@
             </objects>
             <point key="canvasLocation" x="5551.9083969465646" y="607.04225352112678"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="2Mt-VP-0ta">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="cdj-Yj-ZDM" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="jL7-Ua-vgC"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WjW-6a-e2b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6169" y="223"/>
+        </scene>
         <!--Order Details View Controller-->
         <scene sceneID="5mA-Xn-NPd">
             <objects>
-                <viewController id="pKk-Pm-6lF" customClass="OrderDetailsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderDetailsVC" modalPresentationStyle="fullScreen" id="pKk-Pm-6lF" customClass="OrderDetailsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="czb-Bt-LgU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -444,12 +497,16 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Order Details" id="HQX-0s-U9R">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.turn.up.backward.fill" catalog="system" id="imG-yM-hbO"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.turn.up.backward.fill" catalog="system" id="imG-yM-hbO">
+                                            <connections>
+                                                <action selector="btnBack:" destination="pKk-Pm-6lF" id="18Q-3K-Mud"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwV-zo-ZXG">
-                                <rect key="frame" x="16" y="136" width="361" height="116"/>
+                                <rect key="frame" x="16" y="117" width="361" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Created at:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3x-nh-P65">
@@ -460,23 +517,37 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shipping to:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbj-AI-ggP">
-                                        <rect key="frame" x="19" y="65" width="145" height="50"/>
+                                        <rect key="frame" x="19" y="47" width="145" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <color key="textColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Order No.:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3J-xR-Lns">
+                                        <rect key="frame" x="19" y="96" width="145" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <color key="textColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="26/6/2024" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKE-f1-tLF">
-                                        <rect key="frame" x="174" y="7" width="133" height="50"/>
+                                        <rect key="frame" x="172" y="15" width="174" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mina" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ck8-HF-AH6">
-                                        <rect key="frame" x="174" y="65" width="133" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="customer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ck8-HF-AH6">
+                                        <rect key="frame" x="172" y="55" width="174" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b47-cz-T5H">
+                                        <rect key="frame" x="172" y="97" width="174" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.4431372549" green="0.36078431370000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -484,7 +555,7 @@
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LV9-il-v6E">
-                                <rect key="frame" x="16" y="260" width="361" height="558"/>
+                                <rect key="frame" x="16" y="269" width="361" height="549"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -502,15 +573,21 @@
                         <viewLayoutGuide key="safeArea" id="cMo-vS-0n4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="createdDate" destination="OKE-f1-tLF" id="QKT-Xt-d0F"/>
+                        <outlet property="customerName" destination="ck8-HF-AH6" id="xoF-Nk-IcH"/>
+                        <outlet property="orderNumber" destination="b47-cz-T5H" id="Rxb-7C-xdE"/>
+                        <outlet property="productsTableView" destination="LV9-il-v6E" id="2nd-rA-ZnO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLm-hl-XLl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7142.7480916030536" y="606.33802816901414"/>
+            <point key="canvasLocation" x="7768.7022900763359" y="605.63380281690149"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bGg-QW-Gtj">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="KKu-nb-hgH" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeVC" automaticallyAdjustsScrollViewInsets="NO" id="KKu-nb-hgH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="8PO-cn-GbY"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FAf-u3-xfW">
@@ -549,9 +626,15 @@
                                         <rightBarButtonItems>
                                             <barButtonItem title="Item" image="cart.fill" catalog="system" id="jBa-NJ-1R3">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="KNz-II-Rjd" kind="show" id="Wgj-0Q-lVw"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="magnifyingglass" catalog="system" id="9iN-Xn-xbo">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="QYC-Uz-yEp" kind="show" id="1E0-BS-SfB"/>
+                                                </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -619,7 +702,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="XJd-kr-mMH" firstAttribute="trailing" secondItem="d7b-Nv-Yyj" secondAttribute="trailing" constant="54" id="6xA-bN-k98"/>
-                            <constraint firstItem="nz9-cj-Alc" firstAttribute="top" secondItem="XJd-kr-mMH" secondAttribute="top" constant="16" id="7ii-1m-Pzr"/>
                             <constraint firstItem="d7b-Nv-Yyj" firstAttribute="leading" secondItem="XJd-kr-mMH" secondAttribute="leading" constant="54" id="8Kp-3z-bX9"/>
                             <constraint firstItem="XJd-kr-mMH" firstAttribute="trailing" secondItem="nz9-cj-Alc" secondAttribute="trailing" constant="26" id="BxR-5n-PEb"/>
                             <constraint firstItem="XJd-kr-mMH" firstAttribute="trailing" secondItem="XZb-x7-pJA" secondAttribute="trailing" constant="32" id="JUG-nD-vx1"/>
@@ -631,6 +713,7 @@
                             <constraint firstItem="XJd-kr-mMH" firstAttribute="bottom" secondItem="XZb-x7-pJA" secondAttribute="bottom" constant="8" id="UeF-Xa-XLn"/>
                             <constraint firstItem="ouj-g2-yCI" firstAttribute="centerY" secondItem="XJd-kr-mMH" secondAttribute="centerY" id="XXe-vr-iBi"/>
                             <constraint firstItem="d7b-Nv-Yyj" firstAttribute="top" secondItem="nz9-cj-Alc" secondAttribute="bottom" constant="16" id="hcN-yY-INu"/>
+                            <constraint firstItem="RAf-bM-imk" firstAttribute="top" secondItem="fP4-PV-4xC" secondAttribute="top" constant="49" id="oLl-WM-bTe"/>
                             <constraint firstItem="ouj-g2-yCI" firstAttribute="centerX" secondItem="XJd-kr-mMH" secondAttribute="centerX" id="olE-OU-Unp"/>
                             <constraint firstItem="nz9-cj-Alc" firstAttribute="leading" secondItem="XJd-kr-mMH" secondAttribute="leading" constant="26" id="uE1-a0-Wcp"/>
                         </constraints>
@@ -651,7 +734,7 @@
         <!--More Orders View Controller-->
         <scene sceneID="ztC-9Y-vJX">
             <objects>
-                <viewController storyboardIdentifier="AllOrdersVC" id="Lh1-1Q-jgr" customClass="MoreOrdersViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AllOrdersVC" modalPresentationStyle="fullScreen" id="Lh1-1Q-jgr" customClass="MoreOrdersViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oVZ-wG-C9e">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -700,7 +783,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91q-t3-4MF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5174.8091603053435" y="1364.7887323943662"/>
+            <point key="canvasLocation" x="6634" y="607"/>
         </scene>
         <!--More Wishes View Controller-->
         <scene sceneID="Uh2-Gc-pPt">
@@ -754,9 +837,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eha-ck-IEo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5985" y="1365"/>
+            <point key="canvasLocation" x="5552" y="1381"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="UzW-wM-ao2"/>
+        <segue reference="2Q6-dy-nM6"/>
+        <segue reference="1E0-BS-SfB"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>
         <image name="brand" width="170" height="141"/>

@@ -8,23 +8,15 @@
 import Foundation
 
 struct DraftOrderResponse: Codable {
-    let draft_order: DraftOrder
+    let draft_order: Drafts
 
     enum CodingKeys: String, CodingKey {
         case draft_order = "draft_order"
     }
 }
 
-struct DraftOrder: Codable {
-    let id: Int
-    var lineItems: [LineItem]
 
-    enum CodingKeys: String, CodingKey {
-        case id
-        case lineItems = "line_items"
-    }
-}
-
+/*
 struct LineItem: Codable {
     let id: Int
     let name: String
@@ -33,7 +25,7 @@ struct LineItem: Codable {
     let variant_id: String?
     let variant_title: String?
 }
-
+*/
 
 struct ProductResponse: Decodable {
     let product: Product

@@ -14,22 +14,17 @@ struct ComplectedOrder:Decodable{
 }
 
 struct Order: Decodable{
+    var id: UInt64?
     var customer: Customer?
     var created_at: String?
-    var line_items: [OrderDetails]?
+    var line_items: [OrderProduct]?
 }
 
-
-
-struct Customer:Decodable{
-    var id: UInt64?
-    var first_name: String?
-    var created_at: String?
+struct OrderDetails: Decodable{
+    var order: Order?
 }
 
-
-
-struct OrderDetails:Decodable{
+struct OrderProduct:Decodable{
     var price_set: Price?
     var quantity: Int8?
     var title: String?

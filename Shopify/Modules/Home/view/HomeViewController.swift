@@ -10,30 +10,55 @@ import Kingfisher
 import Alamofire
 import Toast_Swift
 
+
+struct BrandsViewData: Decodable{
+    var id: Int64?
+    var title: String?
+    var image: ImageOfBrand?
+}
+
+
+
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
     
+    
     var fetchDataFromApi: FetchDataFromApi!
-    var brands: [SmartCollection]!
+    
     var discountCodes: [DiscountCode] = []
+    
+    
+    var homeViewModel: HomeViewModelProtocol!
+    var brands: [BrandsViewData]!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UpdateCustomerNote()
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
         
-        fetchDataFromApi = FetchDataFromApi()
-        brands = [SmartCollection]()
+        homeViewModel = HomeViewModel()
+        brands = [BrandsViewData]()
         
+//        FetchDataFromApi.postOrder()
         fetchDiscountCodes()
+        /*
+         fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections")){[weak self] (brands: Brand) in
+         self?.brands = brands.smart_collections
+         self?.homeCollectionView.reloadData()
+         */
         
-        fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections")){[weak self] (brands: Brand) in
-            self?.brands = brands.smart_collections
-            self?.homeCollectionView.reloadData()
+        homeViewModel.getBrandsFromNetworkService()
+        homeViewModel.bindBrandsToViewController = {
+            self.brands = self.homeViewModel.brandsViewData
+            DispatchQueue.main.async {
+                self.homeCollectionView.reloadData()
+            }
+            
         }
         
         
@@ -56,16 +81,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     func drawAdsSection ()-> NSCollectionLayoutSection{
-        //6 item size
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        //5 create item
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        // 4 group size
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .absolute(230))
-        //3 create group
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 8 )
-        //2 create section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 0, bottom: 0, trailing: 0)
@@ -143,28 +163,31 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if indexPath.section == 0 {
-            let selectedCode = discountCodes[indexPath.row].code
-            saveSelectedDiscountCode(selectedCode)
-            self.view.makeToast("Promocode \(selectedCode) Saved ")
-        } else {
-            
-            guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
-                return
-            }
-            
-            allProductsViewController.query = "collection_id"
-            allProductsViewController.queryValue = "\(brands[indexPath.row].id ?? 0)"
-            allProductsViewController.brandName = brands[indexPath.row].title ?? ""
-            allProductsViewController.brandImage = brands[indexPath.row].image?.src ?? ""
-            
-            allProductsViewController.modalPresentationStyle = .fullScreen
-            present(allProductsViewController, animated: true )
-            
+        guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
+            return
         }
+        
+        let allProductsViewModel = AllProductsViewModel()
+        
+        allProductsViewModel.query = "collection_id"
+        allProductsViewModel.queryValue = "\(brands[indexPath.row].id ?? 0)"
+        allProductsViewModel.brandName = brands[indexPath.row].title ?? ""
+        allProductsViewModel.brandImage = brands[indexPath.row].image?.src ?? ""
+        
+        
+        allProductsViewController.allProductsViewModel = allProductsViewModel
+        allProductsViewController.modalPresentationStyle = .fullScreen
+        present(allProductsViewController, animated: true )
+        
+        
     }
     func fetchDiscountCodes() {
+
         let priceRulesUrl = "\(Constants.baseUrl)price_rules.json"
+
+        
+        let priceRulesUrl = "\(Constants.baseUrl)/price_rules.json"
+
         
         AF.request(priceRulesUrl).responseJSON { response in
             switch response.result {
@@ -184,14 +207,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
 
+
     func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
         let discountCodesUrl = "\(Constants.baseUrl)price_rules/\(priceRuleId)/discount_codes.json"
+
+    
+    func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
+        
+        let discountCodesUrl = "\(Constants.baseUrl)/price_rules/\(priceRuleId)/discount_codes.json"
+
         
         AF.request(discountCodesUrl).responseJSON { response in
             switch response.result {
             case .success(let result):
                 if let json = result as? [String: Any],
                    let discountCodes = json["discount_codes"] as? [[String: Any]] {
+
                     var discountCodesDict: [[String: String]] = []
                     for code in discountCodes {
                         if let discountCode = code["code"] as? String {
@@ -201,6 +232,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         }
                     }
                     UserDefaults.standard.set(discountCodesDict, forKey: "AvailableDiscountCodes")
+
+                    for code in discountCodes {
+                        if let discountCode = code["code"] as? String,
+                           let valueString = value as? String {
+                            self.discountCodes.append(DiscountCode(code: discountCode, value: valueString))
+                        }
+                    }
+
                     DispatchQueue.main.async {
                         self.homeCollectionView.reloadData()
                     }
@@ -210,13 +249,42 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
+
      
+
+
     func saveSelectedDiscountCode(_ code: String) {
         UserDefaults.standard.set(code, forKey: "SelectedDiscountCode")
     }
     
     func getSelectedDiscountCode() -> String? {
         return UserDefaults.standard.string(forKey: "SelectedDiscountCode")
+    }
+
+    func UpdateCustomerNote(){
+        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
+        let draftOrderIDCart = Utilites.getDraftOrderIDCart()
+        let customerId = Utilites.getCustomerID()
+        let newNote = "\(draftOrderIDFavorite),\(draftOrderIDCart)"
+        NetworkManager.updateCustomerNote(customerId: customerId, newNote: newNote) { statusCode in
+            DispatchQueue.main.async {
+                if statusCode == 200 {
+                    
+                    print("Customer note updated successfully.")
+                    
+                    if let draftOrderIDCart = UserDefaults.standard.value(forKey: "draftOrderIDCart") as? Int {
+                        print("Draft Order ID for Cart: \(draftOrderIDCart)")
+                    }
+                    if let draftOrderIDFavorite = UserDefaults.standard.value(forKey: "draftOrderIDFavorite") as? Int {
+                        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
+                    }
+                } else {
+                    
+                    print("Failed to update customer note. Status code: \(statusCode)")
+                }
+            }
+        }
+        
     }
     
     func attemptToUseSelectedDiscountCode() {
@@ -244,6 +312,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         usedCodes.append(code)
         UserDefaults.standard.setValue(usedCodes, forKey: "UsedDiscountCodes")
         UserDefaults.standard.removeObject(forKey: "SelectedDiscountCode")
+
     }
-    
 }
+
+
+/*
+let selectedCode = discountCodes[indexPath.row].code
+saveSelectedDiscountCode(selectedCode)
+self.view.makeToast("Promocode \(selectedCode) Saved ")
+*/
