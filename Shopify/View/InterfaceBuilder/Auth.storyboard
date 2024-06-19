@@ -854,7 +854,6 @@
                             <constraint firstItem="kN1-lD-Beu" firstAttribute="top" secondItem="j2O-MY-4Uv" secondAttribute="top" id="Zud-SY-9PH"/>
                             <constraint firstItem="kN1-lD-Beu" firstAttribute="leading" secondItem="j2O-MY-4Uv" secondAttribute="leading" id="lRB-0K-bIF"/>
                             <constraint firstItem="xFw-GO-owl" firstAttribute="top" secondItem="kN1-lD-Beu" secondAttribute="bottom" id="mnF-E6-wRa"/>
-                            <constraint firstItem="xFw-GO-owl" firstAttribute="height" secondItem="Ghp-Jv-yjZ" secondAttribute="height" multiplier="0.839202" id="uDu-aa-ixx"/>
                         </constraints>
                     </view>
                     <connections>

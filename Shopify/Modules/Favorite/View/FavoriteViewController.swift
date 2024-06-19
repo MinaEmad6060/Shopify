@@ -48,17 +48,25 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
         
         let lineItem = viewModel.displayedLineItems[indexPath.item]
         
-        cell.categoryItemName.text = lineItem.title
-     
-        cell.categoryItemPrice.text = lineItem.price
-        cell.categoryItemCurrency.text = "USD" // Assuming the currency is USD
+        let imageString = lineItem.sku ?? ""
+           let components = imageString.components(separatedBy: ",")
+           if components.count == 2 {
+               let productID = components[0]
+               let imageURL = components[1]
+            
+               
+               cell.categoryItemName.text = lineItem.title
+               cell.categoryItemPrice.text = lineItem.price
+               cell.categoryItemCurrency.text = "USD" // Assuming the currency is USD
+               
+               if let url = URL(string: imageURL) {
+                   cell.categoryItemImage.kf.setImage(with: url)
+               }
+               
+               // You can handle the favorite button action here
+           }
         
-        // You can use Kingfisher to load images asynchronously
-        if let imageUrl = URL(string: lineItem.image ?? "") {
-            cell.categoryItemImage.kf.setImage(with: imageUrl)
-        }
         
-        // You can handle the favorite button action here
        
         
         return cell
