@@ -44,7 +44,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         homeViewModel = HomeViewModel()
         brands = [BrandsViewData]()
         
-        
+//        FetchDataFromApi.postOrder()
         fetchDiscountCodes()
         /*
          fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections")){[weak self] (brands: Brand) in
