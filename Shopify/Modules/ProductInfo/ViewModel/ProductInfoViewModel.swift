@@ -9,16 +9,16 @@ import Foundation
 class ProdutInfoViewModel {
     var product : Product?
     var customerId: Int
-    var draftOrderIDFavorite: Int?
+   var  draftOrderIDFavorite: Int?
+   
         var draftOrderIDCart: Int?
+   
     init(product: Product?) {
         self.product = product
         self.customerId = Utilites.getCustomerID()
         getCurrentCustomer()
     }
-   // let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
-   // let draftOrderIDCart = Utilites.getDraftOrderIDCart()
-    //let customerId = Utilites.getCustomerID()
+   
     func updateCartDraftOrder(product: Product){
         guard let draftOrderIDCart = draftOrderIDCart else {
                     print("Cart draft order ID is not available")
@@ -71,7 +71,9 @@ class ProdutInfoViewModel {
                         print("Second ID: \(secondID)")
                         self.draftOrderIDFavorite = firstID
                         self.draftOrderIDCart = secondID
-                        // You can now use firstID and secondID as needed
+                        UserDefaults.standard.set(self.draftOrderIDFavorite, forKey: "favIDNet")
+                       let result = UserDefaults.standard.integer(forKey: "favIDNet")
+                        print("favID afteter Net: \(result)")
                     } else {
                         print("Note does not contain two valid IDs")
                     }
@@ -79,7 +81,7 @@ class ProdutInfoViewModel {
                     print("Customer note is nil or does not contain valid IDs")
                 }
                 
-                // Update the UI or perform other actions with the fetched customer data
+               
             }
         }
         

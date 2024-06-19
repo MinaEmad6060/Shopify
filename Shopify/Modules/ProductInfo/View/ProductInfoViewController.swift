@@ -51,6 +51,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
            }
         print( "product id:*****\(productId)")
         productInfoViewModel?.getCurrentCustomer()
+       
     }
 
     private func configureImageSlideshow() {

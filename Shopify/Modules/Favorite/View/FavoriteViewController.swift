@@ -9,22 +9,29 @@ import UIKit
 
 class FavoriteViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
     private var viewModel = FavoriteViewModel()
-    var productInfoViewModel : ProdutInfoViewModel?
+
     @IBOutlet weak var favCollectionView: UICollectionView!
     private let sectionInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 20.0, right: 10.0)
     private let itemsPerRow: CGFloat = 2
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+     
        favCollectionView.delegate = self
         favCollectionView.dataSource = self
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
                self.favCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
        
         bindViewModel()
+        //967667908779
         //productInfoViewModel?.draftOrderIDFavorite ?? 0
-       viewModel.fetchLineItems(draftOrderId:967667908779 )
+        let favID = UserDefaults.standard.integer(forKey: "favIDNet")
+        viewModel.fetchLineItems(draftOrderId: favID)
+//        if let draftOrderIDFavorite = productInfoViewModel?.draftOrderIDFavorite {
+//                    viewModel.fetchLineItems(draftOrderId: draftOrderIDFavorite)
+//                } else {
+//                    print("No draft order ID available")
+//                }
     }
     
 
