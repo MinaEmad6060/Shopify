@@ -43,7 +43,10 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
                     product.src.append(brandProducts.products?[i].images?[j].src ?? "")
                 }
                 for j in 0..<(brandProducts.products?[i].options[0].values?.count ?? 0){
-                    product.values.append(brandProducts.products?[i].options[0].values?[j] ?? "")
+                    product.sizes.append(brandProducts.products?[i].options[0].values?[j] ?? "")
+                }
+                for k in 0..<(brandProducts.products?[i].options[1].values?.count ?? 0){
+                    product.colors.append(brandProducts.products?[i].options[1].values?[k] ?? "")
                 }
                 product.name = brandProducts.products?[i].options[0].name
                 self?.brandProductsViewData.append(product)

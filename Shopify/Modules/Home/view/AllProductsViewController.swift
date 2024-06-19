@@ -16,7 +16,8 @@ struct BrandProductViewData: Decodable{
     var price: String?
     var src: [String] = []
     var name: String?
-    var values: [String] = []
+    var sizes: [String] = []
+    var colors: [String] = []
     
 }
 
