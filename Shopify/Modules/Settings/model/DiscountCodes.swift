@@ -10,4 +10,8 @@ import Foundation
 struct DiscountCode {
     let code: String
     let value: String
+    
+    func toDictionary() -> [String: String] {
+        return ["code": code, "value": value]
+    }
 }

@@ -8,17 +8,29 @@
 import UIKit
 
 class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var subTotalPriceView: UIView!
+    @IBOutlet weak var totalPrice: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     var lineItems: [LineItem] = []
-    
+    var subTotal = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
         
+        self.subTotalPriceView.layer.cornerRadius = 20.0
         fetchDraftOrderItems()
+    }
+    @IBAction func proceddToCheckout(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+        if let paymentOptionsVC = storyboard.instantiateViewController(withIdentifier: "PaymentOptionsVC") as? PaymentOptionsViewController {
+            paymentOptionsVC.lineItems = self.lineItems
+            paymentOptionsVC.subTotal = self.subTotal
+            paymentOptionsVC.modalPresentationStyle = .fullScreen
+            self.present(paymentOptionsVC, animated: true, completion: nil)
+        }
     }
     
     func fetchDraftOrderItems() {
@@ -29,6 +41,8 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                 self.lineItems = draftOrder.draftOrder?.lineItems ?? []
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.subTotal = self.calculateTotal(lineItems: self.lineItems)
+                    self.totalPrice.text = "\(self.subTotal)EGP"
                 }
             }
         }
@@ -83,6 +97,8 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                     if success {
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
+                            self.subTotal = self.calculateTotal(lineItems: self.lineItems)
+                            self.totalPrice.text = "\(self.subTotal)EGP"
                         }
                     } else {
                         print("error")
@@ -108,6 +124,8 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                     print(self?.lineItems.count)
                     DispatchQueue.main.async {
                         tableView.deleteRows(at: [indexPath], with: .fade)
+                        self?.subTotal = (self?.calculateTotal(lineItems: self!.lineItems))!
+                        self?.totalPrice.text = "\(self?.subTotal)EGP"
                     }
                 } else {
                     print("Error updating draft order")
@@ -115,4 +133,14 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             }
         }
     }
+    func calculateTotal(lineItems: [LineItem]) -> Double {
+        var total: Double = 0.0
+        
+        for item in lineItems {
+            total += (Double(item.price) ?? 0.0) * Double(item.quantity)
+        }
+        
+        return total
+    }
+
 }

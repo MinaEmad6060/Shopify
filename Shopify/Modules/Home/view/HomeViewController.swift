@@ -181,11 +181,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         
     }
-    
-    
     func fetchDiscountCodes() {
+
+        let priceRulesUrl = "\(Constants.baseUrl)price_rules.json"
+
         
         let priceRulesUrl = "\(Constants.baseUrl)/price_rules.json"
+
         
         AF.request(priceRulesUrl).responseJSON { response in
             switch response.result {
@@ -204,22 +206,40 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
+
+
+    func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
+        let discountCodesUrl = "\(Constants.baseUrl)price_rules/\(priceRuleId)/discount_codes.json"
+
     
     func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
         
         let discountCodesUrl = "\(Constants.baseUrl)/price_rules/\(priceRuleId)/discount_codes.json"
+
         
         AF.request(discountCodesUrl).responseJSON { response in
             switch response.result {
             case .success(let result):
                 if let json = result as? [String: Any],
                    let discountCodes = json["discount_codes"] as? [[String: Any]] {
+
+                    var discountCodesDict: [[String: String]] = []
+                    for code in discountCodes {
+                        if let discountCode = code["code"] as? String {
+                            let discountCodeObj = DiscountCode(code: discountCode, value: value)
+                            self.discountCodes.append(discountCodeObj)
+                            discountCodesDict.append(discountCodeObj.toDictionary())
+                        }
+                    }
+                    UserDefaults.standard.set(discountCodesDict, forKey: "AvailableDiscountCodes")
+
                     for code in discountCodes {
                         if let discountCode = code["code"] as? String,
                            let valueString = value as? String {
                             self.discountCodes.append(DiscountCode(code: discountCode, value: valueString))
                         }
                     }
+
                     DispatchQueue.main.async {
                         self.homeCollectionView.reloadData()
                     }
@@ -229,6 +249,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
+
+     
+
+
     func saveSelectedDiscountCode(_ code: String) {
         UserDefaults.standard.set(code, forKey: "SelectedDiscountCode")
     }
