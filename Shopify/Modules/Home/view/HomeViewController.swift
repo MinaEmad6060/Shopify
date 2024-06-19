@@ -163,54 +163,54 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         }
     }
-    
-    
     func fetchDiscountCodes() {
-            
-        let priceRulesUrl = "\(Constants.baseUrl)/price_rules.json"
-            
-            AF.request(priceRulesUrl).responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    if let json = value as? [String: Any],
-                       let priceRules = json["price_rules"] as? [[String: Any]] {
-                        for rule in priceRules {
-                            if let id = rule["id"] as? Int,
-                               let value = rule["value"] as? String { 
-                                self.fetchDiscountCodes(for: id, with: value)
-                            }
+        let priceRulesUrl = "\(Constants.baseUrl)price_rules.json"
+        
+        AF.request(priceRulesUrl).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                if let json = value as? [String: Any],
+                   let priceRules = json["price_rules"] as? [[String: Any]] {
+                    for rule in priceRules {
+                        if let id = rule["id"] as? Int,
+                           let value = rule["value"] as? String {
+                            self.fetchDiscountCodes(for: id, with: value)
                         }
                     }
-                case .failure(let error):
-                    print("Error: \(error)")
                 }
+            case .failure(let error):
+                print("Error: \(error)")
             }
         }
+    }
+
+    func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
+        let discountCodesUrl = "\(Constants.baseUrl)price_rules/\(priceRuleId)/discount_codes.json"
         
-        func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
-            
-            let discountCodesUrl = "\(Constants.baseUrl)/price_rules/\(priceRuleId)/discount_codes.json"
-            
-            AF.request(discountCodesUrl).responseJSON { response in
-                    switch response.result {
-                    case .success(let result):
-                        if let json = result as? [String: Any],
-                           let discountCodes = json["discount_codes"] as? [[String: Any]] {
-                            for code in discountCodes {
-                                if let discountCode = code["code"] as? String,
-                                   let valueString = value as? String {
-                                    self.discountCodes.append(DiscountCode(code: discountCode, value: valueString))
-                                }
-                            }
-                            DispatchQueue.main.async {
-                                self.homeCollectionView.reloadData()
-                            }
+        AF.request(discountCodesUrl).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let json = result as? [String: Any],
+                   let discountCodes = json["discount_codes"] as? [[String: Any]] {
+                    var discountCodesDict: [[String: String]] = []
+                    for code in discountCodes {
+                        if let discountCode = code["code"] as? String {
+                            let discountCodeObj = DiscountCode(code: discountCode, value: value)
+                            self.discountCodes.append(discountCodeObj)
+                            discountCodesDict.append(discountCodeObj.toDictionary())
                         }
-                    case .failure(let error):
-                        print("Error: \(error)")
+                    }
+                    UserDefaults.standard.set(discountCodesDict, forKey: "AvailableDiscountCodes")
+                    DispatchQueue.main.async {
+                        self.homeCollectionView.reloadData()
                     }
                 }
+            case .failure(let error):
+                print("Error: \(error)")
+            }
         }
+    }
+     
     func saveSelectedDiscountCode(_ code: String) {
         UserDefaults.standard.set(code, forKey: "SelectedDiscountCode")
     }
