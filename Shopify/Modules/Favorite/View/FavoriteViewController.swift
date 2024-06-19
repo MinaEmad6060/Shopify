@@ -64,13 +64,13 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
                
                cell.categoryItemName.text = lineItem.title
                cell.categoryItemPrice.text = lineItem.price
-               cell.categoryItemCurrency.text = "USD" // Assuming the currency is USD
+               cell.categoryItemCurrency.text = "USD" 
                
                if let url = URL(string: imageURL) {
                    cell.categoryItemImage.kf.setImage(with: url)
                }
                
-               // You can handle the favorite button action here
+               
            }
         
         
