@@ -21,9 +21,11 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     @IBOutlet weak var priceLB: UILabel!
     
-    @IBOutlet weak var descTextView: UITextView!
+   // @IBOutlet weak var descTextView: UITextView!
     
-    @IBAction func backBtn(_ sender: Any) {
+    @IBOutlet weak var descTextView: UILabel!
+    
+@IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
