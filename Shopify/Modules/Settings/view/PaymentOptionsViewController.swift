@@ -37,35 +37,35 @@ class PaymentOptionsViewController: UIViewController {
     var type = "cash"
     @IBOutlet weak var onlinePaymentV: UIView!
     @IBAction func onlinePaymentBtn(_ sender: Any) {
-        self.onlinePaymentV.backgroundColor = .brown
+        self.onlinePaymentV.backgroundColor = UIColor(hexString: "2C1E0F")
         self.cashPaymentV.backgroundColor = .white
         self.type = "online"
     }
     @IBOutlet weak var cashPaymentV: UIView!
     @IBAction func cashPaymentBtn(_ sender: Any) {
         self.onlinePaymentV.backgroundColor = .white
-        self.cashPaymentV.backgroundColor = .brown
+        self.cashPaymentV.backgroundColor = UIColor(hexString: "2C1E0F")
         self.type = "cash"
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.onlinePaymentV.backgroundColor = .white
-        self.cashPaymentV.backgroundColor = .brown
-        self.onlinePaymentV.layer.cornerRadius = 15
-        self.cashPaymentMV.layer.cornerRadius = 15
+        self.cashPaymentV.backgroundColor = UIColor(hexString: "2C1E0F")
+        self.onlinePaymentV.layer.cornerRadius = 12
+        self.cashPaymentMV.layer.cornerRadius = 17
         self.onlinePaymentMV.layer.cornerRadius = 17
-        self.cashPaymentV.layer.cornerRadius = 17
-        self.onlineTitleView.roundCorners(corners: [.topLeft, .bottomLeft], radius: 15.0)
-        self.cashTitleView.roundCorners(corners: [.topLeft, .bottomLeft], radius: 15.0)
+        self.cashPaymentV.layer.cornerRadius = 12
+        self.onlineTitleView.roundCorners(corners: [.topRight, .bottomRight], radius: 20.0)
+        self.cashTitleView.roundCorners(corners: [.topRight, .bottomRight], radius: 20.0)
         self.type = "cash"
         // Do any additional setup after loading the view.
         
         payment.merchantIdentifier = "merchant.com.pushpendra.pay"
         payment.supportedNetworks = [.quicPay, .masterCard, .visa]
-        payment.supportedCountries = ["IN", "US"]
+        payment.supportedCountries = ["EG", "US"]
         payment.merchantCapabilities = .capability3DS
-        payment.countryCode = "IN"
-        payment.currencyCode = "INR"
+        payment.countryCode = "EG"
+        payment.currencyCode = "EGP"
     }
     
     

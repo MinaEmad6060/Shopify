@@ -8,6 +8,7 @@
 import UIKit
 
 class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var subTotalPriceView: UIView!
     @IBOutlet weak var totalPrice: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
@@ -19,6 +20,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         tableView.delegate = self
         tableView.dataSource = self
         
+        self.subTotalPriceView.layer.cornerRadius = 20.0
         fetchDraftOrderItems()
     }
     @IBAction func proceddToCheckout(_ sender: Any) {

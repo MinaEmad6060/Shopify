@@ -75,7 +75,7 @@ class AddNewAddress: UIViewController {
     @IBOutlet weak var addAdress: UIButton!
     
     @IBAction func addAddressBtn(_ sender: Any) {
-        viewModel?.addNewAddress(customerId: 7423232082091, country: countryLabel.text ?? "", city: cityLabel.text ?? "", address: addressTF.text ?? "", phone: phoneTF.text ?? "")
+        viewModel?.addNewAddress(customerId: 7445466022059, country: countryLabel.text ?? "", city: cityLabel.text ?? "", address: addressTF.text ?? "", phone: phoneTF.text ?? "")
     }
     
     let egyptianCities = [

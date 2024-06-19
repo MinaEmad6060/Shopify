@@ -25,7 +25,7 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 self?.allAddressessTableView.reloadData()
             }
             
-        }
+        }//7445466022059
         allAddressesViewModel?.getAllAddress(customerId: 7423232082091)
         
         
