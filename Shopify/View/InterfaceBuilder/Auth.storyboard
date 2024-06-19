@@ -864,10 +864,10 @@
             </objects>
             <point key="canvasLocation" x="5209.9236641221369" y="219.71830985915494"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="4Df-iY-ftg">
             <objects>
-                <viewController id="hXZ-qr-340" sceneMemberID="viewController">
+                <viewController id="hXZ-qr-340" customClass="SearchViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F7g-cL-jll">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -893,7 +893,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wish" translatesAutoresizingMaskIntoConstraints="NO" id="ncj-Qb-8jy">
                                                     <rect key="frame" x="16" y="16" width="104" height="90"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFE-ht-geX">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFE-ht-geX">
                                                     <rect key="frame" x="148.66666666666663" y="32" width="208.33333333333337" height="58"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -927,6 +927,10 @@
                             <constraint firstItem="yAM-fs-dt7" firstAttribute="leading" secondItem="EL3-eM-jQ8" secondAttribute="leading" id="xJC-Dg-oJa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="8aL-51-Ahf" id="eDG-62-FIZ"/>
+                        <outlet property="searchTableView" destination="yAM-fs-dt7" id="6FH-ZN-YTj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nmr-A1-1HJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
