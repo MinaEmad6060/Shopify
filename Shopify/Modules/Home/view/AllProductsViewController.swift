@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 struct BrandProductViewData: Decodable{
-    var id: Int64?
+    var id: Int?
     var title: String?
     var body_html: String?
     var product_type: String?
@@ -17,6 +17,7 @@ struct BrandProductViewData: Decodable{
     var src: [String] = []
     var name: String?
     var values: [String] = []
+    
 }
 
 class AllProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {

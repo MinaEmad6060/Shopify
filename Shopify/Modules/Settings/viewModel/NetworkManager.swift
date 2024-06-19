@@ -107,7 +107,7 @@ class NetworkManager {
                 }
             }
         }
-    static func updateDraftOrder(draftOrderId: Int,product: Product, complication: @escaping (Int) -> Void) {
+    static func updateDraftOrder(draftOrderId: Int,product: BrandProductViewData, complication: @escaping (Int) -> Void) {
         let urlString = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/draft_orders/\(draftOrderId).json"
         
         let newLineItem = LineItem(
@@ -116,7 +116,7 @@ class NetworkManager {
             productID: product.id ?? 0,
             title: product.title,
             variantTitle: nil,
-            sku: "\(product.id ?? 0),\(product.image?.src ?? "")",
+            sku: "\(product.id ?? 0),\(product.src[0] ?? "")",
             vendor: nil,
             quantity: 2,
             requiresShipping: nil,
@@ -127,8 +127,8 @@ class NetworkManager {
             taxLines: nil,
             name: nil,
             custom: nil,
-            price: product.variants?.first?.price,
-            image: product.image?.src
+            price: product.price,
+            image: product.src[0]
         )
         
         AF.request(urlString).responseDecodable(of: Drafts.self) { response in
@@ -246,8 +246,8 @@ class NetworkManager {
                 "quantity": $0.quantity,
                 "title": $0.name,
                 "price": $0.price,
-                "variant_id": $0.variant_id as Any,
-                "variant_title": $0.variant_title as Any
+                //"variant_id": $0.variant_id as Any,
+                //"variant_title": $0.variant_title as Any
             ]
         }
         
@@ -267,7 +267,7 @@ class NetworkManager {
             }
         }
     }
-    static func fetchDraftOrder(draftOrderId: Int, completion: @escaping (DraftOrder?) -> Void) {
+    static func fetchDraftOrder(draftOrderId: Int, completion: @escaping (Drafts?) -> Void) {
         let url = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
         
         

@@ -170,7 +170,7 @@ class SignUpViewController: UIViewController {
                                 title: "Sample Product",
                                 body_html: "Sample HTML",
                                 product_type: "Sample Type",
-                                variants: [Variant(price: "20")],
+                                variants: [Variant(id: 123, inventory_quantity: 3, price: "30")],
                                 options: [Options(name: "Color", values: ["Red", "Blue"])],
                                 image: ProductImage(id: 1, productID: 123, position: 1, width: 100, height: 100, src: "sample.jpg"))
           

@@ -26,7 +26,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
             guard let self = self else { return }
             if let draftOrder = draftOrder {
-                self.lineItems = draftOrder.lineItems
+                self.lineItems = draftOrder.draftOrder?.lineItems ?? []
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -49,13 +49,13 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         cell.cartPrice.text = lineItem.price
         
         cell.incrementAction = { [weak self] in
-            self?.updateQuantity(for: lineItem.id, increment: true)
+            self?.updateQuantity(for: lineItem.id ?? 0, increment: true)
         }
-        
+    
         cell.decrementAction = { [weak self] in
-            self?.updateQuantity(for: lineItem.id, increment: false)
+            self?.updateQuantity(for: lineItem.id ?? 0, increment: false)
         }
-        
+    
         return cell
     }
     
@@ -71,10 +71,10 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             guard let self = self else { return }
             
             if let availableQuantity = availableQuantity {
-                if increment && self.lineItems[index].quantity < availableQuantity {
-                    self.lineItems[index].quantity += 1
-                } else if !increment && self.lineItems[index].quantity > 1 {
-                    self.lineItems[index].quantity -= 1
+                if increment && self.lineItems[index].quantity ?? 5 < availableQuantity {
+                    self.lineItems[index].quantity! += 1
+                } else if !increment && self.lineItems[index].quantity ?? 5 > 1 {
+                    self.lineItems[index].quantity! -= 1
                 } else {
                     print("Requested quantity not available or minimum quantity is 1")
                 }

@@ -25,7 +25,7 @@ class CategoriesViewModel: CategoriesViewModelProtocol{
             
             for i in 0..<(brandProducts.products?.count ?? 0){
                 var product = CategoriesProductViewData()
-                product.id = brandProducts.products?[i].id
+                //product.id  = brandProducts.products?[i].id
                 product.title = brandProducts.products?[i].title
                 product.body_html = brandProducts.products?[i].body_html
                 product.product_type = brandProducts.products?[i].product_type

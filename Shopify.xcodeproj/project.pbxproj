@@ -456,11 +456,8 @@
 		407BF8902C139EF000DD45A7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-
 				1033DED02C22793E00B26DC2 /* Search */,
 				10E8E4422C22134100E1CC3F /* Favorite */,
-
-
 				10090CBF2C18F63A000ABDE6 /* Auth */,
 				105EEAAA2C16D3FD00E19566 /* ProductInfo */,
 				B08D6A322C14E65500894358 /* Settings */,
@@ -545,11 +542,8 @@
 				401ACAEE2C133EA500EC1B29 /* WishListTableViewCell.swift */,
 				B0B4B0BE2C13695E00FAFFEA /* ShoppingCartViewCell.swift */,
 				403303C62C13642A001EE7CB /* SelectCategory.swift */,
-
 				401ACAEA2C133E6600EC1B29 /* OrdersTableViewCell.swift */,
-
 				40A9D6202C1D05A300AF401A /* ProductOfOrderViewCell.swift */,
-
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -578,13 +572,8 @@
 			children = (
 				40B6BDB42C140C3E009A0A07 /* Brand.swift */,
 				40B6BDB82C1417E3009A0A07 /* BrandProduct.swift */,
-
-				40E17CAD2C1B9CDC00DD9526 /* ComplectedOrder.swift */,
-				10AC405D2C1B464800F8B4B2 /* DraftOrder.swift */,
-
 				10AC405D2C1B464800F8B4B2 /* DraftOrder.swift */,
 				40E17CAD2C1B9CDC00DD9526 /* ComplectedOrder.swift */,
-
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -977,15 +966,12 @@
 				10090CB42C1822E1000ABDE6 /* LoginViewModel.swift in Sources */,
 				B08D6A372C14E93200894358 /* Address.swift in Sources */,
 				4078A6D42C186D6600CF6D02 /* MoreWishesViewController.swift in Sources */,
-
 				1033DECF2C22322100B26DC2 /* FavoriteViewModel.swift in Sources */,
 				10E8E4462C2213A000E1CC3F /* FavoriteViewController.swift in Sources */,
 				40CCD8EB2C194679005513B2 /* Constants.swift in Sources */,
-
 				40A9D6212C1D05A300AF401A /* ProductOfOrderViewCell.swift in Sources */,
 				40CCD8EB2C194679005513B2 /* Constants.swift in Sources */,
 				405453982C211FBF00190528 /* CategoriesViewModel.swift in Sources */,
-
 				40B6BDB92C1417E3009A0A07 /* BrandProduct.swift in Sources */,
 				1033DED32C22797B00B26DC2 /* SearchViewController.swift in Sources */,
 				40B6BDB52C140C3E009A0A07 /* Brand.swift in Sources */,
@@ -1007,13 +993,10 @@
 				10090CB22C181493000ABDE6 /* LoginViewController.swift in Sources */,
 				1069EEF52C199AB000A5F121 /* Utilities.swift in Sources */,
 				40D96F7B2C112E83000B8D34 /* Shopify.xcdatamodeld in Sources */,
-
 				10090CBE2C18F502000ABDE6 /* SignUpViewModel.swift in Sources */,
-
 				40F11A042C21E31200B89030 /* ProfileViewModelProtocol.swift in Sources */,
 				10090CBE2C18F502000ABDE6 /* SignUpViewModel.swift in Sources */,
 				405453912C21021400190528 /* AllProductsViewModelProtocol.swift in Sources */,
-
 				B09A810B2C14B96D00DB8933 /* AddNewAddress.swift in Sources */,
 				401ACAF12C133EA500EC1B29 /* WishListTableViewCell.swift in Sources */,
 				403303C72C13642A001EE7CB /* SelectCategory.swift in Sources */,
@@ -1030,27 +1013,17 @@
 				B01F78702C1C1E6600D9ABEA /* DiscountCodes.swift in Sources */,
 				40E17CAE2C1B9CDC00DD9526 /* ComplectedOrder.swift in Sources */,
 				40D96F732C112E83000B8D34 /* SceneDelegate.swift in Sources */,
-
 				B0C8411C2C1E119A0052403E /* ShoppingCartTableViewController.swift in Sources */,
-
 				1069EEF32C19913F00A5F121 /* SignUpNetworkServie.swift in Sources */,
-
 				401ACAED2C133E6600EC1B29 /* OrdersTableViewCell.swift in Sources */,
 				40EB4A8F2C12398F009038FA /* HomeViewController.swift in Sources */,
-
 				10258C2C2C1BC861006B6966 /* SizeCollectionViewCell.swift in Sources */,
 				105EEAAE2C16D50300E19566 /* ProductInfoViewController.swift in Sources */,
-
 				105EEAAE2C16D50300E19566 /* ProductInfoViewController.swift in Sources */,
-				10090CC22C18F6AE000ABDE6 /* SignUp.swift in Sources */,
-
 				B09B09822C19C7AE00A4233B /* AllAddressessViewModel.swift in Sources */,
 				4054539A2C211FD200190528 /* CategoriesViewModelProtocol.swift in Sources */,
 				B08D6A392C15338F00894358 /* AddNewAddressViewModel.swift in Sources */,
-
-
 				4054538F2C21020400190528 /* AllProductsViewModel.swift in Sources */,
-
 				40B6BDB72C140C55009A0A07 /* FetchDataFromApi.swift in Sources */,
 				4043AB372C1A79B30037C03A /* OrderDetailsViewController.swift in Sources */,
 				4054538D2C20F17300190528 /* HomeViewModelProtocol.swift in Sources */,
