@@ -18,6 +18,10 @@ class Constants{
     
     static var orderId: UInt64?
     
+    static var displayedLineItems: [LineItem]?
+    
+    static var categoryFilteredItems: [BrandProductViewData]?
+    
     static func setSelectedCategory(category: String){
         print("Static :: \(category)")
         switch(category){

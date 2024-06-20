@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -77,7 +77,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 return cell
             } else if tableView == wishListTableView {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath) as! WishListTableViewCell
+                
+                let productNameComponents = Constants.displayedLineItems?[indexPath.row].title?.components(separatedBy: "T")
+
+                if productNameComponents?.count ?? 0 >= 2 {
+                    cell.wishItemBrand.text = productNameComponents?[0]
+                    cell.wishItemName.text = productNameComponents?[1]
+                }
+                
+                
+                cell.wishItemPrice.text = Constants.displayedLineItems?[indexPath.row].price
+                
+                if let brandProductURL = URL(string: Constants.displayedLineItems?[indexPath.row].image ?? "") {
+                    cell.wishItemImage.kf.setImage(with: brandProductURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))
+                } else {
+                    cell.wishItemImage.image = UIImage(named: "placeholderlogo.jpeg")
+                }
+                
                 return cell
             } else {
                 return UITableViewCell()

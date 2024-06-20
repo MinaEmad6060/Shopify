@@ -29,8 +29,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     @IBOutlet weak var noDataImage: UIImageView!
     
     var categoriesViewModel: CategoriesViewModelProtocol!
-    var brandProducts: [CategoriesProductViewData]!
-    var filterdBrandProducts: [CategoriesProductViewData]!
+    var brandProducts: [BrandProductViewData]!
+    var filterdBrandProducts: [BrandProductViewData]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +87,22 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let product = brandProducts?[indexPath.row] else { return }
+
+            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+            guard let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as? ProductInfoViewController else {
+                print("Could not instantiate view controller with identifier 'ProductInfoVC'")
+                return
+            }
+
+            let productInfoViewModel = ProdutInfoViewModel(product: product)
+            productInfoVC.productInfoViewModel = productInfoViewModel
+
+            productInfoVC.modalPresentationStyle = .fullScreen
+            present(productInfoVC, animated: true, completion: nil)
+        }
  
     
     
@@ -132,6 +148,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
                     return product.product_type == subCategory
                 }
             }
+            Constants.categoryFilteredItems = self.filterdBrandProducts
             self.categoryCollectionView.reloadData()
         }
     }
