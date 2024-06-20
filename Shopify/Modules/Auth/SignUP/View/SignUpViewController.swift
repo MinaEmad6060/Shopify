@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignUpViewController: UIViewController {
     var signUpViewModel: SignUpViewModel?
@@ -83,39 +84,18 @@ class SignUpViewController: UIViewController {
                    print("Enter Full Data")
                }
         
-//        signUpViewModel?.customer?.first_name = fnameTextField.text
-//        signUpViewModel?.customer?.last_name = lnameTextField.text
-//        signUpViewModel?.customer?.email = emailTextField.text
-//        signUpViewModel?.customer?.tags = passwordTextField.text
-//                checkConfirmPassword = confirmPasswordTextField.text
-//                
-//                guard let customer = signUpViewModel?.customer else {
-//                    print("customer is null")
-//                    return
-//                }
-//                
-//                if let email = emailTextField.text, let password = passwordTextField.text, let confirmPassword = confirmPasswordTextField.text, let firstName = fnameTextField.text, let lastName = lnameTextField.text, !email.isEmpty, !password.isEmpty, !confirmPassword.isEmpty, !firstName.isEmpty, !lastName.isEmpty {
-//                    if isValidEmail(email) {
-//                        if isValidPassword(password) {
-//                            if password == confirmPassword {
-//                                signUpViewModel?.addCustomer(customer: customer)
-//                            } else {
-//                                Utilites.displayToast(message: "Confirm Password and Password must be identical", seconds: 2.0, controller: self)
-//                                print("Confirm Password and Password must be identical")
-//                            }
-//                        } else {
-//                            Utilites.displayToast(message: "Password must be at least 8 characters long and contain a number and a special character", seconds: 2.0, controller: self)
-//                            print("Password must be at least 8 characters long and contain a number and a special character")
-//                        }
-//                    } else {
-//                        Utilites.displayToast(message: "Invalid email format", seconds: 2.0, controller: self)
-//                        print("Invalid email format")
-//                    }
-//                } else {
-//                    Utilites.displayToast(message: "Enter Full Data", seconds: 2.0, controller: self)
-//                    print("Enter Full Data")
-//                }
-//             
+
+        signUpViewModel?.bindingSignUp = { [weak self] in
+            DispatchQueue.main.async {
+                                
+                if self?.signUpViewModel?.ObservableSignUp  == 201{
+                    self?.createFirebaseAccount()
+                }
+                else{
+                    Utilites.displayToast(message: "This email was used before", seconds: 2.0, controller: self ?? UIViewController())
+                }
+            }
+        }
                 
               
             }
@@ -196,4 +176,37 @@ class SignUpViewController: UIViewController {
     }
     
   
+}
+extension SignUpViewController{
+    func createFirebaseAccount(){
+        Auth.auth().createUser(withEmail: signUpViewModel?.customer.email ?? "", password: signUpViewModel?.customer.tags ?? "", completion: {[weak self] result, error in
+            
+            guard let strongSelf = self else{
+                return
+            }
+            guard error == nil else{
+                return
+            }
+            strongSelf.sendVerificationLink()
+            strongSelf.navigateToLoginFirebase()
+        })
+    }
+    
+    func navigateToLoginFirebase(){
+        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+        self.navigationController?.pushViewController(loginViewController, animated: true)
+    }
+    
+    func sendVerificationLink(){
+        if let user = Auth.auth().currentUser {
+            user.sendEmailVerification { error in
+                if let error = error {
+                    // Handle the error
+                    print("Error sending verification email: \(error.localizedDescription)")
+                } else {
+                    print("Verification email sent successfully")
+                }
+            }
+        }
+    }
 }
