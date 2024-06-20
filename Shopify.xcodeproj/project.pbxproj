@@ -12,6 +12,7 @@
 		10090CB72C1827C6000ABDE6 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10090CB62C1827C6000ABDE6 /* Login.swift */; };
 		10090CBE2C18F502000ABDE6 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10090CBD2C18F502000ABDE6 /* SignUpViewModel.swift */; };
 		10258C2C2C1BC861006B6966 /* SizeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10258C2B2C1BC861006B6966 /* SizeCollectionViewCell.swift */; };
+		102965722C24060700484931 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 102965712C24060700484931 /* GoogleService-Info.plist */; };
 		1033DECF2C22322100B26DC2 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033DECE2C22322100B26DC2 /* FavoriteViewModel.swift */; };
 		1033DED32C22797B00B26DC2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033DED22C22797B00B26DC2 /* SearchViewController.swift */; };
 		1033DED62C2286B500B26DC2 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033DED52C2286B500B26DC2 /* SearchViewModel.swift */; };
@@ -118,6 +119,7 @@
 		10090CB62C1827C6000ABDE6 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		10090CBD2C18F502000ABDE6 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		10258C2B2C1BC861006B6966 /* SizeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeCollectionViewCell.swift; sourceTree = "<group>"; };
+		102965712C24060700484931 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1033DECE2C22322100B26DC2 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		1033DED22C22797B00B26DC2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1033DED52C2286B500B26DC2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -636,6 +638,7 @@
 				40D96F742C112E83000B8D34 /* ViewController.swift */,
 				40D96F7C2C112E85000B8D34 /* Assets.xcassets */,
 				40D96F812C112E85000B8D34 /* Info.plist */,
+				102965712C24060700484931 /* GoogleService-Info.plist */,
 				40D96F792C112E83000B8D34 /* Shopify.xcdatamodeld */,
 				10B2E8E62C11A54100CE25D1 /* testFile.swift */,
 			);
@@ -814,6 +817,9 @@
 				Base,
 			);
 			mainGroup = 40D96F642C112E83000B8D34;
+			packageReferences = (
+				102965732C240C2200484931 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 40D96F6E2C112E83000B8D34 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -843,6 +849,7 @@
 				40D96F802C112E85000B8D34 /* Base in Resources */,
 				40D96F782C112E83000B8D34 /* Base in Resources */,
 				40D96FA42C112EDC000B8D34 /* Auth.storyboard in Resources */,
+				102965722C24060700484931 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,11 +986,8 @@
 				40CCD8EB2C194679005513B2 /* Constants.swift in Sources */,
 				40A9D6212C1D05A300AF401A /* ProductOfOrderViewCell.swift in Sources */,
 				40CCD8EB2C194679005513B2 /* Constants.swift in Sources */,
-
 				B087C1EB2C22F5730021D74D /* PlaceOrderViewController.swift in Sources */,
-
 				405453982C211FBF00190528 /* CategoriesViewModel.swift in Sources */,
-
 				40B6BDB92C1417E3009A0A07 /* BrandProduct.swift in Sources */,
 				1033DED32C22797B00B26DC2 /* SearchViewController.swift in Sources */,
 				40B6BDB52C140C3E009A0A07 /* Brand.swift in Sources */,
@@ -1399,6 +1403,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		102965732C240C2200484931 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.28.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCVersionGroup section */
 		40D96F792C112E83000B8D34 /* Shopify.xcdatamodeld */ = {
