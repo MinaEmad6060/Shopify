@@ -63,9 +63,6 @@ class SignUpViewController: UIViewController {
                        if isValidPassword(password) {
                            if password == confirmPassword {
                                signUpViewModel?.addCustomer(customer: customer)
-                               let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-                                                       loginViewController.modalPresentationStyle = .fullScreen
-                                                       self.navigationController?.present(loginViewController, animated: true)
                                                    
                            } else {
                                Utilites.displayToast(message: "Confirm Password and Password must be identical", seconds: 2.0, controller: self)
@@ -157,9 +154,8 @@ class SignUpViewController: UIViewController {
           signUpViewModel?.createDraftWith(product: product, note: note) { statusCode in
               DispatchQueue.main.async {
                   if (200...299).contains(statusCode) {
-                      let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-                      loginViewController.modalPresentationStyle = .fullScreen
-                      self.present(loginViewController, animated: true, completion: nil)
+
+                      self.navigateToLoginFirebase()
                   } else {
                       Utilites.displayToast(message: "Failed to create draft order", seconds: 2.0, controller: self)
                       print("Failed to create draft order, status code: \(statusCode)")
@@ -170,9 +166,7 @@ class SignUpViewController: UIViewController {
     
  
     @IBAction func goToLoginBn(_ sender: Any) {
-        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-        loginViewController.modalPresentationStyle = .fullScreen
-        navigationController?.present(loginViewController, animated: true)
+        navigateToLoginFirebase()
     }
     
   
@@ -191,11 +185,13 @@ extension SignUpViewController{
             strongSelf.navigateToLoginFirebase()
         })
     }
-    
-    func navigateToLoginFirebase(){
+
+    func navigateToLoginFirebase() {
         let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-        self.navigationController?.pushViewController(loginViewController, animated: true)
+        loginViewController.modalPresentationStyle = .fullScreen
+        self.present(loginViewController, animated: true, completion: nil)
     }
+
     
     func sendVerificationLink(){
         if let user = Auth.auth().currentUser {
@@ -209,4 +205,5 @@ extension SignUpViewController{
             }
         }
     }
+    
 }
