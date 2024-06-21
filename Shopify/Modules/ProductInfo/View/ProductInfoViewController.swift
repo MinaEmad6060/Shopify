@@ -34,7 +34,9 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     @IBOutlet weak var colorCollectionView: UICollectionView!
     var productId :Int?
+    var productTitle :String?
     var favoriteProducts: [Int: Bool] = [:]
+    var isFavorite: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -53,13 +55,17 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
                print("Product ID is nil")
                return
            }
+        guard let productTitle = productInfoViewModel?.product?.title else {
+               print("Product title is nil")
+               return
+           }
         print( "product id:*****\(productId)")
         productInfoViewModel?.getCurrentCustomer()
        
 
         priceLB.text =  productInfoViewModel?.product?.price
        // sizeLB.text = productInfoViewModel?.product?.values[0]
-
+fetchFavoriteStatus()
     }
 
     private func configureImageSlideshow() {
@@ -131,31 +137,48 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     
     @IBAction func favBtn(_ sender: UIBarButtonItem) {
-        productInfoViewModel?.removeProductFromDraftOrder(lineItemId: 57564763947179)
-        guard let productId = productInfoViewModel?.product?.id else {
-                   return
-               }
-               
-//               favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
-//               if let isFavorite = favoriteProducts[productId] {
-//                   updateFavoriteButtonImage(isFavorite)
-//                   //productInfoViewModel?.updateFavoriteDraftOrder( product: (productInfoViewModel?.product)!)
-//                   
-//               }
-        favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
-           if let isFavorite = favoriteProducts[productId] {
-               updateFavoriteButtonImage(isFavorite)
-               if !isFavorite {
-                   productInfoViewModel?.removeProductFromDraftOrder(lineItemId: 57564763947179)
-               } else {
-                   // Handle adding the product to favorites
-               }
-           }
+       // productInfoViewModel?.removeProductFromDraftOrder(productTitle: productInfoViewModel?.product?.title ?? "")
+        //productInfoViewModel?.updateFavoriteDraftOrder( product: (productInfoViewModel?.product)!)
+    
+    guard let productTitle = productInfoViewModel?.product?.title else { return }
+            guard let productId = productInfoViewModel?.product?.id else { return }
+        
+            favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
+
+            if let isFavorite = favoriteProducts[productId] {
+                updateFavoriteButtonImage(isFavorite)
+
+                if isFavorite {
+                    
+                    productInfoViewModel?.updateFavoriteDraftOrder(product: productInfoViewModel!.product!)
+                } else {
+                   
+                    productInfoViewModel?.removeProductFromDraftOrder(productTitle: productTitle)
+                }
+            }
+        //toggleFavoriteStatus()
     }
+    private func fetchFavoriteStatus() {
+        guard let productTitle = productTitle else { return }
+        productInfoViewModel?.fetchFavoriteStatus(for: productTitle) { [weak self] isFavorite in
+            guard let self = self else { return }
+            self.isFavorite = isFavorite
+            self.updateFavoriteButtonImage()
+        }}
     private func updateFavoriteButtonImage(_ isFavorite: Bool) {
            let imageName = isFavorite ? "heart.fill" : "heart"
            favBtn.image = UIImage(systemName: imageName)
        }
+    private func updateFavoriteButtonImage() {
+         let imageName = isFavorite ? "heart.fill" : "heart"
+         favBtn.image = UIImage(systemName: imageName)
+     }
+    private func toggleFavoriteStatus() {
+            guard let productTitle = productTitle else { return }
+            isFavorite.toggle()
+            updateFavoriteButtonImage()
+            productInfoViewModel?.updateFavoriteStatus(for: productTitle, isFavorite: isFavorite)
+        }
 }
 
    extension ProductInfoViewController: ImageSlideshowDelegate {

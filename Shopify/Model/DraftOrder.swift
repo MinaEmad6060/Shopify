@@ -113,7 +113,8 @@ struct DraftCustomer: Codable {
 // MARK: - LineItem
 struct LineItem: Codable {
     var id: Int?
-    var variantID, productID: Int?
+    var variantID: Int?
+    var productID: Int?
     var title: String?
     var variantTitle, sku, vendor: String?
     var quantity: Int?

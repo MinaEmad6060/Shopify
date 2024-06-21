@@ -88,18 +88,32 @@ class ProdutInfoViewModel {
                
             }
         }
-    func removeProductFromDraftOrder(lineItemId: Int) {
+    func removeProductFromDraftOrder(productTitle: String) {
         guard let draftOrderIDFavorite = draftOrderIDFavorite else {
             print("Cart draft order ID is not available")
             return
         }
         
-        NetworkManager.removeLineItemFromDraftOrder(draftOrderId: draftOrderIDFavorite, lineItemId: lineItemId) { statusCode in
+        NetworkManager.removeLineItemFromDraftOrder(draftOrderId: draftOrderIDFavorite, productTitle: productTitle) { statusCode in
             if statusCode == 200 {
                 print("Product removed from draft order successfully")
             } else {
                 print("Failed to remove product from draft order. Status code: \(statusCode)")
             }
+        }
+    }
+    func fetchFavoriteStatus(for productTitle: String, completion: @escaping (Bool) -> Void) {
+        NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderIDFavorite ?? 0) { lineItems in
+            let isFavorite = lineItems?.contains(where: { $0.title == productTitle }) ?? false
+            completion(isFavorite)
+        }
+    }
+
+    func updateFavoriteStatus(for productTitle: String, isFavorite: Bool) {
+        if isFavorite {
+            updateFavoriteDraftOrder(product: product!)
+        } else {
+            removeProductFromDraftOrder(productTitle: product!.title ?? "")
         }
     }
 

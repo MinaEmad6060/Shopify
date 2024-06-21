@@ -112,7 +112,7 @@ class NetworkManager {
         
         let newLineItem = LineItem(
             id: nil,
-            variantID:nil,  
+            variantID:nil,
             productID: product.id ?? 0,
             title: product.title,
             variantTitle: nil,
@@ -296,7 +296,7 @@ class NetworkManager {
         }
     }
     
-    static func removeLineItemFromDraftOrder(draftOrderId: Int, lineItemId: Int, completion: @escaping (Int) -> Void) {
+    static func removeLineItemFromDraftOrder(draftOrderId: Int, productTitle: String, completion: @escaping (Int) -> Void) {
         let urlString = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
         
         AF.request(urlString).responseDecodable(of: Drafts.self) { response in
@@ -308,7 +308,7 @@ class NetworkManager {
                 }
                 
                 // Remove the line item with the specified line item ID
-                draftOrder.lineItems = draftOrder.lineItems?.filter { $0.id != lineItemId }
+                draftOrder.lineItems = draftOrder.lineItems?.filter { $0.title != productTitle }
                 
                 do {
                     let updatedDraftOrderDictionary = try draftOrder.asDictionary()
