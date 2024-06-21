@@ -29,6 +29,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var homeViewModel: HomeViewModelProtocol!
     var brands: [BrandsViewData]!
     
+//    var lineItems: [OrderLineItem]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UpdateCustomerNote()
@@ -37,8 +39,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         homeViewModel = HomeViewModel()
         brands = [BrandsViewData]()
-        
-        //        FetchDataFromApi.postOrder()
+//        lineItems = [
+//            OrderLineItem(title: "SUPRA | MENS VAIDER", price: 169.95, quantity: 1),
+//            OrderLineItem(title: "PUMA | SUEDE CLASSIC REGAL", price: 110.00, quantity: 1)
+//        ]
+//        FetchDataFromApi.postOrder(lineItems: lineItems)
         fetchDiscountCodes()
         /*
          fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections")){[weak self] (brands: Brand) in

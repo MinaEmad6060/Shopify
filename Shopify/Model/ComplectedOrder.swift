@@ -41,3 +41,10 @@ struct ShopPrice: Decodable{
     var amount: String?
     var currency_code: String?
 }
+
+struct OrderLineItem: Codable {
+    let title: String
+    let price: Double
+    let quantity: Int
+}
+

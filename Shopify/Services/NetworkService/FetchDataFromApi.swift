@@ -114,7 +114,9 @@ class FetchDataFromApi{
     
     
     
-    static func postOrder(){
+    
+    
+    static func postOrder(lineItems: [OrderLineItem]){
         let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/orders.json"
         let accessToken = "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"
 
@@ -123,21 +125,40 @@ class FetchDataFromApi{
             "X-Shopify-Access-Token": accessToken
         ]
         
-        let parameters: [String: Any] = [
-            "order": [
-                "customer": [
-                    "id": 7435246534827,
-                    "currency": "EGP"
-                ],
-                "line_items": [
-                    [
-                        "title": "vans-apparel-and-accessories-classic-super-no-show-socks-3-pack-white",
-                        "price": 19.95,
-                        "quantity": 1
-                    ]
-                ]
+        let customer: [String: Any] = [
+                "id": 7435246534827,
+                "currency": "EGP"
             ]
-        ]
+        
+        let order: [String: Any] = [
+                "customer": customer,
+                "line_items": lineItems.map { try! JSONSerialization.jsonObject(with: JSONEncoder().encode($0), options: []) }
+            ]
+            
+            let parameters: [String: Any] = [
+                "order": order
+            ]
+        
+//        let parameters: [String: Any] = [
+//            "order": [
+//                "customer": [
+//                    "id": 7435246534827,
+//                    "currency": "EGP"
+//                ],
+//                "line_items": [
+//                    [
+//                        "title": "CONVERSE | CHUCK TAYLOR ALL STAR LO",
+//                        "price": 100.00,
+//                        "quantity": 2
+//                    ],
+//                    [
+//                        "title": "VANS |AUTHENTIC | LO PRO | BURGANDY/WHITE",
+//                        "price": 99.95,
+//                        "quantity": 1
+//                    ]
+//                ]
+//            ]
+//        ]
 
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable(of: Order.self) { response in
             switch response.result {
