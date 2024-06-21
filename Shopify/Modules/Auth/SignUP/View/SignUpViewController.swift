@@ -87,6 +87,7 @@ class SignUpViewController: UIViewController {
                                 
                 if self?.signUpViewModel?.ObservableSignUp  == 201{
                     self?.createFirebaseAccount()
+                    self?.handleSignUpResponse()
                 }
                 else{
                     Utilites.displayToast(message: "This email was used before", seconds: 2.0, controller: self ?? UIViewController())
@@ -154,7 +155,9 @@ class SignUpViewController: UIViewController {
           signUpViewModel?.createDraftWith(product: product, note: note) { statusCode in
               DispatchQueue.main.async {
                   if (200...299).contains(statusCode) {
-
+                      let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+                      loginViewController.modalPresentationStyle = .fullScreen
+                      self.present(loginViewController, animated: true, completion: nil)
                       self.navigateToLoginFirebase()
                   } else {
                       Utilites.displayToast(message: "Failed to create draft order", seconds: 2.0, controller: self)
@@ -166,7 +169,9 @@ class SignUpViewController: UIViewController {
     
  
     @IBAction func goToLoginBn(_ sender: Any) {
-        navigateToLoginFirebase()
+        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+        loginViewController.modalPresentationStyle = .fullScreen
+        navigationController?.present(loginViewController, animated: true)
     }
     
   
