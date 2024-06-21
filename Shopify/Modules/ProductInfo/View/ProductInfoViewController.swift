@@ -11,6 +11,7 @@ import Kingfisher
 
 class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
   
+    @IBOutlet weak var favBtn: UIBarButtonItem!
     
   
     
@@ -21,18 +22,19 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     @IBOutlet weak var priceLB: UILabel!
     
-   // @IBOutlet weak var descTextView: UITextView!
     
-    @IBOutlet weak var descTextView: UILabel!
+@IBOutlet weak var descTextView: UILabel!
     
 @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
+    
 @IBOutlet weak var sizeCollectionView: UICollectionView!
     
     @IBOutlet weak var colorCollectionView: UICollectionView!
     var productId :Int?
+    var favoriteProducts: [Int: Bool] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -129,9 +131,31 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     
     @IBAction func favBtn(_ sender: UIBarButtonItem) {
-        productInfoViewModel?.updateFavoriteDraftOrder( product: (productInfoViewModel?.product)!)
+        productInfoViewModel?.removeProductFromDraftOrder(lineItemId: 57564763947179)
+        guard let productId = productInfoViewModel?.product?.id else {
+                   return
+               }
+               
+//               favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
+//               if let isFavorite = favoriteProducts[productId] {
+//                   updateFavoriteButtonImage(isFavorite)
+//                   //productInfoViewModel?.updateFavoriteDraftOrder( product: (productInfoViewModel?.product)!)
+//                   
+//               }
+        favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
+           if let isFavorite = favoriteProducts[productId] {
+               updateFavoriteButtonImage(isFavorite)
+               if !isFavorite {
+                   productInfoViewModel?.removeProductFromDraftOrder(lineItemId: 57564763947179)
+               } else {
+                   // Handle adding the product to favorites
+               }
+           }
     }
-    
+    private func updateFavoriteButtonImage(_ isFavorite: Bool) {
+           let imageName = isFavorite ? "heart.fill" : "heart"
+           favBtn.image = UIImage(systemName: imageName)
+       }
 }
 
    extension ProductInfoViewController: ImageSlideshowDelegate {

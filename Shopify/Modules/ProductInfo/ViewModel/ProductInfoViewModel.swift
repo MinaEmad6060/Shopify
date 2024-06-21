@@ -35,7 +35,7 @@ class ProdutInfoViewModel {
                 print("Failed to update draft order. Status code: \(statusCode)")
             }
         }}
-    func updateFavoriteDraftOrder(product: BrandProductViewData){
+   func updateFavoriteDraftOrder(product: BrandProductViewData){
         guard let draftOrderIDFavorite = draftOrderIDFavorite else {
                     print("Cart draft order ID is not available")
                     return
@@ -88,6 +88,20 @@ class ProdutInfoViewModel {
                
             }
         }
+    func removeProductFromDraftOrder(lineItemId: Int) {
+        guard let draftOrderIDFavorite = draftOrderIDFavorite else {
+            print("Cart draft order ID is not available")
+            return
+        }
         
+        NetworkManager.removeLineItemFromDraftOrder(draftOrderId: draftOrderIDFavorite, lineItemId: lineItemId) { statusCode in
+            if statusCode == 200 {
+                print("Product removed from draft order successfully")
+            } else {
+                print("Failed to remove product from draft order. Status code: \(statusCode)")
+            }
+        }
+    }
+
     }
 

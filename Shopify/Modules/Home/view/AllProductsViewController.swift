@@ -19,6 +19,7 @@ struct BrandProductViewData: Decodable{
     var sizes: [String] = []
     var colors: [String] = []
     
+    
 }
 
 class AllProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {

@@ -255,6 +255,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Item" id="6np-Lo-NRa">
                                             <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                                            <color key="tintColor" systemColor="systemRedColor"/>
                                             <connections>
                                                 <action selector="favBtn:" destination="Bc3-wZ-DBe" id="C5o-ko-Sy5"/>
                                             </connections>
@@ -687,7 +688,8 @@
                     <size key="freeformSize" width="393" height="1200"/>
                     <connections>
                         <outlet property="colorCollectionView" destination="mC4-lU-2xj" id="OhF-c6-qMV"/>
-                        <outlet property="descTextView" destination="pw4-9D-Exp" id="dRc-1F-GSD"/>
+                        <outlet property="descTextView" destination="pw4-9D-Exp" id="Qte-68-GW0"/>
+                        <outlet property="favBtn" destination="6np-Lo-NRa" id="49f-aK-ujS"/>
                         <outlet property="imageSlideshow" destination="vCR-kX-cjq" id="QAV-DV-SDb"/>
                         <outlet property="priceLB" destination="tmN-ib-DHO" id="d77-nC-568"/>
                         <outlet property="sizeCollectionView" destination="7YA-Ic-726" id="bmt-BJ-3hi"/>
@@ -1134,6 +1136,9 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
