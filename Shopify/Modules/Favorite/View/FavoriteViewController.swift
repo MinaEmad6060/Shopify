@@ -21,7 +21,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+      
        favCollectionView.delegate = self
         favCollectionView.dataSource = self
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
@@ -37,6 +37,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
 //                } else {
 //                    print("No draft order ID available")
 //                }
+   
     }
     
 

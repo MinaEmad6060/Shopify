@@ -36,5 +36,6 @@ class FavoriteViewModel {
                 print("Title: \(item.title ?? ""), Price: \(item.price ?? ""), Image: \(item.image ?? "")")
             }
     }
+    
 }
 
