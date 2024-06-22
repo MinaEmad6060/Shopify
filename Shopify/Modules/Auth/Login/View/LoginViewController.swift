@@ -6,9 +6,10 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 class LoginViewController: UIViewController {
     var loginViewModel: LoginViewModel?
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -30,19 +31,34 @@ class LoginViewController: UIViewController {
     }
     @IBAction func signInBtn(_ sender: UIButton) {
         loginViewModel?.getAllCustomers()
-                loginViewModel?.bindingLogin = {[weak self] in
-                    DispatchQueue.main.async{
+                loginViewModel?.bindingLogin = { [weak self] in
+                    DispatchQueue.main.async {
                         if self?.loginViewModel?.checkCustomerAuth(email: self?.emailTextField.text ?? "", password: self?.passwordTextField.text ?? "") == "Login Sucess" {
                             print("Login Success")
-                            self?.navigateToHomeScreen()
-
+                            self?.checkEmailVerificationStatus()
                         } else {
-                            self?.navigateToHomeScreen()
-                            print("Login Failed")
+                            Utilites.displayToast(message: "Login Failed", seconds: 2.0, controller: self ?? UIViewController())
                         }
                     }
                 }
             }
+  
+    private func checkEmailVerificationStatus() {
+           if let user = Auth.auth().currentUser {
+               user.reload { [weak self] error in
+                   guard error == nil else {
+                       Utilites.displayToast(message: "Error reloading user: \(error?.localizedDescription ?? "Unknown error")", seconds: 2.0, controller: self ?? UIViewController())
+                       return
+                   }
+                   if user.isEmailVerified {
+                       self?.navigateToHomeScreen()
+                   } else {
+                       Utilites.displayToast(message: "Please verify your email before logging in.", seconds: 2.0, controller: self ?? UIViewController())
+                   }
+               }
+           }
+       }
+       
     private func navigateToHomeScreen() {
          let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
@@ -54,4 +70,5 @@ class LoginViewController: UIViewController {
                 present(tabBarController, animated: true, completion: nil)
             }
      }
+    
 }
