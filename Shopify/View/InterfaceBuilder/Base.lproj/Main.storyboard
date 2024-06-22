@@ -241,10 +241,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Yb4-B3-N9I">
-                                <rect key="frame" x="32" y="201" width="329" height="617"/>
+                                <rect key="frame" x="32" y="273" width="329" height="545"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="617" id="eXZ-Fy-VkQ"/>
+                                    <constraint firstAttribute="height" constant="545" id="eXZ-Fy-VkQ"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iw0-42-bN2">
                                     <size key="itemSize" width="128" height="128"/>
@@ -297,6 +297,13 @@
                                     <constraint firstAttribute="width" constant="74" id="fvw-se-gj7"/>
                                 </constraints>
                             </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="S26-mq-e5n">
+                                <rect key="frame" x="30" y="216" width="333" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderAction:" destination="lBg-il-9nG" eventType="valueChanged" id="ub2-tm-kuN"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w9U-uB-er3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -318,6 +325,7 @@
                         <outlet property="allProductsCollectionView" destination="Yb4-B3-N9I" id="a0D-xz-bze"/>
                         <outlet property="productBrandImage" destination="W5l-PK-y2p" id="LXz-3c-W3u"/>
                         <outlet property="productsBrandName" destination="iCL-Mf-fhd" id="A7t-DA-Oe0"/>
+                        <outlet property="sliderOutlet" destination="S26-mq-e5n" id="Fvr-3Z-JA0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4DF-xX-6a2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

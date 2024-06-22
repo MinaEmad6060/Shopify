@@ -28,6 +28,24 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
 
     var allProductsViewModel: AllProductsViewModelProtocol!
     var brandProducts: [BrandProductViewData]?
+    var filteredProducts: [BrandProductViewData]?
+    
+    @IBOutlet weak var sliderOutlet: UISlider!
+    
+    
+    @IBAction func sliderAction(_ sender: UISlider) {
+        let sliderValue = Double(sender.value)
+            filteredProducts = brandProducts?.filter { product in
+                if let priceString = product.price, let price = Double(priceString) {
+                    print("Slider : \(price)")
+                    return price <= sliderValue
+                }
+                return false
+            }
+        
+        self.allProductsCollectionView.reloadData()
+
+    }
     
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
@@ -35,6 +53,9 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sliderOutlet.minimumValue = 0
+        sliderOutlet.maximumValue = 200
+        sliderOutlet.value = 200
         
         brandProducts = [BrandProductViewData]()
         
@@ -42,6 +63,7 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         allProductsViewModel.bindBrandProductsToViewController = {
             self.brandProducts = self.allProductsViewModel.brandProductsViewData
             DispatchQueue.main.async {
+                self.filteredProducts = self.brandProducts
                 self.allProductsCollectionView.reloadData()
             }
         }
@@ -62,19 +84,19 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return brandProducts?.count ?? 0
+        return filteredProducts?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! CategoryCollectionViewCell
         
-        cell.categoryItemPrice.text = brandProducts?[indexPath.row].price
+        cell.categoryItemPrice.text = filteredProducts?[indexPath.row].price
         
-        let productName = brandProducts?[indexPath.row].title
+        let productName = filteredProducts?[indexPath.row].title
         cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
         
-        if let brandProductURLString = brandProducts?[indexPath.row].src[0], let brandProductURL = URL(string: brandProductURLString) {
+        if let brandProductURLString = filteredProducts?[indexPath.row].src[0], let brandProductURL = URL(string: brandProductURLString) {
             print("image :: \(brandProductURL)")
             cell.categoryItemImage.kf.setImage(with: brandProductURL, placeholder: UIImage(named: "placeholderlogo.jpeg"))
         } else {
