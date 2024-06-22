@@ -8,6 +8,8 @@
 import Foundation
 
 class FavoriteViewModel {
+    private var favoriteProductTitles: Set<String> = []
+    private var favoriteProductIds: Set<Int> = []
     var lineItems: [LineItem] = [] {
         didSet {
             self.didUpdateLineItems?()
@@ -36,6 +38,28 @@ class FavoriteViewModel {
                 print("Title: \(item.title ?? ""), Price: \(item.price ?? ""), Image: \(item.image ?? "")")
             }
     }
-    
+    func addProductToFavorites(productTitle: String) {
+            favoriteProductTitles.insert(productTitle)
+        }
+        
+        func removeProductFromFavorites(productTitle: String) {
+            favoriteProductTitles.remove(productTitle)
+        }
+        
+        func isProductFavorite(productTitle: String) -> Bool {
+            return favoriteProductTitles.contains(productTitle)
+        }
+    func removeProductFromDraftOrder(productTitle: String) {
+         let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite() 
+        
+        NetworkManager.removeLineItemFromDraftOrder(draftOrderId: draftOrderIDFavorite, productTitle: productTitle) { statusCode in
+            if statusCode == 200 {
+                print("Product removed from draft order successfully")
+                
+            } else {
+                print("Failed to remove product from draft order. Status code: \(statusCode)")
+            }
+        }
+    }
 }
 

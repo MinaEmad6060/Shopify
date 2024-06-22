@@ -253,7 +253,6 @@
 			children = (
 				10090CB52C1827B1000ABDE6 /* Model */,
 				10090CAF2C18146E000ABDE6 /* ViewModel */,
-				10090CAE2C181465000ABDE6 /* View */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -263,7 +262,8 @@
 			children = (
 				10090CB12C181493000ABDE6 /* LoginViewController.swift */,
 			);
-			path = View;
+			name = View;
+			path = ../Login/View;
 			sourceTree = "<group>";
 		};
 		10090CAF2C18146E000ABDE6 /* ViewModel */ = {
@@ -285,6 +285,7 @@
 		10090CB82C1835D1000ABDE6 /* SignUP */ = {
 			isa = PBXGroup;
 			children = (
+				10090CAE2C181465000ABDE6 /* View */,
 				10090CC02C18F683000ABDE6 /* Model */,
 				10090CBC2C18F4D3000ABDE6 /* ViewModel */,
 				10090CB92C1835EC000ABDE6 /* View */,
@@ -303,6 +304,7 @@
 		10090CBC2C18F4D3000ABDE6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				105EEAAC2C16D43400E19566 /* ViewModel */,
 				10090CBD2C18F502000ABDE6 /* SignUpViewModel.swift */,
 			);
 			path = ViewModel;
@@ -353,7 +355,7 @@
 		105EEAAA2C16D3FD00E19566 /* ProductInfo */ = {
 			isa = PBXGroup;
 			children = (
-				105EEAAC2C16D43400E19566 /* ViewModel */,
+				105EEAAF2C178CD300E19566 /* ProductInfoViewModel.swift */,
 				105EEAAB2C16D41800E19566 /* View */,
 			);
 			path = ProductInfo;
@@ -372,7 +374,6 @@
 		105EEAAC2C16D43400E19566 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				105EEAAF2C178CD300E19566 /* ProductInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

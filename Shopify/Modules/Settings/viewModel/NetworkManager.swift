@@ -330,6 +330,21 @@ class NetworkManager {
             }
         }
     }
+   static func fetchProductDetails(productId: Int, completion: @escaping (Result<Product, Error>) -> Void) {
+        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/products/\(productId).json"
+        
+        AF.request(url).validate().responseDecodable(of: Product.self) { response in
+            switch response.result {
+            case .success(let product):
+                completion(.success(product))
+                print("/********/")
+                print(response)
+                print("/********/")
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 
 
 }
