@@ -11,54 +11,87 @@ import Kingfisher
 
 class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
   
+    @IBOutlet weak var favBtn: UIBarButtonItem!
     
   
-    
+    var productViewData: BrandProductViewData!
     var productInfoViewModel : ProdutInfoViewModel?
+    var allProductsViewModel: AllProductsViewModel!
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
     
     @IBOutlet weak var tiitleLB: UILabel!
     
     @IBOutlet weak var priceLB: UILabel!
     
-   // @IBOutlet weak var descTextView: UITextView!
     
-    @IBOutlet weak var descTextView: UILabel!
+@IBOutlet weak var descTextView: UILabel!
     
 @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
+    
 @IBOutlet weak var sizeCollectionView: UICollectionView!
     
     @IBOutlet weak var colorCollectionView: UICollectionView!
     var productId :Int?
+    var productId2 :Int?
+    var productTitle :String?
+    var favoriteProducts: [Int: Bool] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-           sizeCollectionView.dataSource = self
-              sizeCollectionView.delegate = self
+        productViewData = BrandProductViewData()
+        allProductsViewModel = AllProductsViewModel()
+        sizeCollectionView.dataSource = self
+        sizeCollectionView.delegate = self
         colorCollectionView.dataSource = self
         colorCollectionView.delegate = self
         configureImageSlideshow()
         tiitleLB.text = productInfoViewModel?.product?.title
         descTextView.text = productInfoViewModel?.product?.body_html
-
+        
         priceLB.text =  productInfoViewModel?.product?.price
-       // sizeLB.text = productInfoViewModel?.product?.options[0].values?[0]
-       // productId = productInfoViewModel?.product?.id
+        
+        
         guard let productId = productInfoViewModel?.product?.id else {
-               print("Product ID is nil")
-               return
-           }
-        print( "product id:*****\(productId)")
+            print("Product ID is nil")
+            return
+        }
+        guard let productTitle = productInfoViewModel?.product?.title else {
+            print("Product title is nil")
+            return
+        }
+        
+        
         productInfoViewModel?.getCurrentCustomer()
        
-
+                    self.updateDraftOrder()
+        self.checkProductInDraftOrder()
+                
+        
         priceLB.text =  productInfoViewModel?.product?.price
-       // sizeLB.text = productInfoViewModel?.product?.values[0]
-
+ 
     }
+    func updateDraftOrder() {
+            
+            if let product = productInfoViewModel?.product {
+                productInfoViewModel?.updateCartDraftOrder(product: product)
+                productInfoViewModel?.updateFavoriteDraftOrder(product: product)
+            }
+        }
+    func checkProductInDraftOrder() {
+            let productTitle = productInfoViewModel?.product?.title ?? ""
+        productInfoViewModel?.isProductInDraftOrder(productTitle:productTitle  ?? "") { isInDraftOrder in
+                if isInDraftOrder {
+                    print("Product is in the draft order.\(productTitle )")
+                    self.updateFavoriteButtonImage(true)
+                } else {
+                    print("Product is not in the draft order.\(productTitle )")
+                    self.updateFavoriteButtonImage(false)
+                }
+            }
+        }
 
     private func configureImageSlideshow() {
             guard let productImages = productInfoViewModel?.product?.src else {
@@ -129,8 +162,33 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     
     @IBAction func favBtn(_ sender: UIBarButtonItem) {
-        productInfoViewModel?.updateFavoriteDraftOrder( product: (productInfoViewModel?.product)!)
+       // productInfoViewModel?.removeProductFromDraftOrder(productTitle: productInfoViewModel?.product?.title ?? "")
+        //productInfoViewModel?.updateFavoriteDraftOrder( product: (productInfoViewModel?.product)!)
+    
+    guard let productTitle = productInfoViewModel?.product?.title else { return }
+            guard let productId = productInfoViewModel?.product?.id else { return }
+        
+            favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
+
+            if let isFavorite = favoriteProducts[productId] {
+                updateFavoriteButtonImage(isFavorite)
+
+                if isFavorite {
+                    
+                    productInfoViewModel?.updateFavoriteDraftOrder(product: productInfoViewModel!.product!)
+                } else {
+                   
+                    productInfoViewModel?.removeProductFromDraftOrder(productTitle: productTitle)
+                }
+            }
+        
     }
+   
+    private func updateFavoriteButtonImage(_ isFavorite: Bool) {
+           let imageName = isFavorite ? "heart.fill" : "heart"
+           favBtn.image = UIImage(systemName: imageName)
+       }
+   
     
 }
 

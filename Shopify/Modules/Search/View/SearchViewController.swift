@@ -25,10 +25,18 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         searchTableView.dataSource = self
         searchBar.delegate = self
         viewModel.getAllProduct()
+        viewModel.bindFilteredProductsToViewController = {
+            DispatchQueue.main.async {
+                print("DispatchQueue VC :: \(self.viewModel.filteredProducts.count)")
+                self.searchTableView.reloadData()
+            }
+        }
     }
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("tableView VC :: \(viewModel.filteredProducts.count)")
+
             return viewModel.filteredProducts.count
         }
 

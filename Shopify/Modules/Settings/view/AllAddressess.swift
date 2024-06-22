@@ -26,7 +26,7 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
             
         }//7445466022059
-        allAddressesViewModel?.getAllAddress(customerId: 7423232082091)
+        allAddressesViewModel?.getAllAddress(customerId: 7445466022059)
         
         
     }

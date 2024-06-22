@@ -20,7 +20,8 @@ class ProdutInfoViewModel {
     init(product: BrandProductViewData?) {
         self.product = product
         self.customerId = Utilites.getCustomerID()
-        getCurrentCustomer()
+       // getCurrentCustomer()
+    
     }
    
     func updateCartDraftOrder(product: BrandProductViewData){
@@ -35,7 +36,7 @@ class ProdutInfoViewModel {
                 print("Failed to update draft order. Status code: \(statusCode)")
             }
         }}
-    func updateFavoriteDraftOrder(product: BrandProductViewData){
+   func updateFavoriteDraftOrder(product: BrandProductViewData){
         guard let draftOrderIDFavorite = draftOrderIDFavorite else {
                     print("Cart draft order ID is not available")
                     return
@@ -47,27 +48,17 @@ class ProdutInfoViewModel {
                 print("Failed to update draft order. Status code: \(statusCode)")
             }
         }}
-        /*
-         func getCurrentCustomer(){
-         NetworkManager.getCustomer(customerID: customerId) { customer in
-         // Handle the fetched customer here
-         print("Customer ID****: \(customer?.id)")
-         print("Customer note****: \(customer?.note)")
-         
-         // Update the UI or perform other actions with the fetched customer data
-         }
-         }*/
+      
         func getCurrentCustomer() {
             NetworkManager.getCustomer(customerID: customerId) { customer in
-                // Handle the fetched customer here
+               
                 print("Customer ID****: \(customer?.id)")
                 print("Customer note****: \(customer?.note)")
                 
                 if let note = customer?.note {
-                    // Split the note string into components separated by comma
+                    
                     let components = note.split(separator: ",")
                     
-                    // Convert the components into integers
                     if components.count == 2,
                        let firstID = Int(components[0]),
                        let secondID = Int(components[1]) {
@@ -88,6 +79,38 @@ class ProdutInfoViewModel {
                
             }
         }
+    func removeProductFromDraftOrder(productTitle: String) {
+        guard let draftOrderIDFavorite = draftOrderIDFavorite else {
+            print("Cart draft order ID is not available")
+            return
+        }
         
+        NetworkManager.removeLineItemFromDraftOrder(draftOrderId: draftOrderIDFavorite, productTitle: productTitle) { statusCode in
+            if statusCode == 200 {
+                print("Product removed from draft order successfully")
+            } else {
+                print("Failed to remove product from draft order. Status code: \(statusCode)")
+            }
+        }
+    }
+    //968066891947
+    func isProductInDraftOrder(productTitle: String, completion: @escaping (Bool) -> Void) {
+        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
+//                draftOrderIDFavorite else {
+//            print("Draft order ID is not available")
+//            print("**draftOrderIDFavorite**\(draftOrderIDFavorite)")
+//            completion(false)
+//            return
+//        }
+        NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderIDFavorite) { lineItems in
+            if let lineItems = lineItems {
+                let isInDraftOrder = lineItems.contains { $0.title == productTitle }
+                completion(isInDraftOrder)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
     }
 

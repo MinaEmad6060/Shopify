@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -19,7 +19,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var welcomeUserTitle: UILabel!
     
     var profileViewModel: ProfileViewModelProtocol!
+    var favouriteViewModel: FavoriteViewModel!
     var complectedOrders: [OrderViewData]!
+    var allProductsViewModel: AllProductsViewModel!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +36,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         noWishList.isHidden = true
         
         profileViewModel = ProfileViewModel()
+        favouriteViewModel = FavoriteViewModel()
         complectedOrders = [OrderViewData]()
-        
+        allProductsViewModel = AllProductsViewModel()
         fetchProductsFromApi()
-
+        
+           
         self.orderTitle.layer.cornerRadius = 10
         self.orderTitle.clipsToBounds = true
         
@@ -53,13 +58,31 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             wishListTableView.register(nibCustomCell2, forCellReuseIdentifier: "wishListCell")
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        let favID = UserDefaults.standard.integer(forKey: "favIDNet")
+        favouriteViewModel.fetchLineItems(draftOrderId: favID)
+        favouriteViewModel.didUpdateLineItems = { [weak self] in
+               DispatchQueue.main.async {
+                   self?.wishListTableView.reloadData()
+               }
+           }
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == ordersTableView{
-            return 2
+            if complectedOrders?.count ?? 0 > 2 {
+                return 2
+            }else{
+                return complectedOrders?.count ?? 0
+            }
         }else{
-            return 4
+            if favouriteViewModel.displayedLineItems.count > 4 {
+                return 4
+            }else{
+                return favouriteViewModel.displayedLineItems.count
+            }
+//            return 4
         }
     }
     
@@ -77,8 +100,31 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 return cell
             } else if tableView == wishListTableView {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath)
+                print("Constants.displayedLineItems?.count \(favouriteViewModel.displayedLineItems.count)")
+                let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath) as! WishListTableViewCell
+                if favouriteViewModel.displayedLineItems.count > indexPath.row{
+                    let lineItem = favouriteViewModel.displayedLineItems[indexPath.row]
+                                        let imageString = lineItem.sku ?? ""
+                                           let components = imageString.components(separatedBy: ",")
+                    if components.count == 2 {
+                        let productID = components[0]
+                        let imageURL = components[1]
+                        
+                        
+                        let productName = lineItem.title
+                        cell.wishItemBrand.text = productName?.components(separatedBy: " | ")[0]
+                        cell.wishItemName.text = productName?.components(separatedBy: " | ")[1]
+                        
+                        //               cell.categoryItemName.text = lineItem.title
+                        cell.wishItemPrice.text = (lineItem.price ?? "") + "$"
+                        
+                        if let url = URL(string: imageURL) {
+                            cell.wishItemImage.kf.setImage(with: url)
+                        }
+                    }
+                }
                 return cell
+                    
             } else {
                 return UITableViewCell()
             }
@@ -88,7 +134,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileViewModel.getOrdersFromNetworkService()
         profileViewModel.bindOrdersToViewController = {
             self.complectedOrders = self.profileViewModel.ordersViewData
-//            Constants.orders = self.profileViewModel.ordersViewData
             DispatchQueue.main.async {
                 self.ordersTableView.reloadData()
             }
@@ -97,15 +142,45 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         guard let orderDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "OrderDetailsVC") as? OrderDetailsViewController else {
-             return
-         }
+        if tableView == ordersTableView{
+            guard let orderDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "OrderDetailsVC") as? OrderDetailsViewController else {
+                return
+            }
+            
+            if self.complectedOrders.count > indexPath.row{
+                Constants.orderId = self.complectedOrders?[indexPath.row].id
+            }
+            orderDetailsViewController.modalPresentationStyle = .fullScreen
+            present(orderDetailsViewController, animated: true )
+        }else{
+            if favouriteViewModel.displayedLineItems.count > indexPath.row{
+                let lineItem = favouriteViewModel.displayedLineItems[indexPath.row]
+                let imageString = lineItem.sku ?? ""
+                let components = imageString.components(separatedBy: ",")
+                
+                var product = BrandProductViewData()
+                if components.count == 2, let productId = Int(components[0]) {
                     
-//         orderDetailsViewController.orderId = self.complectedOrders?[indexPath.row].id
-        if self.complectedOrders.count > indexPath.row{
-            Constants.orderId = self.complectedOrders?[indexPath.row].id
+                    
+                    let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+                    let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
+                    
+                    allProductsViewModel.getProductFromNetworkService(id: productId)
+                    allProductsViewModel.bindBrandProductsToViewController = {
+                        product = self.allProductsViewModel.productViewData
+                        let productInfoViewModel = ProdutInfoViewModel(product: product)
+                        productInfoVC.productInfoViewModel = productInfoViewModel
+                        DispatchQueue.main.async {
+                            productInfoVC.modalPresentationStyle = .fullScreen
+                            self.present(productInfoVC, animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
         }
-        orderDetailsViewController.modalPresentationStyle = .fullScreen
-         present(orderDetailsViewController, animated: true )
+        
+        
+        
+        
     }
 }

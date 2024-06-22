@@ -16,10 +16,6 @@ class WishListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var wishItemBrand: UILabel!
     
-    @IBOutlet weak var wishItemColor: UILabel!
-    
-    @IBOutlet weak var wishItemSize: UILabel!
-    
     @IBOutlet weak var wishItemPrice: UILabel!
     
 

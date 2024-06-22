@@ -9,8 +9,9 @@ import UIKit
 
 class FavoriteViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
     private var viewModel = FavoriteViewModel()
+    var brandProducts: [BrandProductViewData]?
+    var allProductsViewModel: AllProductsViewModel!
 
-    
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -18,25 +19,23 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
     @IBOutlet weak var favCollectionView: UICollectionView!
     private let sectionInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 20.0, right: 10.0)
     private let itemsPerRow: CGFloat = 2
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        brandProducts = [BrandProductViewData]()
+    allProductsViewModel = AllProductsViewModel()
        favCollectionView.delegate = self
         favCollectionView.dataSource = self
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
                self.favCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
        
-        bindViewModel()
-        //967667908779
-        //productInfoViewModel?.draftOrderIDFavorite ?? 0
+       
+        
         let favID = UserDefaults.standard.integer(forKey: "favIDNet")
         viewModel.fetchLineItems(draftOrderId: favID)
-//        if let draftOrderIDFavorite = productInfoViewModel?.draftOrderIDFavorite {
-//                    viewModel.fetchLineItems(draftOrderId: draftOrderIDFavorite)
-//                } else {
-//                    print("No draft order ID available")
-//                }
+        bindViewModel()
+
+   
     }
     
 
@@ -48,7 +47,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
            }
        }
 
-       // MARK: - UICollectionViewDataSource
+     
 
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
            return  viewModel.displayedLineItems.count
@@ -77,12 +76,19 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
                if let url = URL(string: imageURL) {
                    cell.categoryItemImage.kf.setImage(with: url)
                }
-               
-               
+               cell.btnFavCategoryItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+             
+                      cell.favButtonTapped = { [weak self] in
+                          guard let self = self else { return }
+                          let productName = lineItem.title
+                          self.viewModel.lineItems.remove(at: indexPath.row)
+                          self.favCollectionView.reloadData()
+                              self.viewModel.removeProductFromDraftOrder(productTitle: productName ?? "")
+                            
+                          
+                      }
            }
         
-        
-       
         
         return cell
     }
@@ -96,5 +102,32 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets
     }
+   
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let lineItem = viewModel.displayedLineItems[indexPath.item]
+        let imageString = lineItem.sku ?? ""
+        let components = imageString.components(separatedBy: ",")
 
+        UserDefaults.standard.set(true, forKey: "isFav")
+        var product = BrandProductViewData()
+        if components.count == 2, let productId = Int(components[0]) {
+            
+
+            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+            let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
+            
+            allProductsViewModel.getProductFromNetworkService(id: productId)
+            allProductsViewModel.bindBrandProductsToViewController = {
+                product = self.allProductsViewModel.productViewData
+                let productInfoViewModel = ProdutInfoViewModel(product: product)
+                productInfoVC.productInfoViewModel = productInfoViewModel
+                DispatchQueue.main.async {
+                    productInfoVC.modalPresentationStyle = .fullScreen
+                    self.present(productInfoVC, animated: true, completion: nil)
+                }
+            }
+        }
+   }
+
+   
 }
