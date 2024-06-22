@@ -78,14 +78,21 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         let lineItem = lineItems[indexPath.row]
         cell.cartItem.text = lineItem.name
         cell.totalAmount.text = "\(lineItem.quantity)"
-        cell.cartPrice.text = lineItem.price
+        cell.cartPrice.text = "\(lineItem.quantity * Int(lineItem.price)! )test"
         
         cell.incrementAction = { [weak self] in
             self?.updateQuantity(for: lineItem.id ?? 0, increment: true)
+            var itemPrice = lineItem.quantity * (Int(lineItem.price) ?? 0)
+            
+            cell.cartPrice.text = "\(itemPrice)"
         }
     
         cell.decrementAction = { [weak self] in
             self?.updateQuantity(for: lineItem.id ?? 0, increment: false)
+            var itemPrice = lineItem.quantity * (Int(lineItem.price) ?? 0)
+            
+            cell.cartPrice.text = "\(itemPrice)"
+
         }
     
         cell.amountView.layer.borderWidth = 1.5
@@ -109,8 +116,10 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             if let availableQuantity = availableQuantity {
                 if increment && self.lineItems[index].quantity ?? 5 < availableQuantity {
                     self.lineItems[index].quantity += 1
+                    
                 } else if !increment && self.lineItems[index].quantity ?? 5 > 1 {
                     self.lineItems[index].quantity -= 1
+                    
                 } else {
                     print("Requested quantity not available or minimum quantity is 1")
                 }

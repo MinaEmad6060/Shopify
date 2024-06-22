@@ -30,9 +30,9 @@ class PlaceOrderViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.subTotalLabel.text = "\(self.subTotal)"
-        self.discountAmountLabel.text = "-0.0"
-        self.totalLabel.text = "\(self.subTotal)"
+        self.subTotalLabel.text = "\(self.subTotal)EGP"
+        self.discountAmountLabel.text = "-0.EGP"
+        self.totalLabel.text = "\(self.subTotal)EGP"
     }
     
     @IBAction func placeOrderBtn(_ sender: Any) {
