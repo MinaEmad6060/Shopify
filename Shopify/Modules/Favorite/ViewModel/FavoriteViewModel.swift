@@ -18,6 +18,7 @@ class FavoriteViewModel {
     var didUpdateLineItems: (() -> Void)?
     var displayedLineItems: [LineItem] {
          if lineItems.count > 1 {
+             Constants.displayedLineItems = Array(lineItems.dropFirst())
              return Array(lineItems.dropFirst())
          } else {
              return []

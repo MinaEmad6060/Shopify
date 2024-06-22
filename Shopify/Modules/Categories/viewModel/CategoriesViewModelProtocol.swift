@@ -9,7 +9,7 @@ import Foundation
 
 
 protocol CategoriesViewModelProtocol{
-    var categoriesViewData: [CategoriesProductViewData]! { get set }
+    var categoriesViewData: [BrandProductViewData]! { get set }
     var fetchDataFromApi: FetchDataFromApi! { get }
     var bindCategoriesToViewController : (()->())! { get set}
     func getCategoriesFromNetworkService()
