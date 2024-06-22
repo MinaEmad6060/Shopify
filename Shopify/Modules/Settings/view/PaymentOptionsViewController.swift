@@ -8,11 +8,20 @@
 import UIKit
 import PassKit
 class PaymentOptionsViewController: UIViewController {
+    @IBAction func testBtn(_ sender: Any) {
+        print("kotbb")
+    }
+    @IBAction func barAction(_ sender: Any) {
+        self.testLB.text = "Women"
+    }
+    @IBOutlet weak var testLB: UILabel!
+    @IBOutlet weak var bar: UIBarButtonItem!
+    @IBOutlet weak var test: UIView!
     @IBOutlet weak var cashTitleView: UIView!
     @IBOutlet weak var onlineTitleView: UIView!
     @IBOutlet weak var cashPaymentMV: UIView!
     @IBOutlet weak var onlinePaymentMV: UIView!
-    
+
     var lineItems: [LineItemm] = []
     var subTotal = 0.0
     private var payment : PKPaymentRequest = PKPaymentRequest()
@@ -66,9 +75,15 @@ class PaymentOptionsViewController: UIViewController {
         payment.merchantCapabilities = .capability3DS
         payment.countryCode = "EG"
         payment.currencyCode = "EGP"
+        
+        
+        
+        
     }
     
-    
+    @objc func barButtonItemTapped() {
+        print("Kotbbbb")
+    }
     /*
      // MARK: - Navigation
      

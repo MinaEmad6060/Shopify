@@ -8,6 +8,7 @@
 import UIKit
 
 class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var checkoutView: UIView!
     @IBOutlet weak var subTotalPriceView: UIView!
     @IBOutlet weak var totalPrice: UILabel!
     
@@ -17,12 +18,29 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let nib = UINib(nibName: "ShoppingCartViewCell", bundle: nil)
+            tableView.register(nib, forCellReuseIdentifier: "CartCell")
+        
         tableView.delegate = self
         tableView.dataSource = self
         
         self.subTotalPriceView.layer.cornerRadius = 20.0
+        self.checkoutView.layer.cornerRadius = 20.0
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(checkoutTapped))
+        self.checkoutView.addGestureRecognizer(tapGesture)
         fetchDraftOrderItems()
     }
+    @objc func checkoutTapped() {
+        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+        if let paymentOptionsVC = storyboard.instantiateViewController(withIdentifier: "PaymentOptionsVC") as? PaymentOptionsViewController {
+            paymentOptionsVC.lineItems = self.lineItems
+            paymentOptionsVC.subTotal = self.subTotal
+            paymentOptionsVC.modalPresentationStyle = .fullScreen
+            self.present(paymentOptionsVC, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func proceddToCheckout(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Payment", bundle: nil)
         if let paymentOptionsVC = storyboard.instantiateViewController(withIdentifier: "PaymentOptionsVC") as? PaymentOptionsViewController {
@@ -70,11 +88,15 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             self?.updateQuantity(for: lineItem.id ?? 0, increment: false)
         }
     
+        cell.amountView.layer.borderWidth = 1.5
+        cell.amountView.layer.borderColor = UIColor(hexString: "AE9376").cgColor
+        cell.amountView.layer.cornerRadius = 15.0
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 116
+        return 300.0
     }
     
     func updateQuantity(for lineItemId: Int, increment: Bool) {

@@ -32,6 +32,7 @@ class ShoppingCartViewCell: UITableViewCell {
         // Initialization code
     }
 
+    @IBOutlet weak var amountView: UIView!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
