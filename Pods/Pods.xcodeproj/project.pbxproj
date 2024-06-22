@@ -1429,7 +1429,11 @@
 		322AE65DE985BB7CA9C92BB3D56232D1 /* FIRAuthBackend+MultiFactor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FIRAuthBackend+MultiFactor.m"; path = "FirebaseAuth/Sources/Backend/FIRAuthBackend+MultiFactor.m"; sourceTree = "<group>"; };
 		3256A0E8DA99B6084B5162655DAA051E /* AnimatableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimatableView.swift; path = Sources/Views/AnimatableView.swift; sourceTree = "<group>"; };
 		33065089932333C4987D651C340FDAAF /* FIRComponentContainer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRComponentContainer.h; path = FirebaseCore/Extension/FIRComponentContainer.h; sourceTree = "<group>"; };
+
 		3347A1AB6546F0A3977529B8F199DC41 /* PromisesObjC */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PromisesObjC; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+
+		3347A1AB6546F0A3977529B8F199DC41 /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+
 		335A77D609A91C9D7DF2A9639018144E /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Sources/Utility/Result.swift; sourceTree = "<group>"; };
 		33D34D2210961B1CBFEC1D194B0AAB9F /* RecaptchaInterop */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RecaptchaInterop; path = RecaptchaInterop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		345312F4C0442F184B6AE22F1EA7AC1E /* ImageDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageDownloader.swift; path = Sources/Networking/ImageDownloader.swift; sourceTree = "<group>"; };
@@ -1440,7 +1444,11 @@
 		376D389EB3BFE0CA8879D993C10E45B0 /* GTMSessionFetcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GTMSessionFetcher.m; path = Sources/Core/GTMSessionFetcher.m; sourceTree = "<group>"; };
 		37AA49FC1B5E637FF85D258170A47B8A /* PortalAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PortalAnimator.swift; path = Sources/Animators/TransitionAnimator/PortalAnimator.swift; sourceTree = "<group>"; };
 		37E92801919E9CCE4894337BC3DA5C16 /* FIREmailPasswordAuthCredential.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIREmailPasswordAuthCredential.h; path = FirebaseAuth/Sources/AuthProvider/Email/FIREmailPasswordAuthCredential.h; sourceTree = "<group>"; };
+
 		382801D37C7C7FB12DA7F82AF99BA6E5 /* IBAnimatable */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IBAnimatable; path = IBAnimatable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+
+		382801D37C7C7FB12DA7F82AF99BA6E5 /* IBAnimatable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IBAnimatable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+
 		3859CC03F2D1881FB5098AC1E566170F /* ImageProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageProcessor.swift; path = Sources/Image/ImageProcessor.swift; sourceTree = "<group>"; };
 		385F3E8A69B437651DED453C9AD80621 /* FIRAuthAPNSTokenManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRAuthAPNSTokenManager.h; path = FirebaseAuth/Sources/SystemService/FIRAuthAPNSTokenManager.h; sourceTree = "<group>"; };
 		3864DC39701BBB6F6F65D212D51FEE9C /* Pods-ShopifyTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-ShopifyTests"; path = Pods_ShopifyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1921,7 +1929,11 @@
 		B390C491065D435E06F6C9BD691C46A0 /* FIRDependency.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRDependency.m; path = FirebaseCore/Sources/FIRDependency.m; sourceTree = "<group>"; };
 		B3A4E81D95304DF3BF7575101A8C3C2E /* Cosmos-Cosmos */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Cosmos-Cosmos"; path = Cosmos.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E63DD5DF757BB8877ACB1B7AB1C337 /* FIREmailPasswordAuthCredential.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIREmailPasswordAuthCredential.m; path = FirebaseAuth/Sources/AuthProvider/Email/FIREmailPasswordAuthCredential.m; sourceTree = "<group>"; };
+
 		B43874C6CBB50E7134FBEC24BABFE14F /* GoogleUtilities */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GoogleUtilities; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+
+		B43874C6CBB50E7134FBEC24BABFE14F /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+
 		B4459191C538BA3507973D477335BC1D /* ActivityIndicatorAnimationBallScale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ActivityIndicatorAnimationBallScale.swift; path = Sources/ActivityIndicators/Animations/ActivityIndicatorAnimationBallScale.swift; sourceTree = "<group>"; };
 		B455231D63758F8001E9C8D9505DDC64 /* FIRAuthGlobalWorkQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRAuthGlobalWorkQueue.h; path = FirebaseAuth/Sources/Auth/FIRAuthGlobalWorkQueue.h; sourceTree = "<group>"; };
 		B470A41FB98E58BEC94CC7A11E3A79EB /* TVMonogramView+Kingfisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TVMonogramView+Kingfisher.swift"; path = "Sources/Extensions/TVMonogramView+Kingfisher.swift"; sourceTree = "<group>"; };
@@ -3180,18 +3192,30 @@
 				8BB937B1C0DFFCF92F41861C2BC54DDA /* FirebaseCore-FirebaseCore_Privacy */,
 				148D0F9E8C7373FEAF40D800FC5F1BAA /* FirebaseCoreInternal */,
 				4DB03FD262B678178A44272143846563 /* FirebaseCoreInternal-FirebaseCoreInternal_Privacy */,
+
 				B43874C6CBB50E7134FBEC24BABFE14F /* GoogleUtilities */,
 				44E291D18340EAC3F761346198515323 /* GoogleUtilities-GoogleUtilities_Privacy */,
 				C1998E0D8085221AD87F89B614C10E52 /* GTMSessionFetcher */,
 				E826FA0DCB9AA6E7829C68391B323B78 /* GTMSessionFetcher-GTMSessionFetcher_Core_Privacy */,
 				382801D37C7C7FB12DA7F82AF99BA6E5 /* IBAnimatable */,
+
+				B43874C6CBB50E7134FBEC24BABFE14F /* GoogleUtilities.framework */,
+				44E291D18340EAC3F761346198515323 /* GoogleUtilities-GoogleUtilities_Privacy */,
+				C1998E0D8085221AD87F89B614C10E52 /* GTMSessionFetcher */,
+				E826FA0DCB9AA6E7829C68391B323B78 /* GTMSessionFetcher-GTMSessionFetcher_Core_Privacy */,
+				382801D37C7C7FB12DA7F82AF99BA6E5 /* IBAnimatable.framework */,
+
 				C1D78A7F43807F49FDB5B04DD9BD6AC7 /* ImageSlideshow.framework */,
 				C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher */,
 				C298ABB78D9B05529B89D8322DB2E7B0 /* Kingfisher-Kingfisher */,
 				D06D8CD79BE6B7BEE6D0D8721BA6C73D /* Pods-Shopify */,
 				516F40393F6FCF83AB56BB4C92AAB86B /* Pods-Shopify-ShopifyUITests */,
 				3864DC39701BBB6F6F65D212D51FEE9C /* Pods-ShopifyTests */,
+
 				3347A1AB6546F0A3977529B8F199DC41 /* PromisesObjC */,
+
+				3347A1AB6546F0A3977529B8F199DC41 /* FBLPromises.framework */,
+
 				3F238BB22C5201CE689CAF2F766AED95 /* PromisesObjC-FBLPromises_Privacy */,
 				21B03CA622E690725A6626C088E1D09F /* ReachabilitySwift */,
 				842AED998605C42F2C05F53985DA2DF5 /* ReachabilitySwift-ReachabilitySwift */,
@@ -4263,6 +4287,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		67EE1E9F61EDF2F708B929E1E95097C1 /* Headers */ = {
+
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4303,6 +4328,48 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18785E95154714BFEEDA07DA9AD6E9AE /* FBLPromise.h in Headers */,
+				897049723A2F241E0D0FF8C9625769E2 /* FBLPromise+All.h in Headers */,
+				4E016A5A5B80E0BB7B8F102BE64A5778 /* FBLPromise+Always.h in Headers */,
+				280155911715A0B6EF88E29602F569C8 /* FBLPromise+Any.h in Headers */,
+				DBA5C348761F1BDA8B31793B6AA26077 /* FBLPromise+Async.h in Headers */,
+				2CD1FBBB99F225F01B2C70B27F663F43 /* FBLPromise+Await.h in Headers */,
+				32664688200FC347577C420D25BA4010 /* FBLPromise+Catch.h in Headers */,
+				488C23C8FA2E15C88DDEDCA2C8FE6B50 /* FBLPromise+Delay.h in Headers */,
+				4DAD810E5817266892AECB8CCA96102D /* FBLPromise+Do.h in Headers */,
+				BA4B5D935E91CC80F81760617B3D1D62 /* FBLPromise+Race.h in Headers */,
+				FEECFC470BD8770645E10C2959513EAC /* FBLPromise+Recover.h in Headers */,
+				D74485E3D4F15D9BB3E8F0FAEC5D5476 /* FBLPromise+Reduce.h in Headers */,
+				97D84423469767011685B4787CFBE62F /* FBLPromise+Retry.h in Headers */,
+				902A1A23A6FDAAEED19D58B4350231AD /* FBLPromise+Testing.h in Headers */,
+				DFA856FF0C03D727350F5DF1CF9DD134 /* FBLPromise+Then.h in Headers */,
+				98974AFCB172C5F3EC25F4BDE7EDDC27 /* FBLPromise+Timeout.h in Headers */,
+				9FF19D04AB0254C84EE3BEA3E185681D /* FBLPromise+Validate.h in Headers */,
+				3FD181F1D3386F84B0F282209E916D83 /* FBLPromise+Wrap.h in Headers */,
+				DBB1CF243B655C74D7BE1E1D156CA851 /* FBLPromiseError.h in Headers */,
+				D4D71B48D69C2F082A28FDC2FD63FCBE /* FBLPromisePrivate.h in Headers */,
+				6F17BA7BBDAE7ACEB7506FCDD28E19C2 /* FBLPromises.h in Headers */,
+				12CC47A3CA19C60CC23BDF0F4615321D /* PromisesObjC-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68A4469F4D39D00ADB82E03DE3251130 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F38F5EC6BEF72A988E1C58ED147FFB04 /* Pods-Shopify-ShopifyUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95913929248B4B3D79A955DADFF2327B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+
 				61DF356E8EC7B47AEF4000549444EAC9 /* RCAActionProtocol.h in Headers */,
 				2FC978E591806C5BCB77458BDD2B0A43 /* RCARecaptchaClientProtocol.h in Headers */,
 				3760150909B36CBD357828DB73A353EC /* RCARecaptchaProtocol.h in Headers */,
@@ -4387,6 +4454,7 @@
 
 /* Begin PBXNativeTarget section */
 		00F31BD5217A20974B5E9AAC6256D98E /* Cosmos */ = {
+
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B92AAA96EA7938BF5409AE1DFC6D0D5 /* Build configuration list for PBXNativeTarget "Cosmos" */;
 			buildPhases = (
@@ -4394,6 +4462,33 @@
 				6D5BC2747C94EFA39CE9F90CEAE60DC4 /* Sources */,
 				C6B79B5B3B5B9F0582CDE39F400DAAA1 /* Frameworks */,
 				B0C2D398434C2086B8E7C03AB861D8E8 /* Resources */,
+
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B92AAA96EA7938BF5409AE1DFC6D0D5 /* Build configuration list for PBXNativeTarget "Cosmos" */;
+			buildPhases = (
+				60B2E4AF2610F999550C13F6E7D4AE17 /* Headers */,
+				6D5BC2747C94EFA39CE9F90CEAE60DC4 /* Sources */,
+				C6B79B5B3B5B9F0582CDE39F400DAAA1 /* Frameworks */,
+				B0C2D398434C2086B8E7C03AB861D8E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D102849767C0119F547A2B4C5E42377D /* PBXTargetDependency */,
+			);
+			name = Cosmos;
+			productName = Cosmos;
+			productReference = 05C4280976BF93DA8B36818DE2E2A5E0 /* Cosmos */;
+			productType = "com.apple.product-type.framework";
+		};
+		0A8C943EF5CB0B747A82882C5D3ECF93 /* ReachabilitySwift-ReachabilitySwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C2F723802FBEE826E2EC589C2634F5D /* Build configuration list for PBXNativeTarget "ReachabilitySwift-ReachabilitySwift" */;
+			buildPhases = (
+				C052BDFDA9A24C0AAE10EF9E5E5E9DEA /* Sources */,
+				D36E57C8FA52B5B092EBC1872AF33DB5 /* Frameworks */,
+				42C1EDFBCA39A3021B66023DADD94915 /* Resources */,
+
 			);
 			buildRules = (
 			);
@@ -4620,7 +4715,7 @@
 			);
 			name = IBAnimatable;
 			productName = IBAnimatable;
-			productReference = 382801D37C7C7FB12DA7F82AF99BA6E5 /* IBAnimatable */;
+			productReference = 382801D37C7C7FB12DA7F82AF99BA6E5 /* IBAnimatable.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		6AE4A3D573DED275B034E20506596C62 /* FirebaseAuth */ = {
@@ -5131,6 +5226,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5D5A33423A1F8D0B280CCAC6C99ED375 /* Resources */ = {
+
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -5170,6 +5266,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				619C0AEB7C72F3A952CDB2B863DD3DED /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5EB5C2E61180D73F6334FA4120530F2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EBEAF43196A0FF35D01A9F1027AD101 /* GTMSessionFetcher-GTMSessionFetcher_Core_Privacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6212A2D1EFD204D5490174BE659A97D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B94FF3A608799AD1F6F4C6C6BF72CFE /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B840B6D61E3FBCA5C118954FFA5B518 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				339F4C533BD5A6C196284F421C9B3078 /* GoogleUtilities-GoogleUtilities_Privacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8605DE9B3973A7D6B93227D6420CE55F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9679AAF23AA27D13E4C39F9E588D3AB2 /* PromisesObjC-FBLPromises_Privacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
 		9734AE8ED7269633A8F2415042DDC5CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5539,6 +5676,8 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2786FA37A41D1F0D33A5F1381E6AE41E /* Sources */ = {
+
+
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -5560,12 +5699,88 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3649B3983B1FCE3DE7A07CB050432083 /* Sources */ = {
+
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
+		2AB8E49B23BE72A954C6A67B000C705A /* Sources */ = {
+
+		365F2BA2C73D3173B9D625D915DA6882 /* Sources */ = {
+
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF6D476575D3CC875039B311D054E34F /* FBLPromise.m in Sources */,
+				D6A67ED9B4055F3E4F19F1140AA1C92A /* FBLPromise+All.m in Sources */,
+				0F469F7F61688A8A88AE6FD9B0F11270 /* FBLPromise+Always.m in Sources */,
+				2533A237E73403CCBBC5C568846C8F8A /* FBLPromise+Any.m in Sources */,
+				3BD1761D214E16C9086BEE1105159D11 /* FBLPromise+Async.m in Sources */,
+				F835167CC5B4FFF9F90470E9E3FED588 /* FBLPromise+Await.m in Sources */,
+				EB3FFDA3DB51E8D66515CCF76636EC8D /* FBLPromise+Catch.m in Sources */,
+				F96DB030213810660A996E33D2901F5A /* FBLPromise+Delay.m in Sources */,
+				B803C16F5B1986EDC74F4C9067B249CA /* FBLPromise+Do.m in Sources */,
+				4956A589163B798A088C478844BA2036 /* FBLPromise+Race.m in Sources */,
+				149B64C96F0AD27DEF67E4E3E9262693 /* FBLPromise+Recover.m in Sources */,
+				DF085A26FBFD08B353CB27E3BC6CD316 /* FBLPromise+Reduce.m in Sources */,
+				81B23F781C0BED2C98B07E07F909D4F9 /* FBLPromise+Retry.m in Sources */,
+				F9D99A734561CEAD9C3E069A1EF64015 /* FBLPromise+Testing.m in Sources */,
+				766F1B5F553E6E79181D8C7E907256C2 /* FBLPromise+Then.m in Sources */,
+				105A0A8D57DBBF1C938652D708E04A9D /* FBLPromise+Timeout.m in Sources */,
+				F2551108BD0589FC2F3A367A6B361BF8 /* FBLPromise+Validate.m in Sources */,
+				61544B065F1D1E76EFEEE23B9205D5EF /* FBLPromise+Wrap.m in Sources */,
+				6B7ABA49BEBB3A041DA537B4A43A58F4 /* FBLPromiseError.m in Sources */,
+				B2137FAE8AFD74A56AC709523B516435 /* PromisesObjC-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		35277319BEA3DDF53E0459899515A37F /* Sources */ = {
+
+		3753691285F71BA2517591753397A5CB /* Sources */ = {
+
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		3649B3983B1FCE3DE7A07CB050432083 /* Sources */ = {
+
+		457DFE025F9F88022564677D9858B5A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48864C435B3DB37698CF568C638CF98F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74012B832FAF67F8D62A2B27CDAFE8B5 /* DPDConstants.swift in Sources */,
+				89A72A55273CE358DC4E7600F785C37B /* DPDKeyboardListener.swift in Sources */,
+				B73E510E851686F8184E26986A470458 /* DPDUIView+Extension.swift in Sources */,
+				84459C4824533C9C4FD12AFC941F3CE1 /* DropDown.swift in Sources */,
+				515E22E4255B6073C1897BDDB091A2B8 /* DropDown+Appearance.swift in Sources */,
+				907338727C09F65DB75AA7AB9E10C3B4 /* DropDown-dummy.m in Sources */,
+				BDC10974A8641F01C5665C61EA37A153 /* DropDownCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50DC33B15EA2514F0EE21B93013FE2A1 /* Sources */ = {
+
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
 		365F2BA2C73D3173B9D625D915DA6882 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5632,6 +5847,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
+		6D5BC2747C94EFA39CE9F90CEAE60DC4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+
 				906E3CA68BD1927E262583760A887398 /* Cosmos-dummy.m in Sources */,
 				48C3EECEC49C2E98A95C600634DEC74C /* CosmosAccessibility.swift in Sources */,
 				4956BFDF65439324343A108E86C01605 /* CosmosDefaultSettings.swift in Sources */,
@@ -5827,6 +6048,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B10A5FDCDD284A5A0142E5D437E58439 /* Sources */ = {
+
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -5838,6 +6060,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E7CB4CD743B7BA9C3958BA2165B1EB7 /* Pods-Shopify-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B320B6A5BF94FA9F4347197F09307E54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+
 				7D73B30782B00A2C2BB01F2DEB7D82ED /* GoogleUtilities-dummy.m in Sources */,
 				47D647C23861E4BA39E6EB0AB0A6DD5B /* GULAppDelegateSwizzler.m in Sources */,
 				6332D77234004B629B24F6BCAFE20E66 /* GULAppEnvironmentUtil.m in Sources */,
@@ -6390,7 +6625,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/GoogleUtilities/GoogleUtilities-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7058,7 +7297,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/ImageSlideshow/ImageSlideshow-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/ImageSlideshow/ImageSlideshow-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7230,7 +7469,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/ImageSlideshow/ImageSlideshow-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/ImageSlideshow/ImageSlideshow-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7300,7 +7539,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/PromisesObjC/PromisesObjC-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7695,6 +7938,10 @@
 			name = Release;
 		};
 		AC984B52D3E82115A8845927E248C9EF /* Release */ = {
+
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F031741329C321AD1FBDC96D47674E91 /* GTMSessionFetcher.release.xcconfig */;
+
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F031741329C321AD1FBDC96D47674E91 /* GTMSessionFetcher.release.xcconfig */;
 			buildSettings = {
@@ -7731,18 +7978,17 @@
 		B06B484BFF6C4DE007D2001DF998E891 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5026AEDCC6A56EF23DC6F10DCA25B31C /* FirebaseAppCheckInterop.debug.xcconfig */;
+
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/FirebaseAppCheckInterop/FirebaseAppCheckInterop-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FirebaseAppCheckInterop/FirebaseAppCheckInterop-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/GTMSessionFetcher/GTMSessionFetcher-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -7750,17 +7996,25 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/FirebaseAppCheckInterop/FirebaseAppCheckInterop.modulemap";
-				PRODUCT_MODULE_NAME = FirebaseAppCheckInterop;
-				PRODUCT_NAME = FirebaseAppCheckInterop;
+				MODULEMAP_FILE = "Target Support Files/GTMSessionFetcher/GTMSessionFetcher.modulemap";
+				PRODUCT_MODULE_NAME = GTMSessionFetcher;
+				PRODUCT_NAME = GTMSessionFetcher;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
+
+			name = Release;
+		};
+		B06B484BFF6C4DE007D2001DF998E891 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5026AEDCC6A56EF23DC6F10DCA25B31C /* FirebaseAppCheckInterop.debug.xcconfig */;
+
 			name = Debug;
 		};
 		BB381DA0B81D8CC52A8F5F9576BED1E6 /* Release */ = {
@@ -7783,7 +8037,9 @@
 		C24518E891FAA59668669823639498EB /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1880D2C176807E3A23C184B28714D815 /* DropDown.release.xcconfig */;
+
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -7792,18 +8048,31 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+
+				GCC_PREFIX_HEADER = "Target Support Files/FirebaseAppCheckInterop/FirebaseAppCheckInterop-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FirebaseAppCheckInterop/FirebaseAppCheckInterop-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+
 				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/DropDown/DropDown-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+
+				MODULEMAP_FILE = "Target Support Files/FirebaseAppCheckInterop/FirebaseAppCheckInterop.modulemap";
+				PRODUCT_MODULE_NAME = FirebaseAppCheckInterop;
+				PRODUCT_NAME = FirebaseAppCheckInterop;
+
 				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
 				PRODUCT_MODULE_NAME = DropDown;
 				PRODUCT_NAME = DropDown;
+
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -7815,9 +8084,32 @@
 			};
 			name = Release;
 		};
+
+		BB381DA0B81D8CC52A8F5F9576BED1E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A8C21CE7613CD3578F0B1229AE7697C /* Cosmos.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Cosmos";
+				IBSC_MODULE = Cosmos;
+				INFOPLIST_FILE = "Target Support Files/Cosmos/ResourceBundle-Cosmos-Cosmos-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_NAME = Cosmos;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		C24518E891FAA59668669823639498EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1880D2C176807E3A23C184B28714D815 /* DropDown.release.xcconfig */;
+
 		C37FC84F42300279579B1FDED430F109 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1FB92ED687F6B848D816BA72526973B5 /* Cosmos.debug.xcconfig */;
+
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -7828,8 +8120,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+
+				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DropDown/DropDown-Info.plist";
+
 				GCC_PREFIX_HEADER = "Target Support Files/Cosmos/Cosmos-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Cosmos/Cosmos-Info.plist";
+
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -7837,9 +8134,15 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+
+				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
+				PRODUCT_MODULE_NAME = DropDown;
+				PRODUCT_NAME = DropDown;
+
 				MODULEMAP_FILE = "Target Support Files/Cosmos/Cosmos.modulemap";
 				PRODUCT_MODULE_NAME = Cosmos;
 				PRODUCT_NAME = Cosmos;
+
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -7867,9 +8170,15 @@
 			};
 			name = Release;
 		};
+
+		C37FC84F42300279579B1FDED430F109 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FB92ED687F6B848D816BA72526973B5 /* Cosmos.debug.xcconfig */;
+
 		CA60CF70D0AF64CB6C7F697460FBE2FE /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F495F027AE86CF83C960F25B473618F /* Alamofire.release.xcconfig */;
+
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -7880,8 +8189,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+
+				GCC_PREFIX_HEADER = "Target Support Files/Cosmos/Cosmos-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Cosmos/Cosmos-Info.plist";
+
 				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Alamofire-Info.plist";
+
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -7889,23 +8203,49 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+
+				MODULEMAP_FILE = "Target Support Files/Cosmos/Cosmos.modulemap";
+				PRODUCT_MODULE_NAME = Cosmos;
+				PRODUCT_NAME = Cosmos;
+
 				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
 				PRODUCT_MODULE_NAME = Alamofire;
 				PRODUCT_NAME = Alamofire;
+
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C46A3C17F7C779EB239079B61BCA2784 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F495F027AE86CF83C960F25B473618F /* Alamofire.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Alamofire";
+				IBSC_MODULE = Alamofire;
+				INFOPLIST_FILE = "Target Support Files/Alamofire/ResourceBundle-Alamofire-Alamofire-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
 		CB37B94B5676E6189C9743A4001A2F45 /* Release */ = {
 			isa = XCBuildConfiguration;
+
+			baseConfigurationReference = 1F495F027AE86CF83C960F25B473618F /* Alamofire.release.xcconfig */;
+
 			baseConfigurationReference = B98A1B7F9138915DAD687970A916DE4C /* RecaptchaInterop.release.xcconfig */;
+
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -7939,6 +8279,11 @@
 			};
 			name = Release;
 		};
+
+		CB37B94B5676E6189C9743A4001A2F45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B98A1B7F9138915DAD687970A916DE4C /* RecaptchaInterop.release.xcconfig */;
+
 		D08B7390DE9EF8CAE712C224D6A49426 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 089700D4F85B6D95796476B55327E785 /* GTMSessionFetcher.debug.xcconfig */;
@@ -7959,6 +8304,7 @@
 		D289924F49E290957622EAA7EBE53538 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0233D2C340306EA70557DEEEB58A6D30 /* Kingfisher.release.xcconfig */;
+
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -7969,18 +8315,18 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Kingfisher/Kingfisher-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Kingfisher/Kingfisher-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/RecaptchaInterop/RecaptchaInterop-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RecaptchaInterop/RecaptchaInterop-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/Kingfisher/Kingfisher.modulemap";
-				PRODUCT_MODULE_NAME = Kingfisher;
-				PRODUCT_NAME = Kingfisher;
+				MODULEMAP_FILE = "Target Support Files/RecaptchaInterop/RecaptchaInterop.modulemap";
+				PRODUCT_MODULE_NAME = RecaptchaInterop;
+				PRODUCT_NAME = RecaptchaInterop;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -7992,6 +8338,28 @@
 			};
 			name = Release;
 		};
+
+		D08B7390DE9EF8CAE712C224D6A49426 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 089700D4F85B6D95796476B55327E785 /* GTMSessionFetcher.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GTMSessionFetcher";
+				IBSC_MODULE = GTMSessionFetcher;
+				INFOPLIST_FILE = "Target Support Files/GTMSessionFetcher/ResourceBundle-GTMSessionFetcher_Core_Privacy-GTMSessionFetcher-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PRODUCT_NAME = GTMSessionFetcher_Core_Privacy;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		D289924F49E290957622EAA7EBE53538 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0233D2C340306EA70557DEEEB58A6D30 /* Kingfisher.release.xcconfig */;
+
 		D830FD05B536F0B47C3FD73DB29360FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3CD6AE654168E3681C29293D2C97C52D /* Kingfisher.debug.xcconfig */;
@@ -8012,6 +8380,7 @@
 		D8917386BCDF66DAF9323A2BE1988A02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E29C67A114DE0899C7919CF78DCD3A9 /* IBAnimatable.debug.xcconfig */;
+
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -8021,18 +8390,29 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+
+				GCC_PREFIX_HEADER = "Target Support Files/Kingfisher/Kingfisher-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Kingfisher/Kingfisher-Info.plist";
+
 				GCC_PREFIX_HEADER = "Target Support Files/IBAnimatable/IBAnimatable-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IBAnimatable/IBAnimatable-Info.plist";
+
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+
+				MODULEMAP_FILE = "Target Support Files/Kingfisher/Kingfisher.modulemap";
+				PRODUCT_MODULE_NAME = Kingfisher;
+				PRODUCT_NAME = Kingfisher;
+
 				MODULEMAP_FILE = "Target Support Files/IBAnimatable/IBAnimatable.modulemap";
 				PRODUCT_MODULE_NAME = IBAnimatable;
 				PRODUCT_NAME = IBAnimatable;
+
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -8043,9 +8423,32 @@
 			};
 			name = Debug;
 		};
+
+		D830FD05B536F0B47C3FD73DB29360FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CD6AE654168E3681C29293D2C97C52D /* Kingfisher.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Kingfisher";
+				IBSC_MODULE = Kingfisher;
+				INFOPLIST_FILE = "Target Support Files/Kingfisher/ResourceBundle-Kingfisher-Kingfisher-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_NAME = Kingfisher;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		D8917386BCDF66DAF9323A2BE1988A02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E29C67A114DE0899C7919CF78DCD3A9 /* IBAnimatable.debug.xcconfig */;
+
 		DB51898460FFA4DC10AE320BEDC2B552 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C07263C4BD66D453FC5596B9B0906787 /* ReachabilitySwift.debug.xcconfig */;
+
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -8075,6 +8478,63 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+
+		DB51898460FFA4DC10AE320BEDC2B552 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C07263C4BD66D453FC5596B9B0906787 /* ReachabilitySwift.debug.xcconfig */;
+
+		DC6736F1ABB3E5AFC68FEC68358C8DA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C07263C4BD66D453FC5596B9B0906787 /* ReachabilitySwift.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ReachabilitySwift";
+				IBSC_MODULE = Reachability;
+				INFOPLIST_FILE = "Target Support Files/ReachabilitySwift/ResourceBundle-ReachabilitySwift-ReachabilitySwift-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_NAME = ReachabilitySwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		E03444AF2924FB2616E38ED8A05F9B2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B378694B6C12808C37EBD5C8E73F0753 /* FirebaseCore.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseCore";
+				IBSC_MODULE = FirebaseCore;
+				INFOPLIST_FILE = "Target Support Files/FirebaseCore/ResourceBundle-FirebaseCore_Privacy-FirebaseCore-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PRODUCT_NAME = FirebaseCore_Privacy;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		E0F62D5750B5686E041B99EF90E0B496 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9757BB61354CEEFC22F09298287D8D6E /* FirebaseCoreInternal.debug.xcconfig */;
+
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseCoreInternal";
+				IBSC_MODULE = FirebaseCoreInternal;
+				INFOPLIST_FILE = "Target Support Files/FirebaseCoreInternal/ResourceBundle-FirebaseCoreInternal_Privacy-FirebaseCoreInternal-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PRODUCT_NAME = FirebaseCoreInternal_Privacy;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
 		};
@@ -8264,7 +8724,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/PromisesObjC/PromisesObjC-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

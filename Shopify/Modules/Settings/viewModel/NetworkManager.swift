@@ -112,7 +112,7 @@ class NetworkManager {
         
         let newLineItem = LineItem(
             id: nil,
-            variantID:nil,  
+            variantID:nil,
             productID: product.id ?? 0,
             title: product.title,
             variantTitle: nil,
@@ -296,6 +296,56 @@ class NetworkManager {
         }
     }
     
+    static func removeLineItemFromDraftOrder(draftOrderId: Int, productTitle: String, completion: @escaping (Int) -> Void) {
+        let urlString = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
+        
+        AF.request(urlString).responseDecodable(of: Drafts.self) { response in
+            switch response.result {
+            case .success(let draftResponse):
+                guard var draftOrder = draftResponse.draftOrder else {
+                    print("Draft Order not found")
+                    return
+                }
+                
+                // Remove the line item with the specified line item ID
+                draftOrder.lineItems = draftOrder.lineItems?.filter { $0.title != productTitle }
+                
+                do {
+                    let updatedDraftOrderDictionary = try draftOrder.asDictionary()
+                    let requestBody: [String: Any] = ["draft_order": updatedDraftOrderDictionary]
+                    
+                    // Send the updated draft order using PUT request
+                    AF.request(urlString, method: .put, parameters: requestBody, encoding: JSONEncoding.default).response { response in
+                        if let httpResponse = response.response {
+                            completion(httpResponse.statusCode)
+                        } else if let error = response.error {
+                            print("HTTP request error: \(error.localizedDescription)")
+                        }
+                    }
+                } catch {
+                    print("Error converting draft order to dictionary: \(error.localizedDescription)")
+                }
+            case .failure(let error):
+                print("Error fetching draft order: \(error.localizedDescription)")
+            }
+        }
+    }
+   static func fetchProductDetails(productId: Int, completion: @escaping (Result<Product, Error>) -> Void) {
+        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/products/\(productId).json"
+        
+        AF.request(url).validate().responseDecodable(of: Product.self) { response in
+            switch response.result {
+            case .success(let product):
+                completion(.success(product))
+                print("/********/")
+                print(response)
+                print("/********/")
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
 
 }
 
