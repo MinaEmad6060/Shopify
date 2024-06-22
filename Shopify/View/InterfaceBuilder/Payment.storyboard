@@ -472,7 +472,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowtriangle.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8dD-pF-oqR">
-                                                <rect key="frame" x="92" y="17.666666666666657" width="23" height="32"/>
+                                                <rect key="frame" x="92" y="18.333333333333407" width="23" height="32"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
                                         </subviews>
@@ -548,139 +548,17 @@
             </objects>
             <point key="canvasLocation" x="2203.8167938931297" y="-35.211267605633807"/>
         </scene>
-        <!--Category-->
-        <scene sceneID="1iR-hG-ErX">
-            <objects>
-                <viewController id="BN0-JO-vHN" customClass="CategoriesViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2gN-dU-aro">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9K9-xe-Rjm">
-                                <rect key="frame" x="0.0" y="49" width="393" height="44"/>
-                                <color key="barTintColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Categories" id="4C3-yG-Vbu">
-                                        <rightBarButtonItems>
-                                            <barButtonItem title="Item" image="cart.fill" catalog="system" id="EqI-X1-7y3">
-                                                <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            </barButtonItem>
-                                            <barButtonItem title="Item" image="magnifyingglass" catalog="system" id="rxx-S2-jAP">
-                                                <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            </barButtonItem>
-                                        </rightBarButtonItems>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gbT-N7-EpP">
-                                <rect key="frame" x="32" y="238" width="329" height="572"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7pY-67-KYt">
-                                    <size key="itemSize" width="266" height="216"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCell" id="OBu-j6-qlV">
-                                        <rect key="frame" x="31.666666666666668" y="0.0" width="266" height="216"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="t5S-L6-A8q">
-                                            <rect key="frame" x="0.0" y="0.0" width="266" height="216"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="266" height="216"/>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noData" translatesAutoresizingMaskIntoConstraints="NO" id="st8-5f-gNN">
-                                <rect key="frame" x="46.666666666666657" y="288.66666666666669" width="300" height="300.00000000000006"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="Il5-wh-uqx"/>
-                                    <constraint firstAttribute="height" constant="300" id="VBN-QA-MJM"/>
-                                </constraints>
-                            </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="M9c-8h-Frf">
-                                <rect key="frame" x="26" y="119" width="341" height="36"/>
-                                <color key="backgroundColor" red="0.71372549019999998" green="0.61960784310000006" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="WwQ-4W-Phb"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="MEN"/>
-                                    <segment title="WOMEN"/>
-                                    <segment title="KID"/>
-                                    <segment title="SALE"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hfw-fR-Iao">
-                                <rect key="frame" x="54" y="170" width="285" height="36"/>
-                                <color key="backgroundColor" red="0.71372549019999998" green="0.61960784310000006" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="ki0-NB-2fQ"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="285" id="xgy-MQ-Nda"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="ALL"/>
-                                    <segment title="SHOES"/>
-                                    <segment title="T-SHIRTS"/>
-                                    <segment title="EXTRAS"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </segmentedControl>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="bfb-5u-RoM"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="bfb-5u-RoM" firstAttribute="trailing" secondItem="gbT-N7-EpP" secondAttribute="trailing" constant="32" id="0aJ-Mx-Svi"/>
-                            <constraint firstItem="hfw-fR-Iao" firstAttribute="top" secondItem="M9c-8h-Frf" secondAttribute="bottom" constant="16" id="3LC-k2-I4S"/>
-                            <constraint firstItem="st8-5f-gNN" firstAttribute="centerY" secondItem="bfb-5u-RoM" secondAttribute="centerY" id="7jq-gt-Zkj"/>
-                            <constraint firstItem="bfb-5u-RoM" firstAttribute="trailing" secondItem="M9c-8h-Frf" secondAttribute="trailing" constant="26" id="Efu-DP-8rl"/>
-                            <constraint firstItem="bfb-5u-RoM" firstAttribute="bottom" secondItem="gbT-N7-EpP" secondAttribute="bottom" constant="8" id="Oyh-Gf-phO"/>
-                            <constraint firstItem="st8-5f-gNN" firstAttribute="centerX" secondItem="bfb-5u-RoM" secondAttribute="centerX" id="PVg-bk-qIQ"/>
-                            <constraint firstItem="bfb-5u-RoM" firstAttribute="trailing" secondItem="hfw-fR-Iao" secondAttribute="trailing" constant="54" id="S3R-FS-YaT"/>
-                            <constraint firstItem="M9c-8h-Frf" firstAttribute="top" secondItem="9K9-xe-Rjm" secondAttribute="bottom" constant="26" id="UTd-UL-O0k"/>
-                            <constraint firstItem="M9c-8h-Frf" firstAttribute="leading" secondItem="bfb-5u-RoM" secondAttribute="leading" constant="26" id="VJZ-BA-w7e"/>
-                            <constraint firstItem="gbT-N7-EpP" firstAttribute="leading" secondItem="bfb-5u-RoM" secondAttribute="leading" constant="32" id="YAQ-Lh-NQ2"/>
-                            <constraint firstItem="9K9-xe-Rjm" firstAttribute="leading" secondItem="2gN-dU-aro" secondAttribute="leadingMargin" constant="-16" id="ag3-Pw-mWd"/>
-                            <constraint firstItem="9K9-xe-Rjm" firstAttribute="top" secondItem="2gN-dU-aro" secondAttribute="top" constant="49" id="gEd-Ki-GCo"/>
-                            <constraint firstItem="hfw-fR-Iao" firstAttribute="leading" secondItem="bfb-5u-RoM" secondAttribute="leading" constant="54" id="qeR-qn-aEO"/>
-                            <constraint firstItem="gbT-N7-EpP" firstAttribute="top" secondItem="hfw-fR-Iao" secondAttribute="bottom" constant="33" id="rKV-iP-47t"/>
-                            <constraint firstItem="gbT-N7-EpP" firstAttribute="centerX" secondItem="9K9-xe-Rjm" secondAttribute="centerX" id="z6d-vq-gir"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Category" image="case.fill" catalog="system" id="M5H-as-aS7"/>
-                    <connections>
-                        <outlet property="categoryCollectionView" destination="gbT-N7-EpP" id="FLW-7M-9vn"/>
-                        <outlet property="categoryTable" destination="gbT-N7-EpP" id="syK-eU-zEl"/>
-                        <outlet property="noDataImage" destination="st8-5f-gNN" id="mZu-nT-afe"/>
-                        <outlet property="selectCategory" destination="M9c-8h-Frf" id="bk0-5f-gyt"/>
-                        <outlet property="selectSubCategory" destination="hfw-fR-Iao" id="AlH-r1-TJP"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6GB-6L-yMh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4471" y="13"/>
-        </scene>
     </scenes>
     <resources>
         <image name="applepay" width="76" height="59"/>
         <image name="arrowtriangle.right" catalog="system" width="128" height="113"/>
-        <image name="cart.fill" catalog="system" width="128" height="102"/>
-        <image name="case.fill" catalog="system" width="128" height="100"/>
         <image name="chevron.backward.circle.fill" catalog="system" width="128" height="123"/>
         <image name="cod" width="76" height="59"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="noData" width="360" height="360"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
