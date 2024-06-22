@@ -27,16 +27,12 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
                self.favCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
        
-        bindViewModel()
-        //967667908779
-        //productInfoViewModel?.draftOrderIDFavorite ?? 0
+       
+        
         let favID = UserDefaults.standard.integer(forKey: "favIDNet")
         viewModel.fetchLineItems(draftOrderId: favID)
-//        if let draftOrderIDFavorite = productInfoViewModel?.draftOrderIDFavorite {
-//                    viewModel.fetchLineItems(draftOrderId: draftOrderIDFavorite)
-//                } else {
-//                    print("No draft order ID available")
-//                }
+        bindViewModel()
+
    
     }
     
@@ -49,7 +45,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
            }
        }
 
-       // MARK: - UICollectionViewDataSource
+     
 
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
            return  viewModel.displayedLineItems.count
@@ -78,31 +74,18 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
                if let url = URL(string: imageURL) {
                    cell.categoryItemImage.kf.setImage(with: url)
                }
-              
-               if viewModel.isProductFavorite(productTitle: productName ?? "") {
-                          cell.btnFavCategoryItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-                      } else {
-                          cell.btnFavCategoryItem.setImage(UIImage(systemName: "heart"), for: .normal)
-                      }
-
-                      // Configure favorite button action
+               cell.btnFavCategoryItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+             
                       cell.favButtonTapped = { [weak self] in
                           guard let self = self else { return }
                           let productName = lineItem.title
-                          if self.viewModel.isProductFavorite(productTitle: productName ?? "") {
+                         
                               self.viewModel.removeProductFromDraftOrder(productTitle: productName ?? "")
                             
-                          } else {
-                              self.viewModel.addProductToFavorites(productTitle: productName ?? "")
-                          }
-                          // Reload the collection view after updating the favorite list
-                          self.favCollectionView.reloadData()
+                         
                       }
-               
            }
         
-        
-       
         
         return cell
     }

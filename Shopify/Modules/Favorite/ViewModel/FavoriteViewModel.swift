@@ -9,7 +9,6 @@ import Foundation
 
 class FavoriteViewModel {
     private var favoriteProductTitles: Set<String> = []
-    private var favoriteProductIds: Set<Int> = []
     var lineItems: [LineItem] = [] {
         didSet {
             self.didUpdateLineItems?()
@@ -37,18 +36,9 @@ class FavoriteViewModel {
         for item in self.lineItems {
                 print("Title: \(item.title ?? ""), Price: \(item.price ?? ""), Image: \(item.image ?? "")")
             }
+        didUpdateLineItems?()
     }
-    func addProductToFavorites(productTitle: String) {
-            favoriteProductTitles.insert(productTitle)
-        }
-        
-        func removeProductFromFavorites(productTitle: String) {
-            favoriteProductTitles.remove(productTitle)
-        }
-        
-        func isProductFavorite(productTitle: String) -> Bool {
-            return favoriteProductTitles.contains(productTitle)
-        }
+   
     func removeProductFromDraftOrder(productTitle: String) {
          let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite() 
         
@@ -60,6 +50,7 @@ class FavoriteViewModel {
                 print("Failed to remove product from draft order. Status code: \(statusCode)")
             }
         }
+        didUpdateLineItems?()
     }
 }
 
