@@ -14,8 +14,9 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     @IBOutlet weak var favBtn: UIBarButtonItem!
     
   
-    
+    var productViewData: BrandProductViewData!
     var productInfoViewModel : ProdutInfoViewModel?
+    var allProductsViewModel: AllProductsViewModel!
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
     
     @IBOutlet weak var tiitleLB: UILabel!
@@ -34,12 +35,14 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     @IBOutlet weak var colorCollectionView: UICollectionView!
     var productId :Int?
+    var productId2 :Int?
     var productTitle :String?
     var favoriteProducts: [Int: Bool] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        productViewData = BrandProductViewData()
+        allProductsViewModel = AllProductsViewModel()
         sizeCollectionView.dataSource = self
         sizeCollectionView.delegate = self
         colorCollectionView.dataSource = self
@@ -49,8 +52,8 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
         descTextView.text = productInfoViewModel?.product?.body_html
         
         priceLB.text =  productInfoViewModel?.product?.price
-        // sizeLB.text = productInfoViewModel?.product?.options[0].values?[0]
-        // productId = productInfoViewModel?.product?.id
+        
+        
         guard let productId = productInfoViewModel?.product?.id else {
             print("Product ID is nil")
             return
@@ -59,11 +62,9 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
             print("Product title is nil")
             return
         }
-        print( "product id:*****\(productId)")
-//        productInfoViewModel?.getCurrentCustomer{
-//            
-//        }
-        productInfoViewModel?.getCurrentCustomer ()
+        
+        
+        productInfoViewModel?.getCurrentCustomer()
        
                     self.updateDraftOrder()
         self.checkProductInDraftOrder()

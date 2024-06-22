@@ -10,7 +10,8 @@ import UIKit
 class FavoriteViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
     private var viewModel = FavoriteViewModel()
     var brandProducts: [BrandProductViewData]?
-    
+    var allProductsViewModel: AllProductsViewModel!
+
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -22,6 +23,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         brandProducts = [BrandProductViewData]()
+    allProductsViewModel = AllProductsViewModel()
        favCollectionView.delegate = self
         favCollectionView.dataSource = self
         let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
@@ -106,18 +108,22 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
         let imageString = lineItem.sku ?? ""
         let components = imageString.components(separatedBy: ",")
 
+        UserDefaults.standard.set(true, forKey: "isFav")
+        var product = BrandProductViewData()
         if components.count == 2, let productId = Int(components[0]) {
-            NetworkManager.fetchProductDetails(productId: productId) { result in
-                switch result {
-                case .success(let product):
-                    DispatchQueue.main.async {
-                        let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-                        let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
-                    //productInfoVC.productInfoViewModel!.product = product
-                        self.present(productInfoVC, animated: true, completion: nil)
-                    }
-                case .failure(let error):
-                    print("Failed to fetch product details: \(error)")
+            
+
+            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+            let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
+            
+            allProductsViewModel.getProductFromNetworkService(id: productId)
+            allProductsViewModel.bindBrandProductsToViewController = {
+                product = self.allProductsViewModel.productViewData
+                let productInfoViewModel = ProdutInfoViewModel(product: product)
+                productInfoVC.productInfoViewModel = productInfoViewModel
+                DispatchQueue.main.async {
+                    productInfoVC.modalPresentationStyle = .fullScreen
+                    self.present(productInfoVC, animated: true, completion: nil)
                 }
             }
         }

@@ -118,7 +118,7 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
                 print("Could not instantiate view controller with identifier 'ProductInfoVC'")
                 return
             }
-
+            UserDefaults.standard.set(false, forKey: "isFav")
             let productInfoViewModel = ProdutInfoViewModel(product: product)
             productInfoVC.productInfoViewModel = productInfoViewModel
 
