@@ -126,6 +126,7 @@ struct LineItem: Codable {
     var custom: Bool?
     var price: String?
     var image: String?
+    //var properties: [Properties]?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -165,3 +166,4 @@ struct TaxLine: Codable {
         case rate, title
     }
 }
+

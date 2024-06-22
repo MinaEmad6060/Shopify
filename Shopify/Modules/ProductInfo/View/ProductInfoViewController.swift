@@ -10,21 +10,13 @@ import ImageSlideshow
 import Kingfisher
 
 class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-    var selectedSizeIndexPath: IndexPath?
-       var selectedColorIndexPath: IndexPath?
-       var selectedSize: String?
-       var selectedColor: String?
+   
     @IBOutlet weak var favBtn: UIBarButtonItem!
-    
-  
-    
-    var productInfoViewModel : ProdutInfoViewModel?
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
     
     @IBOutlet weak var tiitleLB: UILabel!
     
     @IBOutlet weak var priceLB: UILabel!
-    
     
 @IBOutlet weak var descTextView: UILabel!
     
@@ -36,13 +28,19 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
 @IBOutlet weak var sizeCollectionView: UICollectionView!
     
     @IBOutlet weak var colorCollectionView: UICollectionView!
+    var productInfoViewModel : ProdutInfoViewModel?
+    var selectedSizeIndexPath: IndexPath?
+       var selectedColorIndexPath: IndexPath?
+       var selectedSize: String?
+       var selectedColor: String?
     var productId :Int?
     var productTitle :String?
     var favoriteProducts: [Int: Bool] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("selectedSize:...:\(selectedSize)")
+        print("selectedColor:...:\(selectedColor)")
         sizeCollectionView.dataSource = self
         sizeCollectionView.delegate = self
         colorCollectionView.dataSource = self
@@ -246,9 +244,10 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
                selectedColorIndexPath = indexPath
                selectedColor = productInfoViewModel?.product?.colors[indexPath.row]
            }
-           collectionView.reloadData()
+           print("selectedSize:...:\(selectedSize)")
+           print("selectedColor:...:\(selectedColor)")
+           collectionView.reloadData()  // This will refresh the collection view to update the cell background color
        }
-
 
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //           return   productInfoViewModel?.product?.options.first(where: { $0.name == "Size" })?.values?.count ?? 0
