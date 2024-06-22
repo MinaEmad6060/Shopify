@@ -6,25 +6,65 @@
 //
 
 import UIKit
-
-class ReviewViewController: UIViewController {
-
+import Cosmos
+struct Review {
+    var image: UIImage?
+    var name: String
+    var review: String
+    var rating: Double
+}
+class ReviewViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
+    
+    
+    var reviews: [Review] = []
     @IBOutlet weak var reviewTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        reviewTableView.delegate = self
+        reviewTableView.dataSource = self
+        
+        // Assume Review is your model for review data
+        
+        
+        // Load reviews data
+        loadReviews()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func loadReviews() {
+        // Populate your reviews array with data
+        // Example data:
+        reviews = [
+            Review(image: UIImage(named: "1"), name: "Maha Farghaly", review: "Great product, and high quality, very good!", rating: 4.5),
+            Review(image: UIImage(named: "2"), name: "Sara El Masry", review: "Amazing experience, will definitely buy again!", rating: 5.0),
+            Review(image: UIImage(named: "3"), name: "Ahmed El Sayed", review: "Good value for money, satisfied with the purchase.", rating: 4.3),
+            Review(image: UIImage(named: "4"), name: "Nourhan Ahmed", review: "Decent product, could be improved.", rating: 3.5),
+            Review(image: UIImage(named: "5"), name: "Omar Hassan", review: "Satisfied with the quality, but shipping was slow.", rating: 3.5),
+            Review(image: UIImage(named: "6"), name: "Layla Mohamed", review: "Average product, nothing special.", rating: 3.0),
+            Review(image: UIImage(named: "7"), name: "Youssef Ali", review: "Not as expected, quite disappointed.", rating: 2.5),
+            Review(image: UIImage(named: "8"), name: "Hana Khaled", review: "Excellent quality, highly recommend!", rating: 5.0),
+            Review(image: UIImage(named: "9"), name: "Mohamed Fathy", review: "Works fine, but had some issues initially.", rating: 3.8),
+            Review(image: UIImage(named: "10"), name: "Fatma Saad", review: "Not worth the price, poor quality.", rating: 2.0)
+        ]
+ 
+        reviewTableView.reloadData()
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return reviews.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ReviewTableViewCell
+        let review = reviews[indexPath.row]
+        
+        cell.userImage.image = review.image
+        cell.userName.text = review.name
+        cell.userReviewLB.text = review.review
+        cell.reviewRatingView.rating = review.rating
+       
+        
+        return cell
+    }
+    
 }
+

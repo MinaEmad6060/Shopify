@@ -15,6 +15,7 @@ target 'Shopify' do
   pod 'TextFieldEffects'
   pod 'DropDown'
   pod 'ImageSlideshow'
+  pod 'Cosmos'
 
   target 'ShopifyTests' do
     inherit! :search_paths
@@ -28,4 +29,3 @@ target 'Shopify' do
 
 end
 
-end

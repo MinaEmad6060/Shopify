@@ -79,10 +79,11 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
                       cell.favButtonTapped = { [weak self] in
                           guard let self = self else { return }
                           let productName = lineItem.title
-                         
+                          self.viewModel.lineItems.remove(at: indexPath.row)
+                          self.favCollectionView.reloadData()
                               self.viewModel.removeProductFromDraftOrder(productTitle: productName ?? "")
                             
-                         
+                          
                       }
            }
         
@@ -112,7 +113,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
                     DispatchQueue.main.async {
                         let storyboard = UIStoryboard(name: "Auth", bundle: nil)
                         let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
-                        //productInfoVC.productInfoViewModel!.product = product
+                    //productInfoVC.productInfoViewModel!.product = product
                         self.present(productInfoVC, animated: true, completion: nil)
                     }
                 case .failure(let error):
