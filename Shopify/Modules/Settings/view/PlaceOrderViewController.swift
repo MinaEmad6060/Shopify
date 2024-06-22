@@ -30,9 +30,9 @@ class PlaceOrderViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.subTotalLabel.text = "\(self.subTotal)"
-        self.discountAmountLabel.text = "-0.0"
-        self.totalLabel.text = "\(self.subTotal)"
+        self.subTotalLabel.text = "\(self.subTotal)EGP"
+        self.discountAmountLabel.text = "-0.EGP"
+        self.totalLabel.text = "\(self.subTotal)EGP"
     }
     
     @IBAction func placeOrderBtn(_ sender: Any) {
@@ -59,19 +59,40 @@ class PlaceOrderViewController: UIViewController {
     func validateDiscountCode(_ code: String) {
         let availableCodes = loadDiscountCodes()
         print(availableCodes)
+        
         if let discountCode = availableCodes.first(where: { $0.code == code }) {
             if !isDiscountCodeUsed(code) {
                 useDiscountCode(code)
                 print("Discount code applied successfully!")
-                self.couponErrorLabel.text = "Applied successfully"
+                
+                // جلب قيمة الخصم
+                if let discountValue = Double(discountCode.value) {
+                    // استخدم القيمة المطلقة للخصم
+                    let absoluteDiscountValue = abs(discountValue)
+                    let discountAmount = calculateDiscount(totalPrice: subTotal, discountValue: absoluteDiscountValue)
+                    let newTotalPrice = subTotal - discountAmount
+                    print("Discount Value: \(absoluteDiscountValue)")
+                    print("Discount Amount: \(discountAmount)")
+                    print("New Total Price: \(newTotalPrice)")
+                    
+                    self.discountAmountLabel.text = "-\(discountAmount)EGP"
+                    self.totalLabel.text = "\(newTotalPrice)EGP"
+                } else {
+                    print("Invalid discount value format")
+                }
             } else {
                 print("This discount code has already been used.")
-                self.couponErrorLabel.text = "Already used"
+                // self.couponErrorLabel.text = "Already used"
             }
         } else {
             print("Invalid discount code.")
-            self.couponErrorLabel.text = "Invalid discount code"
+            // self.couponErrorLabel.text = "Invalid discount code"
         }
+    }
+
+    func calculateDiscount(totalPrice: Double, discountValue: Double) -> Double {
+        // تفترض أن قيمة الخصم كنسبة مئوية (على سبيل المثال: 20 تعني 20% خصم)
+        return totalPrice * (discountValue / 100.0)
     }
         
         func isDiscountCodeUsed(_ code: String) -> Bool {

@@ -296,6 +296,40 @@ class NetworkManager {
         }
     }
     
+
+    func setDefaultAddress(customerID: Int, addressID: Int, completion: @escaping (Bool) -> Void) {
+        let url = "\(Constants.baseUrl)customers/\(customerID)/addresses/\(addressID).json"
+        
+        guard let encodedCredentials = "\(Constants.api_key):\(Constants.password)".data(using: .utf8)?.base64EncodedString() else {
+            print("Failed to encode credentials")
+            completion(false)
+            return
+        }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Basic \(encodedCredentials)",
+            "Content-Type": "application/json"
+        ]
+        
+        let parameters: [String: Any] = [
+            "address": [
+                "default": true
+            ]
+        ]
+        
+        AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .success:
+                    completion(true)
+                case .failure(let error):
+                    print("Error: \(error)")
+                    completion(false)
+                }
+            }
+    }
+
     static func removeLineItemFromDraftOrder(draftOrderId: Int, productTitle: String, completion: @escaping (Int) -> Void) {
         let urlString = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
         
@@ -345,6 +379,7 @@ class NetworkManager {
             }
         }
     }
+
 
 
 }

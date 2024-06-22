@@ -83,7 +83,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func drawAdsSection ()-> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .absolute(230))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .absolute(210))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 8 )
         let section = NSCollectionLayoutSection(group: group)
@@ -140,7 +140,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if indexPath.section==0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdsCell", for: indexPath) as! AdsCollectionViewCell
-            cell.view.layer.cornerRadius = 25.0
+            //cell.view.layer.cornerRadius = 25.0
             //cell.view.backgroundColor = UIColor.brown
             let discountCode = discountCodes[indexPath.row]
             cell.valueLabel?.text = "\(discountCode.value)% OFF"
@@ -162,23 +162,29 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
-            return
+        if indexPath.section == 0 {
+            let selectedCode = discountCodes[indexPath.row].code
+            saveSelectedDiscountCode(selectedCode)
+            self.view.makeToast("Promocode \(selectedCode) Saved ")
+
+        }else{
+            
+            guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {
+                return
+            }
+            
+            let allProductsViewModel = AllProductsViewModel()
+            
+            allProductsViewModel.query = "collection_id"
+            allProductsViewModel.queryValue = "\(brands[indexPath.row].id ?? 0)"
+            allProductsViewModel.brandName = brands[indexPath.row].title ?? ""
+            allProductsViewModel.brandImage = brands[indexPath.row].image?.src ?? ""
+            
+            
+            allProductsViewController.allProductsViewModel = allProductsViewModel
+            allProductsViewController.modalPresentationStyle = .fullScreen
+            present(allProductsViewController, animated: true )
         }
-        
-        let allProductsViewModel = AllProductsViewModel()
-        
-        allProductsViewModel.query = "collection_id"
-        allProductsViewModel.queryValue = "\(brands[indexPath.row].id ?? 0)"
-        allProductsViewModel.brandName = brands[indexPath.row].title ?? ""
-        allProductsViewModel.brandImage = brands[indexPath.row].image?.src ?? ""
-        
-        
-        allProductsViewController.allProductsViewModel = allProductsViewModel
-        allProductsViewController.modalPresentationStyle = .fullScreen
-        present(allProductsViewController, animated: true )
-        
         
     }
     func fetchDiscountCodes() {
