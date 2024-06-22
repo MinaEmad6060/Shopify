@@ -10,6 +10,7 @@ class SearchViewModel{
      
     var products: [Product] = []
        var filteredProducts: [Product] = []
+    var bindFilteredProductsToViewController: (() -> ())!
 
        /*func getAllProduct() {
            let url = NetworkManager().formatUrl(request: "products")
@@ -30,18 +31,17 @@ class SearchViewModel{
                    if let products = brandProduct.products {
                        self.products = products
                        self.filteredProducts = products
-                       DispatchQueue.main.async {
-                         //  print("Search list: \(products)")
-                   
-                       }
-                                      } else {
-                                          print("No products found")
-                                      }
-                                  case .failure(let error):
-                                      print("Failed to fetch products: \(error.localizedDescription)")
-                                  }
-                              }
-                          }
+                       print("VM :: \(self.filteredProducts.count)")
+                       self.bindFilteredProductsToViewController?()
+                  } else {
+                      print("No products found")
+                  }
+              case .failure(let error):
+                  print("Failed to fetch products: \(error.localizedDescription)")
+              }
+          }
+        
+      }
 
        func searchProducts(for searchText: String) {
            filteredProducts = searchText.isEmpty ? products : products.filter { $0.title?.range(of: searchText, options: .caseInsensitive) != nil }
