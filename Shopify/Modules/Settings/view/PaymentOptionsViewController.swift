@@ -8,15 +8,7 @@
 import UIKit
 import PassKit
 class PaymentOptionsViewController: UIViewController {
-    @IBAction func testBtn(_ sender: Any) {
-        print("kotbb")
-    }
-    @IBAction func barAction(_ sender: Any) {
-        self.testLB.text = "Women"
-    }
-    @IBOutlet weak var testLB: UILabel!
-    @IBOutlet weak var bar: UIBarButtonItem!
-    @IBOutlet weak var test: UIView!
+    
     @IBOutlet weak var cashTitleView: UIView!
     @IBOutlet weak var onlineTitleView: UIView!
     @IBOutlet weak var cashPaymentMV: UIView!
@@ -81,9 +73,7 @@ class PaymentOptionsViewController: UIViewController {
         
     }
     
-    @objc func barButtonItemTapped() {
-        print("Kotbbbb")
-    }
+    
     /*
      // MARK: - Navigation
      

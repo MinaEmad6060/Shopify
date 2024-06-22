@@ -86,7 +86,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="G6K-nd-o3Y" firstAttribute="leading" secondItem="Eqw-nS-mXo" secondAttribute="leading" id="4q3-X2-HGz"/>
-                    <constraint firstItem="oj0-UQ-eAl" firstAttribute="firstBaseline" secondItem="Eqw-nS-mXo" secondAttribute="baseline" constant="8.6666666666666661" symbolType="layoutAnchor" id="6me-Sc-D72"/>
+                    <constraint firstItem="oj0-UQ-eAl" firstAttribute="firstBaseline" secondItem="Eqw-nS-mXo" secondAttribute="baseline" constant="10" symbolType="layoutAnchor" id="6me-Sc-D72"/>
                     <constraint firstItem="oj0-UQ-eAl" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="8ja-S6-5VJ"/>
                     <constraint firstItem="DlO-JV-Fth" firstAttribute="firstBaseline" secondItem="oj0-UQ-eAl" secondAttribute="baseline" constant="8" id="DQv-Gw-yuc"/>
                     <constraint firstItem="Eqw-nS-mXo" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.918103" id="Eqg-Mm-vtp"/>
@@ -113,7 +113,7 @@
                 <outlet property="increment" destination="iFU-7O-PSr" id="LhK-ZS-q31"/>
                 <outlet property="totalAmount" destination="p9C-1u-U8Q" id="Dym-ej-45O"/>
             </connections>
-            <point key="canvasLocation" x="-615.26717557251902" y="20.422535211267608"/>
+            <point key="canvasLocation" x="-615.26717557251902" y="20.070422535211268"/>
         </tableViewCell>
     </objects>
 </document>
