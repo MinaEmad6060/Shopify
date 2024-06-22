@@ -41,16 +41,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         }
     }
     
-    @IBAction func proceddToCheckout(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
-        if let paymentOptionsVC = storyboard.instantiateViewController(withIdentifier: "PaymentOptionsVC") as? PaymentOptionsViewController {
-            paymentOptionsVC.lineItems = self.lineItems
-            paymentOptionsVC.subTotal = self.subTotal
-            paymentOptionsVC.modalPresentationStyle = .fullScreen
-            self.present(paymentOptionsVC, animated: true, completion: nil)
-        }
-    }
-    
+   
     func fetchDraftOrderItems() {
         let draftOrderId = 967593820331
         NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
@@ -78,7 +69,20 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         let lineItem = lineItems[indexPath.row]
         cell.cartItem.text = lineItem.name
         cell.totalAmount.text = "\(lineItem.quantity)"
-        cell.cartPrice.text = "\(lineItem.quantity * Int(lineItem.price)! )test"
+        print("\(lineItem.quantity)testtt")
+        print(lineItem.price)
+        
+        let quantity = lineItem.quantity // Assuming this is an Int or Double
+        let price = lineItem.price // Assuming this is a String
+
+        if let priceDouble = Double(price) {
+            let totalPrice = Double(quantity) * priceDouble
+            print("Total price for \(quantity) items: \(totalPrice)")
+            cell.cartPrice.text = "\(totalPrice)"
+        } else {
+            print("Invalid price format")
+        }
+        //cell.cartPrice.text = "\(lineItem.quantity * Int(lineItem.price)! )test"
         
         cell.incrementAction = { [weak self] in
             self?.updateQuantity(for: lineItem.id ?? 0, increment: true)
