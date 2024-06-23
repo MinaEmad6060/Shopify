@@ -18,7 +18,7 @@ struct BrandProductViewData: Decodable{
     var name: String?
     var sizes: [String] = []
     var colors: [String] = []
-    
+    var variants: [Int] = []
     
 }
 

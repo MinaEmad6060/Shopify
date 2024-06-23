@@ -229,7 +229,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ColorsCollectionViewCell
                    if let color = productInfoViewModel?.product?.colors[indexPath.row] {
                        cell.colorLB.text = color
-                       cell.backgroundColor = (indexPath == selectedColorIndexPath) ? .systemBrown : .lightGray
+                       cell.contentView.backgroundColor = (indexPath == selectedColorIndexPath) ? .systemBrown : .lightGray
                    }
                    return cell
                }
@@ -246,6 +246,10 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
            }
            print("selectedSize:...:\(selectedSize)")
            print("selectedColor:...:\(selectedColor)")
+           productInfoViewModel?.product?.sizes[0] = selectedSize ?? ""
+           productInfoViewModel?.product?.colors[0] = selectedColor ?? ""
+           
+        
            collectionView.reloadData()  // This will refresh the collection view to update the cell background color
        }
 
