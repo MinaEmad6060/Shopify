@@ -20,6 +20,10 @@ class Constants{
     
     static var displayedLineItems: [LineItem]?
     
+    static var cartId: Int?
+    static var favId: Int?
+    static var customerId: Int?
+    
     static var categoryFilteredItems: [BrandProductViewData]?
     
     static func setSelectedCategory(category: String){

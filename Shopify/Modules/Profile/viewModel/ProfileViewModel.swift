@@ -27,13 +27,14 @@ class ProfileViewModel: ProfileViewModelProtocol{
     
     
     func getOrdersFromNetworkService() {
-        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders", query: "customer_id", value: "7435246534827")){[weak self] (complectedOrders: ComplectedOrder) in
+        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders", query: "customer_id", value: "7453046046891")){[weak self] (complectedOrders: ComplectedOrder) in
                 self?.ordersViewData = [OrderViewData]()
                 for i in 0..<(complectedOrders.orders?.count ?? 0){
                     var order = OrderViewData()
                     order.id = complectedOrders.orders?[i].id
                     order.created_at = complectedOrders.orders?[i].created_at
                     order.first_name = complectedOrders.orders?[i].customer?.first_name
+                    order.total_price = complectedOrders.orders?[i].current_subtotal_price
                     for j in 0..<(complectedOrders.orders?[i].line_items?.count ?? 0){
                         order.amount = complectedOrders.orders?[i].line_items?[j].price_set?.shop_money?.amount
                         order.currency_code = complectedOrders.orders?[i].line_items?[j].price_set?.shop_money?.currency_code

@@ -59,8 +59,10 @@ class SignUpNetworkService {
                             print("customer.id: \(newCustomer.id ?? 0)")
                             print("customer.email: \(newCustomer.email ?? "")")
                             
-                            UserDefaults.standard.set(newCustomer.id, forKey: "userID")
-                            UserDefaults.standard.set(newCustomer.email, forKey: "userEmail")
+                            Constants.customerId = newCustomer.id
+                            
+//                            UserDefaults.standard.set(newCustomer.id, forKey: "userID")
+//                            UserDefaults.standard.set(newCustomer.email, forKey: "userEmail")
                             
                             complication(httpResponse.statusCode)
                         } catch let decodeError {

@@ -13,4 +13,5 @@ protocol HomeViewModelProtocol{
     var fetchDataFromApi: FetchDataFromApi! { get }
     var bindBrandsToViewController : (()->())! { get set}
     func getBrandsFromNetworkService()
+    func getCurrentCustomer() 
 }

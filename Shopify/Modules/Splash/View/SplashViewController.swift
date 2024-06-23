@@ -8,22 +8,25 @@
 import UIKit
 
 class SplashViewController: UIViewController {
-
+    var customerID: Int?
+    var customerEmail : String?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        customerID = Utilites.getCustomerID()
+        customerEmail = Utilites.getCustomerEmail()
+        //HomeVC
+        if let id = customerID, id == 0  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.performSegue(withIdentifier: "WVC", sender: nil)
+                    }
+        }else{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.performSegue(withIdentifier: "HomeVC", sender: nil)
+            }
+        }
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }

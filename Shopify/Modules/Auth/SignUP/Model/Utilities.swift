@@ -33,5 +33,13 @@ class Utilites{
     static  func getCustomerEmail() -> String{
         return UserDefaults.standard.string(forKey: "userEmail") ?? "Guest"
     }
-        
+    static  func getDraftOrderIDFavoriteFromNote() -> Int {
+        return UserDefaults.standard.integer(forKey: "favIDNet")
+    }
+    static  func getDraftOrderIDCartFromNote() -> Int {
+        return UserDefaults.standard.integer(forKey: "cartIDNet")
+    }
+    static  func getCustomerName() -> String {
+        return UserDefaults.standard.string(forKey: "fname") ?? "non"
+    }
 }

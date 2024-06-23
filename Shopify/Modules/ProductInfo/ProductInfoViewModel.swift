@@ -29,7 +29,7 @@ class ProdutInfoViewModel {
                     print("Cart draft order ID is not available")
                     return
                 }
-        NetworkManager.updateDraftOrder(draftOrderId: draftOrderIDCart, product: product) { statusCode in
+        NetworkManager.updateDraftOrder(draftOrderId: 968256815275, product: product) { statusCode in
             if statusCode == 200 {
                 print("Draft order updated successfully")
             } else {
@@ -41,7 +41,7 @@ class ProdutInfoViewModel {
                     print("Cart draft order ID is not available")
                     return
                 }
-        NetworkManager.updateDraftOrder(draftOrderId: draftOrderIDFavorite , product: product) { statusCode in
+        NetworkManager.updateDraftOrder(draftOrderId: 968256782507 , product: product) { statusCode in
             if statusCode == 200 {
                 print("Draft order updated successfully")
             } else {
@@ -49,36 +49,74 @@ class ProdutInfoViewModel {
             }
         }}
       
-        func getCurrentCustomer() {
-            NetworkManager.getCustomer(customerID: customerId) { customer in
-               
-                print("Customer ID****: \(customer?.id)")
-                print("Customer note****: \(customer?.note)")
+//         func getCurrentCustomer() {
+//            NetworkManager.getCustomer(customerID: customerId) { customer in
+//               
+//                print("Customer ID****: \(customer?.id)")
+//                print("Customer note****: \(customer?.note)")
+//                let fname = customer?.first_name
+//                print("FirstName: \(fname)")
+//                UserDefaults.standard.set(fname, forKey: "fname")
+//                if let note = customer?.note {
+//                    
+//                    let components = note.split(separator: ",")
+//                    
+//                    if components.count == 2,
+//                       let firstID = Int(components[0]),
+//                       let secondID = Int(components[1]) {
+//                        print("First ID: \(firstID)")
+//                        print("Second ID: \(secondID)")
+//                        self.draftOrderIDFavorite = firstID
+//                        self.draftOrderIDCart = secondID
+//                        UserDefaults.standard.set(self.draftOrderIDFavorite, forKey: "favIDNet")
+//                        UserDefaults.standard.set(self.draftOrderIDCart, forKey: "cartIDNet")
+//                       let result = UserDefaults.standard.integer(forKey: "favIDNet")
+//                        UserDefaults.standard.integer(forKey: "cartIDNet")
+//                        print("favID afteter Net: \(result)")
+//                    } else {
+//                        print("Note does not contain two valid IDs")
+//                    }
+//                } else {
+//                    print("Customer note is nil or does not contain valid IDs")
+//                }
+//                
+//               
+//            }
+//        }
+    func getCurrentCustomer() {
+        let email = Utilites.getCustomerEmail()
+        NetworkManager.getCustomer(email: email) { customer in
+            
+            print("Customer ID****: \(customer?.id)")
+            print("Customer note****: \(customer?.note)")
+            let fname = customer?.first_name
+            print("FirstName: \(fname)")
+            UserDefaults.standard.set(fname, forKey: "fname")
+            let userID = customer?.id
+            print("userID: \(userID)")
+            UserDefaults.standard.set(userID, forKey: "userID")
+            if let note = customer?.note {
                 
-                if let note = customer?.note {
-                    
-                    let components = note.split(separator: ",")
-                    
-                    if components.count == 2,
-                       let firstID = Int(components[0]),
-                       let secondID = Int(components[1]) {
-                        print("First ID: \(firstID)")
-                        print("Second ID: \(secondID)")
-                        self.draftOrderIDFavorite = firstID
-                        self.draftOrderIDCart = secondID
-                        UserDefaults.standard.set(self.draftOrderIDFavorite, forKey: "favIDNet")
-                       let result = UserDefaults.standard.integer(forKey: "favIDNet")
-                        print("favID afteter Net: \(result)")
-                    } else {
-                        print("Note does not contain two valid IDs")
-                    }
+                let components = note.split(separator: ",")
+                
+                if components.count == 2,
+                   let firstID = Int(components[0]),
+                   let secondID = Int(components[1]) {
+                    print("First ID: \(firstID)")
+                    print("Second ID: \(secondID)")
+                    UserDefaults.standard.set(firstID, forKey: "favIDNet")
+                    UserDefaults.standard.set(secondID, forKey: "cartIDNet")
+                    let result = UserDefaults.standard.integer(forKey: "favIDNet")
+                    UserDefaults.standard.integer(forKey: "cartIDNet")
+                    print("favID afteter Net: \(result)")
                 } else {
-                    print("Customer note is nil or does not contain valid IDs")
+                    print("Note does not contain two valid IDs")
                 }
-                
-               
+            } else {
+                print("Customer note is nil or does not contain valid IDs")
             }
         }
+    }
     func removeProductFromDraftOrder(productTitle: String) {
         guard let draftOrderIDFavorite = draftOrderIDFavorite else {
             print("Cart draft order ID is not available")

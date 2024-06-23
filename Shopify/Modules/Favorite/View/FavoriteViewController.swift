@@ -59,13 +59,8 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
         
         let lineItem = viewModel.displayedLineItems[indexPath.item]
         
-        let imageString = lineItem.sku ?? ""
-           let components = imageString.components(separatedBy: ",")
-           if components.count == 2 {
-               let productID = components[0]
-               let imageURL = components[1]
-            
-               
+        let imageString = lineItem.properties?[2].value ?? ""
+
                let productName = lineItem.title
                cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
                
@@ -73,7 +68,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
                cell.categoryItemPrice.text = lineItem.price
                cell.categoryItemCurrency.text = "$"
                
-               if let url = URL(string: imageURL) {
+               if let url = URL(string: imageString) {
                    cell.categoryItemImage.kf.setImage(with: url)
                }
                cell.btnFavCategoryItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
@@ -87,7 +82,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
                             
                           
                       }
-           }
+          
         
         
         return cell

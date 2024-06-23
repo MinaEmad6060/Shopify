@@ -49,7 +49,7 @@ class FetchDataFromApi{
             ]
             
             let customer: [String: Any] = [
-                "id": UserDefaults.standard.integer(forKey: "userID"),
+                "id": Constants.customerId ?? 0,
                 "default_address": ["default": true]
             ]
             
@@ -88,11 +88,14 @@ class FetchDataFromApi{
                         if let draftOrderId = draftResponse.draftOrder?.id {
                             print("Draft Order ID: \(draftOrderId)")
                             
-                           
+                            
                             if note == "cart" {
-                                UserDefaults.standard.set(draftOrderId, forKey: "draftOrderIDCart")
+                                Constants.cartId = draftOrderId
+//                                UserDefaults.standard.set(draftOrderId, forKey: "draftOrderIDCart")
                             } else if note == "favorite" {
-                                UserDefaults.standard.set(draftOrderId, forKey: "draftOrderIDFavorite")
+                                Constants.favId = draftOrderId
+
+//                                UserDefaults.standard.set(draftOrderId, forKey: "draftOrderIDFavorite")
                             }
                         } else {
                             print("Draft Order ID not found")
@@ -111,7 +114,7 @@ class FetchDataFromApi{
         }
     
 
-    static func postOrder(lineItems: [OrderLineItem]){
+    static func postOrder(lineItems: [LineItemm], customer: [String: Any]){
         let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/orders.json"
         let accessToken = "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"
 
@@ -119,20 +122,21 @@ class FetchDataFromApi{
             "Content-Type": "application/json",
             "X-Shopify-Access-Token": accessToken
         ]
-        
-        let customer: [String: Any] = [
-                "id": 7435246534827,
-                "currency": "EGP"
-            ]
+        print("Post Order")
+
+//        let customer: [String: Any] = [
+//                "id": 7435246534827,
+//                "currency": "EGP"
+//            ]
         
         let order: [String: Any] = [
                 "customer": customer,
                 "line_items": lineItems.map { try! JSONSerialization.jsonObject(with: JSONEncoder().encode($0), options: []) }
             ]
             
-            let parameters: [String: Any] = [
-                "order": order
-            ]
+        let parameters: [String: Any] = [
+            "order": order
+        ]
         
 //        let parameters: [String: Any] = [
 //            "order": [
@@ -158,7 +162,7 @@ class FetchDataFromApi{
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable(of: Order.self) { response in
             switch response.result {
             case .success(let orderResponse):
-                print("Order Response: \(orderResponse)")
+                print("Post Order Succeeded: \(orderResponse)")
             case .failure(let error):
                 print("Error: \(error)")
             }

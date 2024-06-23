@@ -98,6 +98,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
             }
 
             let productInfoViewModel = ProdutInfoViewModel(product: product)
+        print("Product :::::::: \(product.id ?? -1)")
             productInfoVC.productInfoViewModel = productInfoViewModel
 
             productInfoVC.modalPresentationStyle = .fullScreen

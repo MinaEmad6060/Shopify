@@ -26,20 +26,20 @@ class SignUpViewController: UIViewController {
       
         signUpViewModel = SignUpViewModel()
      // printStoredUserInfo()
-        signUpViewModel?.bindingSignUp = {
-                    DispatchQueue.main.async {
-                        self.handleSignUpResponse()
-                        
-                    }
-                }
-        let draftOrderIDCart = Utilites.getDraftOrderIDCart()
-        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
-        let customerId = Utilites.getCustomerID()
-        let customerEmail = Utilites.getCustomerEmail()
-        print("Draft Order ID for Cart: \(draftOrderIDCart)")
-        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
-        print("Customer id: \(customerId)")
-        print("customer mail: \(customerEmail)")
+//        signUpViewModel?.bindingSignUp = {
+//                    DispatchQueue.main.async {
+//                        self.handleSignUpResponse()
+//                        
+//                    }
+//                }
+//        let draftOrderIDCart = Utilites.getDraftOrderIDCart()
+//        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
+//        let customerId = Utilites.getCustomerID()
+//        let customerEmail = Utilites.getCustomerEmail()
+//        print("Draft Order ID for Cart: \(draftOrderIDCart)")
+//        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
+//        print("Customer id: \(customerId)")
+//        print("customer mail: \(customerEmail)")
     }
     
 
@@ -88,6 +88,7 @@ class SignUpViewController: UIViewController {
                 if self?.signUpViewModel?.ObservableSignUp  == 201{
                     self?.createFirebaseAccount()
                     self?.handleSignUpResponse()
+                    
                 }
                 else{
                     Utilites.displayToast(message: "This email was used before", seconds: 2.0, controller: self ?? UIViewController())
@@ -119,21 +120,26 @@ class SignUpViewController: UIViewController {
         if (200...299).contains(statusCode) {
         
 
-            if let userID = UserDefaults.standard.object(forKey: "userID") as? Int,
-               let userEmail = UserDefaults.standard.object(forKey: "userEmail") as? String {
-                print("UserDefaults - userID: \(userID), userEmail: \(userEmail)")
-               
+//            if let userID = UserDefaults.standard.object(forKey: "userID") as? Int,
+//               let userEmail = UserDefaults.standard.object(forKey: "userEmail") as? String {
+//                print("UserDefaults - userID: \(userID), userEmail: \(userEmail)")
+//               
                 createDraftOrder(for: customer, note: "favorite")
         
                 createDraftOrder(for: customer, note: "cart")
+        print("Constants.customerId ::::::: \(Constants.customerId ?? -1)")
+        
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    print("self.UpdateCustomerNote()")
+                    self.UpdateCustomerNote()
+                }
                 
-             
-                        
                 
-            } else {
-                print("UserDefaults data not found")
-                Utilites.displayToast(message: "Failed to save user data", seconds: 2.0, controller: self)
-            }
+                
+//            } else {
+//                print("UserDefaults data not found")
+//                Utilites.displayToast(message: "Failed to save user data", seconds: 2.0, controller: self)
+//            }
         } else {
             DispatchQueue.main.async {
                 Utilites.displayToast(message: "Failed to add customer", seconds: 2.0, controller: self)
@@ -211,4 +217,26 @@ extension SignUpViewController{
         }
     }
     
+    
+    func UpdateCustomerNote(){
+        let newNote = "\(Constants.favId ?? 0),\(Constants.cartId ?? 0)"
+        NetworkManager.updateCustomerNote(customerId: Constants.customerId ?? 0, newNote: newNote) { statusCode in
+            DispatchQueue.main.async {
+                if statusCode == 200 {
+                    
+                    print("Customer note updated successfully.")
+                    
+                    if let draftOrderIDCart = Constants.cartId {
+                        print("Draft Order ID for Cart: \(draftOrderIDCart)")
+                    }
+                    if let draftOrderIDFavorite = Constants.favId {
+                        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
+                    }
+                } else {
+                    
+                    print("Failed to update customer note. Status code: \(statusCode)")
+                }
+            }
+        }
+    }
 }

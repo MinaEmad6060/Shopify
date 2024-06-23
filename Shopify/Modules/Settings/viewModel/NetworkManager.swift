@@ -108,14 +108,22 @@ class NetworkManager {
         }
     static func updateDraftOrder(draftOrderId: Int,product: BrandProductViewData, complication: @escaping (Int) -> Void) {
         let urlString = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/draft_orders/\(draftOrderId).json"
-        
+        let propertiesArray: [Properties] = [
+            Properties(name: "Size", value: product.sizes[0]),
+            Properties(name: "Color", value: product.colors[0]),
+            Properties(name: "Image", value: product.src[0])
+           ]
+        print("*******************************")
+           print("Product ID after updat: \(product.id ?? 0)")
+        print("Variant ID after update: \(product.variants[0] ?? 0)")
+        print("*******************************")
         let newLineItem = LineItem(
             id: nil,
-            variantID:nil,
-            productID: product.id ?? 0,
+            variantID:product.variants[0],
+            productID: product.id,
             title: product.title,
             variantTitle: nil,
-            sku: "\(product.id ?? 0),\(product.src[0] ?? "")",
+            //sku: "\(product.id ?? 0),\(product.src[0] ?? "")",
             vendor: nil,
             quantity: 2,
             requiresShipping: nil,
@@ -127,7 +135,8 @@ class NetworkManager {
             name: nil,
             custom: nil,
             price: product.price,
-            image: product.src[0]
+            image: product.src[0],
+            properties: propertiesArray
         )
         
         AF.request(urlString).responseDecodable(of: Drafts.self) { response in
@@ -166,9 +175,13 @@ class NetworkManager {
             }
         }
     }
-    static func getCustomer(customerID: Int, completion: @escaping (Customer?) -> Void) {
-            let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/\(customerID).json"
+    static func getCustomer(email: String, completion: @escaping (Customer?) -> Void) {
+//            let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/\(customerID).json"
             
+        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/customers/search.json?query=email:\(email)"
+        
+        print("url ::::: \(url)")
+        
             guard let encodedCredentials = "\(Constants.api_key):\(Constants.password)".data(using: .utf8)?.base64EncodedString() else {
                 print("Failed to encode credentials")
                 completion(nil)
@@ -180,10 +193,11 @@ class NetworkManager {
                 "Content-Type": "application/json"
             ]
             
-            AF.request(url, headers: headers).responseDecodable(of: CustomerResponse.self) { response in
+            AF.request(url, headers: headers).responseDecodable(of: LoginedCustomers.self) { response in
                 switch response.result {
                 case .success(let result):
-                    completion(result.customer)
+                    completion(result.customers.first)
+                    print("Success fetching customer ::::::: \(response)")
                 case .failure(let error):
                     print("Error fetching customer: \(error.localizedDescription)")
                     completion(nil)
@@ -243,7 +257,7 @@ class NetworkManager {
             [
                 "id": $0.id,
                 "quantity": $0.quantity,
-                "title": $0.name,
+                "title": $0.title,
                 "price": $0.price,
                 "variant_id": $0.variant_id as Any,
                 "variant_title": $0.variant_title as Any

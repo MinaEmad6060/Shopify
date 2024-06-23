@@ -17,6 +17,7 @@ struct Order: Decodable{
     var id: UInt64?
     var customer: Customer?
     var created_at: String?
+    var current_subtotal_price: String?
     var line_items: [OrderProduct]?
 }
 
@@ -42,9 +43,9 @@ struct ShopPrice: Decodable{
     var currency_code: String?
 }
 
-struct OrderLineItem: Codable {
-    let title: String
-    let price: Double
-    let quantity: Int
-}
+//struct OrderLineItem: Codable {
+//    let title: String
+//    let price: Double
+//    let quantity: Int
+//}
 

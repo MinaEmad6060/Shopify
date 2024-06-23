@@ -19,6 +19,9 @@ struct BrandProductViewData: Decodable{
     var sizes: [String] = []
     var colors: [String] = []
 
+    var variants: [Int] = []
+    
+
 }
 
 class AllProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -54,6 +57,13 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Utilites.getCustomerID()
+     let cart =   Utilites.getDraftOrderIDCartFromNote()
+       let fav = Utilites.getDraftOrderIDFavoriteFromNote()
+      let customerName =  Utilites.getCustomerName()
+        print("customerName\(customerName)")
+        print("favorite\(fav)")
+        print("cart: \(cart)")
         sliderOutlet.minimumValue = 0
         sliderOutlet.maximumValue = 200
         sliderOutlet.value = 200
