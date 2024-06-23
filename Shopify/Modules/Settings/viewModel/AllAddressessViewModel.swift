@@ -18,7 +18,7 @@ class AllAddressesViewModel {
     var addresses: [AddressId] = []
 
     func getAllAddress(customerId: Int) {
-        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/customers/\(customerId)/addresses.json"
+        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/customers/7445466022059/addresses.json"
         
         NetworkManager.getDataFromApi(url: url) { (result: AddressResponse) in
             self.addresses = result.addresses
