@@ -29,6 +29,7 @@ class PlaceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(self.lineItems)
         // Do any additional setup after loading the view.
         self.subTotalLabel.text = "\(self.subTotal)EGP"
         self.discountAmountLabel.text = "-0.EGP"
