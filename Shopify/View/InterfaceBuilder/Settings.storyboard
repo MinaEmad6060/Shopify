@@ -142,11 +142,57 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="re6-Z7-r8d" id="fsk-WN-ULN">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2q-ox-cRF">
+                                                    <rect key="frame" x="13" y="0.0" width="366" height="125"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Egypt, Alexandria" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWQ-DK-VYS">
+                                                            <rect key="frame" x="146" y="15" width="220" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.2261656225" green="0.15760856870000001" blue="0.088131122290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Street1 borg alzohour" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0Y-7o-tpw">
+                                                            <rect key="frame" x="146" y="63" width="233" height="40"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.2261656225" green="0.15760856870000001" blue="0.088131122290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="g9i-eI-QJx">
+                                                            <rect key="frame" x="14" y="15" width="116" height="88"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="tintColor" red="0.83656048770000002" green="0.77325910330000003" blue="0.69793713089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01225587820" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OI4-ns-bzw">
+                                                            <rect key="frame" x="146" y="43" width="108" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.2261656225" green="0.15760856870000001" blue="0.088131122290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ea8-T3-fiP">
+                                                            <rect key="frame" x="321" y="6" width="52" height="39"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="tintColor" red="0.2261656225" green="0.15760856870000001" blue="0.088131122290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="location" catalog="system" title=""/>
+                                                            <connections>
+                                                                <action selector="defaultAddressBtn:" destination="re6-Z7-r8d" eventType="touchUpInside" id="B31-4j-WI9"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.89519232510000002" green="0.8623902202" blue="0.82152146100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addressLabel" destination="C0Y-7o-tpw" id="YZ4-wf-xOo"/>
                                             <outlet property="cellView" destination="e2q-ox-cRF" id="RCf-mw-Hwc"/>
                                             <outlet property="cityLabel" destination="MWQ-DK-VYS" id="nhk-VX-zVs"/>
+                                            <outlet property="defaultBtn" destination="ea8-T3-fiP" id="1uF-7J-cvs"/>
                                             <outlet property="phoneLabel" destination="OI4-ns-bzw" id="OWm-ap-9tJ"/>
                                         </connections>
                                     </tableViewCell>
@@ -165,43 +211,6 @@
                                     <segue destination="3md-hk-ltS" kind="show" id="TDP-13-ykx"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2q-ox-cRF">
-                                <rect key="frame" x="13" y="154" width="366" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Egypt, Alexandria" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWQ-DK-VYS">
-                                        <rect key="frame" x="146" y="15" width="220" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.2261656225" green="0.15760856870000001" blue="0.088131122290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Street1 borg alzohour" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0Y-7o-tpw">
-                                        <rect key="frame" x="146" y="63" width="233" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.2261656225" green="0.15760856870000001" blue="0.088131122290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="g9i-eI-QJx">
-                                        <rect key="frame" x="14" y="15" width="116" height="88"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" red="0.83656048770000002" green="0.77325910330000003" blue="0.69793713089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01225587820" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OI4-ns-bzw">
-                                        <rect key="frame" x="146" y="43" width="108" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.2261656225" green="0.15760856870000001" blue="0.088131122290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XLS-Jx-ygl">
-                                        <rect key="frame" x="317" y="8" width="49" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.89519232510000002" green="0.8623902202" blue="0.82152146100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZTK-qk-GGI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -399,6 +408,7 @@
         <image name="arrow.uturn.backward.circle" catalog="system" width="128" height="123"/>
         <image name="chevron.backward.circle.fill" catalog="system" width="128" height="123"/>
         <image name="dollarsign.arrow.circlepath" catalog="system" width="128" height="112"/>
+        <image name="location" catalog="system" width="128" height="119"/>
         <image name="location.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
