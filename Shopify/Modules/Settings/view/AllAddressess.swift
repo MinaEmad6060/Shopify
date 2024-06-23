@@ -30,11 +30,12 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         
     }
-    
+    /*
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
+     */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allAddressesViewModel?.addresses.count ?? 0
     }
@@ -42,7 +43,7 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AllAddressessTableViewCell
         
-        cell.cityLabel.text = "\(allAddressesViewModel?.addresses[indexPath.row].country ?? "Country"), \(allAddressesViewModel?.addresses[indexPath.row].city ?? "City")"
+        cell.cityLabel.text = "\(allAddressesViewModel?.addresses[indexPath.row].country_name ?? "Country"), \(allAddressesViewModel?.addresses[indexPath.row].city ?? "City")"
         
         cell.phoneLabel.text = allAddressesViewModel?.addresses[indexPath.row].phone
         
@@ -50,6 +51,16 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         cell.cellView.layer.cornerRadius = 25.0
         
+        cell.setDefault = { [weak self] in
+            guard let addressId = self?.allAddressesViewModel?.addresses[indexPath.row].id else { return }
+            NetworkManager.setDefaultAddress(customerID: 7445466022059, addressID: addressId) { success in
+                    if success {
+                        print("Address set as default successfully")
+                    } else {
+                        print("Failed to set address as default")
+                    }
+                }
+        }
         
         return cell
         
@@ -60,11 +71,12 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let addressId = allAddressesViewModel?.addresses[indexPath.row].id else { return }
-            NetworkManager.deleteCustomerAddress(customerId: 7423232082091, addressId: addressId) { [weak self] success in
+            NetworkManager.deleteCustomerAddress(customerId: 7445466022059, addressId: addressId) { [weak self] success in
                 if success {
                     self?.allAddressesViewModel?.addresses.remove(at: indexPath.row)
                     DispatchQueue.main.async {
-                        tableView.deleteRows(at: [indexPath], with: .fade)
+                        //tableView.deleteRows(at: [indexPath], with: .fade)
+                        tableView.reloadData()
                     }
                 } else {
                     // Handle the error appropriately (e.g., show an alert to the user)
