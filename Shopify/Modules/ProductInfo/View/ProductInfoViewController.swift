@@ -10,19 +10,20 @@ import ImageSlideshow
 import Kingfisher
 
 class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-  
+   
     @IBOutlet weak var favBtn: UIBarButtonItem!
+
     
   
     var productViewData: BrandProductViewData!
     var productInfoViewModel : ProdutInfoViewModel?
     var allProductsViewModel: AllProductsViewModel!
+
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
     
     @IBOutlet weak var tiitleLB: UILabel!
     
     @IBOutlet weak var priceLB: UILabel!
-    
     
 @IBOutlet weak var descTextView: UILabel!
     
@@ -34,6 +35,11 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
 @IBOutlet weak var sizeCollectionView: UICollectionView!
     
     @IBOutlet weak var colorCollectionView: UICollectionView!
+    var productInfoViewModel : ProdutInfoViewModel?
+    var selectedSizeIndexPath: IndexPath?
+       var selectedColorIndexPath: IndexPath?
+       var selectedSize: String?
+       var selectedColor: String?
     var productId :Int?
     var productId2 :Int?
     var productTitle :String?
@@ -41,8 +47,13 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        print("selectedSize:...:\(selectedSize)")
+        print("selectedColor:...:\(selectedColor)")
+
         productViewData = BrandProductViewData()
         allProductsViewModel = AllProductsViewModel()
+
         sizeCollectionView.dataSource = self
         sizeCollectionView.delegate = self
         colorCollectionView.dataSource = self
@@ -193,18 +204,10 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
 }
 
    extension ProductInfoViewController: ImageSlideshowDelegate {
-       func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
+       /*func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
            print("current page:", page)
        }
-//       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SizeCollectionViewCell
-//           if let size = productInfoViewModel?.product?.options[0].values?[indexPath.item] {
-//                   cell.sizeLB.text = size
-//               print("size ===\(size)")
-//               }
-//               return cell
-//       
-//           }
+
            
        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            if collectionView == sizeCollectionView {
@@ -222,7 +225,45 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
                return cell
            }
            return UICollectionViewCell()
+       }*/
+     
+
+           func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+               if collectionView == sizeCollectionView {
+                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SizeCollectionViewCell
+                   if let size = productInfoViewModel?.product?.sizes[indexPath.row] {
+                       cell.sizeLB.text = size
+                       cell.backgroundColor = (indexPath == selectedSizeIndexPath) ? .systemBrown : .lightGray
+                   }
+                   return cell
+               } else if collectionView == colorCollectionView {
+                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ColorsCollectionViewCell
+                   if let color = productInfoViewModel?.product?.colors[indexPath.row] {
+                       cell.colorLB.text = color
+                       cell.contentView.backgroundColor = (indexPath == selectedColorIndexPath) ? .systemBrown : .lightGray
+                   }
+                   return cell
+               }
+               return UICollectionViewCell()
+           
        }
+       func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+           if collectionView == sizeCollectionView {
+               selectedSizeIndexPath = indexPath
+               selectedSize = productInfoViewModel?.product?.sizes[indexPath.row]
+           } else if collectionView == colorCollectionView {
+               selectedColorIndexPath = indexPath
+               selectedColor = productInfoViewModel?.product?.colors[indexPath.row]
+           }
+           print("selectedSize:...:\(selectedSize)")
+           print("selectedColor:...:\(selectedColor)")
+           productInfoViewModel?.product?.sizes[0] = selectedSize ?? ""
+           productInfoViewModel?.product?.colors[0] = selectedColor ?? ""
+           
+        
+           collectionView.reloadData()  // This will refresh the collection view to update the cell background color
+       }
+
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //           return   productInfoViewModel?.product?.options.first(where: { $0.name == "Size" })?.values?.count ?? 0
            if collectionView == sizeCollectionView {

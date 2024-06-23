@@ -109,14 +109,22 @@ class NetworkManager {
         }
     static func updateDraftOrder(draftOrderId: Int,product: BrandProductViewData, complication: @escaping (Int) -> Void) {
         let urlString = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/draft_orders/\(draftOrderId).json"
-        
+        let propertiesArray: [Properties] = [
+            Properties(name: "Size", value: product.sizes[0]),
+            Properties(name: "Color", value: product.colors[0]),
+            Properties(name: "Image", value: product.src[0])
+           ]
+        print("*******************************")
+           print("Product ID after updat: \(product.id ?? 0)")
+        print("Variant ID after update: \(product.variants[0] ?? 0)")
+        print("*******************************")
         let newLineItem = LineItem(
             id: nil,
-            variantID:nil,
-            productID: product.id ?? 0,
+            variantID:product.variants[0],
+            productID: product.id,
             title: product.title,
             variantTitle: nil,
-            sku: "\(product.id ?? 0),\(product.src[0] ?? "")",
+            //sku: "\(product.id ?? 0),\(product.src[0] ?? "")",
             vendor: nil,
             quantity: 2,
             requiresShipping: nil,
@@ -128,7 +136,8 @@ class NetworkManager {
             name: nil,
             custom: nil,
             price: product.price,
-            image: product.src[0]
+            image: product.src[0],
+            properties: propertiesArray
         )
         
         AF.request(urlString).responseDecodable(of: Drafts.self) { response in
