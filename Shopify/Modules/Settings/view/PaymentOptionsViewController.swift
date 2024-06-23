@@ -8,7 +8,9 @@
 import UIKit
 import PassKit
 class PaymentOptionsViewController: UIViewController {
-    
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var cashTitleView: UIView!
     @IBOutlet weak var onlineTitleView: UIView!
     @IBOutlet weak var cashPaymentMV: UIView!
