@@ -42,9 +42,9 @@ struct ShopPrice: Decodable{
     var currency_code: String?
 }
 
-struct OrderLineItem: Codable {
-    let title: String
-    let price: Double
-    let quantity: Int
-}
+//struct OrderLineItem: Codable {
+//    let title: String
+//    let price: Double
+//    let quantity: Int
+//}
 

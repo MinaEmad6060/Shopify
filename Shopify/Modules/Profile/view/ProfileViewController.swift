@@ -72,17 +72,26 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == ordersTableView{
             if complectedOrders?.count ?? 0 > 2 {
+                noOrders.isHidden = true
                 return 2
+            }else if complectedOrders?.count ?? 0 == 0{
+                noOrders.isHidden = false
+                return 0
             }else{
+                noOrders.isHidden = true
                 return complectedOrders?.count ?? 0
             }
         }else{
             if favouriteViewModel.displayedLineItems.count > 4 {
+                noWishList.isHidden = true
                 return 4
+            }else if favouriteViewModel.displayedLineItems.count == 0{
+                noWishList.isHidden = false
+                return 0
             }else{
+                noWishList.isHidden = true
                 return favouriteViewModel.displayedLineItems.count
             }
-//            return 4
         }
     }
     

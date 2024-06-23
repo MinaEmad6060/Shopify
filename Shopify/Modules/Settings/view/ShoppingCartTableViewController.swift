@@ -67,7 +67,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         }
         
         let lineItem = lineItems[indexPath.row]
-        cell.cartItem.text = lineItem.name
+        cell.cartItem.text = lineItem.title
         cell.totalAmount.text = "\(lineItem.quantity)"
         print("\(lineItem.quantity)testtt")
         print(lineItem.price)

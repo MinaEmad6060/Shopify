@@ -26,6 +26,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var fetchDataFromApi: FetchDataFromApi!
     var discountCodes: [DiscountCode] = []
     
+//    var lineItemsTest: [LineItemm] = []
+//    
+//    let customer: [String: Any] = [
+//        "id": 7423232082091,
+//        "currency": "EGP"
+//    ]
+    
     var homeViewModel: HomeViewModelProtocol!
     var brands: [BrandsViewData]!
     
@@ -44,12 +51,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //            OrderLineItem(title: "PUMA | SUEDE CLASSIC REGAL", price: 110.00, quantity: 1)
 //        ]
 //        FetchDataFromApi.postOrder(lineItems: lineItems)
+        
+//        lineItemsTest = [
+//            LineItemm(id: 8100172660907, title: "SUPRA | MENS VAIDER", quantity: 1, price: "\(169.95)", variant_id: "", variant_title: ""),
+//            LineItemm(id: 8100172595371, title: "PUMA | SUEDE CLASSIC REGAL", quantity: 2, price: "\(110.00)", variant_id: "", variant_title: ""),
+//        ]
+//        FetchDataFromApi.postOrder(lineItems: lineItemsTest, customer: customer)
         fetchDiscountCodes()
-        /*
-         fetchDataFromApi.getSportData(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "smart_collections")){[weak self] (brands: Brand) in
-         self?.brands = brands.smart_collections
-         self?.homeCollectionView.reloadData()
-         */
+       
         
         homeViewModel.getBrandsFromNetworkService()
         homeViewModel.bindBrandsToViewController = {
