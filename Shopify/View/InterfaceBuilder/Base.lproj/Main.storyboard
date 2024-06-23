@@ -128,10 +128,10 @@
             </objects>
             <point key="canvasLocation" x="4947" y="564"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="AtQ-yh-gif">
             <objects>
-                <viewController id="nso-fs-QNA" customClass="HomeViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="nso-fs-QNA" customClass="HomeViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gj4-Vr-z2r">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -203,7 +203,7 @@
                         <viewLayoutGuide key="safeArea" id="d0n-8y-6Fr"/>
                         <color key="backgroundColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="house.fill" catalog="system" id="Uhx-rk-3wM"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="Uhx-rk-3wM"/>
                     <connections>
                         <outlet property="homeCollectionView" destination="FXi-ww-Vea" id="rTn-o1-tqy"/>
                     </connections>
@@ -595,7 +595,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="bGg-QW-Gtj">
             <objects>
-                <tabBarController storyboardIdentifier="HomeVC" automaticallyAdjustsScrollViewInsets="NO" id="KKu-nb-hgH" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="KKu-nb-hgH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="8PO-cn-GbY"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FAf-u3-xfW">
@@ -849,9 +849,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UzW-wM-ao2"/>
-        <segue reference="2Q6-dy-nM6"/>
-        <segue reference="1E0-BS-SfB"/>
+        <segue reference="AEZ-J1-RBP"/>
+        <segue reference="bVt-tz-v4X"/>
+        <segue reference="eqa-k0-62z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>
