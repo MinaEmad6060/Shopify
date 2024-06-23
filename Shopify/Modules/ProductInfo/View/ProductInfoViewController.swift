@@ -35,7 +35,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
 @IBOutlet weak var sizeCollectionView: UICollectionView!
     
     @IBOutlet weak var colorCollectionView: UICollectionView!
-    var productInfoViewModel : ProdutInfoViewModel?
+    //var productInfoViewModel : ProdutInfoViewModel?
     var selectedSizeIndexPath: IndexPath?
        var selectedColorIndexPath: IndexPath?
        var selectedSize: String?
