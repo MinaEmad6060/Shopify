@@ -17,6 +17,7 @@ struct Order: Decodable{
     var id: UInt64?
     var customer: Customer?
     var created_at: String?
+    var current_subtotal_price: String?
     var line_items: [OrderProduct]?
 }
 

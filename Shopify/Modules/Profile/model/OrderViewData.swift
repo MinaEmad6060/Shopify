@@ -14,6 +14,7 @@ struct OrderViewData {
     var first_name: String?
     var amount: String?
     var currency_code: String?
+    var total_price: String?
     var quantity: Int8?
     var title: String?
 }

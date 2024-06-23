@@ -34,6 +34,7 @@ class ProfileViewModel: ProfileViewModelProtocol{
                     order.id = complectedOrders.orders?[i].id
                     order.created_at = complectedOrders.orders?[i].created_at
                     order.first_name = complectedOrders.orders?[i].customer?.first_name
+                    order.total_price = complectedOrders.orders?[i].current_subtotal_price
                     for j in 0..<(complectedOrders.orders?[i].line_items?.count ?? 0){
                         order.amount = complectedOrders.orders?[i].line_items?[j].price_set?.shop_money?.amount
                         order.currency_code = complectedOrders.orders?[i].line_items?[j].price_set?.shop_money?.currency_code

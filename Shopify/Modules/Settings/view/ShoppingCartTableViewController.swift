@@ -43,7 +43,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     
    
     func fetchDraftOrderItems() {
-        let draftOrderId = 967593820331
+        let draftOrderId = 968224407723
         NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
             guard let self = self else { return }
             if let draftOrder = draftOrder {

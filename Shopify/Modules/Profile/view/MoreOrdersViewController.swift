@@ -46,7 +46,7 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "moreOrdersCell", for: indexPath) as! OrdersTableViewCell
         if complectedOrders?.count ?? 0 > indexPath.row{
-                    cell.totalPrice.text = complectedOrders?[indexPath.row].amount
+                    cell.totalPrice.text = complectedOrders?[indexPath.row].total_price
                 
                 let dateTimeComponents = complectedOrders?[indexPath.row].created_at?.components(separatedBy: "T")
 
