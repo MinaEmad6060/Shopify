@@ -192,7 +192,7 @@
                                             <barButtonItem title="Item" image="cart.fill" catalog="system" id="I2X-Mm-sBI">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
-                                                    <segue destination="KNz-II-Rjd" kind="show" id="bVt-tz-v4X"/>
+                                                    <segue destination="KNz-II-Rjd" kind="show" id="2aa-Ya-1Jd"/>
                                                 </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
@@ -220,7 +220,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FzT-Bu-9gI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4341" y="1059"/>
+            <point key="canvasLocation" x="3856" y="685"/>
         </scene>
         <!--FavVC-->
         <scene sceneID="q0c-Pw-LWr">
@@ -850,8 +850,10 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="AEZ-J1-RBP"/>
+
         <segue reference="bVt-tz-v4X"/>
-        <segue reference="eqa-k0-62z"/>
+
+      <segue reference="eqa-k0-62z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>
