@@ -9,6 +9,9 @@ import UIKit
 
 class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var allAddressessTableView: UITableView!
     var allAddressesViewModel: AllAddressesViewModel?
     
