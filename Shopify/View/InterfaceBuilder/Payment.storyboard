@@ -539,7 +539,6 @@
                     <navigationItem key="navigationItem" id="Auq-nU-f5S"/>
                     <connections>
                         <outlet property="checkoutView" destination="59F-vC-cUC" id="kdG-xL-Z0Z"/>
-                        <outlet property="subTotalPriceView" destination="QOb-n7-XWD" id="RMm-We-Xit"/>
                         <outlet property="tableView" destination="G4l-fi-TJd" id="0gp-xv-SPi"/>
                         <outlet property="totalPrice" destination="9s0-lt-frk" id="5O5-f4-pGN"/>
                     </connections>
