@@ -76,6 +76,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let noDataCustomCell = UINib(nibName: "BrandsCollectionViewCell", bundle: nil)
         self.homeCollectionView.register(noDataCustomCell, forCellWithReuseIdentifier: "BrandsCell")
+   
     }
     
     

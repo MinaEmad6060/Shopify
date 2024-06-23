@@ -15,7 +15,7 @@ class SplashViewController: UIViewController {
         customerID = Utilites.getCustomerID()
         customerEmail = Utilites.getCustomerEmail()
         //HomeVC
-        if let id = customerID, id == 0 , let email = customerEmail, email.isEmpty {
+        if let id = customerID, id == 0  {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.performSegue(withIdentifier: "WVC", sender: nil)
                     }

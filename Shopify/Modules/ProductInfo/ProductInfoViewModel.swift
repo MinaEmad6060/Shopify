@@ -54,7 +54,9 @@ class ProdutInfoViewModel {
                
                 print("Customer ID****: \(customer?.id)")
                 print("Customer note****: \(customer?.note)")
-                
+                let fname = customer?.first_name
+                print("FirstName: \(fname)")
+                UserDefaults.standard.set(fname, forKey: "fname")
                 if let note = customer?.note {
                     
                     let components = note.split(separator: ",")
