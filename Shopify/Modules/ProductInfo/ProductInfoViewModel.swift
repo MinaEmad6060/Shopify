@@ -29,7 +29,7 @@ class ProdutInfoViewModel {
                     print("Cart draft order ID is not available")
                     return
                 }
-        NetworkManager.updateDraftOrder(draftOrderId: draftOrderIDCart, product: product) { statusCode in
+        NetworkManager.updateDraftOrder(draftOrderId: 968246886571, product: product) { statusCode in
             if statusCode == 200 {
                 print("Draft order updated successfully")
             } else {
@@ -41,7 +41,7 @@ class ProdutInfoViewModel {
                     print("Cart draft order ID is not available")
                     return
                 }
-        NetworkManager.updateDraftOrder(draftOrderId: draftOrderIDFavorite , product: product) { statusCode in
+        NetworkManager.updateDraftOrder(draftOrderId: 968246919339 , product: product) { statusCode in
             if statusCode == 200 {
                 print("Draft order updated successfully")
             } else {
