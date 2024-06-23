@@ -9,7 +9,9 @@ import UIKit
 import DropDown
 
 class AddNewAddress: UIViewController {
-
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var addressView: UIView!
     @IBAction func cityBtn(_ sender: Any) {
         cityDropDown.show()
