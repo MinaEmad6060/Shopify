@@ -67,7 +67,9 @@ class ProdutInfoViewModel {
                         self.draftOrderIDFavorite = firstID
                         self.draftOrderIDCart = secondID
                         UserDefaults.standard.set(self.draftOrderIDFavorite, forKey: "favIDNet")
+                        UserDefaults.standard.set(self.draftOrderIDCart, forKey: "cartIDNet")
                        let result = UserDefaults.standard.integer(forKey: "favIDNet")
+                        UserDefaults.standard.integer(forKey: "cartIDNet")
                         print("favID afteter Net: \(result)")
                     } else {
                         print("Note does not contain two valid IDs")
