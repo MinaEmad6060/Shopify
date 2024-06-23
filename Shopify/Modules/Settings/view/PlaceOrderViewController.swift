@@ -8,6 +8,11 @@
 import UIKit
 
 class PlaceOrderViewController: UIViewController {
+    
+    @IBAction func changeAddress(_ sender: Any) {
+        let addressess = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "addresses") as! AllAddressess
+        present(addressess, animated: true)
+    }
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
