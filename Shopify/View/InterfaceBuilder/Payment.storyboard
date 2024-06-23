@@ -37,9 +37,9 @@
         <!--Payment Options View Controller-->
         <scene sceneID="VJF-wA-wYO">
             <objects>
-                <viewController storyboardIdentifier="PaymentOptionsVC" id="Xaw-HJ-DYc" customClass="PaymentOptionsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentOptionsVC" modalPresentationStyle="fullScreen" id="Xaw-HJ-DYc" customClass="PaymentOptionsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aim-nw-ygZ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFO-46-zfY">
@@ -55,6 +55,9 @@
                                 <color key="tintColor" red="0.72505098580000005" green="0.64974945780000004" blue="0.58047026400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="backBtn:" destination="Xaw-HJ-DYc" eventType="touchUpInside" id="p02-ch-iaz"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4o7-Xw-9IX">
                                 <rect key="frame" x="0.0" y="121" width="222" height="55"/>
@@ -180,7 +183,7 @@
         <!--Place Order View Controller-->
         <scene sceneID="WSZ-VZ-rKc">
             <objects>
-                <viewController storyboardIdentifier="PlaceOrderVC" id="HbR-6M-UEY" customClass="PlaceOrderViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaceOrderVC" modalPresentationStyle="fullScreen" id="HbR-6M-UEY" customClass="PlaceOrderViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2iP-3z-8ia">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,6 +274,9 @@
                                 <color key="tintColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="backBtn:" destination="HbR-6M-UEY" eventType="touchUpInside" id="hvm-d6-nt1"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jnt-KW-JKI">
                                 <rect key="frame" x="31" y="108" width="331" height="151"/>
@@ -362,9 +368,9 @@
         <!--Shopping Cart Table View Controller-->
         <scene sceneID="QON-wX-GRG">
             <objects>
-                <viewController id="V6U-MY-EjJ" customClass="ShoppingCartTableViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="V6U-MY-EjJ" customClass="ShoppingCartTableViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e29-0n-LNE">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgn-fq-0C4">
@@ -379,7 +385,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
                                 <connections>
-                                    <segue destination="Xaw-HJ-DYc" kind="show" id="HIW-7n-Ubr"/>
+                                    <action selector="backBtn:" destination="V6U-MY-EjJ" eventType="touchUpInside" id="JWP-QN-X3v"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="G4l-fi-TJd">
@@ -460,19 +466,19 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOb-n7-XWD">
-                                <rect key="frame" x="48" y="650.66666666666663" width="297" height="68"/>
+                                <rect key="frame" x="48" y="650.66666666666663" width="297" height="68.666666666666629"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="59F-vC-cUC">
-                                        <rect key="frame" x="170" y="0.0" width="127" height="68"/>
+                                        <rect key="frame" x="170" y="0.0" width="127" height="68.666666666666671"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checkout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6e4-Ub-TtS">
-                                                <rect key="frame" x="11" y="23.666666666666742" width="76" height="21"/>
+                                                <rect key="frame" x="11" y="23.666666666666742" width="76" height="21.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowtriangle.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8dD-pF-oqR">
-                                                <rect key="frame" x="92" y="18.333333333333407" width="23" height="32"/>
+                                                <rect key="frame" x="92" y="18.333333333333403" width="23" height="32.333333333333329"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
                                         </subviews>
@@ -490,13 +496,13 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POJ-cq-u4h">
-                                        <rect key="frame" x="14" y="24" width="44" height="20"/>
+                                        <rect key="frame" x="14" y="24.333333333333371" width="44" height="20"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="textColor" red="0.14029431580000001" green="0.1187896715" blue="0.065748985600000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1445 EGP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9s0-lt-frk">
-                                        <rect key="frame" x="59" y="22" width="103" height="24"/>
+                                        <rect key="frame" x="59" y="22.333333333333371" width="103" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="textColor" red="0.72927378639999996" green="0.1814518313" blue="0.103460285" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
