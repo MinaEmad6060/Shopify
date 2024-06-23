@@ -79,7 +79,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         print(lineItem.price)
         
         let quantity = lineItem.quantity
-        let price = lineItem.price 
+        let price = lineItem.price
 
         if let priceDouble = Double(price) {
             let totalPrice = Double(quantity) * priceDouble
