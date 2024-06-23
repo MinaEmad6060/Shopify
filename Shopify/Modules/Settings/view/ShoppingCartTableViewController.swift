@@ -8,6 +8,9 @@
 import UIKit
 
 class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var checkoutView: UIView!
     @IBOutlet weak var subTotalPriceView: UIView!
     @IBOutlet weak var totalPrice: UILabel!
