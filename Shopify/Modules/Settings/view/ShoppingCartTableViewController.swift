@@ -8,6 +8,7 @@
 import UIKit
 
 class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var checkoutView: UIView!
     @IBOutlet weak var subTotalPriceView: UIView!
     @IBOutlet weak var totalPrice: UILabel!
     
@@ -17,13 +18,20 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let nib = UINib(nibName: "ShoppingCartViewCell", bundle: nil)
+            tableView.register(nib, forCellReuseIdentifier: "CartCell")
+        
         tableView.delegate = self
         tableView.dataSource = self
         
         self.subTotalPriceView.layer.cornerRadius = 20.0
+        self.checkoutView.layer.cornerRadius = 20.0
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(checkoutTapped))
+        self.checkoutView.addGestureRecognizer(tapGesture)
         fetchDraftOrderItems()
     }
-    @IBAction func proceddToCheckout(_ sender: Any) {
+    @objc func checkoutTapped() {
         let storyboard = UIStoryboard(name: "Payment", bundle: nil)
         if let paymentOptionsVC = storyboard.instantiateViewController(withIdentifier: "PaymentOptionsVC") as? PaymentOptionsViewController {
             paymentOptionsVC.lineItems = self.lineItems
@@ -33,6 +41,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         }
     }
     
+   
     func fetchDraftOrderItems() {
         let draftOrderId = 967593820331
         NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
@@ -60,21 +69,45 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         let lineItem = lineItems[indexPath.row]
         cell.cartItem.text = lineItem.name
         cell.totalAmount.text = "\(lineItem.quantity)"
-        cell.cartPrice.text = lineItem.price
+        print("\(lineItem.quantity)testtt")
+        print(lineItem.price)
+        
+        let quantity = lineItem.quantity // Assuming this is an Int or Double
+        let price = lineItem.price // Assuming this is a String
+
+        if let priceDouble = Double(price) {
+            let totalPrice = Double(quantity) * priceDouble
+            print("Total price for \(quantity) items: \(totalPrice)")
+            cell.cartPrice.text = "\(totalPrice)"
+        } else {
+            print("Invalid price format")
+        }
+        //cell.cartPrice.text = "\(lineItem.quantity * Int(lineItem.price)! )test"
         
         cell.incrementAction = { [weak self] in
             self?.updateQuantity(for: lineItem.id ?? 0, increment: true)
+            var itemPrice = lineItem.quantity * (Int(lineItem.price) ?? 0)
+            
+            cell.cartPrice.text = "\(itemPrice)"
         }
     
         cell.decrementAction = { [weak self] in
             self?.updateQuantity(for: lineItem.id ?? 0, increment: false)
+            var itemPrice = lineItem.quantity * (Int(lineItem.price) ?? 0)
+            
+            cell.cartPrice.text = "\(itemPrice)"
+
         }
     
+        cell.amountView.layer.borderWidth = 1.5
+        cell.amountView.layer.borderColor = UIColor(hexString: "AE9376").cgColor
+        cell.amountView.layer.cornerRadius = 15.0
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 116
+        return 300.0
     }
     
     func updateQuantity(for lineItemId: Int, increment: Bool) {
@@ -87,8 +120,10 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             if let availableQuantity = availableQuantity {
                 if increment && self.lineItems[index].quantity ?? 5 < availableQuantity {
                     self.lineItems[index].quantity += 1
+                    
                 } else if !increment && self.lineItems[index].quantity ?? 5 > 1 {
                     self.lineItems[index].quantity -= 1
+                    
                 } else {
                     print("Requested quantity not available or minimum quantity is 1")
                 }

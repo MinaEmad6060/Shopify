@@ -24,7 +24,7 @@ class AddNewAddress: UIViewController {
     var viewModel: AddNewAddressViewModel?
     let countryDropDown = DropDown()
     let cityDropDown = DropDown()
-    let countries = ["Egypt" , "UAE"]
+    let countries = ["Egypt" , "United Arab Emirates"]
     override func viewDidLoad() {
         super.viewDidLoad()
 

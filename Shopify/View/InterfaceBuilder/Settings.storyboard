@@ -159,6 +159,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="+">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
+                                    <color key="baseBackgroundColor" red="0.6746208668" green="0.57175892589999999" blue="0.45782369379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="3md-hk-ltS" kind="show" id="TDP-13-ykx"/>
@@ -172,14 +173,14 @@
                                         <rect key="frame" x="146" y="15" width="220" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.2261656225" green="0.15760856870000001" blue="0.088131122290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Street1 borg alzohour" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0Y-7o-tpw">
                                         <rect key="frame" x="146" y="63" width="233" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.2261656225" green="0.15760856870000001" blue="0.088131122290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="g9i-eI-QJx">
@@ -191,11 +192,15 @@
                                         <rect key="frame" x="146" y="43" width="108" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.2261656225" green="0.15760856870000001" blue="0.088131122290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XLS-Jx-ygl">
+                                        <rect key="frame" x="317" y="8" width="49" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1718084812" green="0.1185134575" blue="0.059666261079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.89519232510000002" green="0.8623902202" blue="0.82152146100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZTK-qk-GGI"/>
@@ -345,7 +350,7 @@
                                         <color key="backgroundColor" red="0.83656048770000002" green="0.77325910330000003" blue="0.69793713089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.66815355089999995" green="0.54612036139999998" blue="0.39381243329999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.84336930509999997" green="0.78744071719999997" blue="0.73234122989999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfq-xT-3Y7">
                                 <rect key="frame" x="39" y="707" width="315" height="49"/>
@@ -353,7 +358,8 @@
                                 <color key="tintColor" red="0.1718084812" green="0.1185134575" blue="0.059666261079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add Address">
-                                    <color key="baseBackgroundColor" red="0.1718084812" green="0.1185134575" blue="0.059666261079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="14"/>
+                                    <color key="baseBackgroundColor" red="0.6746208668" green="0.57175892589999999" blue="0.45782369379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="addAddressBtn:" destination="3md-hk-ltS" eventType="touchUpInside" id="lZD-rD-sCh"/>
@@ -377,9 +383,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FqJ-nB-QBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1950" y="-4"/>
+            <point key="canvasLocation" x="1731" y="8"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="NlF-Gs-qc2">
+            <size key="intrinsicContentSize" width="62.666666666666664" height="22"/>
+        </designable>
+        <designable name="gaJ-Kw-S7l">
+            <size key="intrinsicContentSize" width="41" height="18.666666666666668"/>
+        </designable>
+    </designables>
     <resources>
         <image name="arrow.down.circle" catalog="system" width="128" height="123"/>
         <image name="arrow.uturn.backward.circle" catalog="system" width="128" height="123"/>

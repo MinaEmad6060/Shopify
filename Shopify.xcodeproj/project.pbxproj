@@ -257,6 +257,7 @@
 		10090CAD2C18145C000ABDE6 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				10090CAE2C181465000ABDE6 /* View */,
 				10090CB52C1827B1000ABDE6 /* Model */,
 				10090CAF2C18146E000ABDE6 /* ViewModel */,
 			);
@@ -268,8 +269,7 @@
 			children = (
 				10090CB12C181493000ABDE6 /* LoginViewController.swift */,
 			);
-			name = View;
-			path = ../Login/View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		10090CAF2C18146E000ABDE6 /* ViewModel */ = {
@@ -291,7 +291,6 @@
 		10090CB82C1835D1000ABDE6 /* SignUP */ = {
 			isa = PBXGroup;
 			children = (
-				10090CAE2C181465000ABDE6 /* View */,
 				10090CC02C18F683000ABDE6 /* Model */,
 				10090CBC2C18F4D3000ABDE6 /* ViewModel */,
 				10090CB92C1835EC000ABDE6 /* View */,

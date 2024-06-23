@@ -12,7 +12,9 @@ struct BrandProduct: Decodable{
     var products: [Product]?
 }
 
-
+struct BrandProductInfo: Decodable{
+    var product: Product?
+}
 
 struct Product: Decodable{
     var id: Int?
