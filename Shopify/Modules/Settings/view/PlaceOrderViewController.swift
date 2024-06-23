@@ -8,7 +8,9 @@
 import UIKit
 
 class PlaceOrderViewController: UIViewController {
-
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var couponErrorLabel: UILabel!
     var lineItems: [LineItemm] = []
     var subTotal = 0.0
