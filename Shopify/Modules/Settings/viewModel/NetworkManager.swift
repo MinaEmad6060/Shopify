@@ -253,7 +253,7 @@ class NetworkManager {
             [
                 "id": $0.id,
                 "quantity": $0.quantity,
-                "title": $0.name,
+                "title": $0.title,
                 "price": $0.price,
                 "variant_id": $0.variant_id as Any,
                 "variant_title": $0.variant_title as Any

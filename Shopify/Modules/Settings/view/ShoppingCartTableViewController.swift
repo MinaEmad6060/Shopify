@@ -43,7 +43,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     
    
     func fetchDraftOrderItems() {
-        let draftOrderId = 967593820331
+        let draftOrderId = 968224407723
         NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
             guard let self = self else { return }
             if let draftOrder = draftOrder {
@@ -67,7 +67,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         }
         
         let lineItem = lineItems[indexPath.row]
-        cell.cartItem.text = lineItem.name
+        cell.cartItem.text = lineItem.title
         cell.totalAmount.text = "\(lineItem.quantity)"
         print("\(lineItem.quantity)testtt")
         print(lineItem.price)
