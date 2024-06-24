@@ -9,23 +9,14 @@ import Foundation
 
 
 class HomeViewModel: HomeViewModelProtocol{
-    
-    //    var query: String!
-    //    var queryValue: String!
-    //    var brandImage: String!
-    //    var brandName: String!
-    
+   
     var brandsViewData: [BrandsViewData]!
     var fetchDataFromApi: FetchDataFromApi!
-    //    var brandProductsViewData: [BrandProductViewData]!
-    
     var bindBrandsToViewController : (()->())! = {}
-    //    var bindBrandProductsToViewController : (()->())! = {}
     
     
     init(){
         brandsViewData = [BrandsViewData]()
-        //        brandProductsViewData = [BrandProductViewData]()
         fetchDataFromApi = FetchDataFromApi()
     }
     
@@ -41,29 +32,14 @@ class HomeViewModel: HomeViewModelProtocol{
             self?.bindBrandsToViewController?()
         }
     }
-    
-    //    func getBrandProductsFromNetworkService(){
-    //        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: query, value: queryValue)){[weak self] (brandProducts: BrandProduct) in
-    //            var product = BrandProductViewData()
-    //            for i in 0..<(brandProducts.products?.count ?? 0){
-    //
-    //                self?.brandProductsViewData.append(product)
-    //            }
-    //            self?.bindBrandProductsToViewController?()
-    //        }
-    //    }
-    
+   
     func getCurrentCustomer() {
         let email = Utilites.getCustomerEmail()
         NetworkManager.getCustomer(email: email) { customer in
             
-            print("Customer ID****: \(customer?.id)")
-            print("Customer note****: \(customer?.note)")
             let fname = customer?.first_name
-            print("FirstName: \(fname)")
             UserDefaults.standard.set(fname, forKey: "fname")
             let userID = customer?.id
-            print("userID: \(userID)")
             UserDefaults.standard.set(userID, forKey: "userID")
             if let note = customer?.note {
                 

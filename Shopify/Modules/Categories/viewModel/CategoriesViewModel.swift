@@ -15,7 +15,6 @@ class CategoriesViewModel: CategoriesViewModelProtocol{
     var bindCategoriesToViewController: (() -> ())!
     
     init(){
-//        categoriesViewData = [CategoriesProductViewData]()
         fetchDataFromApi = FetchDataFromApi()
     }
     
@@ -32,14 +31,10 @@ class CategoriesViewModel: CategoriesViewModelProtocol{
                 product.price = brandProducts.products?[i].variants?[0].price
                 for l in 0..<(brandProducts.products?[i].variants?.count ?? 0){
                     product.variants.append(brandProducts.products?[i].variants?[l].id ?? 0)
-                    print(" product.variants?[0] *****----------------------\( brandProducts.products?[i].variants?[l].id ?? 0  )")
                 }
                 for j in 0..<(brandProducts.products?[i].images?.count ?? 0){
                     product.src.append(brandProducts.products?[i].images?[j].src ?? "")
                 }
-//                for j in 0..<(brandProducts.products?[i].options[0].values?.count ?? 0){
-//                    product.values.append(brandProducts.products?[i].options[0].values?[j] ?? "")
-//                }
                 for j in 0..<(brandProducts.products?[i].options[0].values?.count ?? 0){
                     product.sizes.append(brandProducts.products?[i].options[0].values?[j] ?? "")
                 }

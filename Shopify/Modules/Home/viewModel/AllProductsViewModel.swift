@@ -42,10 +42,8 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
                 product.body_html = brandProducts.products?[i].body_html
                 product.product_type = brandProducts.products?[i].product_type
                 product.price = brandProducts.products?[i].variants?[0].price
-               // product.variants = []
                 for l in 0..<(brandProducts.products?[i].variants?.count ?? 0){
                     product.variants.append(brandProducts.products?[i].variants?[l].id ?? 0)
-                    print(" product.variants?[0] *****----------------------\( brandProducts.products?[i].variants?[l].id  )")
                 }
                 for j in 0..<(brandProducts.products?[i].images?.count ?? 0){
                     product.src.append(brandProducts.products?[i].images?[j].src ?? "")
