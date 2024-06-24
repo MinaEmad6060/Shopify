@@ -77,7 +77,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
         
         productInfoViewModel?.getCurrentCustomer()
        
-                    self.updateDraftOrder()
+         //           self.updateDraftOrder()
         self.checkProductInDraftOrder()
                 
         
