@@ -176,9 +176,13 @@ class NetworkManager {
             }
         }
     }
-    static func getCustomer(customerID: Int, completion: @escaping (Customer?) -> Void) {
-            let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/\(customerID).json"
+    static func getCustomer(email: String, completion: @escaping (Customer?) -> Void) {
+//            let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/\(customerID).json"
             
+        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/customers/search.json?query=email:\(email)"
+        
+        print("url ::::: \(url)")
+        
             guard let encodedCredentials = "\(Constants.api_key):\(Constants.password)".data(using: .utf8)?.base64EncodedString() else {
                 print("Failed to encode credentials")
                 completion(nil)
@@ -190,10 +194,11 @@ class NetworkManager {
                 "Content-Type": "application/json"
             ]
             
-            AF.request(url, headers: headers).responseDecodable(of: CustomerResponse.self) { response in
+            AF.request(url, headers: headers).responseDecodable(of: LoginedCustomers.self) { response in
                 switch response.result {
                 case .success(let result):
-                    completion(result.customer)
+                    completion(result.customers.first)
+                    print("Success fetching customer ::::::: \(response)")
                 case .failure(let error):
                     print("Error fetching customer: \(error.localizedDescription)")
                     completion(nil)

@@ -32,14 +32,14 @@ class SignUpViewController: UIViewController {
 //                        
 //                    }
 //                }
-        let draftOrderIDCart = Utilites.getDraftOrderIDCart()
-        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
-        let customerId = Utilites.getCustomerID()
-        let customerEmail = Utilites.getCustomerEmail()
-        print("Draft Order ID for Cart: \(draftOrderIDCart)")
-        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
-        print("Customer id: \(customerId)")
-        print("customer mail: \(customerEmail)")
+//        let draftOrderIDCart = Utilites.getDraftOrderIDCart()
+//        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
+//        let customerId = Utilites.getCustomerID()
+//        let customerEmail = Utilites.getCustomerEmail()
+//        print("Draft Order ID for Cart: \(draftOrderIDCart)")
+//        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
+//        print("Customer id: \(customerId)")
+//        print("customer mail: \(customerEmail)")
     }
     
 

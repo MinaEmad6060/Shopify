@@ -46,6 +46,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         homeViewModel = HomeViewModel()
         brands = [BrandsViewData]()
+        homeViewModel.getCurrentCustomer()
+        
+//
 //        lineItems = [
 //            OrderLineItem(title: "SUPRA | MENS VAIDER", price: 169.95, quantity: 1),
 //            OrderLineItem(title: "PUMA | SUEDE CLASSIC REGAL", price: 110.00, quantity: 1)
@@ -132,6 +135,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return section
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let cart =   Utilites.getDraftOrderIDCartFromNote()
+        let fav = Utilites.getDraftOrderIDFavoriteFromNote()
+        let customerName =  Utilites.getCustomerName()
+        let customerID =  Utilites.getCustomerID()
+        let customerEmail =  Utilites.getCustomerEmail()
+        print("customerName\(customerName)")
+        print("favorite\(fav)")
+        print("cart: \(cart)")
+    }
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
