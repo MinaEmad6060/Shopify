@@ -49,7 +49,7 @@ class FetchDataFromApi{
             ]
             
             let customer: [String: Any] = [
-                "id": UserDefaults.standard.integer(forKey: "userID"),
+                "id": Constants.customerId ?? 0,
                 "default_address": ["default": true]
             ]
             
@@ -88,11 +88,14 @@ class FetchDataFromApi{
                         if let draftOrderId = draftResponse.draftOrder?.id {
                             print("Draft Order ID: \(draftOrderId)")
                             
-                           
+                            
                             if note == "cart" {
-                                UserDefaults.standard.set(draftOrderId, forKey: "draftOrderIDCart")
+                                Constants.cartId = draftOrderId
+//                                UserDefaults.standard.set(draftOrderId, forKey: "draftOrderIDCart")
                             } else if note == "favorite" {
-                                UserDefaults.standard.set(draftOrderId, forKey: "draftOrderIDFavorite")
+                                Constants.favId = draftOrderId
+
+//                                UserDefaults.standard.set(draftOrderId, forKey: "draftOrderIDFavorite")
                             }
                         } else {
                             print("Draft Order ID not found")

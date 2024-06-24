@@ -40,7 +40,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UpdateCustomerNote()
+//        UpdateCustomerNote()
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
         
@@ -68,6 +68,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
             
         }
+        
+        
         
         
         
@@ -268,30 +270,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return UserDefaults.standard.string(forKey: "SelectedDiscountCode")
     }
     
-    func UpdateCustomerNote(){
-        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
-        let draftOrderIDCart = Utilites.getDraftOrderIDCart()
-        let customerId = Utilites.getCustomerID()
-        let newNote = "\(draftOrderIDFavorite),\(draftOrderIDCart)"
-        NetworkManager.updateCustomerNote(customerId: customerId, newNote: newNote) { statusCode in
-            DispatchQueue.main.async {
-                if statusCode == 200 {
-                    
-                    print("Customer note updated successfully.")
-                    
-                    if let draftOrderIDCart = UserDefaults.standard.value(forKey: "draftOrderIDCart") as? Int {
-                        print("Draft Order ID for Cart: \(draftOrderIDCart)")
-                    }
-                    if let draftOrderIDFavorite = UserDefaults.standard.value(forKey: "draftOrderIDFavorite") as? Int {
-                        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
-                    }
-                } else {
-                    
-                    print("Failed to update customer note. Status code: \(statusCode)")
-                }
-            }
-        }
-    }
+//    func UpdateCustomerNote(){
+//        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
+//        let draftOrderIDCart = Utilites.getDraftOrderIDCart()
+//        let customerId = Utilites.getCustomerID()
+//        let newNote = "\(draftOrderIDFavorite),\(draftOrderIDCart)"
+//        NetworkManager.updateCustomerNote(customerId: customerId, newNote: newNote) { statusCode in
+//            DispatchQueue.main.async {
+//                if statusCode == 200 {
+//                    
+//                    print("Customer note updated successfully.")
+//                    
+//                    if let draftOrderIDCart = UserDefaults.standard.value(forKey: "draftOrderIDCart") as? Int {
+//                        print("Draft Order ID for Cart: \(draftOrderIDCart)")
+//                    }
+//                    if let draftOrderIDFavorite = UserDefaults.standard.value(forKey: "draftOrderIDFavorite") as? Int {
+//                        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
+//                    }
+//                } else {
+//                    
+//                    print("Failed to update customer note. Status code: \(statusCode)")
+//                }
+//            }
+//        }
+//    }
     
     func attemptToUseSelectedDiscountCode() {
         guard let selectedCode = getSelectedDiscountCode() else {

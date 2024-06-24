@@ -30,7 +30,7 @@ struct LineItemm: Codable {
     let title: String
     var quantity: Int
     let price: String
-    let variant_id: String?
+    let variant_id: Int?
     let variant_title: String?
 }
 

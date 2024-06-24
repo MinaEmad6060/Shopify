@@ -29,7 +29,7 @@ class ProdutInfoViewModel {
                     print("Cart draft order ID is not available")
                     return
                 }
-        NetworkManager.updateDraftOrder(draftOrderId: 968246886571, product: product) { statusCode in
+        NetworkManager.updateDraftOrder(draftOrderId: 968256815275, product: product) { statusCode in
             if statusCode == 200 {
                 print("Draft order updated successfully")
             } else {
@@ -41,7 +41,7 @@ class ProdutInfoViewModel {
                     print("Cart draft order ID is not available")
                     return
                 }
-        NetworkManager.updateDraftOrder(draftOrderId: 968246919339 , product: product) { statusCode in
+        NetworkManager.updateDraftOrder(draftOrderId: 968256782507 , product: product) { statusCode in
             if statusCode == 200 {
                 print("Draft order updated successfully")
             } else {
@@ -49,7 +49,7 @@ class ProdutInfoViewModel {
             }
         }}
       
-        func getCurrentCustomer() {
+         func getCurrentCustomer() {
             NetworkManager.getCustomer(customerID: customerId) { customer in
                
                 print("Customer ID****: \(customer?.id)")
