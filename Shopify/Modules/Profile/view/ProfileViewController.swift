@@ -59,7 +59,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        let favID = UserDefaults.standard.integer(forKey: "favIDNet")
+        let favID = Utilites.getDraftOrderIDFavoriteFromNote()
         favouriteViewModel.fetchLineItems(draftOrderId: favID)
         favouriteViewModel.didUpdateLineItems = { [weak self] in
                DispatchQueue.main.async {
@@ -113,24 +113,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath) as! WishListTableViewCell
                 if favouriteViewModel.displayedLineItems.count > indexPath.row{
                     let lineItem = favouriteViewModel.displayedLineItems[indexPath.row]
-                                        let imageString = lineItem.sku ?? ""
-                                           let components = imageString.components(separatedBy: ",")
-                    if components.count == 2 {
-                        let productID = components[0]
-                        let imageURL = components[1]
-                        
-                        
+
+                    let imageString = lineItem.properties?[2].value ?? ""
                         let productName = lineItem.title
                         cell.wishItemBrand.text = productName?.components(separatedBy: " | ")[0]
                         cell.wishItemName.text = productName?.components(separatedBy: " | ")[1]
                         
-                        //               cell.categoryItemName.text = lineItem.title
                         cell.wishItemPrice.text = (lineItem.price ?? "") + "$"
                         
-                        if let url = URL(string: imageURL) {
+                        if let url = URL(string: imageString) {
                             cell.wishItemImage.kf.setImage(with: url)
                         }
-                    }
                 }
                 return cell
                     
