@@ -102,7 +102,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
-                                               , heightDimension: .absolute(210))
+                                               , heightDimension: .absolute(150))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize
                                                      , subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
