@@ -47,7 +47,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     
     func fetchDraftOrderItems() {
 
-        let draftOrderId = 968195375275
+        let draftOrderId = Utilites.getDraftOrderIDCartFromNote()
 
         NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
             guard let self = self else { return }
@@ -139,7 +139,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                     print("Requested quantity not available or minimum quantity is 1")
                 }
                 
-                NetworkManager.updateDraftOrder(draftOrderId: 967593820331, lineItems: self.lineItems) { success in
+                NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: self.lineItems) { success in
                     if success {
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
@@ -165,7 +165,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             print("Deleting line item with id: \(lineItem.id)")
             print("Updated line items: \(updatedLineItems)")
             
-            NetworkManager.updateDraftOrder(draftOrderId: 967593820331, lineItems: updatedLineItems) { [weak self] success in
+            NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: updatedLineItems) { [weak self] success in
                 if success {
                     print(self?.lineItems.count)
                     DispatchQueue.main.async {

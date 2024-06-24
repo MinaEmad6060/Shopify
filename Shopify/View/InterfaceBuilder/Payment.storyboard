@@ -339,7 +339,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="placeOrderBtn:" destination="HbR-6M-UEY" eventType="touchUpInside" id="8pC-ah-EaO"/>
-                                    <segue destination="V6U-MY-EjJ" kind="show" id="FK3-CF-Lot"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K36-su-b14">
@@ -379,13 +378,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgn-fq-0C4">
-                                <rect key="frame" x="64" y="32" width="162" height="28.666666666666671"/>
+                                <rect key="frame" x="64" y="91" width="162" height="28.666666666666671"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" red="0.26935744290000002" green="0.1876538992" blue="0.094467081130000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3C-Cb-5bL">
-                                <rect key="frame" x="16" y="29" width="50" height="35"/>
+                                <rect key="frame" x="16" y="88" width="50" height="35"/>
                                 <color key="tintColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
@@ -394,7 +393,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="G4l-fi-TJd">
-                                <rect key="frame" x="32" y="84.666666666666686" width="329" height="528"/>
+                                <rect key="frame" x="32" y="143.66666666666663" width="329" height="528.00000000000011"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="528" id="djT-5g-8iO"/>
@@ -471,7 +470,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOb-n7-XWD">
-                                <rect key="frame" x="48" y="620.66666666666663" width="297" height="68.666666666666629"/>
+                                <rect key="frame" x="48" y="679.66666666666663" width="297" height="68.666666666666629"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="59F-vC-cUC">
                                         <rect key="frame" x="170" y="0.0" width="127" height="68.666666666666671"/>
@@ -563,7 +562,7 @@
     <resources>
         <image name="applepay" width="76" height="59"/>
         <image name="arrowtriangle.right" catalog="system" width="128" height="113"/>
-        <image name="chevron.backward.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="chevron.backward.circle.fill" catalog="system" width="32" height="32"/>
         <image name="cod" width="76" height="59"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

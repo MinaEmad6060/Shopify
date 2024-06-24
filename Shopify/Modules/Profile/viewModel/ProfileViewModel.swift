@@ -27,7 +27,7 @@ class ProfileViewModel: ProfileViewModelProtocol{
     
     
     func getOrdersFromNetworkService() {
-        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders", query: "customer_id", value: "7453046046891")){[weak self] (complectedOrders: ComplectedOrder) in
+        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders", query: "customer_id", value: "\(Utilites.getCustomerID())")){[weak self] (complectedOrders: ComplectedOrder) in
                 self?.ordersViewData = [OrderViewData]()
                 for i in 0..<(complectedOrders.orders?.count ?? 0){
                     var order = OrderViewData()

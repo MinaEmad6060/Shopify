@@ -23,7 +23,7 @@ class PlaceOrderViewController: UIViewController {
     var subTotal = 0.0
     var total = 0.0
     let customer: [String: Any] = [
-        "id": 7423232082091,
+        "id": Utilites.getCustomerID(),
         "currency": "EGP"
     ]
     @IBOutlet weak var couponTF: UITextField!
@@ -57,6 +57,7 @@ class PlaceOrderViewController: UIViewController {
     @IBAction func placeOrderBtn(_ sender: Any) {
         print("placeOrderBtnCount :: \(lineItems.count)")
         FetchDataFromApi.postOrder(lineItems: lineItems, customer: customer)
+        
     }
 
     /*
