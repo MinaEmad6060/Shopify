@@ -8,6 +8,9 @@
 import UIKit
 
 class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var checkoutView: UIView!
     @IBOutlet weak var subTotalPriceView: UIView!
     @IBOutlet weak var totalPrice: UILabel!
@@ -41,9 +44,11 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         }
     }
     
-   
+    
     func fetchDraftOrderItems() {
-        let draftOrderId = 968256815275
+
+        let draftOrderId = Utilites.getDraftOrderIDCartFromNote()
+
         NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
             guard let self = self else { return }
             if let draftOrder = draftOrder {
@@ -69,11 +74,17 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         let lineItem = lineItems[indexPath.row]
         cell.cartItem.text = lineItem.title
         cell.totalAmount.text = "\(lineItem.quantity)"
+        
+        if let properties = lineItem.properties, properties.count > 2, let url = URL(string: properties[2].value) {
+            cell.cartImge.kf.setImage(with: url)
+        } else {
+            cell.cartImge.image = UIImage(named: "lineItemImage")
+        }
         print("\(lineItem.quantity)testtt")
         print(lineItem.price)
         
-        let quantity = lineItem.quantity // Assuming this is an Int or Double
-        let price = lineItem.price // Assuming this is a String
+        let quantity = lineItem.quantity
+        let price = lineItem.price
 
         if let priceDouble = Double(price) {
             let totalPrice = Double(quantity) * priceDouble
@@ -128,7 +139,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                     print("Requested quantity not available or minimum quantity is 1")
                 }
                 
-                NetworkManager.updateDraftOrder(draftOrderId: 967593820331, lineItems: self.lineItems) { success in
+                NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: self.lineItems) { success in
                     if success {
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
@@ -154,7 +165,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             print("Deleting line item with id: \(lineItem.id)")
             print("Updated line items: \(updatedLineItems)")
             
-            NetworkManager.updateDraftOrder(draftOrderId: 967593820331, lineItems: updatedLineItems) { [weak self] success in
+            NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: updatedLineItems) { [weak self] success in
                 if success {
                     print(self?.lineItems.count)
                     DispatchQueue.main.async {

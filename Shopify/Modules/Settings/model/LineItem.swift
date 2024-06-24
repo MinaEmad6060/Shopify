@@ -32,7 +32,14 @@ struct LineItemm: Codable {
     let price: String
     let variant_id: Int?
     let variant_title: String?
+    let properties: [Property]?
+    
+    struct Property: Codable {
+        let name: String
+        let value: String
+    }
 }
+
 
 
 struct ProductResponse: Decodable {

@@ -8,7 +8,14 @@
 import UIKit
 
 class PlaceOrderViewController: UIViewController {
-
+    
+    @IBAction func changeAddress(_ sender: Any) {
+        let addressess = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "addresses") as! AllAddressess
+        present(addressess, animated: true)
+    }
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var couponErrorLabel: UILabel!
     var lineItems: [LineItemm] = []
 //    var lineItemsTest: [LineItemm] = []
@@ -16,7 +23,7 @@ class PlaceOrderViewController: UIViewController {
     var subTotal = 0.0
     var total = 0.0
     let customer: [String: Any] = [
-        "id": 7423232082091,
+        "id": Utilites.getCustomerID(),
         "currency": "EGP"
     ]
     @IBOutlet weak var couponTF: UITextField!
@@ -35,6 +42,7 @@ class PlaceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(self.lineItems)
         // Do any additional setup after loading the view.
         self.subTotalLabel.text = "\(self.subTotal)EGP"
         self.discountAmountLabel.text = "-0.EGP"
@@ -49,6 +57,7 @@ class PlaceOrderViewController: UIViewController {
     @IBAction func placeOrderBtn(_ sender: Any) {
         print("placeOrderBtnCount :: \(lineItems.count)")
         FetchDataFromApi.postOrder(lineItems: lineItems, customer: customer)
+        
     }
 
     /*

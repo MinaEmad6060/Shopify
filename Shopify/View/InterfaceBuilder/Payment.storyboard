@@ -37,9 +37,9 @@
         <!--Payment Options View Controller-->
         <scene sceneID="VJF-wA-wYO">
             <objects>
-                <viewController storyboardIdentifier="PaymentOptionsVC" id="Xaw-HJ-DYc" customClass="PaymentOptionsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentOptionsVC" modalPresentationStyle="fullScreen" id="Xaw-HJ-DYc" customClass="PaymentOptionsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aim-nw-ygZ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFO-46-zfY">
@@ -55,6 +55,9 @@
                                 <color key="tintColor" red="0.72505098580000005" green="0.64974945780000004" blue="0.58047026400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="backBtn:" destination="Xaw-HJ-DYc" eventType="touchUpInside" id="p02-ch-iaz"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4o7-Xw-9IX">
                                 <rect key="frame" x="0.0" y="121" width="222" height="55"/>
@@ -180,7 +183,7 @@
         <!--Place Order View Controller-->
         <scene sceneID="WSZ-VZ-rKc">
             <objects>
-                <viewController storyboardIdentifier="PlaceOrderVC" id="HbR-6M-UEY" customClass="PlaceOrderViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaceOrderVC" modalPresentationStyle="fullScreen" id="HbR-6M-UEY" customClass="PlaceOrderViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2iP-3z-8ia">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,6 +274,9 @@
                                 <color key="tintColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="backBtn:" destination="HbR-6M-UEY" eventType="touchUpInside" id="hvm-d6-nt1"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jnt-KW-JKI">
                                 <rect key="frame" x="31" y="108" width="331" height="151"/>
@@ -298,13 +304,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.44311872120000001" green="0.36189758779999998" blue="0.26864615079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPj-YD-3m9">
-                                <rect key="frame" x="296" y="267" width="63" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="0.81246787310000002" green="0.45555335279999998" blue="0.45427852870000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yj6-4x-qIJ">
@@ -340,7 +339,18 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="placeOrderBtn:" destination="HbR-6M-UEY" eventType="touchUpInside" id="8pC-ah-EaO"/>
-                                    <segue destination="V6U-MY-EjJ" kind="show" id="FK3-CF-Lot"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K36-su-b14">
+                                <rect key="frame" x="272" y="259" width="87" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.81246787310000002" green="0.45555335279999998" blue="0.45427852870000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Change">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="changeAddress:" destination="HbR-6M-UEY" eventType="touchUpInside" id="ayZ-Z6-tzv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -362,28 +372,28 @@
         <!--Shopping Cart Table View Controller-->
         <scene sceneID="QON-wX-GRG">
             <objects>
-                <viewController id="V6U-MY-EjJ" customClass="ShoppingCartTableViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="V6U-MY-EjJ" customClass="ShoppingCartTableViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e29-0n-LNE">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgn-fq-0C4">
-                                <rect key="frame" x="64" y="61.999999999999993" width="162" height="28.666666666666664"/>
+                                <rect key="frame" x="64" y="91" width="162" height="28.666666666666671"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" red="0.26935744290000002" green="0.1876538992" blue="0.094467081130000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3C-Cb-5bL">
-                                <rect key="frame" x="16" y="59" width="50" height="35"/>
+                                <rect key="frame" x="16" y="88" width="50" height="35"/>
                                 <color key="tintColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
                                 <connections>
-                                    <segue destination="Xaw-HJ-DYc" kind="show" id="HIW-7n-Ubr"/>
+                                    <action selector="backBtn:" destination="V6U-MY-EjJ" eventType="touchUpInside" id="JWP-QN-X3v"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="G4l-fi-TJd">
-                                <rect key="frame" x="32" y="114.66666666666669" width="329" height="528"/>
+                                <rect key="frame" x="32" y="143.66666666666663" width="329" height="528.00000000000011"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="528" id="djT-5g-8iO"/>
@@ -460,19 +470,19 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOb-n7-XWD">
-                                <rect key="frame" x="48" y="650.66666666666663" width="297" height="68"/>
+                                <rect key="frame" x="48" y="679.66666666666663" width="297" height="68.666666666666629"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="59F-vC-cUC">
-                                        <rect key="frame" x="170" y="0.0" width="127" height="68"/>
+                                        <rect key="frame" x="170" y="0.0" width="127" height="68.666666666666671"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checkout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6e4-Ub-TtS">
-                                                <rect key="frame" x="11" y="23.666666666666742" width="76" height="21"/>
+                                                <rect key="frame" x="11" y="23.666666666666742" width="76" height="21.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowtriangle.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8dD-pF-oqR">
-                                                <rect key="frame" x="92" y="18.333333333333407" width="23" height="32"/>
+                                                <rect key="frame" x="92" y="18.333333333333403" width="23" height="32.333333333333343"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
                                         </subviews>
@@ -490,13 +500,13 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POJ-cq-u4h">
-                                        <rect key="frame" x="14" y="24" width="44" height="20"/>
+                                        <rect key="frame" x="14" y="24.333333333333371" width="44" height="20"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="textColor" red="0.14029431580000001" green="0.1187896715" blue="0.065748985600000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1445 EGP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9s0-lt-frk">
-                                        <rect key="frame" x="59" y="22" width="103" height="24"/>
+                                        <rect key="frame" x="59" y="22.333333333333371" width="103" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="textColor" red="0.72927378639999996" green="0.1814518313" blue="0.103460285" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -530,7 +540,7 @@
                             <constraint firstItem="QOb-n7-XWD" firstAttribute="top" secondItem="G4l-fi-TJd" secondAttribute="bottom" constant="8" symbolic="YES" id="EgZ-yh-lb1"/>
                             <constraint firstItem="esw-iQ-bnL" firstAttribute="trailing" secondItem="G4l-fi-TJd" secondAttribute="trailing" constant="32" id="Td8-S9-5eM"/>
                             <constraint firstItem="G4l-fi-TJd" firstAttribute="leading" secondItem="esw-iQ-bnL" secondAttribute="leading" constant="32" id="Voc-SN-P8e"/>
-                            <constraint firstItem="kgn-fq-0C4" firstAttribute="top" secondItem="esw-iQ-bnL" secondAttribute="top" constant="62" id="dqp-0f-AMW"/>
+                            <constraint firstItem="kgn-fq-0C4" firstAttribute="top" secondItem="esw-iQ-bnL" secondAttribute="top" constant="32" id="dqp-0f-AMW"/>
                             <constraint firstItem="kgn-fq-0C4" firstAttribute="leading" secondItem="esw-iQ-bnL" secondAttribute="leading" constant="64" id="n2Z-jE-m5a"/>
                             <constraint firstItem="QOb-n7-XWD" firstAttribute="height" secondItem="e29-0n-LNE" secondAttribute="height" multiplier="0.0653207" constant="13" id="rBu-Z6-C0t"/>
                             <constraint firstItem="kgn-fq-0C4" firstAttribute="centerY" secondItem="x3C-Cb-5bL" secondAttribute="centerY" id="yuH-Wk-pc2"/>
@@ -539,7 +549,7 @@
                     <navigationItem key="navigationItem" id="Auq-nU-f5S"/>
                     <connections>
                         <outlet property="checkoutView" destination="59F-vC-cUC" id="kdG-xL-Z0Z"/>
-                        <outlet property="subTotalPriceView" destination="QOb-n7-XWD" id="RMm-We-Xit"/>
+                        <outlet property="subTotalPriceView" destination="QOb-n7-XWD" id="ZuC-ee-adL"/>
                         <outlet property="tableView" destination="G4l-fi-TJd" id="0gp-xv-SPi"/>
                         <outlet property="totalPrice" destination="9s0-lt-frk" id="5O5-f4-pGN"/>
                     </connections>
@@ -552,7 +562,7 @@
     <resources>
         <image name="applepay" width="76" height="59"/>
         <image name="arrowtriangle.right" catalog="system" width="128" height="113"/>
-        <image name="chevron.backward.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="chevron.backward.circle.fill" catalog="system" width="32" height="32"/>
         <image name="cod" width="76" height="59"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

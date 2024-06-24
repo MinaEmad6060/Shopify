@@ -24,17 +24,17 @@ struct Address: Codable {
 }
 
 struct AddressId: Codable {
-    let id: Int
+    let id: Int?
     let address1: String?
     let city: String
-    let country: String
+    let country_name: String?
     let phone: String
 
     enum CodingKeys: String, CodingKey {
-       case id
+        case id
         case address1
         case city
-        case country
+        case country_name
         case phone
     }
 }

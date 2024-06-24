@@ -8,7 +8,9 @@
 import UIKit
 import PassKit
 class PaymentOptionsViewController: UIViewController {
-    
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var cashTitleView: UIView!
     @IBOutlet weak var onlineTitleView: UIView!
     @IBOutlet weak var cashPaymentMV: UIView!
@@ -87,6 +89,7 @@ class PaymentOptionsViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Payment", bundle: nil)
         if let placeOrderVC = storyboard.instantiateViewController(withIdentifier: "PlaceOrderVC") as? PlaceOrderViewController {
             placeOrderVC.lineItems = self.lineItems
+            print(lineItems)
             placeOrderVC.subTotal = self.subTotal
             placeOrderVC.modalPresentationStyle = .fullScreen
             self.present(placeOrderVC, animated: true, completion: nil)

@@ -11,7 +11,9 @@ import Alamofire
 
 class Settings: UIViewController {
     @IBOutlet weak var curruncyLabel: UILabel!
-    
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBAction func curruncyBtn(_ sender: Any) {
         curruncyDropDown.show()
     }

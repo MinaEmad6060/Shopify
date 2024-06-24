@@ -64,7 +64,6 @@ class NetworkManager {
         let url = "\(Constants.baseUrl)customers/\(customerId)/addresses/\(addressId).json"
         
         AF.request(url, method: .delete)
-            .validate(statusCode: 200..<300)
             .response { response in
                 switch response.result {
                 case .success:
@@ -311,7 +310,7 @@ class NetworkManager {
     }
     
 
-    func setDefaultAddress(customerID: Int, addressID: Int, completion: @escaping (Bool) -> Void) {
+    static func setDefaultAddress(customerID: Int, addressID: Int, completion: @escaping (Bool) -> Void) {
         let url = "\(Constants.baseUrl)customers/\(customerID)/addresses/\(addressID).json"
         
         guard let encodedCredentials = "\(Constants.api_key):\(Constants.password)".data(using: .utf8)?.base64EncodedString() else {

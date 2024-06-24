@@ -25,11 +25,9 @@ class ProdutInfoViewModel {
     }
    
     func updateCartDraftOrder(product: BrandProductViewData){
-        guard let draftOrderIDCart = draftOrderIDCart else {
-                    print("Cart draft order ID is not available")
-                    return
-                }
-        NetworkManager.updateDraftOrder(draftOrderId: 968256815275, product: product) { statusCode in
+        let cartId = Utilites.getDraftOrderIDCartFromNote()
+        print("sssssss\(cartId)")
+        NetworkManager.updateDraftOrder(draftOrderId: cartId, product: product) { statusCode in
             if statusCode == 200 {
                 print("Draft order updated successfully")
             } else {
@@ -37,11 +35,7 @@ class ProdutInfoViewModel {
             }
         }}
    func updateFavoriteDraftOrder(product: BrandProductViewData){
-        guard let draftOrderIDFavorite = draftOrderIDFavorite else {
-                    print("Cart draft order ID is not available")
-                    return
-                }
-        NetworkManager.updateDraftOrder(draftOrderId: 968256782507 , product: product) { statusCode in
+        NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDFavoriteFromNote() , product: product) { statusCode in
             if statusCode == 200 {
                 print("Draft order updated successfully")
             } else {

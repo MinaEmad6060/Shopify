@@ -9,6 +9,10 @@ import UIKit
 
 class AllAddressessTableViewCell: UITableViewCell {
 
+    @IBAction func defaultAddressBtn(_ sender: Any) {
+        setDefault?()
+    }
+    @IBOutlet weak var defaultBtn: UIButton!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var cellView: UIView!
@@ -17,6 +21,7 @@ class AllAddressessTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    var setDefault: (() -> Void)?
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
