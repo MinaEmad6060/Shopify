@@ -20,11 +20,11 @@ class FetchDataFromApi{
     
     //Get
     func getDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
-        let urlFB = URL(string: url)
-        guard let urlFB = urlFB else{return}
+        let urlApi = URL(string: url)
+        guard let urlApi = urlApi else{return}
         
         
-        AF.request(urlFB).responseDecodable(of: T.self) { response in
+        AF.request(urlApi).responseDecodable(of: T.self) { response in
             switch response.result {
             case .success(let fetchedData):
                 handler(fetchedData)
@@ -37,18 +37,19 @@ class FetchDataFromApi{
     
     //Delete
     func deleteDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
-        let urlFB = URL(string: url)
-        guard let urlFB = urlFB else{return}
-        
-        
-        AF.request(urlFB).responseDecodable(of: T.self) { response in
-            switch response.result {
-            case .success(let fetchedData):
-                handler(fetchedData)
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
+        let urlApi = URL(string: url)
+        guard let urlApi = urlApi else{return}
+                
+        AF.request(url, method: .delete)
+            .response { response in
+                switch response.result {
+                case .success:
+                    handler(true as! T)
+                case .failure(let error):
+                    print("Error deleting address: \(error)")
+                    handler(false as! T)
+                }
             }
-        }
     }
     
     

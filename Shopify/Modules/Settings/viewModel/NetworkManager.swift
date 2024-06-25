@@ -38,21 +38,8 @@ class NetworkManager {
                 }
             }
     }
-    static func deleteCustomerAddress(customerId: Int, addressId: Int, completion: @escaping (Bool) -> Void) {
-        let url = "\(Constants.baseUrl)customers/\(customerId)/addresses/\(addressId).json"
-        
-        AF.request(url, method: .delete)
-            .response { response in
-                switch response.result {
-                case .success:
-                    completion(true)
-                case .failure(let error):
-                    print("Error deleting address: \(error)")
-                    completion(false)
-                }
-            }
-    }
-
+    
+    
     static func updateCustomerNote(customerId: Int, newNote: String, completion: @escaping (Int) -> Void) {
             let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/customers/\(customerId).json"
             
@@ -84,6 +71,8 @@ class NetworkManager {
                 }
             }
         }
+    
+    
     static func updateDraftOrder(draftOrderId: Int,product: BrandProductViewData, complication: @escaping (Int) -> Void) {
         let urlString = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/draft_orders/\(draftOrderId).json"
         let propertiesArray: [Properties] = [
@@ -154,8 +143,7 @@ class NetworkManager {
         }
     }
     
-  
-    
+
     
     
     static func updateDraftOrder(draftOrderId: Int, lineItems: [LineItemm], completion: @escaping (Bool) -> Void) {
@@ -199,20 +187,6 @@ class NetworkManager {
         }
     }
 
-//    static func checkProductAvailability(productId: Int, completion: @escaping (Int?) -> Void) {
-//        let url = "\(Constants.baseUrl)products/8100172759211.json"
-//        
-//        
-//        AF.request(url, method: .get).responseDecodable(of: ProductResponse.self) { response in
-//            switch response.result {
-//            case .success(let productResponse):
-//                completion(productResponse.product.variants?.first?.inventory_quantity)
-//            case .failure(let error):
-//                print("Error fetching product availability: \(error)")
-//                completion(nil)
-//            }
-//        }
-//    }
     
 
     static func setDefaultAddress(customerID: Int, addressID: Int, completion: @escaping (Bool) -> Void) {
@@ -412,6 +386,39 @@ class NetworkManager {
 //               }
 //           }
 //       }
+    
+    
+    //    static func checkProductAvailability(productId: Int, completion: @escaping (Int?) -> Void) {
+    //        let url = "\(Constants.baseUrl)products/8100172759211.json"
+    //
+    //
+    //        AF.request(url, method: .get).responseDecodable(of: ProductResponse.self) { response in
+    //            switch response.result {
+    //            case .success(let productResponse):
+    //                completion(productResponse.product.variants?.first?.inventory_quantity)
+    //            case .failure(let error):
+    //                print("Error fetching product availability: \(error)")
+    //                completion(nil)
+    //            }
+    //        }
+    //    }
+    
+    
+    
+//    static func deleteCustomerAddress(customerId: Int, addressId: Int, completion: @escaping (Bool) -> Void) {
+//        let url = "\(Constants.baseUrl)customers/\(customerId)/addresses/\(addressId).json"
+//
+//        AF.request(url, method: .delete)
+//            .response { response in
+//                switch response.result {
+//                case .success:
+//                    completion(true)
+//                case .failure(let error):
+//                    print("Error deleting address: \(error)")
+//                    completion(false)
+//                }
+//            }
+//    }
     
     
     

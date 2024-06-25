@@ -143,7 +143,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         guard let index = lineItems.firstIndex(where: { $0.id == lineItemId }) else { return }
         
         let productId = 8100172759211
-        fetchDataFromApi?.getDataFromApi(url: fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl,request: "products/8100172759211") ?? ""){[weak self] (availableQuantity: ProductResponse?) in
+        fetchDataFromApi?.getDataFromApi(url: fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl,request: "products/\(productId)") ?? ""){[weak self] (availableQuantity: ProductResponse?) in
             if let availableQuantity = availableQuantity {
                 if increment && self?.lineItems[index].quantity ?? 5 < availableQuantity.product.variants?.first?.inventory_quantity ?? 0 {
                     self?.lineItems[index].quantity += 1
