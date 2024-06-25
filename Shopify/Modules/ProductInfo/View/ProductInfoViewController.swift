@@ -13,7 +13,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
    
     @IBOutlet weak var favBtn: UIBarButtonItem!
 
-    
+    var favViewMode: FavoriteViewModel!
   
     var productViewData: BrandProductViewData!
     var productInfoViewModel : ProdutInfoViewModel?
@@ -78,10 +78,13 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
         productInfoViewModel?.getCurrentCustomer()
        
          //           self.updateDraftOrder()
-        self.checkProductInDraftOrder()
+       self.checkProductInDraftOrder()
                 
         
         priceLB.text =  productInfoViewModel?.product?.price
+        favViewMode = FavoriteViewModel()
+        print("displayed line items******\(favViewMode.displayedLineItems)")
+        
  
     }
     func updateDraftOrder() {
@@ -95,7 +98,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
             let productTitle = productInfoViewModel?.product?.title ?? ""
         productInfoViewModel?.isProductInDraftOrder(productTitle:productTitle  ?? "") { isInDraftOrder in
                 if isInDraftOrder {
-                    print("Product is in the draft order.\(productTitle )")
+                    print("Product is in the draft order****.\(productTitle )")
                     self.updateFavoriteButtonImage(true)
                 } else {
                     print("Product is not in the draft order.\(productTitle )")
@@ -182,8 +185,8 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
             if let isFavorite = favoriteProducts[productId] {
                 updateFavoriteButtonImage(isFavorite)
 
-                if isFavorite {
-                    
+                if isFavorite ,(favViewMode.displayedLineItems.contains(where: { $0.productID == productId })) == false{
+                    print("productId ** from fav(productId)")
                     productInfoViewModel?.updateFavoriteDraftOrder(product: productInfoViewModel!.product!)
                 } else {
                    
@@ -197,33 +200,14 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
            let imageName = isFavorite ? "heart.fill" : "heart"
            favBtn.image = UIImage(systemName: imageName)
        }
+    
    
     
 }
 
    extension ProductInfoViewController: ImageSlideshowDelegate {
-       /*func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
-           print("current page:", page)
-       }
-
-           
-       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-           if collectionView == sizeCollectionView {
-               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SizeCollectionViewCell
-               if let size = productInfoViewModel?.product?.sizes[indexPath.row] {
-                   cell.sizeLB.text = size
-               }
-               return cell
-           } else if collectionView == colorCollectionView {
-               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ColorsCollectionViewCell
-               if let color = productInfoViewModel?.product?.colors[indexPath.row] {
-                   cell.colorLB.text = color
-                   //cell.colorView.backgroundColor = UIColor(named: color) // Assuming you have color names that match your app's color assets
-               }
-               return cell
-           }
-           return UICollectionViewCell()
-       }*/
+       
+    
      
 
            func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

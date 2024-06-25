@@ -10,17 +10,9 @@ class ProdutInfoViewModel {
 
     var product : BrandProductViewData?
     var customerId: Int
-   var  draftOrderIDFavorite: Int?
-   
-        var draftOrderIDCart: Int?
-   
-    //init(product: Product?) {
-
-  //  var product : BrandProductViewData?
     init(product: BrandProductViewData?) {
         self.product = product
         self.customerId = Utilites.getCustomerID()
-       // getCurrentCustomer()
     
     }
    
@@ -112,12 +104,12 @@ class ProdutInfoViewModel {
         }
     }
     func removeProductFromDraftOrder(productTitle: String) {
-        guard let draftOrderIDFavorite = draftOrderIDFavorite else {
-            print("Cart draft order ID is not available")
-            return
-        }
+//        guard let draftOrderIDFavorite = draftOrderIDFavorite else {
+//            print("Cart draft order ID is not available")
+//            return
+//        }
         
-        NetworkManager.removeLineItemFromDraftOrder(draftOrderId: draftOrderIDFavorite, productTitle: productTitle) { statusCode in
+        NetworkManager.removeLineItemFromDraftOrder(draftOrderId: Utilites.getDraftOrderIDFavoriteFromNote(), productTitle: productTitle) { statusCode in
             if statusCode == 200 {
                 print("Product removed from draft order successfully")
             } else {
@@ -127,13 +119,7 @@ class ProdutInfoViewModel {
     }
     //968066891947
     func isProductInDraftOrder(productTitle: String, completion: @escaping (Bool) -> Void) {
-        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
-//                draftOrderIDFavorite else {
-//            print("Draft order ID is not available")
-//            print("**draftOrderIDFavorite**\(draftOrderIDFavorite)")
-//            completion(false)
-//            return
-//        }
+        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavoriteFromNote()
         NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderIDFavorite) { lineItems in
             if let lineItems = lineItems {
                 let isInDraftOrder = lineItems.contains { $0.title == productTitle }
