@@ -173,9 +173,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     
     @IBAction func favBtn(_ sender: UIBarButtonItem) {
-       // productInfoViewModel?.removeProductFromDraftOrder(productTitle: productInfoViewModel?.product?.title ?? "")
-        //productInfoViewModel?.updateFavoriteDraftOrder( product: (productInfoViewModel?.product)!)
-    
+       
     guard let productTitle = productInfoViewModel?.product?.title else { return }
             guard let productId = productInfoViewModel?.product?.id else { return }
         
@@ -191,7 +189,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
                    
                     productInfoViewModel?.removeProductFromDraftOrder(productTitle: productTitle)
                 }
-            }
+           }
         
     }
    
