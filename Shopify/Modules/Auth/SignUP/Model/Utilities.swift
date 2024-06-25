@@ -42,4 +42,10 @@ class Utilites{
     static  func getCustomerName() -> String {
         return UserDefaults.standard.string(forKey: "fname") ?? "non"
     }
+    static func getCurrencyCode() -> String {
+            return UserDefaults.standard.string(forKey: "selectedCurrencyCode") ?? "EGP"
+        }
+        static func getCurrencyRate() -> String {
+            return UserDefaults.standard.string(forKey: "selectedCurrencyRate") ?? "1"
+        }
 }

@@ -82,9 +82,9 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
        
          //           self.updateDraftOrder()
        self.checkProductInDraftOrder()
-                
+        let currency = Utilites.getCurrencyCode()
         
-        priceLB.text =  productInfoViewModel?.product?.price
+        priceLB.text =  productInfoViewModel?.product?.price?.appending(" ").appending(currency)
         favViewMode = FavoriteViewModel()
         print("displayed line items******\(favViewMode.displayedLineItems)")
         
