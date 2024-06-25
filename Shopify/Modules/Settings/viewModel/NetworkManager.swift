@@ -199,20 +199,20 @@ class NetworkManager {
         }
     }
 
-    static func checkProductAvailability(productId: Int, completion: @escaping (Int?) -> Void) {
-        let url = "\(Constants.baseUrl)products/8100172759211.json"
-        
-        
-        AF.request(url, method: .get).responseDecodable(of: ProductResponse.self) { response in
-            switch response.result {
-            case .success(let productResponse):
-                completion(productResponse.product.variants?.first?.inventory_quantity)
-            case .failure(let error):
-                print("Error fetching product availability: \(error)")
-                completion(nil)
-            }
-        }
-    }
+//    static func checkProductAvailability(productId: Int, completion: @escaping (Int?) -> Void) {
+//        let url = "\(Constants.baseUrl)products/8100172759211.json"
+//        
+//        
+//        AF.request(url, method: .get).responseDecodable(of: ProductResponse.self) { response in
+//            switch response.result {
+//            case .success(let productResponse):
+//                completion(productResponse.product.variants?.first?.inventory_quantity)
+//            case .failure(let error):
+//                print("Error fetching product availability: \(error)")
+//                completion(nil)
+//            }
+//        }
+//    }
     
 
     static func setDefaultAddress(customerID: Int, addressID: Int, completion: @escaping (Bool) -> Void) {

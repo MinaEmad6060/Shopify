@@ -11,26 +11,55 @@ import Alamofire
 
 class FetchDataFromApi{
         
-        func formatUrl(baseUrl: String,request: String, query: String="", value: String="") -> String{
-            return baseUrl+request+".json?"+query+"="+value
-        }
-    //
-    //formatUrl(baseUrl: Constants.baseUrl,request: "products")
+    func formatUrl(baseUrl: String,request: String, query: String="", value: String="") -> String{
+        return baseUrl+request+".json?"+query+"="+value
+    }
+//
+//formatUrl(baseUrl: Constants.baseUrl,request: "products/8100172759211")
+    
+    
+    //Get
+    func getDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
+        let urlFB = URL(string: url)
+        guard let urlFB = urlFB else{return}
         
-        func getDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
-            let urlFB = URL(string: url)
-            guard let urlFB = urlFB else{return}
-            
-            
-            AF.request(urlFB).responseDecodable(of: T.self) { response in
-                switch response.result {
-                case .success(let upcomingMatches):
-                    handler(upcomingMatches)
-                case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
-                }
+        
+        AF.request(urlFB).responseDecodable(of: T.self) { response in
+            switch response.result {
+            case .success(let fetchedData):
+                handler(fetchedData)
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
             }
         }
+    }
+    
+    
+    //Delete
+    func deleteDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
+        let urlFB = URL(string: url)
+        guard let urlFB = urlFB else{return}
+        
+        
+        AF.request(urlFB).responseDecodable(of: T.self) { response in
+            switch response.result {
+            case .success(let fetchedData):
+                handler(fetchedData)
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     static func CreateDraft(product: Product, note: String, complication: @escaping (Int) -> Void) {
             let urlString = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/draft_orders.json" //"https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/draft_orders.json"
@@ -93,11 +122,8 @@ class FetchDataFromApi{
                             
                             if note == "cart" {
                                 Constants.cartId = draftOrderId
-//                                UserDefaults.standard.set(draftOrderId, forKey: "draftOrderIDCart")
                             } else if note == "favorite" {
                                 Constants.favId = draftOrderId
-
-//                                UserDefaults.standard.set(draftOrderId, forKey: "draftOrderIDFavorite")
                             }
                         } else {
                             print("Draft Order ID not found")
@@ -126,10 +152,6 @@ class FetchDataFromApi{
         ]
         print("Post Order")
 
-//        let customer: [String: Any] = [
-//                "id": 7435246534827,
-//                "currency": "EGP"
-//            ]
         
         let order: [String: Any] = [
                 "customer": customer,
@@ -139,27 +161,7 @@ class FetchDataFromApi{
         let parameters: [String: Any] = [
             "order": order
         ]
-        
-//        let parameters: [String: Any] = [
-//            "order": [
-//                "customer": [
-//                    "id": 7435246534827,
-//                    "currency": "EGP"
-//                ],
-//                "line_items": [
-//                    [
-//                        "title": "CONVERSE | CHUCK TAYLOR ALL STAR LO",
-//                        "price": 100.00,
-//                        "quantity": 2
-//                    ],
-//                    [
-//                        "title": "VANS |AUTHENTIC | LO PRO | BURGANDY/WHITE",
-//                        "price": 99.95,
-//                        "quantity": 1
-//                    ]
-//                ]
-//            ]
-//        ]
+    
 
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable(of: Order.self) { response in
             switch response.result {
