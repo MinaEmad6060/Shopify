@@ -89,7 +89,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let product = brandProducts?[indexPath.row] else { return }
+        guard let product = filterdBrandProducts?[indexPath.row] else { return }
 
             let storyboard = UIStoryboard(name: "Auth", bundle: nil)
             guard let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as? ProductInfoViewController else {
