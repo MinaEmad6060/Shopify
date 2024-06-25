@@ -29,7 +29,7 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
             
         }//7445466022059
-        allAddressesViewModel?.getAllAddress(customerId: 7445466022059)
+        allAddressesViewModel?.getAllAddress(customerId: Utilites.getCustomerID())
         
         
     }
