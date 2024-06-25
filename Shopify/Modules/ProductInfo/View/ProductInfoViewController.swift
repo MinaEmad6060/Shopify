@@ -18,6 +18,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     var productViewData: BrandProductViewData!
     var productInfoViewModel : ProdutInfoViewModel?
     var allProductsViewModel: AllProductsViewModel!
+    var homeViewModel: HomeViewModelProtocol!
 
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
     
@@ -75,9 +76,11 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
         }
         
         
-        productInfoViewModel?.getCurrentCustomer()
+        homeViewModel = HomeViewModel()
+        homeViewModel.getCurrentCustomer()
+        
+//        productInfoViewModel?.getCurrentCustomer()
        
-         //           self.updateDraftOrder()
         self.checkProductInDraftOrder()
                 
         

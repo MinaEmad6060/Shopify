@@ -122,9 +122,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let customerName =  Utilites.getCustomerName()
         let customerID =  Utilites.getCustomerID()
         let customerEmail =  Utilites.getCustomerEmail()
-        print("customerName\(customerName)")
-        print("favorite\(fav)")
-        print("cart: \(cart)")
+        print("customerName : \(customerName)")
+        print("customerEmail : \(customerEmail)")
+        print("customerID : \(customerID)")
+        print("favorite : \(fav)")
+        print("cart:  \(cart)")
+
     }
     
     
