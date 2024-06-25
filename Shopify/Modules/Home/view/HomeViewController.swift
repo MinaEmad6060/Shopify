@@ -35,7 +35,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
-        Constants.isAllProductsScreen = true
         
         
         homeViewModel = HomeViewModel()
@@ -119,6 +118,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     override func viewWillAppear(_ animated: Bool) {
+        Constants.isAllProductsScreen = true
         let cart =   Utilites.getDraftOrderIDCartFromNote()
         let fav = Utilites.getDraftOrderIDFavoriteFromNote()
         let customerName =  Utilites.getCustomerName()

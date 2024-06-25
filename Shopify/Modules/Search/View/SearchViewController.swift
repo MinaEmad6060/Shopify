@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate{
   
-    var allProductsViewModel: AllProductsViewModelProtocol!
+    var allProductsViewModel: AllProductsViewModel!
 
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -77,6 +77,46 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
 
            return cell
         }
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if Constants.isAllProductsScreen ?? true {
+            let lineItem = viewModel.filteredProducts[indexPath.item]
+            var product = BrandProductViewData()
+            let productId = lineItem.id
+            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+            let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
+            
+            allProductsViewModel.getProductFromNetworkService(id: productId)
+            allProductsViewModel.bindBrandProductsToViewController = {
+                product = self.allProductsViewModel.productViewData
+                let productInfoViewModel = ProdutInfoViewModel(product: product)
+                productInfoVC.productInfoViewModel = productInfoViewModel
+                DispatchQueue.main.async {
+                    productInfoVC.modalPresentationStyle = .fullScreen
+                    self.present(productInfoVC, animated: true, completion: nil)
+                }
+            }
+        }else{
+            let lineItem = Constants.categoryFilteredItems?[indexPath.item]
+            var product = BrandProductViewData()
+            let productId = lineItem?.id
+            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+            let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
+            
+            allProductsViewModel.getProductFromNetworkService(id: productId)
+            allProductsViewModel.bindBrandProductsToViewController = {
+                product = self.allProductsViewModel.productViewData
+                let productInfoViewModel = ProdutInfoViewModel(product: product)
+                productInfoVC.productInfoViewModel = productInfoViewModel
+                DispatchQueue.main.async {
+                    productInfoVC.modalPresentationStyle = .fullScreen
+                    self.present(productInfoVC, animated: true, completion: nil)
+                }
+            }
+        }
+    }
 
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             viewModel.searchProducts(for: searchText)

@@ -39,7 +39,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
         categoryCollectionView.dataSource = self
         noDataImage.isHidden = true
         
-        Constants.isAllProductsScreen = false
         
         categoriesViewModel = CategoriesViewModel()
         Constants.setSelectedCategory(category: getSelectedCategoryValue(sender: selectCategory))
@@ -47,6 +46,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
         
         let nibCustomCell = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.categoryCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "CategoryCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        Constants.isAllProductsScreen = false
     }
     
     
