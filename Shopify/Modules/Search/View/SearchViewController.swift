@@ -45,22 +45,13 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
 
             let product = viewModel.filteredProducts[indexPath.row]
 
-//                   if let imageView = cell.contentView.viewWithTag(0) as? UIImageView {
-//                       //
-//                       if let imageUrl = URL(string: product.image?.src ?? "") {
-//                           print("**************")
-//                           print("image url\(imageUrl)")
-//                           print("**************")
-//                           imageView.kf.setImage(with: imageUrl, placeholder: UIImage(named: "wish"))
-//                       }
-//                   }
-            if let imageView = cell.contentView.viewWithTag(0) as? UIImageView {
-                        if let firstImage = product.images?.first, let imageUrl = URL(string: firstImage.src ?? "") {
+            if let imageView = cell.contentView.viewWithTag(2) as? UIImageView {
+                if let firstImage = product.images?[0].src, let imageUrl = URL(string: firstImage) {
                             imageView.kf.setImage(with: imageUrl, placeholder: UIImage(named: "wish"))
                         }
                     }
                    if let label = cell.contentView.viewWithTag(1) as? UILabel {
-                       label.text = product.title
+                       label.text = product.title?.components(separatedBy: " | ")[1]
                    }
 
                    return cell
