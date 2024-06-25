@@ -76,7 +76,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
                       cell.favButtonTapped = { [weak self] in
                           guard let self = self else { return }
                           let productName = lineItem.title
-                          self.viewModel.lineItems.remove(at: indexPath.row)
+                          self.viewModel.lineItems.remove(at: indexPath.row+1)
                           self.favCollectionView.reloadData()
                               self.viewModel.removeProductFromDraftOrder(productTitle: productName ?? "")
                             

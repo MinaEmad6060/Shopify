@@ -66,5 +66,8 @@ class ReviewViewController: UIViewController , UITableViewDelegate, UITableViewD
         return cell
     }
     
+    @IBAction func backBtn(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
 }
 

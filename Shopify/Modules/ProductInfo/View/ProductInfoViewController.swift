@@ -9,17 +9,26 @@ import UIKit
 import ImageSlideshow
 import Kingfisher
 
-class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-   
+class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
+    
+    @IBOutlet weak var sizeSegment: UISegmentedControl!
+    
+    @IBOutlet weak var colorSegment: UISegmentedControl!
+    
     @IBOutlet weak var favBtn: UIBarButtonItem!
 
-    
+    var favViewMode: FavoriteViewModel!
   
     var productViewData: BrandProductViewData!
     var productInfoViewModel : ProdutInfoViewModel?
     var allProductsViewModel: AllProductsViewModel!
+
     var homeViewModel: HomeViewModelProtocol!
 
+    
+
+
+    @IBOutlet weak var quantityLB: UILabel!
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
     
     @IBOutlet weak var tiitleLB: UILabel!
@@ -48,17 +57,13 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateSegment()
         print("selectedSize:...:\(selectedSize)")
         print("selectedColor:...:\(selectedColor)")
 
         productViewData = BrandProductViewData()
         allProductsViewModel = AllProductsViewModel()
 
-        sizeCollectionView.dataSource = self
-        sizeCollectionView.delegate = self
-        colorCollectionView.dataSource = self
-        colorCollectionView.delegate = self
         configureImageSlideshow()
         tiitleLB.text = productInfoViewModel?.product?.title
         descTextView.text = productInfoViewModel?.product?.body_html
@@ -81,11 +86,19 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
         
 //        productInfoViewModel?.getCurrentCustomer()
        
+
         self.checkProductInDraftOrder()
+
+         //           self.updateDraftOrder()
+       self.checkProductInDraftOrder()
+
                 
         
         priceLB.text =  productInfoViewModel?.product?.price
- 
+        favViewMode = FavoriteViewModel()
+        print("displayed line items******\(favViewMode.displayedLineItems)")
+        
+        print("quantity.....\(productInfoViewModel?.product?.quantity)")
     }
     func updateDraftOrder() {
             
@@ -94,19 +107,7 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
                 productInfoViewModel?.updateFavoriteDraftOrder(product: product)
             }
         }
-    func checkProductInDraftOrder() {
-            let productTitle = productInfoViewModel?.product?.title ?? ""
-        productInfoViewModel?.isProductInDraftOrder(productTitle:productTitle  ?? "") { isInDraftOrder in
-                if isInDraftOrder {
-                    print("Product is in the draft order.\(productTitle )")
-                    self.updateFavoriteButtonImage(true)
-                } else {
-                    print("Product is not in the draft order.\(productTitle )")
-                    self.updateFavoriteButtonImage(false)
-                }
-            }
-        }
-
+ 
     private func configureImageSlideshow() {
             guard let productImages = productInfoViewModel?.product?.src else {
                 imageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "Ad")!)])
@@ -176,10 +177,8 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
     
     
     @IBAction func favBtn(_ sender: UIBarButtonItem) {
-       // productInfoViewModel?.removeProductFromDraftOrder(productTitle: productInfoViewModel?.product?.title ?? "")
-        //productInfoViewModel?.updateFavoriteDraftOrder( product: (productInfoViewModel?.product)!)
-    
-    guard let productTitle = productInfoViewModel?.product?.title else { return }
+       
+   /* guard let productTitle = productInfoViewModel?.product?.title else { return }
             guard let productId = productInfoViewModel?.product?.id else { return }
         
             favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
@@ -187,105 +186,83 @@ class ProductInfoViewController: UIViewController,UICollectionViewDelegate ,UICo
             if let isFavorite = favoriteProducts[productId] {
                 updateFavoriteButtonImage(isFavorite)
 
-                if isFavorite {
-                    
+                if isFavorite ,(favViewMode.displayedLineItems.contains(where: { $0.productID == productId })) == false{
+                    print("productId ** from fav(productId)")
                     productInfoViewModel?.updateFavoriteDraftOrder(product: productInfoViewModel!.product!)
                 } else {
                    
                     productInfoViewModel?.removeProductFromDraftOrder(productTitle: productTitle)
                 }
+           }*/
+       
+        guard let productTitle = productInfoViewModel?.product?.title,
+                  let productId = productInfoViewModel?.product?.id else { return }
+
+            favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
+
+            if let isFavorite = favoriteProducts[productId] {
+                updateFavoriteButtonImage(isFavorite)
+
+                if isFavorite {
+                    productInfoViewModel?.isProductInDraftOrder(productTitle: productTitle) { isInDraftOrder in
+                        if !isInDraftOrder {
+                            print("Adding productId ** from fav(productId)")
+                            self.productInfoViewModel?.updateFavoriteDraftOrder(product: self.productInfoViewModel!.product!)
+                        } else {
+                            print("Product already in draft order, not adding again.")
+                        }
+                    }
+                } else {
+                    productInfoViewModel?.removeProductFromDraftOrder(productTitle: productTitle)
+                }
             }
+
         
     }
-   
+    func checkProductInDraftOrder() {
+            let productTitle = productInfoViewModel?.product?.title ?? ""
+        productInfoViewModel?.isProductInDraftOrder(productTitle:productTitle  ?? "") { isInDraftOrder in
+                if isInDraftOrder {
+                    print("Product is in the draft order****.\(productTitle )")
+                    self.updateFavoriteButtonImage(true)
+                } else {
+                    print("Product is not in the draft order.\(productTitle )")
+                    self.updateFavoriteButtonImage(false)
+                }
+            }
+        }
+
     private func updateFavoriteButtonImage(_ isFavorite: Bool) {
            let imageName = isFavorite ? "heart.fill" : "heart"
            favBtn.image = UIImage(systemName: imageName)
        }
-   
+    
+    @IBAction func sizeSegmentedControlChanged(_ sender: UISegmentedControl) {
+        selectedSize = productInfoViewModel?.product?.sizes[sender.selectedSegmentIndex] ?? ""
+           print("selectedSize:...:\(selectedSize)")
+        productInfoViewModel?.product?.sizes[0] = selectedSize ?? ""
+     
+    }
+    
+    
+    @IBAction func colorSegmentedControlChanged(_ sender: UISegmentedControl) {
+        selectedColor = productInfoViewModel?.product?.colors[sender.selectedSegmentIndex] ?? ""
+          print("selectedColor:...:\(selectedColor)")
+        productInfoViewModel?.product?.colors[0] = selectedColor ?? ""
+    }
+    func updateSegment(){
+        sizeSegment.removeAllSegments()
+        productInfoViewModel?.product?.sizes.forEach { sizeSegment.insertSegment(withTitle: $0, at: sizeSegment.numberOfSegments, animated: false) }
+        sizeSegment.selectedSegmentIndex = 0
+        selectedSize = productInfoViewModel?.product?.sizes.first ?? ""
+
+        colorSegment.removeAllSegments()
+        productInfoViewModel?.product?.colors.forEach { colorSegment.insertSegment(withTitle: $0, at: colorSegment.numberOfSegments, animated: false) }
+        colorSegment.selectedSegmentIndex = 0
+        selectedColor = productInfoViewModel?.product?.colors.first ?? ""
+
+    }
     
 }
 
-   extension ProductInfoViewController: ImageSlideshowDelegate {
-       /*func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
-           print("current page:", page)
-       }
-
-           
-       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-           if collectionView == sizeCollectionView {
-               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SizeCollectionViewCell
-               if let size = productInfoViewModel?.product?.sizes[indexPath.row] {
-                   cell.sizeLB.text = size
-               }
-               return cell
-           } else if collectionView == colorCollectionView {
-               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ColorsCollectionViewCell
-               if let color = productInfoViewModel?.product?.colors[indexPath.row] {
-                   cell.colorLB.text = color
-                   //cell.colorView.backgroundColor = UIColor(named: color) // Assuming you have color names that match your app's color assets
-               }
-               return cell
-           }
-           return UICollectionViewCell()
-       }*/
-     
-
-           func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-               if collectionView == sizeCollectionView {
-                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SizeCollectionViewCell
-                   if let size = productInfoViewModel?.product?.sizes[indexPath.row] {
-                       cell.sizeLB.text = size
-                       cell.backgroundColor = (indexPath == selectedSizeIndexPath) ? .systemBrown : .lightGray
-                   }
-                   return cell
-               } else if collectionView == colorCollectionView {
-                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ColorsCollectionViewCell
-                   if let color = productInfoViewModel?.product?.colors[indexPath.row] {
-                       cell.colorLB.text = color
-                       cell.contentView.backgroundColor = (indexPath == selectedColorIndexPath) ? .systemBrown : .lightGray
-                   }
-                   return cell
-               }
-               return UICollectionViewCell()
-           
-       }
-       func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-           if collectionView == sizeCollectionView {
-               selectedSizeIndexPath = indexPath
-               selectedSize = productInfoViewModel?.product?.sizes[indexPath.row]
-           } else if collectionView == colorCollectionView {
-               selectedColorIndexPath = indexPath
-               selectedColor = productInfoViewModel?.product?.colors[indexPath.row]
-           }
-           print("selectedSize:...:\(selectedSize)")
-           print("selectedColor:...:\(selectedColor)")
-           productInfoViewModel?.product?.sizes[0] = selectedSize ?? ""
-           productInfoViewModel?.product?.colors[0] = selectedColor ?? ""
-           
-        
-           collectionView.reloadData()  // This will refresh the collection view to update the cell background color
-       }
-
-       func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//           return   productInfoViewModel?.product?.options.first(where: { $0.name == "Size" })?.values?.count ?? 0
-           if collectionView == sizeCollectionView {
-                  return productInfoViewModel?.product?.sizes.count ?? 0
-              } else if collectionView == colorCollectionView {
-                  return productInfoViewModel?.product?.colors.count ?? 0
-              }
-              return 0
-       }
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           return CGSize(width: 50, height: 50)
-       }
-
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-           return 10
-       }
-
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-           return 10
-       }
-
-   }
+ 
