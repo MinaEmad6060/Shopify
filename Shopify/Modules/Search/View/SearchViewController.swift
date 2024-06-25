@@ -48,6 +48,7 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+
             if Constants.isAllProductsScreen ?? true {
                 
                 let product = viewModel.filteredProducts[indexPath.row]
@@ -74,6 +75,19 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
                     label.text = product?.title
                 }
             }
+
+
+            let product = viewModel.filteredProducts[indexPath.row]
+
+            if let imageView = cell.contentView.viewWithTag(2) as? UIImageView {
+                if let firstImage = product.images?[0].src, let imageUrl = URL(string: firstImage) {
+                            imageView.kf.setImage(with: imageUrl, placeholder: UIImage(named: "wish"))
+                        }
+                    }
+                   if let label = cell.contentView.viewWithTag(1) as? UILabel {
+                       label.text = product.title?.components(separatedBy: " | ")[1]
+                   }
+
 
            return cell
         }

@@ -92,7 +92,7 @@ class NetworkManager {
             variantTitle: nil,
             //sku: "\(product.id ?? 0),\(product.src[0] ?? "")",
             vendor: nil,
-            quantity: 2,
+            quantity: product.quantity[0],
             requiresShipping: nil,
             taxable: nil,
             giftCard: nil,
