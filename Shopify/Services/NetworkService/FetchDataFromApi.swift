@@ -173,7 +173,7 @@ class FetchDataFromApi{
                     properties: [
                         LineItemm.Property(name: "Color", value: "Red"),
                         LineItemm.Property(name: "Size", value: "M")
-                    ]
+                    ], product_id: 123
                 )
 
                 let lineItemsArray = [lineItem]
