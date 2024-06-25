@@ -17,6 +17,8 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     
     @IBOutlet weak var tableView: UITableView!
     var lineItems: [LineItemm] = []
+    var myLine: [LineItemm] = []
+
     var subTotal = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +38,11 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     }
     @objc func checkoutTapped() {
         let storyboard = UIStoryboard(name: "Payment", bundle: nil)
-        if let paymentOptionsVC = storyboard.instantiateViewController(withIdentifier: "PaymentOptionsVC") as? PaymentOptionsViewController {
-            paymentOptionsVC.lineItems = self.lineItems
-            paymentOptionsVC.subTotal = self.subTotal
-            paymentOptionsVC.modalPresentationStyle = .fullScreen
-            self.present(paymentOptionsVC, animated: true, completion: nil)
+        if let placeOrderVC = storyboard.instantiateViewController(withIdentifier: "PlaceOrderVC") as? PlaceOrderViewController {
+            placeOrderVC.lineItems = self.lineItems
+            placeOrderVC.subTotal = self.subTotal
+            placeOrderVC.modalPresentationStyle = .fullScreen
+            self.present(placeOrderVC, animated: true, completion: nil)
         }
     }
     
@@ -53,6 +55,32 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             guard let self = self else { return }
             if let draftOrder = draftOrder {
                 self.lineItems = draftOrder.lineItems
+                print(draftOrder.lineItems)
+                
+                var itemDictionary: [String: LineItemm] = [:]
+
+                for item in lineItems {
+                    let propertiesString = item.properties?.map { "\($0.name)=\($0.value)" }.joined(separator: "&") ?? ""
+                    let key = "\(item.title)-\(item.price)-\(String(describing: item.variant_id))-\(String(describing: item.variant_title))-\(propertiesString)"
+                    
+                    if var existingItem = itemDictionary[key] {
+                        existingItem.quantity += item.quantity
+                        itemDictionary[key] = existingItem
+                    } else {
+                        itemDictionary[key] = item
+                    }
+                }
+
+                let combinedLineItems = Array(itemDictionary.values)
+
+                print("********************************")
+                for item in combinedLineItems {
+                    print("Title: \(item.title), Quantity: \(item.quantity), Price: \(item.price), Variant: \(String(describing: item.variant_title)), Properties: \(String(describing: item.properties))")
+                }
+                self.lineItems = combinedLineItems
+                myLine = lineItems
+                lineItems = lineItems.filter { $0.title != "Sample Product"}
+
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.subTotal = self.calculateTotal(lineItems: self.lineItems)
@@ -124,22 +152,26 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     func updateQuantity(for lineItemId: Int, increment: Bool) {
         guard let index = lineItems.firstIndex(where: { $0.id == lineItemId }) else { return }
         
-        let productId = 8100172759211
+        //let productId = 8100172759211
+        let productId = lineItems[index].product_id ?? 0
         NetworkManager.checkProductAvailability(productId: productId) { [weak self] availableQuantity in
             guard let self = self else { return }
             
             if let availableQuantity = availableQuantity {
                 if increment && self.lineItems[index].quantity ?? 5 < availableQuantity {
                     self.lineItems[index].quantity += 1
+                    self.myLine[index + 1].quantity += 1
                     
                 } else if !increment && self.lineItems[index].quantity ?? 5 > 1 {
                     self.lineItems[index].quantity -= 1
+                    self.myLine[index + 1].quantity -= 1
+
                     
                 } else {
                     print("Requested quantity not available or minimum quantity is 1")
                 }
                 
-                NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: self.lineItems) { success in
+                NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: self.myLine) { success in
                     if success {
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
@@ -160,7 +192,8 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             
             
             self.lineItems.remove(at: indexPath.row)
-            let updatedLineItems = lineItems
+            self.myLine.remove(at: indexPath.row + 1)
+            let updatedLineItems = myLine
             
             print("Deleting line item with id: \(lineItem.id)")
             print("Updated line items: \(updatedLineItems)")
@@ -169,7 +202,8 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                 if success {
                     print(self?.lineItems.count)
                     DispatchQueue.main.async {
-                        tableView.deleteRows(at: [indexPath], with: .fade)
+                        //tableView.deleteRows(at: [indexPath], with: .fade)
+                        tableView.reloadData()
                         self?.subTotal = (self?.calculateTotal(lineItems: self!.lineItems))!
                         self?.totalPrice.text = "\(self?.subTotal)EGP"
                     }
