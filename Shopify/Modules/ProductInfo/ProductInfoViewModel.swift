@@ -117,7 +117,7 @@ class ProdutInfoViewModel {
             }
         }
     }
-    //968066891947
+  
     func isProductInDraftOrder(productTitle: String, completion: @escaping (Bool) -> Void) {
         let draftOrderIDFavorite = Utilites.getDraftOrderIDFavoriteFromNote()
         NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderIDFavorite) { lineItems in
