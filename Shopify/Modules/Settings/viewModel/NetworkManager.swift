@@ -10,28 +10,6 @@ import Alamofire
 
 class NetworkManager {
     
-//    var baseUrl = "\(Constants.baseUrl)customers/177564125/addresses.json"
-    //smart_collections.json
-//    func formatUrl(request: String, query: String="", value: String="") -> String{
-//        return baseUrl+request+".json?"+query+"="+value
-//    }
-    
-//    static func getDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
-//        let urlFB = URL(string: url)
-//        guard let urlFB = urlFB else{return}
-//        
-//        
-//        AF.request(urlFB).responseDecodable(of: T.self) { response in
-//            switch response.result {
-//            case .success(let result):
-//                handler(result)
-//            case .failure(let error):
-//                print("Error: \(error.localizedDescription)")
-//            }
-//        }
-//    }
-    
-    
     static func addNewAddress(customerID: Int, address: Address, completion: @escaping (Bool) -> Void) {
         let url = "\(Constants.baseUrl)customers/\(customerID)/addresses.json"
         
@@ -176,27 +154,7 @@ class NetworkManager {
         }
     }
     
-    
-//
-    static func fetchLineItemsInDraftOrder(draftOrderId: Int, completion: @escaping ([LineItem]?) -> Void) {
-           let urlString = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/draft_orders/\(draftOrderId).json"
-           
-           AF.request(urlString).responseDecodable(of: Drafts.self) { response in
-               switch response.result {
-               case .success(let draftResponse):
-                   if let lineItems = draftResponse.draftOrder?.lineItems {
-                       completion(lineItems)
-                       print("lineItems:***\(lineItems)")
-                   } else {
-                       print("No line items found in api")
-                       completion(nil)
-                   }
-               case .failure(let error):
-                   print("Error fetching line items: \(error.localizedDescription)")
-                   completion(nil)
-               }
-           }
-       }
+  
     
     
     
@@ -326,6 +284,28 @@ class NetworkManager {
     }
     
     
+//    var baseUrl = "\(Constants.baseUrl)customers/177564125/addresses.json"
+    //smart_collections.json
+//    func formatUrl(request: String, query: String="", value: String="") -> String{
+//        return baseUrl+request+".json?"+query+"="+value
+//    }
+    
+//    static func getDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
+//        let urlFB = URL(string: url)
+//        guard let urlFB = urlFB else{return}
+//
+//
+//        AF.request(urlFB).responseDecodable(of: T.self) { response in
+//            switch response.result {
+//            case .success(let result):
+//                handler(result)
+//            case .failure(let error):
+//                print("Error: \(error.localizedDescription)")
+//            }
+//        }
+//    }
+    
+    
     
 //   static func fetchProductDetails(productId: Int, completion: @escaping (Result<Product, Error>) -> Void) {
 //        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/products/\(productId).json"
@@ -411,5 +391,29 @@ class NetworkManager {
 //            }
 //        }
 
+    
+
+//    static func fetchLineItemsInDraftOrder(draftOrderId: Int, completion: @escaping ([LineItem]?) -> Void) {
+//           let urlString = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/draft_orders/\(draftOrderId).json"
+//
+//           AF.request(urlString).responseDecodable(of: Drafts.self) { response in
+//               switch response.result {
+//               case .success(let draftResponse):
+//                   if let lineItems = draftResponse.draftOrder?.lineItems {
+//                       completion(lineItems)
+//                       print("lineItems:***\(lineItems)")
+//                   } else {
+//                       print("No line items found in api")
+//                       completion(nil)
+//                   }
+//               case .failure(let error):
+//                   print("Error fetching line items: \(error.localizedDescription)")
+//                   completion(nil)
+//               }
+//           }
+//       }
+    
+    
+    
 }
 

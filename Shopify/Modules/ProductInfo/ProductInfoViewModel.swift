@@ -14,6 +14,17 @@ class ProdutInfoViewModel {
    
         var draftOrderIDCart: Int?
    
+    
+    
+    var fetchDataFromApi: FetchDataFromApi!
+    
+    init(){
+        fetchDataFromApi = FetchDataFromApi()
+        customerId = 0
+        draftOrderIDFavorite = 0
+        draftOrderIDCart = 0
+    }
+    
     //init(product: Product?) {
 
   //  var product : BrandProductViewData?
@@ -134,14 +145,25 @@ class ProdutInfoViewModel {
 //            completion(false)
 //            return
 //        }
-        NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderIDFavorite) { lineItems in
-            if let lineItems = lineItems {
-                let isInDraftOrder = lineItems.contains { $0.title == productTitle }
-                completion(isInDraftOrder)
-            } else {
+        
+        fetchDataFromApi?.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl,request: "draft_orders/\(draftOrderIDFavorite)")){ (draftOrderResponsee:Drafts?) in
+            if let draftOrder = draftOrderResponsee {
+                let isInDraftOrder = draftOrderResponsee?.draftOrder?.lineItems?.contains { $0.title == productTitle }
+                completion(isInDraftOrder ?? false)
+            }else {
                 completion(false)
             }
         }
+        
+        
+//        NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderIDFavorite) { lineItems in
+//            if let lineItems = lineItems {
+//                let isInDraftOrder = lineItems.contains { $0.title == productTitle }
+//                completion(isInDraftOrder)
+//            } else {
+//                completion(false)
+//            }
+//        }
     }
     
     }
