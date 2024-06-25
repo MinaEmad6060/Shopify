@@ -35,6 +35,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
+        Constants.isAllProductsScreen = true
+        
         
         homeViewModel = HomeViewModel()
         brands = [BrandsViewData]()

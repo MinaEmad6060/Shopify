@@ -39,6 +39,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
         categoryCollectionView.dataSource = self
         noDataImage.isHidden = true
         
+        Constants.isAllProductsScreen = false
+        
         categoriesViewModel = CategoriesViewModel()
         Constants.setSelectedCategory(category: getSelectedCategoryValue(sender: selectCategory))
    

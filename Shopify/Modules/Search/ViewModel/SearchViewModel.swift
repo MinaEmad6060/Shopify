@@ -9,7 +9,7 @@ import Foundation
 class SearchViewModel{
      
     var products: [Product] = []
-       var filteredProducts: [Product] = []
+    var filteredProducts: [Product] = []
     var bindFilteredProductsToViewController: (() -> ())!
     
     var fetchDataFromApi: FetchDataFromApi!

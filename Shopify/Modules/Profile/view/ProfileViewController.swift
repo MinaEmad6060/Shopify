@@ -99,7 +99,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if tableView == ordersTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersTableViewCell
             if complectedOrders?.count ?? 0 > indexPath.row{
-                        cell.totalPrice.text = complectedOrders?[indexPath.row].total_price
+                cell.totalPrice.text = (complectedOrders?[indexPath.row].total_price ?? "") + " $ "
                     
                     let dateTimeComponents = complectedOrders?[indexPath.row].created_at?.components(separatedBy: "T")
 

@@ -19,8 +19,11 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     }
     @IBOutlet weak var searchTableView: UITableView!
     var viewModel = SearchViewModel()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("isAll :: \(Constants.isAllProductsScreen ?? true)")
         allProductsViewModel = AllProductsViewModel()
         searchTableView.delegate = self
         searchTableView.dataSource = self
@@ -37,34 +40,43 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("tableView VC :: \(viewModel.filteredProducts.count)")
-
+        if Constants.isAllProductsScreen ?? true {
             return viewModel.filteredProducts.count
+        }else{
+            return Constants.categoryFilteredItems?.count ?? 0
         }
+    }
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-            let product = viewModel.filteredProducts[indexPath.row]
-
-//                   if let imageView = cell.contentView.viewWithTag(0) as? UIImageView {
-//                       //
-//                       if let imageUrl = URL(string: product.image?.src ?? "") {
-//                           print("**************")
-//                           print("image url\(imageUrl)")
-//                           print("**************")
-//                           imageView.kf.setImage(with: imageUrl, placeholder: UIImage(named: "wish"))
-//                       }
-//                   }
-            if let imageView = cell.contentView.viewWithTag(0) as? UIImageView {
-                        if let firstImage = product.images?.first, let imageUrl = URL(string: firstImage.src ?? "") {
-                            imageView.kf.setImage(with: imageUrl, placeholder: UIImage(named: "wish"))
-                        }
+            if Constants.isAllProductsScreen ?? true {
+                
+                let product = viewModel.filteredProducts[indexPath.row]
+                
+                if let imageView = cell.contentView.viewWithTag(0) as? UIImageView {
+                    if let firstImage = product.images?.first, let imageUrl = URL(string: firstImage.src ?? "") {
+                        imageView.kf.setImage(with: imageUrl, placeholder: UIImage(named: "wish"))
                     }
-                   if let label = cell.contentView.viewWithTag(1) as? UILabel {
-                       label.text = product.title
-                   }
+                }
+                
+                if let label = cell.contentView.viewWithTag(1) as? UILabel {
+                    label.text = product.title
+                }
+            }else{
+                let product = Constants.categoryFilteredItems?[indexPath.row]
+                
+                if let imageView = cell.contentView.viewWithTag(0) as? UIImageView {
+                    if let firstImage = product?.src.first, let imageUrl = URL(string: firstImage) {
+                        imageView.kf.setImage(with: imageUrl, placeholder: UIImage(named: "wish"))
+                    }
+                }
+                
+                if let label = cell.contentView.viewWithTag(1) as? UILabel {
+                    label.text = product?.title
+                }
+            }
 
-                   return cell
+           return cell
         }
 
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
