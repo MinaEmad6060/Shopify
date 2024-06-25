@@ -10,6 +10,27 @@ class ProdutInfoViewModel {
 
     var product : BrandProductViewData?
     var customerId: Int
+
+   var  draftOrderIDFavorite: Int?
+   
+        var draftOrderIDCart: Int?
+   
+    
+    
+    var fetchDataFromApi: FetchDataFromApi!
+    
+    init(){
+        fetchDataFromApi = FetchDataFromApi()
+        customerId = 0
+        draftOrderIDFavorite = 0
+        draftOrderIDCart = 0
+    }
+    
+    //init(product: Product?) {
+
+  //  var product : BrandProductViewData?
+
+
     init(product: BrandProductViewData?) {
         self.product = product
         self.customerId = Utilites.getCustomerID()
@@ -35,6 +56,8 @@ class ProdutInfoViewModel {
             }
         }}
       
+
+
 
     func getCurrentCustomer() {
         let email = Utilites.getCustomerEmail()
@@ -70,6 +93,7 @@ class ProdutInfoViewModel {
             }
         }
     }
+
     func removeProductFromDraftOrder(productTitle: String) {
         
         NetworkManager.removeLineItemFromDraftOrder(draftOrderId: Utilites.getDraftOrderIDFavoriteFromNote(), productTitle: productTitle) { statusCode in
@@ -82,15 +106,27 @@ class ProdutInfoViewModel {
     }
   
     func isProductInDraftOrder(productTitle: String, completion: @escaping (Bool) -> Void) {
+
+        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
+
+        fetchDataFromApi?.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl,request: "draft_orders/\(draftOrderIDFavorite)")){ (draftOrderResponsee:Drafts?) in
+            if let draftOrder = draftOrderResponsee {
+                let isInDraftOrder = draftOrderResponsee?.draftOrder?.lineItems?.contains { $0.title == productTitle }
+                completion(isInDraftOrder ?? false)
+            }else {
+
         let draftOrderIDFavorite = Utilites.getDraftOrderIDFavoriteFromNote()
         NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderIDFavorite) { lineItems in
             if let lineItems = lineItems {
                 let isInDraftOrder = lineItems.contains { $0.title == productTitle }
                 completion(isInDraftOrder)
             } else {
+
                 completion(false)
             }
         }
+        
+  
     }
    
     

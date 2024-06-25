@@ -22,7 +22,11 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
     var productViewData: BrandProductViewData!
     var productInfoViewModel : ProdutInfoViewModel?
     var allProductsViewModel: AllProductsViewModel!
+
+    var homeViewModel: HomeViewModelProtocol!
+
     
+
 
     @IBOutlet weak var quantityLB: UILabel!
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
@@ -77,10 +81,17 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         }
         
         
-        productInfoViewModel?.getCurrentCustomer()
+        homeViewModel = HomeViewModel()
+        homeViewModel.getCurrentCustomer()
+        
+//        productInfoViewModel?.getCurrentCustomer()
        
+
+        self.checkProductInDraftOrder()
+
          //           self.updateDraftOrder()
        self.checkProductInDraftOrder()
+
                 
         
         priceLB.text =  productInfoViewModel?.product?.price

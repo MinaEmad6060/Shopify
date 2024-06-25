@@ -39,12 +39,17 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
         categoryCollectionView.dataSource = self
         noDataImage.isHidden = true
         
+        
         categoriesViewModel = CategoriesViewModel()
         Constants.setSelectedCategory(category: getSelectedCategoryValue(sender: selectCategory))
    
         
         let nibCustomCell = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         self.categoryCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "CategoryCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        Constants.isAllProductsScreen = false
     }
     
     
@@ -89,7 +94,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let product = brandProducts?[indexPath.row] else { return }
+        guard let product = filterdBrandProducts?[indexPath.row] else { return }
 
             let storyboard = UIStoryboard(name: "Auth", bundle: nil)
             guard let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as? ProductInfoViewController else {
