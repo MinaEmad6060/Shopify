@@ -35,6 +35,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     var homeViewModel: HomeViewModelProtocol!
     var brands: [BrandsViewData]!
+
     
 //    var lineItems: [OrderLineItem]!
     
@@ -47,6 +48,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         homeViewModel = HomeViewModel()
         brands = [BrandsViewData]()
         homeViewModel.getCurrentCustomer()
+    
         
 //
 //        lineItems = [
@@ -98,7 +100,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func drawAdsSection ()-> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .absolute(210))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .absolute(155))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 8 )
         let section = NSCollectionLayoutSection(group: group)
@@ -169,8 +171,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             //cell.view.layer.cornerRadius = 25.0
             //cell.view.backgroundColor = UIColor.brown
             let discountCode = discountCodes[indexPath.row]
-            cell.valueLabel?.text = "\(discountCode.value)% OFF"
-            cell.discountCodeLabel?.text = "Promocode: \(discountCode.code)"
+            //cell.valueLabel?.text = "\(discountCode.value)% OFF"
+            //cell.discountCodeLabel?.text = "Promocode: \(discountCode.code)"
+            if discountCode.value == "-10.0"{
+                
+                cell.adImage.image = UIImage(named: "coupon10.jpeg")
+            }else{
+                cell.adImage.image = UIImage(named: "coupon20.jpeg")
+
+            }
+            cell.adsview.layer.cornerRadius = 20.0
+
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell

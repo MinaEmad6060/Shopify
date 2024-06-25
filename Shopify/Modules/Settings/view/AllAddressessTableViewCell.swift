@@ -9,6 +9,7 @@ import UIKit
 
 class AllAddressessTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var defaultView: UIView!
     @IBAction func defaultAddressBtn(_ sender: Any) {
         setDefault?()
     }

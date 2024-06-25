@@ -14,13 +14,14 @@ class AdsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var adImage: UIImageView!
     
     
-    @IBOutlet weak var view: UIView!
+    @IBOutlet weak var adsview: UIView!
     @IBOutlet weak var valueLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        //self.adImage.layer.cornerRadius = 25
-        //self.adImage.clipsToBounds = true
+
+        adImage.layer.cornerRadius = 25.0
+        adsview.layer.cornerRadius = 25.0
     }
+
 
 }
