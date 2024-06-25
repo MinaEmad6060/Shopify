@@ -40,6 +40,6 @@ class Utilites{
         return UserDefaults.standard.integer(forKey: "cartIDNet")
     }
     static  func getCustomerName() -> String {
-        return UserDefaults.standard.string(forKey: "fname") ?? "non"
+        return UserDefaults.standard.string(forKey: "fname") ?? "none"
     }
 }

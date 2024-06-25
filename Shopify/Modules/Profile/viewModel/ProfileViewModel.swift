@@ -64,8 +64,6 @@ class ProfileViewModel: ProfileViewModelProtocol{
                 product.amount = orderDetails.order?.line_items?[i].price_set?.shop_money?.amount
                 product.currency_code = orderDetails.order?.line_items?[i].price_set?.shop_money?.currency_code
                 product.quantity = orderDetails.order?.line_items?[i].quantity
-//                product.amount = orderDetails.order?.line_items?[i].price_set?.shop_money?.amount
-//                product.amount = orderDetails.order?.line_items?[i].price_set?.shop_money?.amount
 
                 self?.orderDetailsViewData.append(product)
             }
