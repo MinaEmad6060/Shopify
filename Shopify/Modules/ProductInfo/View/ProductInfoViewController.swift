@@ -242,7 +242,7 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
               let quantity = quantities[sender.selectedSegmentIndex]
               quantityLB.text = quantity == 0 ? "This size not available now" : "\(quantity) items are available for this size"
             selectedQuantity = quantity
-            productInfoViewModel?.product?.quantity[0] = selectedQuantity ?? 0
+            productInfoViewModel?.product?.inventory_quantity = selectedQuantity ?? 0
           } else {
               quantityLB.text = "N/A"
           }

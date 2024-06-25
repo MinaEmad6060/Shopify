@@ -111,7 +111,8 @@ class NetworkManager {
         let propertiesArray: [Properties] = [
             Properties(name: "Size", value: product.sizes[0]),
             Properties(name: "Color", value: product.colors[0]),
-            Properties(name: "Image", value: product.src[0])
+            Properties(name: "Image", value: product.src[0]),
+            Properties(name: "inventory_quantity", value:("\( product.inventory_quantity ?? 0)"))
            ]
         print("*******************************")
            print("Product ID after updat: \(product.id ?? 0)")
@@ -125,7 +126,7 @@ class NetworkManager {
             variantTitle: nil,
             //sku: "\(product.id ?? 0),\(product.src[0] ?? "")",
             vendor: nil,
-            quantity: product.quantity[0],
+            quantity: 1,
             requiresShipping: nil,
             taxable: nil,
             giftCard: nil,

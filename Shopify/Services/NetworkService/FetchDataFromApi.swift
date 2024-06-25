@@ -43,7 +43,7 @@ class FetchDataFromApi{
             let lineItem: [String: Any] = [
                 "id": product.id ?? 0,
                 "title": product.title ?? "",
-                "quantity": product.variants?[0].inventory_quantity,
+                "quantity": 1,
                 "price": product.variants?[0].price ?? "20",
                 "sku": "\(product.id ?? 0),\((product.image?.src)!)"
             ]
