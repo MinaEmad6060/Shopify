@@ -156,14 +156,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             present(orderDetailsViewController, animated: true )
         }else{
             if favouriteViewModel.displayedLineItems.count > indexPath.row{
-                let lineItem = favouriteViewModel.displayedLineItems[indexPath.row]
-                let imageString = lineItem.sku ?? ""
-                let components = imageString.components(separatedBy: ",")
-                
+                let lineItem = favouriteViewModel.displayedLineItems[indexPath.item]
                 var product = BrandProductViewData()
-                if components.count == 2, let productId = Int(components[0]) {
-                    
-                    
+                let productId = lineItem.productID
                     let storyboard = UIStoryboard(name: "Auth", bundle: nil)
                     let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
                     
@@ -177,7 +172,28 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                             self.present(productInfoVC, animated: true, completion: nil)
                         }
                     }
-                }
+//                let lineItem = favouriteViewModel.displayedLineItems[indexPath.row]
+//                let imageString = lineItem.sku ?? ""
+//                let components = imageString.components(separatedBy: ",")
+//                
+//                var product = BrandProductViewData()
+//                if components.count == 2, let productId = Int(components[0]) {
+//                    
+//                    
+//                    let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+//                    let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
+//                    
+//                    allProductsViewModel.getProductFromNetworkService(id: productId)
+//                    allProductsViewModel.bindBrandProductsToViewController = {
+//                        product = self.allProductsViewModel.productViewData
+//                        let productInfoViewModel = ProdutInfoViewModel(product: product)
+//                        productInfoVC.productInfoViewModel = productInfoViewModel
+//                        DispatchQueue.main.async {
+//                            productInfoVC.modalPresentationStyle = .fullScreen
+//                            self.present(productInfoVC, animated: true, completion: nil)
+//                        }
+//                    }
+//                }
             }
         }
         

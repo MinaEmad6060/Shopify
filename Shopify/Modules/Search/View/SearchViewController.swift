@@ -23,7 +23,6 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("isAll :: \(Constants.isAllProductsScreen ?? true)")
         allProductsViewModel = AllProductsViewModel()
         searchTableView.delegate = self
         searchTableView.dataSource = self
