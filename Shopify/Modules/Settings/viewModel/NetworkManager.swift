@@ -295,7 +295,7 @@ class NetworkManager {
         }
     }
     static func checkProductAvailability(productId: Int, completion: @escaping (Int?) -> Void) {
-        let url = "\(Constants.baseUrl)products/8100172759211.json"
+        let url = "\(Constants.baseUrl)products/\(productId).json"
         
         
         AF.request(url, method: .get).responseDecodable(of: ProductResponse.self) { response in
