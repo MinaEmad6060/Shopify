@@ -197,22 +197,8 @@ class NetworkManager {
                }
            }
        }
-   static func fetchAllProducts(completion: @escaping (Result<BrandProduct, Error>) -> Void) {
-            let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/products.json"
-       
-            
-            AF.request(url).validate().responseDecodable(of: BrandProduct.self) { response in
-                switch response.result {
-                case .success(let brandProduct):
-                    completion(.success(brandProduct))
-                   // print(brandProduct)
-                case .failure(let error):
-                    completion(.failure(error))
-                    print("errorrrr")
-                }
-            }
-        }
-
+    
+    
     
     static func updateDraftOrder(draftOrderId: Int, lineItems: [LineItemm], completion: @escaping (Bool) -> Void) {
         let url = "\(Constants.baseUrl)/draft_orders/\(draftOrderId).json"
@@ -254,20 +240,7 @@ class NetworkManager {
             }
         }
     }
-    static func fetchDraftOrder(draftOrderId: Int, completion: @escaping (DraftOrderr?) -> Void) {
-        let url = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
-        
-        
-        AF.request(url, method: .get).responseDecodable(of: DraftOrderResponsee.self) { response in
-            switch response.result {
-            case .success(let draftOrderResponse):
-                completion(draftOrderResponse.draft_order)
-            case .failure(let error):
-                print("Error fetching draft order: \(error)")
-                completion(nil)
-            }
-        }
-    }
+
     static func checkProductAvailability(productId: Int, completion: @escaping (Int?) -> Void) {
         let url = "\(Constants.baseUrl)products/8100172759211.json"
         
@@ -351,22 +324,28 @@ class NetworkManager {
             }
         }
     }
-   static func fetchProductDetails(productId: Int, completion: @escaping (Result<Product, Error>) -> Void) {
-        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/products/\(productId).json"
-        
-        AF.request(url).validate().responseDecodable(of: Product.self) { response in
-            switch response.result {
-            case .success(let product):
-                completion(.success(product))
-                print("/********/")
-                print(response)
-                print("/********/")
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
+    
+    
+    
+//   static func fetchProductDetails(productId: Int, completion: @escaping (Result<Product, Error>) -> Void) {
+//        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/products/\(productId).json"
+//        
+//        AF.request(url).validate().responseDecodable(of: Product.self) { response in
+//            switch response.result {
+//            case .success(let product):
+//                completion(.success(product))
+//                print("/********/")
+//                print(response)
+//                print("/********/")
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//        }
+//    }
 
+    
+    
+    
 //    static func getCustomer(email: String, completion: @escaping (Customer?) -> Void) {
     //
     //        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/customers/search.json?query=email:\(email)"
@@ -395,6 +374,42 @@ class NetworkManager {
     //                }
     //            }
     //        }
+    
+    
+    
+    
+    //    static func fetchDraftOrder(draftOrderId: Int, completion: @escaping (DraftOrderr?) -> Void) {
+    //        let url = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
+    //
+    //
+    //        AF.request(url, method: .get).responseDecodable(of: DraftOrderResponsee.self) { response in
+    //            switch response.result {
+    //            case .success(let draftOrderResponse):
+    //                completion(draftOrderResponse.draft_order)
+    //            case .failure(let error):
+    //                print("Error fetching draft order: \(error)")
+    //                completion(nil)
+    //            }
+    //        }
+    //    }
+    
+    
+    
+//   static func fetchAllProducts(completion: @escaping (Result<BrandProduct, Error>) -> Void) {
+//            let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/products.json"
+//
+//
+//            AF.request(url).validate().responseDecodable(of: BrandProduct.self) { response in
+//                switch response.result {
+//                case .success(let brandProduct):
+//                    completion(.success(brandProduct))
+//                   // print(brandProduct)
+//                case .failure(let error):
+//                    completion(.failure(error))
+//                    print("errorrrr")
+//                }
+//            }
+//        }
 
 }
 

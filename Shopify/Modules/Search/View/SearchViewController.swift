@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate{
   
+    var allProductsViewModel: AllProductsViewModelProtocol!
 
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -20,7 +21,7 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     var viewModel = SearchViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        allProductsViewModel = AllProductsViewModel()
         searchTableView.delegate = self
         searchTableView.dataSource = self
         searchBar.delegate = self

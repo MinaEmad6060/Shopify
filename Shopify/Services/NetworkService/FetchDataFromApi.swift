@@ -14,8 +14,8 @@ class FetchDataFromApi{
         func formatUrl(baseUrl: String,request: String, query: String="", value: String="") -> String{
             return baseUrl+request+".json?"+query+"="+value
         }
-    //query=email:minaemad6060@gmail.com
-    //formatUrl(baseUrl: Constants.baseUrl,request: "customers/search", query: String="query", value: String="email:\(email)")
+    //
+    //formatUrl(baseUrl: Constants.baseUrl,request: "products")
         
         func getDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
             let urlFB = URL(string: url)

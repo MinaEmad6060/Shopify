@@ -18,6 +18,11 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet weak var tableView: UITableView!
     var lineItems: [LineItemm] = []
     var subTotal = 0.0
+    
+    var fetchDataFromApi: FetchDataFromApi!
+    
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +31,8 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+        fetchDataFromApi = FetchDataFromApi()
+
         self.subTotalPriceView.layer.cornerRadius = 20.0
         self.checkoutView.layer.cornerRadius = 20.0
         
@@ -48,18 +54,30 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     func fetchDraftOrderItems() {
 
         let draftOrderId = Utilites.getDraftOrderIDCartFromNote()
-
-        NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
-            guard let self = self else { return }
-            if let draftOrder = draftOrder {
-                self.lineItems = draftOrder.lineItems
+        
+        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl,request: "draft_orders/\(draftOrderId)")){[weak self] (draftOrderResponsee:DraftOrderResponsee?) in
+            if let draftOrder = draftOrderResponsee {
+                self?.lineItems = draftOrder.draft_order.lineItems
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-                    self.totalPrice.text = "\(self.subTotal)EGP"
+                    self?.tableView.reloadData()
+                    self?.subTotal = self?.calculateTotal(lineItems: self?.lineItems ?? [LineItemm]()) ?? 0.0
+                    self?.totalPrice.text = "\(self?.subTotal ?? 0.0)EGP"
                 }
             }
         }
+        
+        
+//        NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
+//            guard let self = self else { return }
+//            if let draftOrder = draftOrder {
+//                self.lineItems = draftOrder.lineItems
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                    self.subTotal = self.calculateTotal(lineItems: self.lineItems)
+//                    self.totalPrice.text = "\(self.subTotal)EGP"
+//                }
+//            }
+//        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
