@@ -728,7 +728,7 @@
                                                     <segue destination="PlB-Li-vel" kind="show" id="GBt-Gq-egQ"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avaliaple Quntity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47Q-Px-FJK">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aAvalilable Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47Q-Px-FJK">
                                                 <rect key="frame" x="20" y="349.33333333333331" width="353" height="20.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -824,6 +824,7 @@
                         <outlet property="favBtn" destination="6np-Lo-NRa" id="49f-aK-ujS"/>
                         <outlet property="imageSlideshow" destination="vCR-kX-cjq" id="QAV-DV-SDb"/>
                         <outlet property="priceLB" destination="tmN-ib-DHO" id="d77-nC-568"/>
+                        <outlet property="quantityLB" destination="47Q-Px-FJK" id="o7b-5D-bT4"/>
                         <outlet property="sizeSegment" destination="LhO-jV-7bZ" id="TMA-VS-CP4"/>
                         <outlet property="tiitleLB" destination="QyQ-RC-8r5" id="5ws-N8-rjK"/>
                     </connections>

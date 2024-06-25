@@ -22,7 +22,9 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
     var productViewData: BrandProductViewData!
     var productInfoViewModel : ProdutInfoViewModel?
     var allProductsViewModel: AllProductsViewModel!
+    
 
+    @IBOutlet weak var quantityLB: UILabel!
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
     
     @IBOutlet weak var tiitleLB: UILabel!
@@ -85,7 +87,7 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         favViewMode = FavoriteViewModel()
         print("displayed line items******\(favViewMode.displayedLineItems)")
         
- 
+        print("quantity.....\(productInfoViewModel?.product?.quantity)")
     }
     func updateDraftOrder() {
             
@@ -94,19 +96,7 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
                 productInfoViewModel?.updateFavoriteDraftOrder(product: product)
             }
         }
-    func checkProductInDraftOrder() {
-            let productTitle = productInfoViewModel?.product?.title ?? ""
-        productInfoViewModel?.isProductInDraftOrder(productTitle:productTitle  ?? "") { isInDraftOrder in
-                if isInDraftOrder {
-                    print("Product is in the draft order****.\(productTitle )")
-                    self.updateFavoriteButtonImage(true)
-                } else {
-                    print("Product is not in the draft order.\(productTitle )")
-                    self.updateFavoriteButtonImage(false)
-                }
-            }
-        }
-
+ 
     private func configureImageSlideshow() {
             guard let productImages = productInfoViewModel?.product?.src else {
                 imageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "Ad")!)])
@@ -177,7 +167,7 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
     
     @IBAction func favBtn(_ sender: UIBarButtonItem) {
        
-    guard let productTitle = productInfoViewModel?.product?.title else { return }
+   /* guard let productTitle = productInfoViewModel?.product?.title else { return }
             guard let productId = productInfoViewModel?.product?.id else { return }
         
             favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
@@ -192,10 +182,45 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
                    
                     productInfoViewModel?.removeProductFromDraftOrder(productTitle: productTitle)
                 }
-           }
+           }*/
+       
+        guard let productTitle = productInfoViewModel?.product?.title,
+                  let productId = productInfoViewModel?.product?.id else { return }
+
+            favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
+
+            if let isFavorite = favoriteProducts[productId] {
+                updateFavoriteButtonImage(isFavorite)
+
+                if isFavorite {
+                    productInfoViewModel?.isProductInDraftOrder(productTitle: productTitle) { isInDraftOrder in
+                        if !isInDraftOrder {
+                            print("Adding productId ** from fav(productId)")
+                            self.productInfoViewModel?.updateFavoriteDraftOrder(product: self.productInfoViewModel!.product!)
+                        } else {
+                            print("Product already in draft order, not adding again.")
+                        }
+                    }
+                } else {
+                    productInfoViewModel?.removeProductFromDraftOrder(productTitle: productTitle)
+                }
+            }
+
         
     }
-   
+    func checkProductInDraftOrder() {
+            let productTitle = productInfoViewModel?.product?.title ?? ""
+        productInfoViewModel?.isProductInDraftOrder(productTitle:productTitle  ?? "") { isInDraftOrder in
+                if isInDraftOrder {
+                    print("Product is in the draft order****.\(productTitle )")
+                    self.updateFavoriteButtonImage(true)
+                } else {
+                    print("Product is not in the draft order.\(productTitle )")
+                    self.updateFavoriteButtonImage(false)
+                }
+            }
+        }
+
     private func updateFavoriteButtonImage(_ isFavorite: Bool) {
            let imageName = isFavorite ? "heart.fill" : "heart"
            favBtn.image = UIImage(systemName: imageName)
@@ -204,12 +229,15 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
     @IBAction func sizeSegmentedControlChanged(_ sender: UISegmentedControl) {
         selectedSize = productInfoViewModel?.product?.sizes[sender.selectedSegmentIndex] ?? ""
            print("selectedSize:...:\(selectedSize)")
+        productInfoViewModel?.product?.sizes[0] = selectedSize ?? ""
+     
     }
     
     
     @IBAction func colorSegmentedControlChanged(_ sender: UISegmentedControl) {
         selectedColor = productInfoViewModel?.product?.colors[sender.selectedSegmentIndex] ?? ""
           print("selectedColor:...:\(selectedColor)")
+        productInfoViewModel?.product?.colors[0] = selectedColor ?? ""
     }
     func updateSegment(){
         sizeSegment.removeAllSegments()
