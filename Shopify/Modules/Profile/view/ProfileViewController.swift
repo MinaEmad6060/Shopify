@@ -180,7 +180,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         cell.wishItemBrand.text = productName?.components(separatedBy: " | ")[0]
                         cell.wishItemName.text = productName?.components(separatedBy: " | ")[1]
                         
-                        cell.wishItemPrice.text = (lineItem.price ?? "") + "$"
+//                        cell.wishItemPrice.text = (lineItem.price ?? "") + "$"
+                    let priceString = complectedOrders?[indexPath.row].total_price ?? "0"
+                    let priceInt = Double(priceString) ?? 0
+                    let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+                    cell.wishItemPrice.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
                         
                         if let url = URL(string: imageString) {
                             cell.wishItemImage.kf.setImage(with: url)
