@@ -60,7 +60,7 @@ class Settings: UIViewController {
                     case .success(let data):
                         if let json = data as? [String: Any],
                            let rates = json["conversion_rates"] as? [String: Any],
-                           let rate = rates["USD"] as? Double {
+                           let rate = rates["EGP"] as? Double {
                             self.selectedCurrency = Currency(code: currency, rate: rate)
                             self.storeSelectedCurrency()
                         }
