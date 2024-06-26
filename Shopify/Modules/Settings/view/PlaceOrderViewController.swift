@@ -8,10 +8,72 @@
 import UIKit
 import PassKit
 
-class PlaceOrderViewController: UIViewController {
+class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var orderCouponsCollectionView: UICollectionView!
+    @IBOutlet weak var orderCollectionView: UICollectionView!
     
     private var payment : PKPaymentRequest = PKPaymentRequest()
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == orderCollectionView {
+            return lineItems.count
+        } else {
+            return discountCodes.count
+        }
+    }
+        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == orderCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "orderCell", for: indexPath) as! OrderSummaryCollectionViewCell
+            
+            let lineItem = lineItems[indexPath.row]
+            cell.orderName.text = lineItem.title
+            cell.orderAmount.text = "\(lineItem.quantity)"
+            
+            if let properties = lineItem.properties, properties.count > 2, let url = URL(string: properties[2].value) {
+                cell.orderImage.kf.setImage(with: url)
+                cell.orderSize.text = "size: \(properties[0].value)"
+                cell.orderColor.text = "color: \(properties[1].value)"
+            }
+            
+            let quantity = lineItem.quantity
+            let price = lineItem.price
+            
+            if let priceDouble = Double(price) {
+                let totalPrice = Double(quantity) * priceDouble
+                cell.orderPrice.text = "\(Double(totalPrice) * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+            } else {
+                cell.orderPrice.text = "E"
+            }
+            cell.orderAmountView.layer.borderWidth = 1.5
+            cell.orderAmountView.layer.borderColor = UIColor(hexString: "AE9376").cgColor
+            cell.orderAmountView.layer.cornerRadius = 15.0
+            
+            cell.orderView.layer.borderWidth = 1.5
+            cell.orderView.layer.borderColor = UIColor(hexString: "AE9376").cgColor
+            cell.orderView.layer.cornerRadius = 15.0
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "orderCouponsCell", for: indexPath) as! OrderCouponsCollectionViewCell
+            
+            let discountCode = discountCodes[indexPath.row]
+            cell.orderCoupon.text = discountCode
+            
+            cell.orderCouponView.layer.borderWidth = 1.5
+            cell.orderCouponView.layer.borderColor = UIColor(hexString: "AE9376").cgColor
+            cell.orderCouponView.layer.cornerRadius = 15.0
+            return cell
+        }
+    }
+        
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == orderCollectionView {
+            return CGSize(width: 250.0, height: 150.0)
+        } else {
+            return CGSize(width: 220.0, height: 40.0)
+        }
+    }
     
     @IBAction func changePayment(_ sender: Any) {
         let payment = UIStoryboard(name: "Payment", bundle: nil).instantiateViewController(withIdentifier: "PaymentOptionsVC") as! PaymentOptionsViewController
@@ -35,12 +97,13 @@ class PlaceOrderViewController: UIViewController {
     }
     @IBOutlet weak var couponErrorLabel: UILabel!
     var lineItems: [LineItemm] = []
+    var discountCodes: [String] = []
 
     var subTotal = 0.0
     var total = 0.0
     let customer: [String: Any] = [
         "id": Utilites.getCustomerID(),
-        "currency": "EGP"
+        "currency": Utilites.getCurrencyCode()
     ]
     @IBOutlet weak var couponTF: UITextField!
     
@@ -57,11 +120,28 @@ class PlaceOrderViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var subTotalLabel: UILabel!
     override func viewWillAppear(_ animated: Bool) {
+        if self.addressLabel.text == "Address"{
+            self.changeAddress.titleLabel?.text = "Set"
+            
+        }else{
+            self.changeAddress.titleLabel?.text = "Change"
+        }
         self.paymentLabel.text = "Payment: \(Utilites.getPaymentMethod())"
-        allAddressesViewModel?.getAllAddress(customerId: Utilites.getCustomerID())    }
+        allAddressesViewModel?.getAllAddress(customerId: Utilites.getCustomerID())
+        
+        discountCodes = loadDiscountCodes()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        orderCollectionView.delegate = self
+        orderCollectionView.dataSource = self
+        
+        orderCouponsCollectionView.delegate = self
+        orderCouponsCollectionView.dataSource = self
+        
+        print("/*///*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/")
+        print(discountCodes)
         allAddressesViewModel = AllAddressesViewModel()
         allAddressesViewModel?.bindResultToAllAddressViewController = { [weak self] in
             DispatchQueue.main.async {
@@ -85,9 +165,9 @@ class PlaceOrderViewController: UIViewController {
         
         print(self.lineItems)
         // Do any additional setup after loading the view.
-        self.subTotalLabel.text = "\(self.subTotal)EGP"
-        self.discountAmountLabel.text = "-0.EGP"
-        self.totalLabel.text = "\(self.subTotal)EGP"
+        self.subTotalLabel.text =  "\(Double(self.subTotal) * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+        self.discountAmountLabel.text = "-0.0 \(Utilites.getCurrencyCode())"
+        self.totalLabel.text = "\(Double(self.subTotal) * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
 
         
         payment.merchantIdentifier = "merchant.com.pushpendra.pay"
@@ -132,45 +212,45 @@ class PlaceOrderViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-    func loadDiscountCodes() -> [DiscountCode] {
-        guard let discountCodesDict = UserDefaults.standard.array(forKey: "AvailableDiscountCodes") as? [[String: String]] else {
+    
+    func loadDiscountCodes() -> [String] {
+        if let discountCodesArray = UserDefaults.standard.array(forKey: "AvailableDiscountCodes") as? [String] {
+            return discountCodesArray
+        } else {
             return []
         }
-        
-        return discountCodesDict.map { DiscountCode(code: $0["code"] ?? "", value: $0["value"] ?? "") }
     }
+
     func validateDiscountCode(_ code: String) {
         let availableCodes = loadDiscountCodes()
         print(availableCodes)
         
-        if let discountCode = availableCodes.first(where: { $0.code == code }) {
+        if availableCodes.contains(where: { $0 == code }) {
             if !isDiscountCodeUsed(code) {
                 useDiscountCode(code)
                 print("Discount code applied successfully!")
                 
-                if let discountValue = Double(discountCode.value) {
-                    let absoluteDiscountValue = abs(discountValue)
-                    let discountAmount = calculateDiscount(totalPrice: subTotal, discountValue: absoluteDiscountValue)
-                    let newTotalPrice = subTotal - discountAmount
-                    print("Discount Value: \(absoluteDiscountValue)")
-                    print("Discount Amount: \(discountAmount)")
-                    print("New Total Price: \(newTotalPrice)")
-                    
-                    self.discountAmountLabel.text = "-\(discountAmount)EGP"
-                    self.totalLabel.text = "\(newTotalPrice)EGP"
-                } else {
-                    print("Invalid discount value format")
-                }
+                // Assuming all discount codes have a fixed value of 10% discount for simplicity
+                let discountValue = 10.0 // Example discount value
+                let absoluteDiscountValue = abs(discountValue)
+                let discountAmount = calculateDiscount(totalPrice: subTotal, discountValue: absoluteDiscountValue)
+                let newTotalPrice = subTotal - discountAmount
+                print("Discount Value: \(absoluteDiscountValue)")
+                print("Discount Amount: \(discountAmount)")
+                print("New Total Price: \(newTotalPrice)")
+                
+                self.discountAmountLabel.text = "\(discountAmount * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                self.totalLabel.text = "\(newTotalPrice * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
             } else {
                 print("This discount code has already been used.")
-                // self.couponErrorLabel.text = "Already used"
+                self.couponErrorLabel.text = "Already used"
             }
         } else {
             print("Invalid discount code.")
-            // self.couponErrorLabel.text = "Invalid discount code"
+            self.couponErrorLabel.text = "Invalid discount code"
         }
     }
+
 
     func calculateDiscount(totalPrice: Double, discountValue: Double) -> Double {
         return totalPrice * (discountValue / 100.0)

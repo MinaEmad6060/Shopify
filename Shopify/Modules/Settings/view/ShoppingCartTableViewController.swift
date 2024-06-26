@@ -110,7 +110,8 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                         self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-                        self.totalPrice.text = "\(self.subTotal) EGP"
+                        self.totalPrice.text = "\(self.subTotal * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+
                     }
                 }
             }
@@ -145,8 +146,9 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             
             if let properties = lineItem.properties, properties.count > 2, let url = URL(string: properties[2].value) {
                 cell.cartImge.kf.setImage(with: url)
-            } else {
-                cell.cartImge.image = UIImage(named: "lineItemImage")
+                cell.sizeLabel.text = "size: \(properties[0].value)"
+                cell.colorLabel.text = "color: \(properties[1].value)"
+
             }
             print("\(lineItem.quantity)testtt")
             print(lineItem.price)
@@ -157,7 +159,8 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             if let priceDouble = Double(price) {
                 let totalPrice = Double(quantity) * priceDouble
                 print("Total price for \(quantity) items: \(totalPrice)")
-                cell.cartPrice.text = "\(totalPrice)"
+                
+                cell.cartPrice.text = "\(totalPrice * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
             } else {
                 print("Invalid price format")
             }
@@ -167,14 +170,14 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                 self?.updateQuantity(for: lineItem.id ?? 0, increment: true)
                 var itemPrice = lineItem.quantity * (Int(lineItem.price) ?? 0)
                 
-                cell.cartPrice.text = "\(itemPrice)"
+                cell.cartPrice.text = "\(Double(itemPrice) * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
             }
         
             cell.decrementAction = { [weak self] in
                 self?.updateQuantity(for: lineItem.id ?? 0, increment: false)
                 var itemPrice = lineItem.quantity * (Int(lineItem.price) ?? 0)
                 
-                cell.cartPrice.text = "\(itemPrice)"
+                cell.cartPrice.text = "\(Double(itemPrice) * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
 
             }
         
@@ -227,7 +230,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                     self.myLine[index + 1].quantity -= 1
                     
                 } else if !increment && self.lineItems[index].quantity ?? 0 == 1 {
-                    self.confirmDeleteItem(at: index)
+                    self.confirmDeleteItem(index: index, lineItemId: lineItemId)
                     return
                 } else {
                     print("Requested quantity not available or minimum quantity is 1")
@@ -244,7 +247,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                                 self.noCart.isHidden = true
                             }
                             self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-                            self.totalPrice.text = "\(self.subTotal) EGP"
+                            self.totalPrice.text = "\(self.subTotal * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
                         }
                     } else {
                         print("error")
@@ -254,15 +257,19 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         }
     }
 
-    func confirmDeleteItem(at index: Int) {
+    func confirmDeleteItem(index: Int, lineItemId: Int) {
         let alert = UIAlertController(title: "Delete Item", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
             guard let self = self else { return }
             let lineItem = self.lineItems[index]
             
-            self.lineItems.remove(at: index)
-            self.myLine.remove(at: index + 1)
+            guard let indexLineItems = lineItems.firstIndex(where: { $0.id == lineItemId }) else { return }
+            
+            guard let indexMyLine = myLine.firstIndex(where: { $0.id == lineItemId }) else { return }
+            
+            self.lineItems.remove(at: indexLineItems)
+            self.myLine.remove(at: indexMyLine)
             let updatedLineItems = self.myLine
             
             NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: updatedLineItems) { success in
@@ -270,8 +277,13 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                     print(self.lineItems.count)
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        if self.myLine.count == 1 {
+                            self.noCart.isHidden = false
+                        } else {
+                            self.noCart.isHidden = true
+                        }
                         self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-                        self.totalPrice.text = "\(self.subTotal) EGP"
+                        self.totalPrice.text = "\(self.subTotal * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
                     }
                 } else {
                     print("Error updating draft order")
@@ -291,9 +303,12 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
                 guard let self = self else { return }
                 let lineItem = self.lineItems[indexPath.row]
+                guard let indexLineItems = lineItems.firstIndex(where: { $0.id == lineItem.id }) else { return }
                 
-                self.lineItems.remove(at: indexPath.row)
-                self.myLine.remove(at: indexPath.row + 1)
+                guard let indexMyLine = myLine.firstIndex(where: { $0.id == lineItem.id }) else { return }
+                
+                self.lineItems.remove(at: indexLineItems)
+                self.myLine.remove(at: indexMyLine)
                 let updatedLineItems = self.myLine
                 
                 NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: updatedLineItems) { success in
@@ -301,8 +316,13 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                         print(self.lineItems.count)
                         DispatchQueue.main.async {
                             tableView.reloadData()
+                            if self.myLine.count == 1 {
+                                self.noCart.isHidden = false
+                            } else {
+                                self.noCart.isHidden = true
+                            }
                             self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-                            self.totalPrice.text = "\(self.subTotal) EGP"
+                            self.totalPrice.text = "\(self.subTotal * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
                         }
                     } else {
                         print("Error updating draft order")
