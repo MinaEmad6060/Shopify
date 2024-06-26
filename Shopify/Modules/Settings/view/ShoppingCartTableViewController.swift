@@ -259,23 +259,22 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
             guard let self = self else { return }
+            let lineItem = self.lineItems[index]
+            
             self.lineItems.remove(at: index)
             self.myLine.remove(at: index + 1)
+            let updatedLineItems = self.myLine
             
-            NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: self.myLine) { success in
+            NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: updatedLineItems) { success in
                 if success {
+                    print(self.lineItems.count)
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
-                        if self.myLine.count == 1 {
-                            self.noCart.isHidden = false
-                        } else {
-                            self.noCart.isHidden = true
-                        }
                         self.subTotal = self.calculateTotal(lineItems: self.lineItems)
                         self.totalPrice.text = "\(self.subTotal) EGP"
                     }
                 } else {
-                    print("error")
+                    print("Error updating draft order")
                 }
             }
         }))
