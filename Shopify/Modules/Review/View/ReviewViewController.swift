@@ -35,8 +35,8 @@ class ReviewViewController: UIViewController , UITableViewDelegate, UITableViewD
         // Example data:
         reviews = [
             Review(image: UIImage(named: "1"), name: "Maha Farghaly", review: "Great product, and high quality, very good!", rating: 4.5),
-            Review(image: UIImage(named: "2"), name: "Sara El Masry", review: "Amazing experience, will definitely buy again!", rating: 5.0),
-            Review(image: UIImage(named: "3"), name: "Ahmed El Sayed", review: "Good value for money, satisfied with the purchase.", rating: 4.3),
+            Review(image: UIImage(named: "2"), name: "Mina Emad", review: "Amazing experience, will definitely buy again!", rating: 5.0),
+            Review(image: UIImage(named: "3"), name: "Slsabel Hesham", review: "Good value for money, satisfied with the purchase.", rating: 4.3),
             Review(image: UIImage(named: "4"), name: "Nourhan Ahmed", review: "Decent product, could be improved.", rating: 3.5),
             Review(image: UIImage(named: "5"), name: "Omar Hassan", review: "Satisfied with the quality, but shipping was slow.", rating: 3.5),
             Review(image: UIImage(named: "6"), name: "Layla Mohamed", review: "Average product, nothing special.", rating: 3.0),

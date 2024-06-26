@@ -68,9 +68,13 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         tiitleLB.text = productInfoViewModel?.product?.title
         descTextView.text = productInfoViewModel?.product?.body_html
         
-        priceLB.text =  productInfoViewModel?.product?.price
+       // priceLB.text =  productInfoViewModel?.product?.price
         
-        
+        let priceString = productInfoViewModel?.product?.price ?? "0"
+       
+         let priceInt = Double(priceString) ?? 0
+        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+        priceLB.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
         guard let productId = productInfoViewModel?.product?.id else {
             print("Product ID is nil")
             return
