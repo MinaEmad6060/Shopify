@@ -36,6 +36,10 @@ class AddNewAddress: UIViewController {
         viewModel?.bindResultToNewAddressViewController = {
             if ((self.viewModel?.success) != nil) {
                 print("Address added successfully")
+                Utilites.displayToast(message: "Address added successfully", seconds: 2.0, controller: self)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    self.dismiss(animated: true, completion: nil)
+                }
             } else {
                 print("Failed to add address")
             }
@@ -77,9 +81,36 @@ class AddNewAddress: UIViewController {
     @IBOutlet weak var addAdress: UIButton!
     
     @IBAction func addAddressBtn(_ sender: Any) {
-        viewModel?.addNewAddress(customerId: 7445466022059, country: countryLabel.text ?? "", city: cityLabel.text ?? "", address: addressTF.text ?? "", phone: phoneTF.text ?? "")
+        if countryLabel.text == "Select Country" {
+            print("ooooo1")
+            countryErrorLabel.text = "Please Select Country"
+        } else if cityLabel.text == "Select City" {
+            print("ooooo2")
+            cityErrorLabel.text = "Please Select City"
+            countryErrorLabel.text = ""
+        } else if addressTF.text?.isEmpty ?? true {
+            print("ooooo3")
+            addressErrorLabel.text = "Required"
+            cityErrorLabel.text = ""
+        } else if phoneTF.text?.isEmpty ?? true {
+            print("ooooo4")
+            phoneErrorLabel.text = "Required"
+            addressErrorLabel.text = ""
+        } else {
+            viewModel?.addNewAddress(
+                customerId: Utilites.getCustomerID(),
+                country: countryLabel.text ?? "",
+                city: cityLabel.text ?? "",
+                address: addressTF.text ?? "",
+                phone: phoneTF.text ?? ""
+            )
+        }
     }
     
+    @IBOutlet weak var phoneErrorLabel: UILabel!
+    @IBOutlet weak var addressErrorLabel: UILabel!
+    @IBOutlet weak var cityErrorLabel: UILabel!
+    @IBOutlet weak var countryErrorLabel: UILabel!
     let egyptianCities = [
         "Cairo",
         "Alexandria",

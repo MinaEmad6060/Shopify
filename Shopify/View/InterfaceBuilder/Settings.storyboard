@@ -61,6 +61,9 @@
                                 <buttonConfiguration key="configuration" style="tinted" title="        Logout">
                                     <color key="baseBackgroundColor" red="0.79392749070000002" green="0.75908017159999996" blue="0.70818072560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="logoutBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cDR-D0-jPC"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow.uturn.backward.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Cav-dm-pFV">
                                 <rect key="frame" x="25" y="302" width="31" height="27"/>
@@ -224,6 +227,10 @@
                                     <segue destination="3md-hk-ltS" kind="show" id="TDP-13-ykx"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noaddresses" translatesAutoresizingMaskIntoConstraints="NO" id="MuH-C6-N2g">
+                                <rect key="frame" x="47" y="301" width="300" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZTK-qk-GGI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -231,6 +238,7 @@
                     <navigationItem key="navigationItem" id="4SZ-5v-LkT"/>
                     <connections>
                         <outlet property="allAddressessTableView" destination="0OA-kf-h30" id="Ol9-YN-Gmj"/>
+                        <outlet property="noAddresses" destination="MuH-C6-N2g" id="lS1-4N-VF8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCd-G8-Teq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -263,34 +271,34 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u5c-zl-A7z">
-                                <rect key="frame" x="23" y="272" width="346" height="390"/>
+                                <rect key="frame" x="23" y="272" width="346" height="396"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NlF-Gs-qc2" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" textAlignment="natural" minimumFontSize="17" sizingRule="oversize" translatesAutoresizingMaskIntoConstraints="NO" id="NlF-Gs-qc2" customClass="HoshiTextField" customModule="TextFieldEffects">
                                         <rect key="frame" x="30" y="213" width="287" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
                                                 <color key="value" red="0.1718084812" green="0.1185134575" blue="0.059666261079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.21472063659999999" green="0.14930695299999999" blue="0.076666392390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.1718084812" green="0.1185134575" blue="0.059666261079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" red="0.27058823529999998" green="0.18823529410000001" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.1718084812" green="0.1185134575" blue="0.059666261079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="1"/>
+                                                <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-Kw-S7l" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-Kw-S7l" customClass="HoshiTextField" customModule="TextFieldEffects">
                                         <rect key="frame" x="30" y="304" width="287" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
                                                 <color key="value" red="0.1718084812" green="0.1185134575" blue="0.059666261079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -302,10 +310,17 @@
                                                 <color key="value" red="0.1718084812" green="0.1185134575" blue="0.059666261079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="1"/>
+                                                <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahq-bb-arH">
+                                        <rect key="frame" x="30" y="205" width="252" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.21472063659999999" green="0.14930695299999999" blue="0.076666392390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RKD-BX-bfL">
                                         <rect key="frame" x="30" y="123" width="285" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -316,7 +331,7 @@
                                                 <color key="backgroundColor" red="0.21472063659999999" green="0.14930695299999999" blue="0.076666392390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" red="0.21472063659999999" green="0.14930695299999999" blue="0.076666392390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEM-lg-BfY">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEM-lg-BfY">
                                                 <rect key="frame" x="0.0" y="5" width="252" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -338,7 +353,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.83656048770000002" green="0.77325910330000003" blue="0.69793713089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.84336930509999997" green="0.78744071719999997" blue="0.73234122989999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Itn-ME-VkI">
                                         <rect key="frame" x="30" y="39" width="285" height="30"/>
@@ -350,7 +365,7 @@
                                                 <color key="backgroundColor" red="0.21472063659999999" green="0.14930695299999999" blue="0.076666392390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" red="0.21472063659999999" green="0.14930695299999999" blue="0.076666392390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgs-xU-CQY">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgs-xU-CQY">
                                                 <rect key="frame" x="0.0" y="5" width="252" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -372,8 +387,43 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.83656048770000002" green="0.77325910330000003" blue="0.69793713089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.84336930509999997" green="0.78744071719999997" blue="0.73234122989999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2c-a8-XMr">
+                                        <rect key="frame" x="30" y="298" width="252" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.21472063659999999" green="0.14930695299999999" blue="0.076666392390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIO-0M-hz6">
+                                        <rect key="frame" x="30" y="71" width="285" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.61014595417061235" green="0.06965919124238254" blue="0.11541687139578377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E59-8P-Vg3">
+                                        <rect key="frame" x="30" y="155" width="285" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.61014595419999995" green="0.069659191240000001" blue="0.1154168714" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sbn-Yh-R2E">
+                                        <rect key="frame" x="30" y="249" width="285" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.61014595419999995" green="0.069659191240000001" blue="0.1154168714" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdH-Db-JFo">
+                                        <rect key="frame" x="30" y="339" width="285" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.61014595419999995" green="0.069659191240000001" blue="0.1154168714" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.84336930509999997" green="0.78744071719999997" blue="0.73234122989999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -390,6 +440,10 @@
                                     <action selector="addAddressBtn:" destination="3md-hk-ltS" eventType="touchUpInside" id="lZD-rD-sCh"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="address" translatesAutoresizingMaskIntoConstraints="NO" id="9uH-qC-a3u">
+                                <rect key="frame" x="61" y="115" width="270" height="134"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UsH-yw-eW7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -397,29 +451,34 @@
                     <navigationItem key="navigationItem" id="5Go-hf-Zz5"/>
                     <connections>
                         <outlet property="addAdress" destination="Rfq-xT-3Y7" id="HEr-y7-Hsq"/>
+                        <outlet property="addressErrorLabel" destination="Sbn-Yh-R2E" id="ujL-4Y-pl8"/>
                         <outlet property="addressTF" destination="NlF-Gs-qc2" id="G4N-v8-TcR"/>
                         <outlet property="addressView" destination="u5c-zl-A7z" id="bsf-mH-NdS"/>
+                        <outlet property="cityErrorLabel" destination="E59-8P-Vg3" id="aM9-SU-gwU"/>
                         <outlet property="cityLabel" destination="WEM-lg-BfY" id="hgX-dd-hFP"/>
                         <outlet property="cityView" destination="RKD-BX-bfL" id="rMU-Ml-zIi"/>
+                        <outlet property="countryErrorLabel" destination="QIO-0M-hz6" id="EuI-Um-4OK"/>
                         <outlet property="countryLabel" destination="Kgs-xU-CQY" id="dcr-Dy-W2D"/>
                         <outlet property="countryView" destination="Itn-ME-VkI" id="ovX-En-ZAL"/>
+                        <outlet property="phoneErrorLabel" destination="JdH-Db-JFo" id="fGa-2E-nCT"/>
                         <outlet property="phoneTF" destination="gaJ-Kw-S7l" id="1Lx-bN-yTr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FqJ-nB-QBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1731" y="8"/>
+            <point key="canvasLocation" x="1730.534351145038" y="7.746478873239437"/>
         </scene>
     </scenes>
     <designables>
         <designable name="NlF-Gs-qc2">
-            <size key="intrinsicContentSize" width="62.666666666666664" height="22"/>
+            <size key="intrinsicContentSize" width="5" height="22"/>
         </designable>
         <designable name="gaJ-Kw-S7l">
-            <size key="intrinsicContentSize" width="41" height="18.666666666666668"/>
+            <size key="intrinsicContentSize" width="4" height="18.666666666666668"/>
         </designable>
     </designables>
     <resources>
+        <image name="address" width="256" height="256"/>
         <image name="arrow.down.circle" catalog="system" width="128" height="123"/>
         <image name="arrow.uturn.backward.circle" catalog="system" width="128" height="123"/>
         <image name="chevron.backward.circle.fill" catalog="system" width="128" height="123"/>
@@ -427,13 +486,14 @@
         <image name="dollarsign.arrow.circlepath" catalog="system" width="128" height="112"/>
         <image name="homeaddress" width="24" height="24"/>
         <image name="location.circle" catalog="system" width="128" height="123"/>
+        <image name="noaddresses" width="300" height="250"/>
         <image name="nonDefault" width="24" height="24"/>
         <image name="phoneaddress" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

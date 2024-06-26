@@ -16,6 +16,8 @@ class ShoppingCartViewCell: UITableViewCell {
     @IBOutlet weak var cartItem: UILabel!
     @IBOutlet weak var cartImge: UIImageView!
     
+    @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var colorLabel: UILabel!
     var incrementAction: (() -> Void)?
     var decrementAction: (() -> Void)?
 
