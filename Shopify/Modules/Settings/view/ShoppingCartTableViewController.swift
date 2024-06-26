@@ -193,35 +193,6 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             }
         }
         
-        
-        
-//        NetworkManager.checkProductAvailability(productId: productId) { [weak self] availableQuantity in
-//            guard let self = self else { return }
-//            
-//            if let availableQuantity = availableQuantity {
-//                if increment && self.lineItems[index].quantity ?? 5 < availableQuantity {
-//                    self.lineItems[index].quantity += 1
-//                    
-//                } else if !increment && self.lineItems[index].quantity ?? 5 > 1 {
-//                    self.lineItems[index].quantity -= 1
-//                    
-//                } else {
-//                    print("Requested quantity not available or minimum quantity is 1")
-//                }
-//                
-//                NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: self.lineItems) { success in
-//                    if success {
-//                        DispatchQueue.main.async {
-//                            self.tableView.reloadData()
-//                            self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-//                            self.totalPrice.text = "\(self.subTotal)EGP"
-//                        }
-//                    } else {
-//                        print("error")
-//                    }
-//                }
-//            }
-//        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

@@ -86,23 +86,10 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         tableView.reloadData()
                     }
                 } else {
-                    // Handle the error appropriately (e.g., show an alert to the user)
+                    
                 }
             }
-            
-            
-//            NetworkManager.deleteCustomerAddress(customerId: 7445466022059, addressId: addressId) { [weak self] success in
-//                if success {
-//                    self?.allAddressesViewModel?.addresses.remove(at: indexPath.row)
-//                    DispatchQueue.main.async {
-//                        //tableView.deleteRows(at: [indexPath], with: .fade)
-//                        tableView.reloadData()
-//                    }
-//                } else {
-//                    // Handle the error appropriately (e.g., show an alert to the user)
-//                }
-//            }
-            
+        
             
         }
     }

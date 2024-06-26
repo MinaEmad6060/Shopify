@@ -42,11 +42,9 @@ class SignUpNetworkService {
                         print("**************")
                         
                         do {
-                            // Decode the response JSON to get the new customer details
                             let decodedResponse = try JSONDecoder().decode(CustomerResponse.self, from: data)
                             let updatedCustomer = decodedResponse.customer
                             
-                            // Update newCustomer with the details from the response
                             newCustomer.id = updatedCustomer.id
                             newCustomer.first_name = updatedCustomer.first_name
                             newCustomer.last_name = updatedCustomer.last_name
@@ -55,14 +53,12 @@ class SignUpNetworkService {
                             newCustomer.note = updatedCustomer.note
                             newCustomer.created_at = updatedCustomer.created_at
                             
-                            // Now you can print the updated customer details
                             print("customer.id: \(newCustomer.id ?? 0)")
                             print("customer.email: \(newCustomer.email ?? "")")
                             
                             Constants.customerId = newCustomer.id
                             
-//                            UserDefaults.standard.set(newCustomer.id, forKey: "userID")
-//                            UserDefaults.standard.set(newCustomer.email, forKey: "userEmail")
+
                             
                             complication(httpResponse.statusCode)
                         } catch let decodeError {
