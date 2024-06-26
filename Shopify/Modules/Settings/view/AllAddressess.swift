@@ -9,6 +9,7 @@ import UIKit
 
 class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var noAddresses: UIImageView!
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -28,6 +29,11 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
         allAddressesViewModel?.bindResultToAllAddressViewController = { [weak self] in
             DispatchQueue.main.async {
                 self?.allAddressessTableView.reloadData()
+                if self?.allAddressesViewModel?.addresses.count == 0{
+                    self?.noAddresses.isHidden = false
+                }else{
+                    self?.noAddresses.isHidden = true
+                }
             }
             
         }//7445466022059
@@ -118,6 +124,11 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
                     DispatchQueue.main.async {
                         //tableView.deleteRows(at: [indexPath], with: .fade)
                         tableView.reloadData()
+                        if self?.allAddressesViewModel?.addresses.count == 0{
+                            self?.noAddresses.isHidden = false
+                        }else{
+                            self?.noAddresses.isHidden = true
+                        }
                     }
                 }
                 else{
