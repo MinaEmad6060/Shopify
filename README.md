@@ -43,7 +43,6 @@ Welcome to *SHOPIN*, your ultimate online fashion destination, designed to bring
 - *GitHub*: For version control and collaboration.
 - *CocoaPods*: Dependency manager for integrating third-party libraries.
 - *Firebase*: For backend services including authentication and database.
-- *RX-Swift* 
 
 
 ## Team members: 
