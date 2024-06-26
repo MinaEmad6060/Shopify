@@ -272,39 +272,39 @@ class NetworkManager {
     }
 
     static func removeLineItemFromDraftOrder(draftOrderId: Int, productTitle: String, completion: @escaping (Int) -> Void) {
-        let urlString = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
-        
-        AF.request(urlString).responseDecodable(of: Drafts.self) { response in
-            switch response.result {
-            case .success(let draftResponse):
-                guard var draftOrder = draftResponse.draftOrder else {
-                    print("Draft Order not found")
-                    return
-                }
-                
-                // Remove the line item with the specified line item ID
-                draftOrder.lineItems = draftOrder.lineItems?.filter { $0.title != productTitle }
-                
-                do {
-                    let updatedDraftOrderDictionary = try draftOrder.asDictionary()
-                    let requestBody: [String: Any] = ["draft_order": updatedDraftOrderDictionary]
-                    
-                    // Send the updated draft order using PUT request
-                    AF.request(urlString, method: .put, parameters: requestBody, encoding: JSONEncoding.default).response { response in
-                        if let httpResponse = response.response {
-                            completion(httpResponse.statusCode)
-                        } else if let error = response.error {
-                            print("HTTP request error: \(error.localizedDescription)")
-                        }
+            let urlString = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
+            
+            AF.request(urlString).responseDecodable(of: Drafts.self) { response in
+                switch response.result {
+                case .success(let draftResponse):
+                    guard var draftOrder = draftResponse.draftOrder else {
+                        print("Draft Order not found")
+                        return
                     }
-                } catch {
-                    print("Error converting draft order to dictionary: \(error.localizedDescription)")
+                    
+                    // Remove the line item with the specified line item ID
+                    draftOrder.lineItems = draftOrder.lineItems?.filter { $0.title != productTitle }
+                    
+                    do {
+                        let updatedDraftOrderDictionary = try draftOrder.asDictionary()
+                        let requestBody: [String: Any] = ["draft_order": updatedDraftOrderDictionary]
+                        
+                        // Send the updated draft order using PUT request
+                        AF.request(urlString, method: .put, parameters: requestBody, encoding: JSONEncoding.default).response { response in
+                            if let httpResponse = response.response {
+                                completion(httpResponse.statusCode)
+                            } else if let error = response.error {
+                                print("HTTP request error: \(error.localizedDescription)")
+                            }
+                        }
+                    } catch {
+                        print("Error converting draft order to dictionary: \(error.localizedDescription)")
+                    }
+                case .failure(let error):
+                    print("Error fetching draft order: \(error.localizedDescription)")
                 }
-            case .failure(let error):
-                print("Error fetching draft order: \(error.localizedDescription)")
             }
         }
-    }
   
 }
 
