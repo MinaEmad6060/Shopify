@@ -18,8 +18,6 @@ class PlaceOrderViewController: UIViewController {
     }
     @IBOutlet weak var couponErrorLabel: UILabel!
     var lineItems: [LineItemm] = []
-//    var lineItemsTest: [LineItemm] = []
-//    var ItemTest: LineItemm?
     var subTotal = 0.0
     var total = 0.0
     let customer: [String: Any] = [
@@ -47,11 +45,7 @@ class PlaceOrderViewController: UIViewController {
         self.subTotalLabel.text = "\(self.subTotal)EGP"
         self.discountAmountLabel.text = "-0.EGP"
         self.totalLabel.text = "\(self.subTotal)EGP"
-                
-//        lineItemsTest = [
-//            LineItemm(id: 8100172660907, title: "SUPRA | MENS VAIDER", quantity: 1, price: "\(169.95)", variant_id: "", variant_title: ""),
-//            LineItemm(id: 8100172595371, title: "PUMA | SUEDE CLASSIC REGAL", quantity: 2, price: "\(110.00)", variant_id: "", variant_title: ""),
-//        ]
+
     }
     
     @IBAction func placeOrderBtn(_ sender: Any) {

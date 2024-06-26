@@ -51,6 +51,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.welcomeUserTitle.layer.cornerRadius = 20
         self.welcomeUserTitle.clipsToBounds = true
         
+        self.welcomeUserTitle.text = "Welcome \(Utilites.getCustomerName())"
+        
         let nibCustomCell = UINib(nibName: "OrdersTableViewCell", bundle: nil)
             ordersTableView.register(nibCustomCell, forCellReuseIdentifier: "orderCell")
         
@@ -59,7 +61,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        let favID = UserDefaults.standard.integer(forKey: "favIDNet")
+        let favID = Utilites.getDraftOrderIDFavoriteFromNote()
         favouriteViewModel.fetchLineItems(draftOrderId: favID)
         favouriteViewModel.didUpdateLineItems = { [weak self] in
                DispatchQueue.main.async {
@@ -99,7 +101,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if tableView == ordersTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersTableViewCell
             if complectedOrders?.count ?? 0 > indexPath.row{
-                        cell.totalPrice.text = complectedOrders?[indexPath.row].total_price
+                cell.totalPrice.text = (complectedOrders?[indexPath.row].total_price ?? "") + " $ "
                     
                     let dateTimeComponents = complectedOrders?[indexPath.row].created_at?.components(separatedBy: "T")
 
@@ -113,24 +115,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let cell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath) as! WishListTableViewCell
                 if favouriteViewModel.displayedLineItems.count > indexPath.row{
                     let lineItem = favouriteViewModel.displayedLineItems[indexPath.row]
-                                        let imageString = lineItem.sku ?? ""
-                                           let components = imageString.components(separatedBy: ",")
-                    if components.count == 2 {
-                        let productID = components[0]
-                        let imageURL = components[1]
-                        
-                        
+
+                    let imageString = lineItem.properties?[2].value ?? ""
                         let productName = lineItem.title
                         cell.wishItemBrand.text = productName?.components(separatedBy: " | ")[0]
                         cell.wishItemName.text = productName?.components(separatedBy: " | ")[1]
                         
-                        //               cell.categoryItemName.text = lineItem.title
                         cell.wishItemPrice.text = (lineItem.price ?? "") + "$"
                         
-                        if let url = URL(string: imageURL) {
+                        if let url = URL(string: imageString) {
                             cell.wishItemImage.kf.setImage(with: url)
                         }
-                    }
                 }
                 return cell
                     
@@ -162,30 +157,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             orderDetailsViewController.modalPresentationStyle = .fullScreen
             present(orderDetailsViewController, animated: true )
         }else{
-            if favouriteViewModel.displayedLineItems.count > indexPath.row{
-                let lineItem = favouriteViewModel.displayedLineItems[indexPath.row]
-                let imageString = lineItem.sku ?? ""
-                let components = imageString.components(separatedBy: ",")
-                
-                var product = BrandProductViewData()
-                if components.count == 2, let productId = Int(components[0]) {
-                    
-                    
-                    let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-                    let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
-                    
-                    allProductsViewModel.getProductFromNetworkService(id: productId)
-                    allProductsViewModel.bindBrandProductsToViewController = {
-                        product = self.allProductsViewModel.productViewData
-                        let productInfoViewModel = ProdutInfoViewModel(product: product)
-                        productInfoVC.productInfoViewModel = productInfoViewModel
-                        DispatchQueue.main.async {
-                            productInfoVC.modalPresentationStyle = .fullScreen
-                            self.present(productInfoVC, animated: true, completion: nil)
-                        }
-                    }
-                }
-            }
+//            if favouriteViewModel.displayedLineItems.count > indexPath.row{
+//                let lineItem = favouriteViewModel.displayedLineItems[indexPath.item]
+//                var product = BrandProductViewData()
+//                let productId = lineItem.productID
+//                    let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+//                    let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
+//                    
+//                    allProductsViewModel.getProductFromNetworkService(id: productId)
+//                    allProductsViewModel.bindBrandProductsToViewController = {
+//                        product = self.allProductsViewModel.productViewData
+//                        let productInfoViewModel = ProdutInfoViewModel(product: product)
+//                        productInfoVC.productInfoViewModel = productInfoViewModel
+//                        DispatchQueue.main.async {
+//                            productInfoVC.modalPresentationStyle = .fullScreen
+//                            self.present(productInfoVC, animated: true, completion: nil)
+//                        }
+//                    }
+//
+//            }
         }
         
         

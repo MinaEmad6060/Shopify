@@ -25,21 +25,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
       
         signUpViewModel = SignUpViewModel()
-     // printStoredUserInfo()
-//        signUpViewModel?.bindingSignUp = {
-//                    DispatchQueue.main.async {
-//                        self.handleSignUpResponse()
-//                        
-//                    }
-//                }
-//        let draftOrderIDCart = Utilites.getDraftOrderIDCart()
-//        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
-//        let customerId = Utilites.getCustomerID()
-//        let customerEmail = Utilites.getCustomerEmail()
-//        print("Draft Order ID for Cart: \(draftOrderIDCart)")
-//        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
-//        print("Customer id: \(customerId)")
-//        print("customer mail: \(customerEmail)")
+    
     }
     
 
@@ -120,10 +106,6 @@ class SignUpViewController: UIViewController {
         if (200...299).contains(statusCode) {
         
 
-//            if let userID = UserDefaults.standard.object(forKey: "userID") as? Int,
-//               let userEmail = UserDefaults.standard.object(forKey: "userEmail") as? String {
-//                print("UserDefaults - userID: \(userID), userEmail: \(userEmail)")
-//               
                 createDraftOrder(for: customer, note: "favorite")
         
                 createDraftOrder(for: customer, note: "cart")
@@ -134,12 +116,7 @@ class SignUpViewController: UIViewController {
                     self.UpdateCustomerNote()
                 }
                 
-                
-                
-//            } else {
-//                print("UserDefaults data not found")
-//                Utilites.displayToast(message: "Failed to save user data", seconds: 2.0, controller: self)
-//            }
+
         } else {
             DispatchQueue.main.async {
                 Utilites.displayToast(message: "Failed to add customer", seconds: 2.0, controller: self)

@@ -23,6 +23,7 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
     var productInfoViewModel : ProdutInfoViewModel?
     var allProductsViewModel: AllProductsViewModel!
     
+    var homeViewModel: HomeViewModelProtocol!
 
     @IBOutlet weak var quantityLB: UILabel!
     @IBOutlet weak var imageSlideshow: ImageSlideshow!
@@ -77,17 +78,20 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         }
         
         
-        productInfoViewModel?.getCurrentCustomer()
+        homeViewModel = HomeViewModel()
+        homeViewModel.getCurrentCustomer()
+        
        
          //           self.updateDraftOrder()
        self.checkProductInDraftOrder()
+        self.checkProductInDraftOrder()
                 
         
         priceLB.text =  productInfoViewModel?.product?.price
         favViewMode = FavoriteViewModel()
         print("displayed line items******\(favViewMode.displayedLineItems)")
         
-        print("quantity.....\(productInfoViewModel?.product?.quantity)")
+//        print("quantity.....\(productInfoViewModel?.product?.quantity)")
     }
     func updateDraftOrder() {
             
@@ -168,6 +172,9 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
     @IBAction func favBtn(_ sender: UIBarButtonItem) {
        
    /* guard let productTitle = productInfoViewModel?.product?.title else { return }
+    
+    guard let productTitle = productInfoViewModel?.product?.title else { return }
+
             guard let productId = productInfoViewModel?.product?.id else { return }
         
             favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
@@ -255,3 +262,4 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
 }
 
  
+   

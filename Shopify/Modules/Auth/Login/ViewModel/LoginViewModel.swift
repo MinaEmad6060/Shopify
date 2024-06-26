@@ -21,22 +21,7 @@ class LoginViewModel{
             self?.observableLogin = customers
         })
     }
-    /*
-    func checkCustomerAuth(email:String , password: String)->String{
-        var returnValue = "Uncorrect email or password"
-        if let observale = observableLogin{
-            print(observale.customers.count)
-            for i in 0..<(observale.customers.count){
-                if email == observale.customers[i].email && password == observale.customers[i].tags{
-                    returnValue = "Login Sucess"
-                    
-                }
-                
-            }
-        }
-       return returnValue
-    }
-*/
+    
     func checkCustomerAuth(email: String, password: String) -> String {
             var returnValue = "Incorrect email or password"
             

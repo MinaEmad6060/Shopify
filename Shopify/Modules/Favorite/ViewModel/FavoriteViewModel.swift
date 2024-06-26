@@ -15,6 +15,13 @@ class FavoriteViewModel {
         }
     }
     
+    var fetchDataFromApi: FetchDataFromApi!
+    
+    init(){
+        fetchDataFromApi = FetchDataFromApi()
+    }
+    
+    
     var didUpdateLineItems: (() -> Void)?
     var displayedLineItems: [LineItem] {
          if lineItems.count > 1 {
@@ -26,14 +33,16 @@ class FavoriteViewModel {
      }
 
     func fetchLineItems(draftOrderId: Int) {
-        NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderId) { [weak self] lineItems in
-            guard let self = self else { return }
-            if let lineItems = lineItems {
-                self.lineItems = lineItems
-            } else {
+        
+        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl,request: "draft_orders/\(draftOrderId)")){[weak self] (draftOrderResponsee:Drafts?) in
+            if let draftOrder = draftOrderResponsee {
+                self?.lineItems = draftOrder.draftOrder?.lineItems ?? [LineItem]()
+            }else {
                 print("No line items found")
             }
         }
+        
+        
         for item in self.lineItems {
                 print("Title: \(item.title ?? ""), Price: \(item.price ?? ""), Image: \(item.image ?? "")")
             }

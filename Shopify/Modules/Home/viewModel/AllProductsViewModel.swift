@@ -9,7 +9,7 @@ import Foundation
 
 
 class AllProductsViewModel: AllProductsViewModelProtocol{
-
+    
     
     var brandProductsViewData: [BrandProductViewData]!
     var productViewData: BrandProductViewData!
@@ -31,7 +31,7 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
         brandName = ""
     }
     
-   
+    
     func getBrandProductsFromNetworkService() {
         fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: query ?? "", value: queryValue ?? "")){[weak self] (brandProducts: BrandProduct) in
             for i in 0..<(brandProducts.products?.count ?? 0){
@@ -42,44 +42,44 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
                 product.body_html = brandProducts.products?[i].body_html
                 product.product_type = brandProducts.products?[i].product_type
                 product.price = brandProducts.products?[i].variants?[0].price
-               
-               // product.variants = []
+                
+                // product.variants = []
                 for l in 0..<(brandProducts.products?[i].variants?.count ?? 0){
                     product.variants.append(brandProducts.products?[i].variants?[l].id ?? 0)
                     print(" product.variants?[0] *****----------------------\( brandProducts.products?[i].variants?[l].id  )")
-//                    product.quantity = brandProducts.products?[i].variants?[l].inventory_quantity
+                    //                    product.quantity = brandProducts.products?[i].variants?[l].inventory_quantity
                     let variantQuantity = brandProducts.products?[i].variants?[l].inventory_quantity ?? 0
                     product.quantity.append(variantQuantity)
                     print(" product.quantity *****----------------------\( variantQuantity)")
+                    for l in 0..<(brandProducts.products?[i].variants?.count ?? 0){
+                        product.variants.append(brandProducts.products?[i].variants?[l].id ?? 0)
+                    }
+                    for j in 0..<(brandProducts.products?[i].images?.count ?? 0){
+                        product.src.append(brandProducts.products?[i].images?[j].src ?? "")
+                    }
+                    for j in 0..<(brandProducts.products?[i].options[0].values?.count ?? 0){
+                        product.sizes.append(brandProducts.products?[i].options[0].values?[j] ?? "")
+                    }
+                    for k in 0..<(brandProducts.products?[i].options[1].values?.count ?? 0){
+                        product.colors.append(brandProducts.products?[i].options[1].values?[k] ?? "")
+                    }
+                    product.name = brandProducts.products?[i].options[0].name
+                    self?.brandProductsViewData.append(product)
                 }
-                for j in 0..<(brandProducts.products?[i].images?.count ?? 0){
-                    product.src.append(brandProducts.products?[i].images?[j].src ?? "")
-                }
-                for j in 0..<(brandProducts.products?[i].options[0].values?.count ?? 0){
-                    product.sizes.append(brandProducts.products?[i].options[0].values?[j] ?? "")
-                }
-                for k in 0..<(brandProducts.products?[i].options[1].values?.count ?? 0){
-                    product.colors.append(brandProducts.products?[i].options[1].values?[k] ?? "")
-                }
-                product.name = brandProducts.products?[i].options[0].name
-                self?.brandProductsViewData.append(product)
+                
+                self?.bindBrandProductsToViewController?()
             }
-            
-            self?.bindBrandProductsToViewController?()
         }
-    }
-    
-    func getProductFromNetworkService(id: Int?) {
-        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products/\(id ?? 0)", query: "", value: queryValue ?? "")){[weak self] (brandProducts: BrandProductInfo) in
+        
+        func getProductFromNetworkService(id: Int?) {
+            fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products/\(id ?? 0)", query: "", value: queryValue ?? "")){[weak self] (brandProducts: BrandProductInfo) in
                 var product = BrandProductViewData()
                 product.id = brandProducts.product?.id
                 product.title = brandProducts.product?.title
                 product.body_html = brandProducts.product?.body_html
                 product.product_type = brandProducts.product?.product_type
-                product.price = brandProducts.product?.variants?[0].price
-//            product.quantity = brandProducts.product?.variants?[0].inventory_quantity
-          
-            
+                product.price = brandProducts.product?.variants?[0].price                
+                
                 for j in 0..<(brandProducts.product?.images?.count ?? 0){
                     product.src.append(brandProducts.product?.images?[j].src ?? "")
                 }
@@ -92,10 +92,11 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
                 product.name = brandProducts.product?.options[0].name
                 self?.productViewData = product
                 self?.bindBrandProductsToViewController?()
-        }
+            }
             
+            
+        }
+        
         
     }
-   
-
 }

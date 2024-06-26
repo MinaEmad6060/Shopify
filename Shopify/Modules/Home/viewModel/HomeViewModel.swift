@@ -9,23 +9,14 @@ import Foundation
 
 
 class HomeViewModel: HomeViewModelProtocol{
-    
-    //    var query: String!
-    //    var queryValue: String!
-    //    var brandImage: String!
-    //    var brandName: String!
-    
+   
     var brandsViewData: [BrandsViewData]!
     var fetchDataFromApi: FetchDataFromApi!
-    //    var brandProductsViewData: [BrandProductViewData]!
-    
     var bindBrandsToViewController : (()->())! = {}
-    //    var bindBrandProductsToViewController : (()->())! = {}
     
     
     init(){
         brandsViewData = [BrandsViewData]()
-        //        brandProductsViewData = [BrandProductViewData]()
         fetchDataFromApi = FetchDataFromApi()
     }
     
@@ -41,44 +32,25 @@ class HomeViewModel: HomeViewModelProtocol{
             self?.bindBrandsToViewController?()
         }
     }
-    
-    //    func getBrandProductsFromNetworkService(){
-    //        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "products", query: query, value: queryValue)){[weak self] (brandProducts: BrandProduct) in
-    //            var product = BrandProductViewData()
-    //            for i in 0..<(brandProducts.products?.count ?? 0){
-    //
-    //                self?.brandProductsViewData.append(product)
-    //            }
-    //            self?.bindBrandProductsToViewController?()
-    //        }
-    //    }
-    
+   
     func getCurrentCustomer() {
         let email = Utilites.getCustomerEmail()
-        NetworkManager.getCustomer(email: email) { customer in
-            
-            print("Customer ID****: \(customer?.id)")
-            print("Customer note****: \(customer?.note)")
-            let fname = customer?.first_name
-            print("FirstName: \(fname)")
+        print("URL :::: \(fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl,request: "customers/search", query: "query", value: "email:\(email)") ?? "")")
+        fetchDataFromApi?.getDataFromApi(url: fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl,request: "customers/search", query: "query", value: "email:\(email)") ?? ""){(loginedCustomers: LoginedCustomers) in
+            print("testSuccess :::: ")
+            let fname = loginedCustomers.customers[0].first_name
             UserDefaults.standard.set(fname, forKey: "fname")
-            let userID = customer?.id
-            print("userID: \(userID)")
+            let userID = loginedCustomers.customers[0].id
             UserDefaults.standard.set(userID, forKey: "userID")
-            if let note = customer?.note {
-                
+            if let note = loginedCustomers.customers[0].note {
+
                 let components = note.split(separator: ",")
-                
+
                 if components.count == 2,
                    let firstID = Int(components[0]),
                    let secondID = Int(components[1]) {
-                    print("First ID: \(firstID)")
-                    print("Second ID: \(secondID)")
                     UserDefaults.standard.set(firstID, forKey: "favIDNet")
                     UserDefaults.standard.set(secondID, forKey: "cartIDNet")
-                    let result = UserDefaults.standard.integer(forKey: "favIDNet")
-                    UserDefaults.standard.integer(forKey: "cartIDNet")
-                    print("favID afteter Net: \(result)")
                 } else {
                     print("Note does not contain two valid IDs")
                 }
@@ -86,5 +58,30 @@ class HomeViewModel: HomeViewModelProtocol{
                 print("Customer note is nil or does not contain valid IDs")
             }
         }
+        
+        
+//        NetworkManager.getCustomer(email: email) { customer in
+//            
+//            let fname = customer?.first_name
+//            UserDefaults.standard.set(fname, forKey: "fname")
+//            let userID = customer?.id
+//            UserDefaults.standard.set(userID, forKey: "userID")
+//            if let note = customer?.note {
+//                
+//                let components = note.split(separator: ",")
+//                
+//                if components.count == 2,
+//                   let firstID = Int(components[0]),
+//                   let secondID = Int(components[1]) {
+//                    UserDefaults.standard.set(firstID, forKey: "favIDNet")
+//                    UserDefaults.standard.set(secondID, forKey: "cartIDNet")
+//                } else {
+//                    print("Note does not contain two valid IDs")
+//                }
+//            } else {
+//                print("Customer note is nil or does not contain valid IDs")
+//            }
+//            
+//        }
     }
 }

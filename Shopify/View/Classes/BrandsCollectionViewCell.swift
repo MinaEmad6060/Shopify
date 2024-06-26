@@ -17,6 +17,8 @@ class BrandsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var bgView: UILabel!
     
+    @IBOutlet weak var imageBgView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,5 +28,8 @@ class BrandsCollectionViewCell: UICollectionViewCell {
         
         self.bgView.layer.cornerRadius = 25
         self.bgView.clipsToBounds = true
+        
+        self.imageBgView.layer.cornerRadius = 25
+        self.imageBgView.clipsToBounds = true
     }
 }
