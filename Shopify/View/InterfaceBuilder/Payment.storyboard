@@ -55,23 +55,6 @@
                                     <action selector="continuePaymentBtn:" destination="Xaw-HJ-DYc" eventType="touchUpInside" id="abw-2U-bNj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFO-46-zfY">
-                                <rect key="frame" x="48" y="94" width="99" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <color key="textColor" red="0.26935744290000002" green="0.1876538992" blue="0.094467081130000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDy-Wo-s0m">
-                                <rect key="frame" x="0.0" y="91" width="50" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
-                                <connections>
-                                    <action selector="backBtn:" destination="Xaw-HJ-DYc" eventType="touchUpInside" id="p02-ch-iaz"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4o7-Xw-9IX">
                                 <rect key="frame" x="0.0" y="163" width="222" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -87,7 +70,7 @@
                                 <color key="backgroundColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZGj-zc-3hX">
-                                <rect key="frame" x="35" y="264" width="145" height="57"/>
+                                <rect key="frame" x="35" y="230" width="145" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9M9-Zd-gVi">
@@ -114,7 +97,7 @@
                                 <color key="backgroundColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xlA-DE-VUd">
-                                <rect key="frame" x="0.0" y="385" width="293" height="45"/>
+                                <rect key="frame" x="0.0" y="352" width="293" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="More Payment Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOr-fz-pNq">
@@ -128,7 +111,7 @@
                                 <color key="backgroundColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rc2-ST-KlW">
-                                <rect key="frame" x="35" y="486" width="145" height="57"/>
+                                <rect key="frame" x="35" y="421" width="145" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1jL-ZB-4bu">
@@ -152,6 +135,23 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFO-46-zfY">
+                                <rect key="frame" x="64" y="92" width="99" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="0.26935744290000002" green="0.1876538992" blue="0.094467081130000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDy-Wo-s0m">
+                                <rect key="frame" x="16" y="89" width="50" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="backBtn:" destination="Xaw-HJ-DYc" eventType="touchUpInside" id="p02-ch-iaz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NVj-2q-JLR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -235,7 +235,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Coupon" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ogs-9E-mpd">
                                 <rect key="frame" x="33" y="439" width="326" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.84336930509999997" green="0.78744071719999997" blue="0.73234122989999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -252,23 +252,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="validateBtn:" destination="HbR-6M-UEY" eventType="touchUpInside" id="HOD-SK-fnb"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Order Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd0-rZ-OXY">
-                                <rect key="frame" x="74" y="96" width="178" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <color key="textColor" red="0.26935744290000002" green="0.1876538992" blue="0.094467081130000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OpU-oP-Fgj">
-                                <rect key="frame" x="26" y="93" width="50" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
-                                <connections>
-                                    <action selector="backBtn:" destination="HbR-6M-UEY" eventType="touchUpInside" id="hvm-d6-nt1"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jnt-KW-JKI">
@@ -363,6 +346,23 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="placeOrderBtn:" destination="HbR-6M-UEY" eventType="touchUpInside" id="8pC-ah-EaO"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Order Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd0-rZ-OXY">
+                                <rect key="frame" x="71" y="88" width="178" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="0.26935744290000002" green="0.1876538992" blue="0.094467081130000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OpU-oP-Fgj">
+                                <rect key="frame" x="23" y="85" width="50" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward.circle.fill" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="backBtn:" destination="HbR-6M-UEY" eventType="touchUpInside" id="hvm-d6-nt1"/>
                                 </connections>
                             </button>
                         </subviews>
