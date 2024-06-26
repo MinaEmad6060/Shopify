@@ -39,7 +39,7 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
             product.body_html = brandProducts.product?.body_html
             product.product_type = brandProducts.product?.product_type
             product.price = brandProducts.product?.variants?[0].price
-            
+            product.inventory_quantity = brandProducts.product?.variants?[0].inventory_quantity
             for l in 0..<(brandProducts.product?.variants?.count ?? 0){
                 product.variants.append(brandProducts.product?.variants?[l].id ?? 0)
 //                print(" product.variants?[0] *----------------------\( brandProducts.products?[i].variants?[l].id  )")
