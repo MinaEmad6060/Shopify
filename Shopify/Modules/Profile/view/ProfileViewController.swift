@@ -51,6 +51,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.welcomeUserTitle.layer.cornerRadius = 20
         self.welcomeUserTitle.clipsToBounds = true
         
+        self.welcomeUserTitle.text = "Welcome \(Utilites.getCustomerName())"
+        
         let nibCustomCell = UINib(nibName: "OrdersTableViewCell", bundle: nil)
             ordersTableView.register(nibCustomCell, forCellReuseIdentifier: "orderCell")
         
