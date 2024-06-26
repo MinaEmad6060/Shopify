@@ -47,6 +47,7 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
        var selectedColorIndexPath: IndexPath?
        var selectedSize: String?
        var selectedColor: String?
+    var selectedQuantity: Int?
     var productId :Int?
     var productId2 :Int?
     var productTitle :String?
@@ -92,6 +93,12 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         print("displayed line items******\(favViewMode.displayedLineItems)")
         
 //        print("quantity.....\(productInfoViewModel?.product?.quantity)")
+        if let quantity = productInfoViewModel?.product?.quantity[0] {
+                    quantityLB.text = "\(quantity) items are available for this Size"
+                } else {
+                    quantityLB.text = "This size not available Now "
+                }
+
     }
     func updateDraftOrder() {
             
@@ -237,6 +244,14 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         selectedSize = productInfoViewModel?.product?.sizes[sender.selectedSegmentIndex] ?? ""
            print("selectedSize:...:\(selectedSize)")
         productInfoViewModel?.product?.sizes[0] = selectedSize ?? ""
+        if let quantities = productInfoViewModel?.product?.quantity, sender.selectedSegmentIndex < quantities.count {
+                     let quantity = quantities[sender.selectedSegmentIndex]
+                     quantityLB.text = quantity == 0 ? "This size not available now" : "\(quantity) items are available for this size"
+                   selectedQuantity = quantity
+                   productInfoViewModel?.product?.inventory_quantity = selectedQuantity ?? 0
+                 } else {
+                     quantityLB.text = "N/A"
+                 }
      
     }
     
