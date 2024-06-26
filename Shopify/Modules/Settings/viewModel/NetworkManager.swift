@@ -102,7 +102,7 @@ class NetworkManager {
            ]
         print("*******************************")
            print("Product ID after updat: \(product.id ?? 0)")
-        print("Variant ID after update: \(product.variants[0] ?? 0)")
+//        print("Variant ID after update: \(product.variants[0] ?? 0)")
         print("*******************************")
         let newLineItem = LineItem(
             id: nil,

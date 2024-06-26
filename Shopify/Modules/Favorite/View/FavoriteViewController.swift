@@ -31,11 +31,17 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
         
         
         
+//        let favID = UserDefaults.standard.integer(forKey: "favIDNet")
+//        viewModel.fetchLineItems(draftOrderId: favID)
+//        bindViewModel()
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let favID = UserDefaults.standard.integer(forKey: "favIDNet")
         viewModel.fetchLineItems(draftOrderId: favID)
         bindViewModel()
-        
-        
     }
     
     

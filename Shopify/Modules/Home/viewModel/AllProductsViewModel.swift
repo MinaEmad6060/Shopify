@@ -40,6 +40,14 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
             product.product_type = brandProducts.product?.product_type
             product.price = brandProducts.product?.variants?[0].price
             
+            for l in 0..<(brandProducts.product?.variants?.count ?? 0){
+                product.variants.append(brandProducts.product?.variants?[l].id ?? 0)
+//                print(" product.variants?[0] *----------------------\( brandProducts.products?[i].variants?[l].id  )")
+//                    product.quantity = brandProducts.products?[i].variants?[l].inventory_quantity
+                let variantQuantity = brandProducts.product?.variants?[l].inventory_quantity ?? 0
+                product.quantity.append(variantQuantity)
+                print(" product.quantity *----------------------\( variantQuantity)")
+            }
             for j in 0..<(brandProducts.product?.images?.count ?? 0){
                 product.src.append(brandProducts.product?.images?[j].src ?? "")
             }

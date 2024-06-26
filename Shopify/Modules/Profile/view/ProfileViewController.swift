@@ -75,6 +75,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if tableView == ordersTableView{
             if complectedOrders?.count ?? 0 > 2 {
                 noOrders.isHidden = true
+                ordersTableView.isHidden = false
                 return 2
             }else if complectedOrders?.count ?? 0 == 0{
                 noOrders.isHidden = false
@@ -82,18 +83,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 return 0
             }else{
                 noOrders.isHidden = true
-                
+                ordersTableView.isHidden = false
                 return complectedOrders?.count ?? 0
             }
         }else{
             if favouriteViewModel.displayedLineItems.count > 4 {
                 noWishList.isHidden = true
+                wishListTableView.isHidden = false
                 return 4
             }else if favouriteViewModel.displayedLineItems.count == 0{
                 noWishList.isHidden = false
+                wishListTableView.isHidden = true
                 return 0
             }else{
                 noWishList.isHidden = true
+                wishListTableView.isHidden = false
                 return favouriteViewModel.displayedLineItems.count
             }
         }
