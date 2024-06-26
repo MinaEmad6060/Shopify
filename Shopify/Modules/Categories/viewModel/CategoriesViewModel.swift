@@ -52,5 +52,33 @@ class CategoriesViewModel: CategoriesViewModelProtocol{
         }
     }
     
-    
+    func removeProductFromDraftOrder(productTitle: String) {
+        
+        NetworkManager.removeLineItemFromDraftOrder(draftOrderId: Utilites.getDraftOrderIDFavoriteFromNote(), productTitle: productTitle) { statusCode in
+            if statusCode == 200 {
+                print("Product removed from draft order successfully")
+            } else {
+                print("Failed to remove product from draft order. Status code: \(statusCode)")
+            }
+        }
+    }
+    func isProductInDraftOrder(productTitle: String, completion: @escaping (Bool) -> Void) {
+            let draftOrderIDFavorite = Utilites.getDraftOrderIDFavoriteFromNote()
+            NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderIDFavorite) { lineItems in
+                if let lineItems = lineItems {
+                    let isInDraftOrder = lineItems.contains { $0.title == productTitle }
+                    completion(isInDraftOrder)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    func updateFavoriteDraftOrder(product: BrandProductViewData){
+        NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDFavoriteFromNote() , product: product) { statusCode in
+            if statusCode == 200 {
+                print("Draft order updated successfully")
+            } else {
+                print("Failed to update draft order. Status code: \(statusCode)")
+            }
+        }}
 }
