@@ -54,4 +54,14 @@ class Utilites{
     static func getPaymentMethod() -> String {
         return UserDefaults.standard.string(forKey: "paymentMethod") ?? "Cash"
     }
+    static func logout() {
+        let defaults = UserDefaults.standard
+        let keys = ["draftOrderIDCart", "draftOrderIDFavorite", "userID", "userEmail", "favIDNet", "cartIDNet", "fname", "selectedCurrencyCode", "selectedCurrencyRate", "paymentMethod"]
+        
+        for key in keys {
+            defaults.removeObject(forKey: key)
+        }
+        
+        defaults.synchronize()
+    }
 }
