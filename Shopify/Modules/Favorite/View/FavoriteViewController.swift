@@ -99,22 +99,22 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
     }
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let lineItem = viewModel.displayedLineItems[indexPath.item]
-//        var product = BrandProductViewData()
-//        let productId = lineItem.productID
-//            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-//            let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
-//            
-//            allProductsViewModel.getProductFromNetworkService(id: productId)
-//            allProductsViewModel.bindBrandProductsToViewController = {
-//                product = self.allProductsViewModel.productViewData
-//                let productInfoViewModel = ProdutInfoViewModel(product: product)
-//                productInfoVC.productInfoViewModel = productInfoViewModel
-//                DispatchQueue.main.async {
-//                    productInfoVC.modalPresentationStyle = .fullScreen
-//                    self.present(productInfoVC, animated: true, completion: nil)
-//                }
-//            }
+        let lineItem = viewModel.displayedLineItems[indexPath.item]
+        var product = BrandProductViewData()
+        let productId = lineItem.productID
+            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+            let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
+            
+            allProductsViewModel.getProductFromNetworkService(id: productId)
+            allProductsViewModel.bindBrandProductsToViewController = {
+                product = self.allProductsViewModel.productViewData
+                let productInfoViewModel = ProdutInfoViewModel(product: product)
+                productInfoVC.productInfoViewModel = productInfoViewModel
+                DispatchQueue.main.async {
+                    productInfoVC.modalPresentationStyle = .fullScreen
+                    self.present(productInfoVC, animated: true, completion: nil)
+                }
+            }
    }
 
    

@@ -13,6 +13,7 @@ protocol AllProductsViewModelProtocol{
     var fetchDataFromApi: FetchDataFromApi! { get }
     var bindBrandProductsToViewController : (()->())! { get set}
     func getBrandProductsFromNetworkService()
+    func getProductFromNetworkService(id: Int?)
     var query: String! { get set }
     var queryValue: String! { get set }
     var brandImage: String! { get set }

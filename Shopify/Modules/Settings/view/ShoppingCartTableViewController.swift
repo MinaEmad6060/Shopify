@@ -144,23 +144,23 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let lineItem = lineItems[indexPath.row]
-//        var product = BrandProductViewData()
-//        let productId = lineItem.product_id
-//        print("productID ShoppingCartTableViewController ::: \(lineItem.product_id)")
-//            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-//            let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
-//            
-//            allProductsViewModel.getProductFromNetworkService(id: productId)
-//            allProductsViewModel.bindBrandProductsToViewController = {
-//                product = self.allProductsViewModel.productViewData
-//                let productInfoViewModel = ProdutInfoViewModel(product: product)
-//                productInfoVC.productInfoViewModel = productInfoViewModel
-//                DispatchQueue.main.async {
-//                    productInfoVC.modalPresentationStyle = .fullScreen
-//                    self.present(productInfoVC, animated: true, completion: nil)
-//                }
-//            }
+        let lineItem = lineItems[indexPath.row]
+        var product = BrandProductViewData()
+        let productId = lineItem.product_id
+        print("productID ShoppingCartTableViewController ::: \(lineItem.product_id)")
+            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+            let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
+            
+            allProductsViewModel.getProductFromNetworkService(id: productId)
+            allProductsViewModel.bindBrandProductsToViewController = {
+                product = self.allProductsViewModel.productViewData
+                let productInfoViewModel = ProdutInfoViewModel(product: product)
+                productInfoVC.productInfoViewModel = productInfoViewModel
+                DispatchQueue.main.async {
+                    productInfoVC.modalPresentationStyle = .fullScreen
+                    self.present(productInfoVC, animated: true, completion: nil)
+                }
+            }
     }
     
     func updateQuantity(for lineItemId: Int, increment: Bool) {

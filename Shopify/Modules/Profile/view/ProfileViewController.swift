@@ -157,25 +157,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             orderDetailsViewController.modalPresentationStyle = .fullScreen
             present(orderDetailsViewController, animated: true )
         }else{
-//            if favouriteViewModel.displayedLineItems.count > indexPath.row{
-//                let lineItem = favouriteViewModel.displayedLineItems[indexPath.item]
-//                var product = BrandProductViewData()
-//                let productId = lineItem.productID
-//                    let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-//                    let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
-//                    
-//                    allProductsViewModel.getProductFromNetworkService(id: productId)
-//                    allProductsViewModel.bindBrandProductsToViewController = {
-//                        product = self.allProductsViewModel.productViewData
-//                        let productInfoViewModel = ProdutInfoViewModel(product: product)
-//                        productInfoVC.productInfoViewModel = productInfoViewModel
-//                        DispatchQueue.main.async {
-//                            productInfoVC.modalPresentationStyle = .fullScreen
-//                            self.present(productInfoVC, animated: true, completion: nil)
-//                        }
-//                    }
-//
-//            }
+            if favouriteViewModel.displayedLineItems.count > indexPath.row{
+                let lineItem = favouriteViewModel.displayedLineItems[indexPath.item]
+                var product = BrandProductViewData()
+                let productId = lineItem.productID
+                    let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+                    let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
+                    
+                    allProductsViewModel.getProductFromNetworkService(id: productId)
+                    allProductsViewModel.bindBrandProductsToViewController = {
+                        product = self.allProductsViewModel.productViewData
+                        let productInfoViewModel = ProdutInfoViewModel(product: product)
+                        productInfoVC.productInfoViewModel = productInfoViewModel
+                        DispatchQueue.main.async {
+                            productInfoVC.modalPresentationStyle = .fullScreen
+                            self.present(productInfoVC, animated: true, completion: nil)
+                        }
+                    }
+
+            }
         }
         
         
