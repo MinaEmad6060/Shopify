@@ -78,9 +78,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 return 2
             }else if complectedOrders?.count ?? 0 == 0{
                 noOrders.isHidden = false
+                ordersTableView.isHidden = true
                 return 0
             }else{
                 noOrders.isHidden = true
+                
                 return complectedOrders?.count ?? 0
             }
         }else{
