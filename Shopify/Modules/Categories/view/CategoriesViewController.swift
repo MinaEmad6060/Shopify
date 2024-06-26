@@ -28,10 +28,25 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var noDataImage: UIImageView!
     
-    var categoriesViewModel: CategoriesViewModelProtocol!
+    
+    @IBAction func btnCart(_ sender: UIBarButtonItem) {
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to access cart.")
+               return
+           }
+        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+        let productInfoVC = storyboard.instantiateViewController(withIdentifier: "CartVCR")
+
+        productInfoVC.modalPresentationStyle = .fullScreen
+        present(productInfoVC, animated: true, completion: nil)
+    }
+    
+    
+    var categoriesViewModel: CategoriesViewModel!
     var brandProducts: [BrandProductViewData]!
     var filterdBrandProducts: [BrandProductViewData]!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +65,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     
     override func viewWillAppear(_ animated: Bool) {
         Constants.isAllProductsScreen = false
+        self.categoryTable.reloadData()
     }
     
     
@@ -78,7 +94,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
         
         
         if filterdBrandProducts.count > indexPath.row{
-            cell.categoryItemPrice.text = filterdBrandProducts[indexPath.row].price
+            let priceString = filterdBrandProducts[indexPath.row].price ?? "0"
+            let priceInt = Double(priceString) ?? 0
+            let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+            cell.categoryItemPrice.text = "\(convertedPrice)"
+            
+            
+            cell.categoryItemCurrency.text = Utilites.getCurrencyCode()
             
             let productName = filterdBrandProducts[indexPath.row].title
             cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
@@ -88,6 +110,38 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
             } else {
                 cell.categoryItemImage.image = UIImage(named: "placeholderlogo.jpeg")
             }
+           
+            categoriesViewModel.isProductInDraftOrder(productTitle: categoriesViewModel.categoriesViewData[indexPath.row].title ?? "") { isInDraftOrder in
+                            DispatchQueue.main.async {
+                                cell.updateFavoriteButtonImage(isInDraftOrder)
+                            }
+                        }
+
+            
+            cell.favButtonTapped = { [weak self] in
+                guard let self = self else { return }
+                let customerId = Utilites.getCustomerID()
+                if customerId == 0 {
+                    Utilites.displayGuestAlert(in: self, message: "Please log in to add favorites.")
+                    return
+                }
+                
+                let isFavorite = cell.btnFavCategoryItem.isSelected
+                cell.updateFavoriteButtonImage(!isFavorite)
+                
+                if isFavorite {
+                    let alert = UIAlertController(title: "Confirm Deletion", message: "Are you sure you want to remove this item from your favorites?", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                        self.categoriesViewModel.removeProductFromDraftOrder(productTitle: self.categoriesViewModel.categoriesViewData[indexPath.row].title ?? "")
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    self.categoriesViewModel.updateFavoriteDraftOrder(product: self.categoriesViewModel.categoriesViewData[indexPath.row])
+                    Utilites.displayToast(message: "Added to favourites!", seconds: 2.0, controller: self)
+                }
+            }
+
         }
         
         return cell
@@ -158,4 +212,5 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
             self.categoryCollectionView.reloadData()
         }
     }
+
 }

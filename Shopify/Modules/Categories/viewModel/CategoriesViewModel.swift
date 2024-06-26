@@ -29,8 +29,11 @@ class CategoriesViewModel: CategoriesViewModelProtocol{
                 product.body_html = brandProducts.products?[i].body_html
                 product.product_type = brandProducts.products?[i].product_type
                 product.price = brandProducts.products?[i].variants?[0].price
+                product.inventory_quantity = brandProducts.products?[i].variants?[0].inventory_quantity
                 for l in 0..<(brandProducts.products?[i].variants?.count ?? 0){
                     product.variants.append(brandProducts.products?[i].variants?[l].id ?? 0)
+                    let variantQuantity = brandProducts.products?[i].variants?[l].inventory_quantity ?? 0
+                    product.quantity.append(variantQuantity)
                 }
                 for j in 0..<(brandProducts.products?[i].images?.count ?? 0){
                     product.src.append(brandProducts.products?[i].images?[j].src ?? "")
@@ -49,5 +52,33 @@ class CategoriesViewModel: CategoriesViewModelProtocol{
         }
     }
     
-    
+    func removeProductFromDraftOrder(productTitle: String) {
+        
+        NetworkManager.removeLineItemFromDraftOrder(draftOrderId: Utilites.getDraftOrderIDFavoriteFromNote(), productTitle: productTitle) { statusCode in
+            if statusCode == 200 {
+                print("Product removed from draft order successfully")
+            } else {
+                print("Failed to remove product from draft order. Status code: \(statusCode)")
+            }
+        }
+    }
+    func isProductInDraftOrder(productTitle: String, completion: @escaping (Bool) -> Void) {
+            let draftOrderIDFavorite = Utilites.getDraftOrderIDFavoriteFromNote()
+            NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderIDFavorite) { lineItems in
+                if let lineItems = lineItems {
+                    let isInDraftOrder = lineItems.contains { $0.title == productTitle }
+                    completion(isInDraftOrder)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    func updateFavoriteDraftOrder(product: BrandProductViewData){
+        NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDFavoriteFromNote() , product: product) { statusCode in
+            if statusCode == 200 {
+                print("Draft order updated successfully")
+            } else {
+                print("Failed to update draft order. Status code: \(statusCode)")
+            }
+        }}
 }

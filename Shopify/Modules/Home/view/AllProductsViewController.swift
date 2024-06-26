@@ -30,7 +30,7 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var productBrandImage: UIImageView!
     @IBOutlet weak var allProductsCollectionView: UICollectionView!
 
-    var allProductsViewModel: AllProductsViewModelProtocol!
+    var allProductsViewModel: AllProductsViewModel!
     var brandProducts: [BrandProductViewData]?
     var filteredProducts: [BrandProductViewData]?
     
@@ -93,6 +93,10 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         let nibCustomCell = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         allProductsCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "productCell")
     }
+    override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+        self.allProductsCollectionView.reloadData()
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredProducts?.count ?? 0
@@ -102,7 +106,20 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! CategoryCollectionViewCell
         
-        cell.categoryItemPrice.text = filteredProducts?[indexPath.row].price
+//        cell.categoryItemPrice.text = filteredProducts?[indexPath.row].price
+        let priceString = filteredProducts?[indexPath.row].price ?? "0"
+        print("Currency String :: \(filteredProducts?[indexPath.row].price  ?? "0")")
+        let priceInt = Double(priceString) ?? 0
+        print("Currency Int :: \(priceInt)")
+        print("Currency Code :: \(Utilites.getCurrencyCode())")
+
+        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+        cell.categoryItemPrice.text = "\(convertedPrice)"
+        
+        
+        cell.categoryItemCurrency.text = Utilites.getCurrencyCode()
+        
+        
         
         let productName = filteredProducts?[indexPath.row].title
         cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
@@ -113,8 +130,40 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         } else {
             cell.categoryItemImage.image = UIImage(named: "placeholderlogo.jpeg")
         }
+        allProductsViewModel.isProductInDraftOrder(productTitle: allProductsViewModel.brandProductsViewData[indexPath.row].title ?? "") { isInDraftOrder in
+                        DispatchQueue.main.async {
+                            cell.updateFavoriteButtonImage(isInDraftOrder)
+                        }
+                    }
+                    
         
-                
+        cell.favButtonTapped = { [weak self] in
+            guard let self = self else { return }
+            let customerId = Utilites.getCustomerID()
+            if customerId == 0 {
+                Utilites.displayGuestAlert(in: self, message: "Please log in to add favorites.")
+                return
+            }
+            let isFavorite = cell.btnFavCategoryItem.isSelected
+            cell.updateFavoriteButtonImage(!isFavorite)
+            
+            if isFavorite {
+                // Show confirmation alert
+                let alert = UIAlertController(title: "Remove Favorite",
+                                              message: "Are you sure you want to remove this product from your favorites?",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in
+                    self.allProductsViewModel.removeProductFromDraftOrder(productTitle: self.allProductsViewModel.brandProductsViewData[indexPath.row].title ?? "")
+                }))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                self.allProductsViewModel.updateFavoriteDraftOrder(product: self.allProductsViewModel.brandProductsViewData[indexPath.row])
+                Utilites.displayToast(message: "Added to favourites!", seconds: 2.0, controller: self)
+            }
+        }
+
+//
         return cell
     }
     

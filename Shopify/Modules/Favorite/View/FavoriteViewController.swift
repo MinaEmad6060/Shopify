@@ -12,6 +12,8 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
     var brandProducts: [BrandProductViewData]?
     var allProductsViewModel: AllProductsViewModel!
     
+    @IBOutlet weak var noDataImage: UIImageView!
+    
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -49,10 +51,13 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
         viewModel.didUpdateLineItems = { [weak self] in
             DispatchQueue.main.async {
                 self?.favCollectionView.reloadData()
+                self?.updateNoDataImageVisibility()
             }
         }
     }
-    
+    private func updateNoDataImageVisibility() {
+          noDataImage.isHidden = !viewModel.displayedLineItems.isEmpty
+      }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -71,23 +76,53 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
         cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
         
         //               cell.categoryItemName.text = lineItem.title
-        cell.categoryItemPrice.text = lineItem.price
-        cell.categoryItemCurrency.text = "$"
+//        cell.categoryItemPrice.text = lineItem.price
+//        cell.categoryItemCurrency.text = "$"
+        
+        let priceString = lineItem.price ?? ""
+        let priceInt = Double(priceString) ?? 0
+        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+        cell.categoryItemPrice.text = "\(convertedPrice) "
+        cell.categoryItemCurrency.text = Utilites.getCurrencyCode()
+
         
         if let url = URL(string: imageString) {
             cell.categoryItemImage.kf.setImage(with: url)
         }
         cell.btnFavCategoryItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         
+//        cell.favButtonTapped = { [weak self] in
+//            guard let self = self else { return }
+//            let productName = lineItem.title
+//            self.viewModel.lineItems.remove(at: indexPath.row+1)
+//            self.favCollectionView.reloadData()
+//            self.updateNoDataImageVisibility()
+//            self.viewModel.removeProductFromDraftOrder(productTitle: productName ?? "")
+//            
+//            
+//        }
+        
         cell.favButtonTapped = { [weak self] in
             guard let self = self else { return }
-            let productName = lineItem.title
-            self.viewModel.lineItems.remove(at: indexPath.row+1)
-            self.favCollectionView.reloadData()
-            self.viewModel.removeProductFromDraftOrder(productTitle: productName ?? "")
             
+            let alert = UIAlertController(title: "Confirm Deletion", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
             
+            let confirmAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+                let productName = lineItem.title
+                self.viewModel.lineItems.remove(at: indexPath.row + 1)
+                self.favCollectionView.reloadData()
+                self.updateNoDataImageVisibility()
+                self.viewModel.removeProductFromDraftOrder(productTitle: productName ?? "")
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alert.addAction(confirmAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true, completion: nil)
         }
+
         
         
         

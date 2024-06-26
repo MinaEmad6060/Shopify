@@ -39,7 +39,7 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
             product.body_html = brandProducts.product?.body_html
             product.product_type = brandProducts.product?.product_type
             product.price = brandProducts.product?.variants?[0].price
-            
+            product.inventory_quantity = brandProducts.product?.variants?[0].inventory_quantity
             for l in 0..<(brandProducts.product?.variants?.count ?? 0){
                 product.variants.append(brandProducts.product?.variants?[l].id ?? 0)
 //                print(" product.variants?[0] *----------------------\( brandProducts.products?[i].variants?[l].id  )")
@@ -101,4 +101,33 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
                 self?.bindBrandProductsToViewController?()
             }
         }
+    func removeProductFromDraftOrder(productTitle: String) {
+        
+        NetworkManager.removeLineItemFromDraftOrder(draftOrderId: Utilites.getDraftOrderIDFavoriteFromNote(), productTitle: productTitle) { statusCode in
+            if statusCode == 200 {
+                print("Product removed from draft order successfully")
+            } else {
+                print("Failed to remove product from draft order. Status code: \(statusCode)")
+            }
+        }
+    }
+    func isProductInDraftOrder(productTitle: String, completion: @escaping (Bool) -> Void) {
+            let draftOrderIDFavorite = Utilites.getDraftOrderIDFavoriteFromNote()
+            NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderIDFavorite) { lineItems in
+                if let lineItems = lineItems {
+                    let isInDraftOrder = lineItems.contains { $0.title == productTitle }
+                    completion(isInDraftOrder)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    func updateFavoriteDraftOrder(product: BrandProductViewData){
+        NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDFavoriteFromNote() , product: product) { statusCode in
+            if statusCode == 200 {
+                print("Draft order updated successfully")
+            } else {
+                print("Failed to update draft order. Status code: \(statusCode)")
+            }
+        }}
 }

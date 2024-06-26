@@ -126,7 +126,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6gT-Nm-5vp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4947" y="564"/>
+            <point key="canvasLocation" x="3911" y="865"/>
         </scene>
         <!--Home-->
         <scene sceneID="AtQ-yh-gif">
@@ -186,13 +186,13 @@
                                             <barButtonItem image="heart" catalog="system" id="VAA-zK-DuD">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
-                                                    <segue destination="Gqr-85-WQa" kind="show" id="AEZ-J1-RBP"/>
+                                                    <action selector="btnFav:" destination="nso-fs-QNA" id="5UO-Rh-eed"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="cart.fill" catalog="system" id="I2X-Mm-sBI">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
-                                                    <segue destination="KNz-II-Rjd" kind="show" id="bVt-tz-v4X"/>
+                                                    <action selector="btnCart:" destination="nso-fs-QNA" id="EF3-WI-Fcv"/>
                                                 </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
@@ -230,7 +230,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w5S-Tu-hYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6119" y="746"/>
+            <point key="canvasLocation" x="5224" y="1005"/>
         </scene>
         <!--All Products View Controller-->
         <scene sceneID="bZQ-Q5-l0z">
@@ -359,7 +359,7 @@
                                             <barButtonItem title="Item" image="cart.fill" catalog="system" id="nRN-bW-a9A">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
-                                                    <segue destination="KNz-II-Rjd" kind="show" id="2Q6-dy-nM6"/>
+                                                    <action selector="btnCart:" destination="89N-VV-bip" id="KuT-fc-d2U"/>
                                                 </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
@@ -413,7 +413,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="Gqr-85-WQa" kind="show" id="UzW-wM-ao2"/>
+                                    <action selector="btnSeeMoreFav:" destination="89N-VV-bip" eventType="touchUpInside" id="Een-lO-2CQ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Favourites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dG-g5-3iC">
@@ -455,7 +455,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="Lh1-1Q-jgr" kind="show" id="2Uu-yR-I6F"/>
+                                    <action selector="btnSeeMoreOrders:" destination="89N-VV-bip" eventType="touchUpInside" id="GLa-Yd-5RW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -635,7 +635,7 @@
                                             <barButtonItem title="Item" image="cart.fill" catalog="system" id="jBa-NJ-1R3">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
-                                                    <segue destination="KNz-II-Rjd" kind="show" id="Wgj-0Q-lVw"/>
+                                                    <action selector="btnCart:" destination="IDR-Zi-7bv" id="Sbt-E1-zrv"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="magnifyingglass" catalog="system" id="9iN-Xn-xbo">
@@ -780,18 +780,32 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noData" translatesAutoresizingMaskIntoConstraints="NO" id="l2P-IG-Bqg">
+                                <rect key="frame" x="16" y="246" width="353" height="360"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="360" id="CY6-Ad-ctW"/>
+                                    <constraint firstAttribute="width" constant="353" id="qPR-5m-Cc4"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mrs-Ly-2UP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="l2P-IG-Bqg" firstAttribute="leading" secondItem="Mrs-Ly-2UP" secondAttribute="leading" constant="16" id="2tv-pN-jNU"/>
+                            <constraint firstItem="Mrs-Ly-2UP" firstAttribute="trailing" secondItem="l2P-IG-Bqg" secondAttribute="trailing" constant="24" id="AKC-js-imz"/>
+                            <constraint firstItem="l2P-IG-Bqg" firstAttribute="centerY" secondItem="oVZ-wG-C9e" secondAttribute="centerY" id="QPA-ec-Ode"/>
+                            <constraint firstItem="l2P-IG-Bqg" firstAttribute="centerY" secondItem="oVZ-wG-C9e" secondAttribute="centerY" id="gX6-2X-EyO"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PuK-dF-GwD"/>
                     <connections>
                         <outlet property="moreOrdersTable" destination="A0L-KP-Gni" id="lSn-J2-57O"/>
+                        <outlet property="noDataImage" destination="l2P-IG-Bqg" id="Te2-JA-Zdh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91q-t3-4MF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6634" y="607"/>
+            <point key="canvasLocation" x="6632.8244274809158" y="606.33802816901414"/>
         </scene>
         <!--More Wishes View Controller-->
         <scene sceneID="Uh2-Gc-pPt">
@@ -849,8 +863,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UzW-wM-ao2"/>
-        <segue reference="2Q6-dy-nM6"/>
         <segue reference="eqa-k0-62z"/>
     </inferredMetricsTieBreakers>
     <resources>

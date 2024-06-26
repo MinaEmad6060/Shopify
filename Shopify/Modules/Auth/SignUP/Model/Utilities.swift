@@ -54,6 +54,7 @@ class Utilites{
     static func getPaymentMethod() -> String {
         return UserDefaults.standard.string(forKey: "paymentMethod") ?? "Cash"
     }
+
     static func logout() {
         let defaults = UserDefaults.standard
         let keys = ["draftOrderIDCart", "draftOrderIDFavorite", "userID", "userEmail", "favIDNet", "cartIDNet", "fname", "selectedCurrencyCode", "selectedCurrencyRate", "paymentMethod"]
@@ -64,4 +65,36 @@ class Utilites{
         
         defaults.synchronize()
     }
+
+    static func displayGuestAlert(in viewController: UIViewController, message: String) {
+        let alertController = UIAlertController(title: "Guest Mode", message: message, preferredStyle: .alert)
+        
+        let loginAction = UIAlertAction(title: "Log In", style: .default) { _ in
+            // Navigate to the login screen
+            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+            if let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
+                loginVC.modalPresentationStyle = .fullScreen
+                viewController.present(loginVC, animated: true, completion: nil)
+            }
+        }
+        
+//        let signUpAction = UIAlertAction(title: "Sign Up", style: .default) { _ in
+//            // Navigate to the sign-up screen
+//            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+//            if let signUpVC = storyboard.instantiateViewController(withIdentifier: "SignUPVC") as? SignUpViewController {
+//                signUpVC.modalPresentationStyle = .fullScreen
+//                viewController.present(signUpVC, animated: true, completion: nil)
+//            }
+//        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(loginAction)
+       // alertController.addAction(signUpAction)
+        alertController.addAction(cancelAction)
+        
+        viewController.present(alertController, animated: true, completion: nil)
+    }
+
+
 }

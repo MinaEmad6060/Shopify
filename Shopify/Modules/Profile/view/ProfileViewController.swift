@@ -18,6 +18,48 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var wishListTitle: UILabel!
     @IBOutlet weak var welcomeUserTitle: UILabel!
     
+    @IBAction func btnCart(_ sender: UIBarButtonItem) {
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to access cart.")
+               return
+           }
+        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+        let productInfoVC = storyboard.instantiateViewController(withIdentifier: "CartVCR")
+
+        productInfoVC.modalPresentationStyle = .fullScreen
+        present(productInfoVC, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func btnSeeMoreOrders(_ sender: UIButton) {
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to access orders.")
+               return
+           }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let productInfoVC = storyboard.instantiateViewController(withIdentifier: "AllOrdersVC")
+
+        productInfoVC.modalPresentationStyle = .fullScreen
+        present(productInfoVC, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func btnSeeMoreFav(_ sender: Any) {
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to access favourites.")
+               return
+           }
+        let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+        let productInfoVC = storyboard.instantiateViewController(withIdentifier: "FavVC")
+
+        productInfoVC.modalPresentationStyle = .fullScreen
+        present(productInfoVC, animated: true, completion: nil)
+    }
+    
+    
     var profileViewModel: ProfileViewModelProtocol!
     var favouriteViewModel: FavoriteViewModel!
     var complectedOrders: [OrderViewData]!
@@ -51,7 +93,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.welcomeUserTitle.layer.cornerRadius = 20
         self.welcomeUserTitle.clipsToBounds = true
         
-        self.welcomeUserTitle.text = "Welcome \(Utilites.getCustomerName())"
+        
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               self.welcomeUserTitle.text = "Please Login!"
+           }else {
+               self.welcomeUserTitle.text = "Welcome \(Utilites.getCustomerName())"
+           }
         
         let nibCustomCell = UINib(nibName: "OrdersTableViewCell", bundle: nil)
             ordersTableView.register(nibCustomCell, forCellReuseIdentifier: "orderCell")
@@ -107,8 +155,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if tableView == ordersTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersTableViewCell
             if complectedOrders?.count ?? 0 > indexPath.row{
-                cell.totalPrice.text = (complectedOrders?[indexPath.row].total_price ?? "") + " $ "
-                    
+//                cell.totalPrice.text = (complectedOrders?[indexPath.row].total_price ?? "") + " $ "
+                let priceString = complectedOrders?[indexPath.row].total_price ?? "0"
+                let priceInt = Double(priceString) ?? 0
+                let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+                cell.totalPrice.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
+                
+                                    
                     let dateTimeComponents = complectedOrders?[indexPath.row].created_at?.components(separatedBy: "T")
 
                     if dateTimeComponents?.count == 2 {
