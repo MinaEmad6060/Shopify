@@ -173,7 +173,11 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
        }
     
     @IBAction func addToCartBtn(_ sender: UIButton) {
-        
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to add cart.")
+               return
+           }
         productInfoViewModel?.updateCartDraftOrder( product: (productInfoViewModel?.product)!)
     }
     
@@ -202,6 +206,11 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
        
         guard let productTitle = productInfoViewModel?.product?.title,
                   let productId = productInfoViewModel?.product?.id else { return }
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to add favorites.")
+               return
+           }
 
             favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
 

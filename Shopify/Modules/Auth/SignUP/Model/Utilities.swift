@@ -66,19 +66,19 @@ class Utilites{
             }
         }
         
-        let signUpAction = UIAlertAction(title: "Sign Up", style: .default) { _ in
-            // Navigate to the sign-up screen
-            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-            if let signUpVC = storyboard.instantiateViewController(withIdentifier: "SignUPVC") as? SignUpViewController {
-                signUpVC.modalPresentationStyle = .fullScreen
-                viewController.present(signUpVC, animated: true, completion: nil)
-            }
-        }
+//        let signUpAction = UIAlertAction(title: "Sign Up", style: .default) { _ in
+//            // Navigate to the sign-up screen
+//            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+//            if let signUpVC = storyboard.instantiateViewController(withIdentifier: "SignUPVC") as? SignUpViewController {
+//                signUpVC.modalPresentationStyle = .fullScreen
+//                viewController.present(signUpVC, animated: true, completion: nil)
+//            }
+//        }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alertController.addAction(loginAction)
-        alertController.addAction(signUpAction)
+       // alertController.addAction(signUpAction)
         alertController.addAction(cancelAction)
         
         viewController.present(alertController, animated: true, completion: nil)

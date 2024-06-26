@@ -125,6 +125,11 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
                     
                     cell.favButtonTapped = { [weak self] in
                         guard let self = self else { return }
+                        let customerId = Utilites.getCustomerID()
+                           if customerId == 0 {
+                               Utilites.displayGuestAlert(in:self, message: "Please log in to add favorites.")
+                               return
+                           }
                         let isFavorite = cell.btnFavCategoryItem.isSelected
                         cell.updateFavoriteButtonImage(!isFavorite)
                         if isFavorite {
