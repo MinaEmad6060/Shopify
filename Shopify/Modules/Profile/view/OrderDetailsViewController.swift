@@ -33,23 +33,18 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
         self.dismiss(animated: true)
     }
     
-//    var orderId: UInt64?
-//    var fetchDataFromApi: FetchDataFromApi!
     var orderDetailsViewModel: ProfileViewModelProtocol!
     var orderDetails: BasicDetailsOrderViewData?
     var productsOfOrder: [OrderDetailsViewData]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("order id ::: \(orderId ?? 0)")
         
         productsTableView.delegate = self
         productsTableView.dataSource = self
-//        fetchDataFromApi = FetchDataFromApi()
         orderDetailsViewModel = ProfileViewModel()
         productsOfOrder = [OrderDetailsViewData]()
         orderDetails = BasicDetailsOrderViewData()
-//        print("url :: \(fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders/\(orderId ?? 0)"))")
         
         orderDetailsViewModel.getOrderDetailsFromNetworkService()
         orderDetailsViewModel.bindOrderDetailsToViewController = {
@@ -66,17 +61,7 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
                 self.productsTableView.reloadData()
             }
         }
-//        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl, request: "orders/\(orderId ?? 0)")){[weak self] (orderDetails: OrderDetails) in
-//            let dateTimeComponents = orderDetails.order?.created_at?.components(separatedBy: "T")
-//
-//            if dateTimeComponents?.count == 2 {
-//                self?.createdDate.text = dateTimeComponents?[0]
-//            }
-//            self?.customerName.text = orderDetails.order?.customer?.first_name
-//            self?.orderNumber.text = "\(self?.orderId ?? 0)"
-//            self?.productsOfOrder = orderDetails.order?.line_items
-//            self?.productsTableView.reloadData()
-//        }
+
         
         let nibCustomCell = UINib(nibName: "ProductOfOrderViewCell", bundle: nil)
         productsTableView.register(nibCustomCell, forCellReuseIdentifier: "orderDetailsCell")

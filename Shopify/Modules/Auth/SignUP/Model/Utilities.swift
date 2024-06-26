@@ -39,8 +39,10 @@ class Utilites{
     static func getDraftOrderIDCartFromNote() -> Int {
         return UserDefaults.standard.integer(forKey: "cartIDNet")
     }
-    static func getCustomerName() -> String {
-        return UserDefaults.standard.string(forKey: "fname") ?? "non"
+
+    static  func getCustomerName() -> String {
+        return UserDefaults.standard.string(forKey: "fname") ?? "none"
+
     }
     
     static func getCurrencyCode() -> String {

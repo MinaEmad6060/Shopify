@@ -20,6 +20,12 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     var myLine: [LineItemm] = []
 
     var subTotal = 0.0
+    
+    var fetchDataFromApi: FetchDataFromApi!
+    var allProductsViewModel: AllProductsViewModel!
+
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +34,9 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+        fetchDataFromApi = FetchDataFromApi()
+        allProductsViewModel = AllProductsViewModel()
+
         self.subTotalPriceView.layer.cornerRadius = 20.0
         self.checkoutView.layer.cornerRadius = 20.0
         
@@ -51,11 +59,12 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
 
         let draftOrderId = Utilites.getDraftOrderIDCartFromNote()
 
-        NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
-            guard let self = self else { return }
-            if let draftOrder = draftOrder {
-                self.lineItems = draftOrder.lineItems
-                print(draftOrder.lineItems)
+        
+        fetchDataFromApi.getDataFromApi(url: fetchDataFromApi.formatUrl(baseUrl: Constants.baseUrl,request: "draft_orders/\(draftOrderId)")){[weak self] (draftOrderResponsee:DraftOrderResponsee?) in
+            if let draftOrder = draftOrderResponsee {
+                self?.lineItems = draftOrder.draft_order.lineItems
+                print("FirstID :::: \(self?.lineItems[1].product_id ?? -1)")
+               print(draftOrder.lineItems)
                 
                 var itemDictionary: [String: LineItemm] = [:]
 
@@ -82,12 +91,25 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                 lineItems = lineItems.filter { $0.title != "Sample Product"}
 
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-                    self.totalPrice.text = "\(self.subTotal)EGP"
+                    self?.tableView.reloadData()
+                    self?.subTotal = self?.calculateTotal(lineItems: self?.lineItems ?? [LineItemm]()) ?? 0.0
+                    self?.totalPrice.text = "\(self?.subTotal ?? 0.0)EGP"
                 }
             }
         }
+        
+        
+//        NetworkManager.fetchDraftOrder(draftOrderId: draftOrderId) { [weak self] draftOrder in
+//            guard let self = self else { return }
+//            if let draftOrder = draftOrder {
+//                self.lineItems = draftOrder.lineItems
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                    self.subTotal = self.calculateTotal(lineItems: self.lineItems)
+//                    self.totalPrice.text = "\(self.subTotal)EGP"
+//                }
+//            }
+//        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -149,14 +171,32 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         return 300.0
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let lineItem = lineItems[indexPath.row]
+        var product = BrandProductViewData()
+        let productId = lineItem.product_id
+        print("productID ShoppingCartTableViewController ::: \(lineItem.product_id)")
+            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+            let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
+            
+            allProductsViewModel.getProductFromNetworkService(id: productId)
+            allProductsViewModel.bindBrandProductsToViewController = {
+                product = self.allProductsViewModel.productViewData
+                let productInfoViewModel = ProdutInfoViewModel(product: product)
+                productInfoVC.productInfoViewModel = productInfoViewModel
+                DispatchQueue.main.async {
+                    productInfoVC.modalPresentationStyle = .fullScreen
+                    self.present(productInfoVC, animated: true, completion: nil)
+                }
+            }
+    }
+    
     func updateQuantity(for lineItemId: Int, increment: Bool) {
         guard let index = lineItems.firstIndex(where: { $0.id == lineItemId }) else { return }
         
-        //let productId = 8100172759211
         let productId = lineItems[index].product_id ?? 0
-        NetworkManager.checkProductAvailability(productId: productId) { [weak self] availableQuantity in
-            guard let self = self else { return }
-            
+        fetchDataFromApi?.getDataFromApi(url: fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl,request: "products/\(productId)") ?? ""){[weak self] (availableQuantity: ProductResponse?) in
             if let availableQuantity = availableQuantity {
                 if increment && self.lineItems[index].quantity ?? 5 < availableQuantity {
                     self.lineItems[index].quantity += 1
@@ -172,11 +212,12 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                 }
                 
                 NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: self.myLine) { success in
+
                     if success {
                         DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                            self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-                            self.totalPrice.text = "\(self.subTotal)EGP"
+                            self?.tableView.reloadData()
+                            self?.subTotal = self?.calculateTotal(lineItems: self?.lineItems ?? [LineItemm]()) ?? 0.0
+                            self?.totalPrice.text = "\(self?.subTotal ?? 0.0)EGP"
                         }
                     } else {
                         print("error")
@@ -184,6 +225,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                 }
             }
         }
+        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

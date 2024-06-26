@@ -14,10 +14,12 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     @IBOutlet weak var allAddressessTableView: UITableView!
     var allAddressesViewModel: AllAddressesViewModel?
+    var fetchDataFromApi: FetchDataFromApi!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fetchDataFromApi = FetchDataFromApi()
+
         // Do any additional setup after loading the view.
         self.allAddressessTableView.delegate = self
         self.allAddressessTableView.dataSource = self
@@ -106,22 +108,26 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if allAddressesViewModel?.addresses[indexPath.row].default == false{
-                guard let addressId = allAddressesViewModel?.addresses[indexPath.row].id else { return }
-                NetworkManager.deleteCustomerAddress(customerId: 7445466022059, addressId: addressId) { [weak self] success in
-                    if success {
-                        self?.allAddressesViewModel?.addresses.remove(at: indexPath.row)
-                        DispatchQueue.main.async {
-                            //tableView.deleteRows(at: [indexPath], with: .fade)
-                            tableView.reloadData()
-                        }
-                    } else {
-                        // Handle the error appropriately (e.g., show an alert to the user)
+
+            guard let addressId = allAddressesViewModel?.addresses[indexPath.row].id else { return }
+            
+            
+            fetchDataFromApi?.deleteDataFromApi(url: fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl, request: "customers/\(7445466022059)/addresses/\(addressId)") ?? "") {[weak self] success in
+                if success {
+                    self?.allAddressesViewModel?.addresses.remove(at: indexPath.row)
+                    DispatchQueue.main.async {
+                        //tableView.deleteRows(at: [indexPath], with: .fade)
+                        tableView.reloadData()
                     }
+                } else {
+                    
+
                 }
             }else{
                 self.view.makeToast("Can't delete default address")
             }
+        
+            
         }
     }
 }

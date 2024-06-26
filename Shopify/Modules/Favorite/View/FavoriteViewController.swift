@@ -76,7 +76,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
                       cell.favButtonTapped = { [weak self] in
                           guard let self = self else { return }
                           let productName = lineItem.title
-                          self.viewModel.lineItems.remove(at: indexPath.row)
+                          self.viewModel.lineItems.remove(at: indexPath.row+1)
                           self.favCollectionView.reloadData()
                               self.viewModel.removeProductFromDraftOrder(productTitle: productName ?? "")
                             
@@ -100,14 +100,8 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let lineItem = viewModel.displayedLineItems[indexPath.item]
-        let imageString = lineItem.sku ?? ""
-        let components = imageString.components(separatedBy: ",")
-
-        UserDefaults.standard.set(true, forKey: "isFav")
         var product = BrandProductViewData()
-        if components.count == 2, let productId = Int(components[0]) {
-            
-
+        let productId = lineItem.productID
             let storyboard = UIStoryboard(name: "Auth", bundle: nil)
             let productInfoVC = storyboard.instantiateViewController(withIdentifier: "ProductInfoVCR") as! ProductInfoViewController
             
@@ -121,7 +115,6 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
                     self.present(productInfoVC, animated: true, completion: nil)
                 }
             }
-        }
    }
 
    

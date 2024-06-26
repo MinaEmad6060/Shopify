@@ -25,43 +25,24 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     var fetchDataFromApi: FetchDataFromApi!
     var discountCodes: [DiscountCode] = []
-    
-//    var lineItemsTest: [LineItemm] = []
-//    
-//    let customer: [String: Any] = [
-//        "id": 7423232082091,
-//        "currency": "EGP"
-//    ]
+
     
     var homeViewModel: HomeViewModelProtocol!
     var brands: [BrandsViewData]!
 
     
-//    var lineItems: [OrderLineItem]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        UpdateCustomerNote()
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
+        
         
         homeViewModel = HomeViewModel()
         brands = [BrandsViewData]()
         homeViewModel.getCurrentCustomer()
     
         
-//
-//        lineItems = [
-//            OrderLineItem(title: "SUPRA | MENS VAIDER", price: 169.95, quantity: 1),
-//            OrderLineItem(title: "PUMA | SUEDE CLASSIC REGAL", price: 110.00, quantity: 1)
-//        ]
-//        FetchDataFromApi.postOrder(lineItems: lineItems)
-        
-//        lineItemsTest = [
-//            LineItemm(id: 8100172660907, title: "SUPRA | MENS VAIDER", quantity: 1, price: "\(169.95)", variant_id: "", variant_title: ""),
-//            LineItemm(id: 8100172595371, title: "PUMA | SUEDE CLASSIC REGAL", quantity: 2, price: "\(110.00)", variant_id: "", variant_title: ""),
-//        ]
-//        FetchDataFromApi.postOrder(lineItems: lineItemsTest, customer: customer)
         fetchDiscountCodes()
        
         
@@ -124,7 +105,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
-                                               , heightDimension: .absolute(210))
+                                               , heightDimension: .absolute(150))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize
                                                      , subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
@@ -139,14 +120,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     override func viewWillAppear(_ animated: Bool) {
+        Constants.isAllProductsScreen = true
         let cart =   Utilites.getDraftOrderIDCartFromNote()
         let fav = Utilites.getDraftOrderIDFavoriteFromNote()
         let customerName =  Utilites.getCustomerName()
         let customerID =  Utilites.getCustomerID()
         let customerEmail =  Utilites.getCustomerEmail()
-        print("customerName\(customerName)")
-        print("favorite\(fav)")
-        print("cart: \(cart)")
+        print("customerName : \(customerName)")
+        print("customerEmail : \(customerEmail)")
+        print("customerID : \(customerID)")
+        print("favorite : \(fav)")
+        print("cart:  \(cart)")
+
     }
     
     
@@ -168,8 +153,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if indexPath.section==0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdsCell", for: indexPath) as! AdsCollectionViewCell
-            //cell.view.layer.cornerRadius = 25.0
-            //cell.view.backgroundColor = UIColor.brown
+
             let discountCode = discountCodes[indexPath.row]
             //cell.valueLabel?.text = "\(discountCode.value)% OFF"
             //cell.discountCodeLabel?.text = "Promocode: \(discountCode.code)"
@@ -295,31 +279,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return UserDefaults.standard.string(forKey: "SelectedDiscountCode")
     }
     
-//    func UpdateCustomerNote(){
-//        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite()
-//        let draftOrderIDCart = Utilites.getDraftOrderIDCart()
-//        let customerId = Utilites.getCustomerID()
-//        let newNote = "\(draftOrderIDFavorite),\(draftOrderIDCart)"
-//        NetworkManager.updateCustomerNote(customerId: customerId, newNote: newNote) { statusCode in
-//            DispatchQueue.main.async {
-//                if statusCode == 200 {
-//                    
-//                    print("Customer note updated successfully.")
-//                    
-//                    if let draftOrderIDCart = UserDefaults.standard.value(forKey: "draftOrderIDCart") as? Int {
-//                        print("Draft Order ID for Cart: \(draftOrderIDCart)")
-//                    }
-//                    if let draftOrderIDFavorite = UserDefaults.standard.value(forKey: "draftOrderIDFavorite") as? Int {
-//                        print("Draft Order ID for Favorite: \(draftOrderIDFavorite)")
-//                    }
-//                } else {
-//                    
-//                    print("Failed to update customer note. Status code: \(statusCode)")
-//                }
-//            }
-//        }
-//    }
-    
     func attemptToUseSelectedDiscountCode() {
         guard let selectedCode = getSelectedDiscountCode() else {
             return
@@ -347,8 +306,3 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         UserDefaults.standard.removeObject(forKey: "SelectedDiscountCode")
     }
 }
-/*
-let selectedCode = discountCodes[indexPath.row].code
-saveSelectedDiscountCode(selectedCode)
-self.view.makeToast("Promocode \(selectedCode) Saved ")
-*/

@@ -35,8 +35,7 @@ class PlaceOrderViewController: UIViewController {
     }
     @IBOutlet weak var couponErrorLabel: UILabel!
     var lineItems: [LineItemm] = []
-    //    var lineItemsTest: [LineItemm] = []
-    //    var ItemTest: LineItemm?
+
     var subTotal = 0.0
     var total = 0.0
     let customer: [String: Any] = [
@@ -89,6 +88,7 @@ class PlaceOrderViewController: UIViewController {
         self.subTotalLabel.text = "\(self.subTotal)EGP"
         self.discountAmountLabel.text = "-0.EGP"
         self.totalLabel.text = "\(self.subTotal)EGP"
+
         
         payment.merchantIdentifier = "merchant.com.pushpendra.pay"
         payment.supportedNetworks = [.quicPay, .masterCard, .visa]
@@ -96,7 +96,7 @@ class PlaceOrderViewController: UIViewController {
         payment.merchantCapabilities = .capability3DS
         payment.countryCode = "EG"
         payment.currencyCode = Utilites.getCurrencyCode()
-        
+
     }
     
     @IBAction func placeOrderBtn(_ sender: Any) {

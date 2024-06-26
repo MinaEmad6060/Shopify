@@ -9,6 +9,12 @@ import Foundation
 
 class AllAddressesViewModel {
     var bindResultToAllAddressViewController: (() -> Void) = {}
+    var fetchDataFromApi: FetchDataFromApi!
+    
+    
+    init(){
+        fetchDataFromApi = FetchDataFromApi()
+    }
     var success: Bool = false {
         didSet {
             bindResultToAllAddressViewController()
@@ -20,7 +26,7 @@ class AllAddressesViewModel {
     func getAllAddress(customerId: Int) {
         let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/customers/\(customerId)/addresses.json"
         
-        NetworkManager.getDataFromApi(url: url) { (result: AddressResponse) in
+        fetchDataFromApi.getDataFromApi(url: url) { (result: AddressResponse) in
             self.addresses = result.addresses
             self.success = true
         }

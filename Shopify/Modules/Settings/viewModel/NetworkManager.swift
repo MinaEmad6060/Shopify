@@ -10,28 +10,6 @@ import Alamofire
 
 class NetworkManager {
     
-    var baseUrl = "\(Constants.baseUrl)customers/177564125/addresses.json"
-    //smart_collections.json
-    func formatUrl(request: String, query: String="", value: String="") -> String{
-        return baseUrl+request+".json?"+query+"="+value
-    }
-    
-    static func getDataFromApi<T: Decodable>(url: String, handler: @escaping (T)->Void){
-        let urlFB = URL(string: url)
-        guard let urlFB = urlFB else{return}
-        
-        
-        AF.request(urlFB).responseDecodable(of: T.self) { response in
-            switch response.result {
-            case .success(let result):
-                handler(result)
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    
     static func addNewAddress(customerID: Int, address: Address, completion: @escaping (Bool) -> Void) {
         let url = "\(Constants.baseUrl)customers/\(customerID)/addresses.json"
         
@@ -60,21 +38,28 @@ class NetworkManager {
                 }
             }
     }
-    static func deleteCustomerAddress(customerId: Int, addressId: Int, completion: @escaping (Bool) -> Void) {
-        let url = "\(Constants.baseUrl)customers/\(customerId)/addresses/\(addressId).json"
-        
-        AF.request(url, method: .delete)
-            .response { response in
-                switch response.result {
-                case .success:
-                    completion(true)
-                case .failure(let error):
-                    print("Error deleting address: \(error)")
-                    completion(false)
-                }
-            }
-    }
-
+    
+    static func fetchLineItemsInDraftOrder(draftOrderId: Int, completion: @escaping ([LineItem]?) -> Void) {
+               let urlString = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/draft_orders/\(draftOrderId).json"
+               
+               AF.request(urlString).responseDecodable(of: Drafts.self) { response in
+                   switch response.result {
+                   case .success(let draftResponse):
+                       if let lineItems = draftResponse.draftOrder?.lineItems {
+                           completion(lineItems)
+                           print("lineItems:*\(lineItems)")
+                       } else {
+                           print("No line items found in api")
+                           completion(nil)
+                       }
+                   case .failure(let error):
+                       print("Error fetching line items: \(error.localizedDescription)")
+                       completion(nil)
+                   }
+               }
+           }
+    
+    
     static func updateCustomerNote(customerId: Int, newNote: String, completion: @escaping (Int) -> Void) {
             let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/customers/\(customerId).json"
             
@@ -106,6 +91,8 @@ class NetworkManager {
                 }
             }
         }
+    
+    
     static func updateDraftOrder(draftOrderId: Int,product: BrandProductViewData, complication: @escaping (Int) -> Void) {
         let urlString = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/draft_orders/\(draftOrderId).json"
         let propertiesArray: [Properties] = [
@@ -125,7 +112,7 @@ class NetworkManager {
             variantTitle: nil,
             //sku: "\(product.id ?? 0),\(product.src[0] ?? "")",
             vendor: nil,
-            quantity: 2,
+            quantity: 1,
             requiresShipping: nil,
             taxable: nil,
             giftCard: nil,
@@ -175,70 +162,9 @@ class NetworkManager {
             }
         }
     }
-    static func getCustomer(email: String, completion: @escaping (Customer?) -> Void) {
-//            let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/customers/\(customerID).json"
-            
-        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/customers/search.json?query=email:\(email)"
-        
-        print("url ::::: \(url)")
-        
-            guard let encodedCredentials = "\(Constants.api_key):\(Constants.password)".data(using: .utf8)?.base64EncodedString() else {
-                print("Failed to encode credentials")
-                completion(nil)
-                return
-            }
-            
-            let headers: HTTPHeaders = [
-                "Authorization": "Basic \(encodedCredentials)",
-                "Content-Type": "application/json"
-            ]
-            
-            AF.request(url, headers: headers).responseDecodable(of: LoginedCustomers.self) { response in
-                switch response.result {
-                case .success(let result):
-                    completion(result.customers.first)
-                    print("Success fetching customer ::::::: \(response)")
-                case .failure(let error):
-                    print("Error fetching customer: \(error.localizedDescription)")
-                    completion(nil)
-                }
-            }
-        }
-    static func fetchLineItemsInDraftOrder(draftOrderId: Int, completion: @escaping ([LineItem]?) -> Void) {
-           let urlString = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/draft_orders/\(draftOrderId).json"
-           
-           AF.request(urlString).responseDecodable(of: Drafts.self) { response in
-               switch response.result {
-               case .success(let draftResponse):
-                   if let lineItems = draftResponse.draftOrder?.lineItems {
-                       completion(lineItems)
-                       print("lineItems:***\(lineItems)")
-                   } else {
-                       print("No line items found in api")
-                       completion(nil)
-                   }
-               case .failure(let error):
-                   print("Error fetching line items: \(error.localizedDescription)")
-                   completion(nil)
-               }
-           }
-       }
-   static func fetchAllProducts(completion: @escaping (Result<BrandProduct, Error>) -> Void) {
-            let url = "https://\(Constants.api_key):\(Constants.password)@\(Constants.hostname)/admin/api/2023-04/products.json"
-       
-            
-            AF.request(url).validate().responseDecodable(of: BrandProduct.self) { response in
-                switch response.result {
-                case .success(let brandProduct):
-                    completion(.success(brandProduct))
-                   // print(brandProduct)
-                case .failure(let error):
-                    completion(.failure(error))
-                    print("errorrrr")
-                }
-            }
-        }
+    
 
+    
     
     static func updateDraftOrder(draftOrderId: Int, lineItems: [LineItemm], completion: @escaping (Bool) -> Void) {
         let url = "\(Constants.baseUrl)/draft_orders/\(draftOrderId).json"
@@ -280,6 +206,7 @@ class NetworkManager {
             }
         }
     }
+/*
     static func fetchDraftOrder(draftOrderId: Int, completion: @escaping (DraftOrderr?) -> Void) {
         let url = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
         
@@ -308,6 +235,7 @@ class NetworkManager {
             }
         }
     }
+*/
     
 
     static func setDefaultAddress(customerID: Int, addressID: Int, completion: @escaping (Bool) -> Void) {
@@ -377,23 +305,6 @@ class NetworkManager {
             }
         }
     }
-   static func fetchProductDetails(productId: Int, completion: @escaping (Result<Product, Error>) -> Void) {
-        let url = "https://106ef29b5ab2d72aa0243decb0774101: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@mad44-alex-ios-team3.myshopify.com/admin/api/2024-04/products/\(productId).json"
-        
-        AF.request(url).validate().responseDecodable(of: Product.self) { response in
-            switch response.result {
-            case .success(let product):
-                completion(.success(product))
-                print("/********/")
-                print(response)
-                print("/********/")
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-
-
+  
 }
 
