@@ -206,7 +206,36 @@ class NetworkManager {
             }
         }
     }
-
+/*
+    static func fetchDraftOrder(draftOrderId: Int, completion: @escaping (DraftOrderr?) -> Void) {
+        let url = "\(Constants.baseUrl)draft_orders/\(draftOrderId).json"
+        
+        
+        AF.request(url, method: .get).responseDecodable(of: DraftOrderResponsee.self) { response in
+            switch response.result {
+            case .success(let draftOrderResponse):
+                completion(draftOrderResponse.draft_order)
+            case .failure(let error):
+                print("Error fetching draft order: \(error)")
+                completion(nil)
+            }
+        }
+    }
+    static func checkProductAvailability(productId: Int, completion: @escaping (Int?) -> Void) {
+        let url = "\(Constants.baseUrl)products/\(productId).json"
+        
+        
+        AF.request(url, method: .get).responseDecodable(of: ProductResponse.self) { response in
+            switch response.result {
+            case .success(let productResponse):
+                completion(productResponse.product.variants?.first?.inventory_quantity)
+            case .failure(let error):
+                print("Error fetching product availability: \(error)")
+                completion(nil)
+            }
+        }
+    }
+*/
     
 
     static func setDefaultAddress(customerID: Int, addressID: Int, completion: @escaping (Bool) -> Void) {

@@ -34,6 +34,7 @@ struct LineItemm: Codable {
     let variant_id: Int?
     let variant_title: String?
     let properties: [Property]?
+    let product_id: Int?
     
     struct Property: Codable {
         let name: String

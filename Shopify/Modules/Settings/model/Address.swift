@@ -29,6 +29,7 @@ struct AddressId: Codable {
     let city: String
     let country_name: String?
     let phone: String
+    var `default`: Bool
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -36,6 +37,7 @@ struct AddressId: Codable {
         case city
         case country_name
         case phone
+        case `default`
     }
 }
 struct AddressResponse: Codable {
