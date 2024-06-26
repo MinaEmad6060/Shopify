@@ -23,6 +23,32 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
+    @IBAction func btnFav(_ sender: UIBarButtonItem) {
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to access favourites.")
+               return
+           }
+        let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+        let productInfoVC = storyboard.instantiateViewController(withIdentifier: "FavVC")
+
+        productInfoVC.modalPresentationStyle = .fullScreen
+        present(productInfoVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func btnCart(_ sender: UIBarButtonItem) {
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to access cart.")
+               return
+           }
+        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+        let productInfoVC = storyboard.instantiateViewController(withIdentifier: "CartVCR")
+
+        productInfoVC.modalPresentationStyle = .fullScreen
+        present(productInfoVC, animated: true, completion: nil)
+    }
+    
     var fetchDataFromApi: FetchDataFromApi!
     var discountCodes: [DiscountCode] = []
 

@@ -190,7 +190,7 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
     @IBAction func addToCartBtn(_ sender: UIButton) {
         let customerId = Utilites.getCustomerID()
            if customerId == 0 {
-               Utilites.displayGuestAlert(in:self, message: "Please log in to add cart.")
+               Utilites.displayGuestAlert(in:self, message: "Please log in to add to cart.")
                return
            }
         productInfoViewModel?.updateCartDraftOrder( product: (productInfoViewModel?.product)!)

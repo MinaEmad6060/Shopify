@@ -28,6 +28,21 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var noDataImage: UIImageView!
     
+    
+    @IBAction func btnCart(_ sender: UIBarButtonItem) {
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to access cart.")
+               return
+           }
+        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+        let productInfoVC = storyboard.instantiateViewController(withIdentifier: "CartVCR")
+
+        productInfoVC.modalPresentationStyle = .fullScreen
+        present(productInfoVC, animated: true, completion: nil)
+    }
+    
+    
     var categoriesViewModel: CategoriesViewModel!
     var brandProducts: [BrandProductViewData]!
     var filterdBrandProducts: [BrandProductViewData]!
