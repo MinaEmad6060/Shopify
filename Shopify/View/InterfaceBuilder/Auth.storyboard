@@ -49,10 +49,10 @@
             </objects>
             <point key="canvasLocation" x="-650" y="407"/>
         </scene>
-        <!--View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="WelcomeVC" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeVC" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="WelcomeViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -89,6 +89,9 @@
                                     <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="baseBackgroundColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.90980392160000001" alpha="0.77163052720000003" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="guestBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="eHR-ox-V7D"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pd7-0T-LZs">
                                 <rect key="frame" x="254" y="633" width="61" height="39"/>
@@ -1291,8 +1294,8 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="bea-lD-kqM"/>
-        <segue reference="BIO-Jo-tmf"/>
+        <segue reference="68e-ip-Zy5"/>
+        <segue reference="Nsb-UZ-xE6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1" width="194" height="183"/>
