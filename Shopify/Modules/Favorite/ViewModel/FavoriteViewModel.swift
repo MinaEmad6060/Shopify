@@ -43,16 +43,6 @@ class FavoriteViewModel {
         }
         
         
-//        NetworkManager.fetchLineItemsInDraftOrder(draftOrderId: draftOrderId) { [weak self] lineItems in
-//            guard let self = self else { return }
-//            if let lineItems = lineItems {
-//                self.lineItems = lineItems
-//            } else {
-//                print("No line items found")
-//            }
-//        }
-        
-        
         for item in self.lineItems {
                 print("Title: \(item.title ?? ""), Price: \(item.price ?? ""), Image: \(item.image ?? "")")
             }
