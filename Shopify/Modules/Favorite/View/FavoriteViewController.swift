@@ -76,8 +76,15 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
         cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
         
         //               cell.categoryItemName.text = lineItem.title
-        cell.categoryItemPrice.text = lineItem.price
-        cell.categoryItemCurrency.text = "$"
+//        cell.categoryItemPrice.text = lineItem.price
+//        cell.categoryItemCurrency.text = "$"
+        
+        let priceString = lineItem.price ?? ""
+        let priceInt = Double(priceString) ?? 0
+        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+        cell.categoryItemPrice.text = "\(convertedPrice) "
+        cell.categoryItemCurrency.text = Utilites.getCurrencyCode()
+
         
         if let url = URL(string: imageString) {
             cell.categoryItemImage.kf.setImage(with: url)

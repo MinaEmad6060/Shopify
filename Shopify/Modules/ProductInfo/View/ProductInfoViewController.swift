@@ -70,11 +70,14 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         
        // priceLB.text =  productInfoViewModel?.product?.price
         
-        let priceString = productInfoViewModel?.product?.price ?? "0"
-       
-         let priceInt = Double(priceString) ?? 0
-        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
-        priceLB.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
+//        let priceString = productInfoViewModel?.product?.price ?? "0"
+//       
+//         let priceInt = Double(priceString) ?? 0
+//        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+//        priceLB.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
+        
+        
+
         guard let productId = productInfoViewModel?.product?.id else {
             print("Product ID is nil")
             return
@@ -100,12 +103,20 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         
 //        print("quantity.....\(productInfoViewModel?.product?.quantity)")
         if let quantity = productInfoViewModel?.product?.quantity[0] {
-                    quantityLB.text = "\(quantity) items are available for this Size"
+                    quantityLB.text = "\(quantity)  items are available for this Size"
                 } else {
                     quantityLB.text = "This size not available Now "
                 }
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let priceString = productInfoViewModel?.product?.price ?? ""
+        let priceInt = Double(priceString) ?? 0
+        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+        priceLB.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
+    }
+    
     func updateDraftOrder() {
             
             if let product = productInfoViewModel?.product {
