@@ -12,6 +12,8 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
     var brandProducts: [BrandProductViewData]?
     var allProductsViewModel: AllProductsViewModel!
     
+    @IBOutlet weak var noDataImage: UIImageView!
+    
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -49,10 +51,13 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
         viewModel.didUpdateLineItems = { [weak self] in
             DispatchQueue.main.async {
                 self?.favCollectionView.reloadData()
+                self?.updateNoDataImageVisibility()
             }
         }
     }
-    
+    private func updateNoDataImageVisibility() {
+          noDataImage.isHidden = !viewModel.displayedLineItems.isEmpty
+      }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -84,6 +89,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
             let productName = lineItem.title
             self.viewModel.lineItems.remove(at: indexPath.row+1)
             self.favCollectionView.reloadData()
+            self.updateNoDataImageVisibility()
             self.viewModel.removeProductFromDraftOrder(productTitle: productName ?? "")
             
             

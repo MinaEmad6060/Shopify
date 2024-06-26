@@ -34,6 +34,8 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
     
 @IBOutlet weak var descTextView: UILabel!
     
+    @IBOutlet weak var cartBtn: UIButton!
+    
 @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -47,6 +49,7 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
        var selectedColorIndexPath: IndexPath?
        var selectedSize: String?
        var selectedColor: String?
+    var selectedQuantity: Int?
     var productId :Int?
     var productId2 :Int?
     var productTitle :String?
@@ -65,9 +68,13 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         tiitleLB.text = productInfoViewModel?.product?.title
         descTextView.text = productInfoViewModel?.product?.body_html
         
-        priceLB.text =  productInfoViewModel?.product?.price
+       // priceLB.text =  productInfoViewModel?.product?.price
         
-        
+        let priceString = productInfoViewModel?.product?.price ?? "0"
+       
+         let priceInt = Double(priceString) ?? 0
+        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+        priceLB.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
         guard let productId = productInfoViewModel?.product?.id else {
             print("Product ID is nil")
             return
@@ -92,6 +99,12 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         print("displayed line items******\(favViewMode.displayedLineItems)")
         
 //        print("quantity.....\(productInfoViewModel?.product?.quantity)")
+        if let quantity = productInfoViewModel?.product?.quantity[0] {
+                    quantityLB.text = "\(quantity) items are available for this Size"
+                } else {
+                    quantityLB.text = "This size not available Now "
+                }
+
     }
     func updateDraftOrder() {
             
@@ -164,7 +177,11 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
        }
     
     @IBAction func addToCartBtn(_ sender: UIButton) {
-        
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to add cart.")
+               return
+           }
         productInfoViewModel?.updateCartDraftOrder( product: (productInfoViewModel?.product)!)
     }
     
@@ -193,6 +210,11 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
        
         guard let productTitle = productInfoViewModel?.product?.title,
                   let productId = productInfoViewModel?.product?.id else { return }
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to add favorites.")
+               return
+           }
 
             favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
 
@@ -237,6 +259,15 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         selectedSize = productInfoViewModel?.product?.sizes[sender.selectedSegmentIndex] ?? ""
            print("selectedSize:...:\(selectedSize)")
         productInfoViewModel?.product?.sizes[0] = selectedSize ?? ""
+        if let quantities = productInfoViewModel?.product?.quantity, sender.selectedSegmentIndex < quantities.count {
+                     let quantity = quantities[sender.selectedSegmentIndex]
+                     quantityLB.text = quantity == 0 ? "This size not available now" : "\(quantity) items are available for this size"
+                   selectedQuantity = quantity
+                   productInfoViewModel?.product?.inventory_quantity = selectedQuantity ?? 0
+            updateAddToCartButton()
+                 } else {
+                     quantityLB.text = "N/A"
+                 }
      
     }
     
@@ -256,8 +287,22 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         productInfoViewModel?.product?.colors.forEach { colorSegment.insertSegment(withTitle: $0, at: colorSegment.numberOfSegments, animated: false) }
         colorSegment.selectedSegmentIndex = 0
         selectedColor = productInfoViewModel?.product?.colors.first ?? ""
+        
 
     }
+    private func updateAddToCartButton() {
+        if let selectedSizeIndex = sizeSegment?.selectedSegmentIndex,
+           let quantities = productInfoViewModel?.product?.quantity,
+           selectedSizeIndex < quantities.count {
+            let quantity = quantities[selectedSizeIndex]
+            cartBtn.isEnabled = quantity > 0
+            cartBtn.setTitle(quantity > 0 ? "Add to Cart" : "Sold Out", for: .normal)
+        } else {
+            cartBtn.isEnabled = false
+            cartBtn.setTitle("Sold Out", for: .normal)
+        }
+    }
+
     
 }
 

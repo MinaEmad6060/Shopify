@@ -28,10 +28,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var noDataImage: UIImageView!
     
-    var categoriesViewModel: CategoriesViewModelProtocol!
+    var categoriesViewModel: CategoriesViewModel!
     var brandProducts: [BrandProductViewData]!
     var filterdBrandProducts: [BrandProductViewData]!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +50,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
     
     override func viewWillAppear(_ animated: Bool) {
         Constants.isAllProductsScreen = false
+        self.categoryTable.reloadData()
     }
     
     
@@ -88,6 +89,28 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
             } else {
                 cell.categoryItemImage.image = UIImage(named: "placeholderlogo.jpeg")
             }
+           
+            categoriesViewModel.isProductInDraftOrder(productTitle: categoriesViewModel.categoriesViewData[indexPath.row].title ?? "") { isInDraftOrder in
+                            DispatchQueue.main.async {
+                                cell.updateFavoriteButtonImage(isInDraftOrder)
+                            }
+                        }
+                        
+                        cell.favButtonTapped = { [weak self] in
+                            guard let self = self else { return }
+                            let customerId = Utilites.getCustomerID()
+                               if customerId == 0 {
+                                   Utilites.displayGuestAlert(in:self, message: "Please log in to add favorites.")
+                                   return
+                               }
+                            let isFavorite = cell.btnFavCategoryItem.isSelected
+                            cell.updateFavoriteButtonImage(!isFavorite)
+                            if isFavorite {
+                                self.categoriesViewModel.removeProductFromDraftOrder(productTitle: categoriesViewModel.categoriesViewData[indexPath.row].title ?? "")
+                            } else {
+                                self.categoriesViewModel.updateFavoriteDraftOrder(product: categoriesViewModel.categoriesViewData[indexPath.row])
+                            }
+                        }
         }
         
         return cell
@@ -158,4 +181,5 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
             self.categoryCollectionView.reloadData()
         }
     }
+
 }

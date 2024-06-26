@@ -23,7 +23,11 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     @IBAction func btnFavCategoryItemTapped(_ sender: UIButton) {
         favButtonTapped?()
     }
-    
+    func updateFavoriteButtonImage(_ isFavorite: Bool) {
+           let imageName = isFavorite ? "heart.fill" : "heart"
+           btnFavCategoryItem.setImage(UIImage(systemName: imageName), for: .normal)
+           btnFavCategoryItem.isSelected = isFavorite
+       }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

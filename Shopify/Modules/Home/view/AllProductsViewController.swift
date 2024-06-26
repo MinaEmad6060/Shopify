@@ -30,7 +30,7 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var productBrandImage: UIImageView!
     @IBOutlet weak var allProductsCollectionView: UICollectionView!
 
-    var allProductsViewModel: AllProductsViewModelProtocol!
+    var allProductsViewModel: AllProductsViewModel!
     var brandProducts: [BrandProductViewData]?
     var filteredProducts: [BrandProductViewData]?
     
@@ -93,6 +93,10 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         let nibCustomCell = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         allProductsCollectionView.register(nibCustomCell, forCellWithReuseIdentifier: "productCell")
     }
+    override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+        self.allProductsCollectionView.reloadData()
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredProducts?.count ?? 0
@@ -113,7 +117,27 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         } else {
             cell.categoryItemImage.image = UIImage(named: "placeholderlogo.jpeg")
         }
-        
+        allProductsViewModel.isProductInDraftOrder(productTitle: allProductsViewModel.brandProductsViewData[indexPath.row].title ?? "") { isInDraftOrder in
+                        DispatchQueue.main.async {
+                            cell.updateFavoriteButtonImage(isInDraftOrder)
+                        }
+                    }
+                    
+                    cell.favButtonTapped = { [weak self] in
+                        guard let self = self else { return }
+                        let customerId = Utilites.getCustomerID()
+                           if customerId == 0 {
+                               Utilites.displayGuestAlert(in:self, message: "Please log in to add favorites.")
+                               return
+                           }
+                        let isFavorite = cell.btnFavCategoryItem.isSelected
+                        cell.updateFavoriteButtonImage(!isFavorite)
+                        if isFavorite {
+                            self.allProductsViewModel.removeProductFromDraftOrder(productTitle: allProductsViewModel.brandProductsViewData[indexPath.row].title ?? "")
+                        } else {
+                            self.allProductsViewModel.updateFavoriteDraftOrder(product: allProductsViewModel.brandProductsViewData[indexPath.row])
+                        }
+                    }
                 
         return cell
     }
