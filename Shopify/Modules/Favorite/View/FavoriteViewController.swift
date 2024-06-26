@@ -81,8 +81,10 @@ class FavoriteViewController: UIViewController, UICollectionViewDelegate,UIColle
         
         let priceString = lineItem.price ?? ""
         let priceInt = Double(priceString) ?? 0
-        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
-        cell.categoryItemPrice.text = "\(convertedPrice) "
+        let convertedPrice = priceInt / (Double(Utilites.getCurrencyRate()) ?? 1)
+        let formattedPrice = String(format: "%.1f", convertedPrice)
+
+        cell.categoryItemPrice.text = "\(formattedPrice) "
         cell.categoryItemCurrency.text = Utilites.getCurrencyCode()
 
         

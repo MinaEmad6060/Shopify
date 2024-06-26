@@ -109,6 +109,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     override func viewWillAppear(_ animated: Bool) {
+        fetchProductsFromApi()
+
         let favID = Utilites.getDraftOrderIDFavoriteFromNote()
         favouriteViewModel.fetchLineItems(draftOrderId: favID)
         favouriteViewModel.didUpdateLineItems = { [weak self] in
@@ -158,8 +160,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 //                cell.totalPrice.text = (complectedOrders?[indexPath.row].total_price ?? "") + " $ "
                 let priceString = complectedOrders?[indexPath.row].total_price ?? "0"
                 let priceInt = Double(priceString) ?? 0
-                let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
-                cell.totalPrice.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
+                let convertedPrice = priceInt / (Double(Utilites.getCurrencyRate()) ?? 1)
+                let formattedPrice = String(format: "%.1f", convertedPrice)
+
+                cell.totalPrice.text = "\(formattedPrice) " + Utilites.getCurrencyCode()
                 
                                     
                     let dateTimeComponents = complectedOrders?[indexPath.row].created_at?.components(separatedBy: "T")
@@ -181,10 +185,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         cell.wishItemName.text = productName?.components(separatedBy: " | ")[1]
                         
 //                        cell.wishItemPrice.text = (lineItem.price ?? "") + "$"
-                    let priceString = complectedOrders?[indexPath.row].total_price ?? "0"
+                    let priceString = lineItem.price ?? "0"
                     let priceInt = Double(priceString) ?? 0
-                    let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
-                    cell.wishItemPrice.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
+                    let convertedPrice = priceInt / (Double(Utilites.getCurrencyRate()) ?? 1)
+                    let formattedPrice = String(format: "%.1f", convertedPrice)
+                    cell.wishItemPrice.text = "\(formattedPrice) " + Utilites.getCurrencyCode()
                         
                         if let url = URL(string: imageString) {
                             cell.wishItemImage.kf.setImage(with: url)

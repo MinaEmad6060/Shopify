@@ -86,8 +86,12 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
         print("Currency String :: \(self.productsOfOrder?[indexPath.row].amount  ?? "0")")
         let priceInt = Double(priceString) ?? 0
         print("Currency Int :: \(priceInt)")
-        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
-        cell.productPrice.text = "\(convertedPrice)"
+
+
+        let convertedPrice = priceInt / (Double(Utilites.getCurrencyRate()) ?? 1)
+        let formattedPrice = String(format: "%.1f", convertedPrice)
+
+        cell.productPrice.text = "\(formattedPrice)"
         cell.priceCurrency.text = Utilites.getCurrencyCode()
         
         cell.productQuantity.text = "\(self.productsOfOrder?[indexPath.row].quantity ?? 0)"

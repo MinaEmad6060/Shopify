@@ -113,8 +113,10 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
     override func viewWillAppear(_ animated: Bool) {
         let priceString = productInfoViewModel?.product?.price ?? ""
         let priceInt = Double(priceString) ?? 0
-        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
-        priceLB.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
+        let convertedPrice = priceInt / (Double(Utilites.getCurrencyRate()) ?? 1)
+        let formattedPrice = String(format: "%.1f", convertedPrice)
+
+        priceLB.text = "\(formattedPrice) " + Utilites.getCurrencyCode()
     }
     
     func updateDraftOrder() {

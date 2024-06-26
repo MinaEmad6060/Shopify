@@ -42,7 +42,7 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
             
             if let priceDouble = Double(price) {
                 let totalPrice = Double(quantity) * priceDouble
-                cell.orderPrice.text = "\(Double(totalPrice) * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                cell.orderPrice.text = "\(Double(totalPrice) / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
             } else {
                 cell.orderPrice.text = "E"
             }
@@ -165,9 +165,11 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
         
         print(self.lineItems)
         // Do any additional setup after loading the view.
-        self.subTotalLabel.text =  "\(Double(self.subTotal) * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+        let formattedPrice = String(format: "%.1f", Double(self.subTotal))
+
+        self.subTotalLabel.text =  "\((Double(formattedPrice) ?? 0) / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
         self.discountAmountLabel.text = "-0.0 \(Utilites.getCurrencyCode())"
-        self.totalLabel.text = "\(Double(self.subTotal) * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+        self.totalLabel.text = "\(Double(self.subTotal) / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
 
         
         payment.merchantIdentifier = "merchant.com.pushpendra.pay"
@@ -239,8 +241,8 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
                 print("Discount Amount: \(discountAmount)")
                 print("New Total Price: \(newTotalPrice)")
                 
-                self.discountAmountLabel.text = "\(discountAmount * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
-                self.totalLabel.text = "\(newTotalPrice * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                self.discountAmountLabel.text = "\(discountAmount / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                self.totalLabel.text = "\(newTotalPrice / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
             } else {
                 print("This discount code has already been used.")
                 self.couponErrorLabel.text = "Already used"

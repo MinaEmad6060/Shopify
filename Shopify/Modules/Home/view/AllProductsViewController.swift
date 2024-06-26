@@ -113,8 +113,10 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         print("Currency Int :: \(priceInt)")
         print("Currency Code :: \(Utilites.getCurrencyCode())")
 
-        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
-        cell.categoryItemPrice.text = "\(convertedPrice)"
+        let convertedPrice = priceInt / (Double(Utilites.getCurrencyRate()) ?? 1)
+        let formattedPrice = String(format: "%.1f", convertedPrice)
+
+        cell.categoryItemPrice.text = "\(formattedPrice)"
         
         
         cell.categoryItemCurrency.text = Utilites.getCurrencyCode()

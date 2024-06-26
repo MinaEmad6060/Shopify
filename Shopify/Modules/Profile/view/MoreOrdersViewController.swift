@@ -60,8 +60,10 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
             
             let priceString = complectedOrders?[indexPath.row].total_price ?? "0"
             let priceInt = Double(priceString) ?? 0
-            let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
-            cell.totalPrice.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
+            let convertedPrice = priceInt / (Double(Utilites.getCurrencyRate()) ?? 1)
+            let formattedPrice = String(format: "%.1f", convertedPrice)
+
+            cell.totalPrice.text = "\(formattedPrice) " + Utilites.getCurrencyCode()
                 
                 let dateTimeComponents = complectedOrders?[indexPath.row].created_at?.components(separatedBy: "T")
 

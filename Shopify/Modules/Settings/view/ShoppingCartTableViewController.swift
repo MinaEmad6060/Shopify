@@ -109,9 +109,19 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                     
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+//                        self.subTotal = self.calculateTotal(lineItems: self.lineItems)
+//                        self.totalPrice.text = "\(self.subTotal / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
                         self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-                        self.totalPrice.text = "\(self.subTotal * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                        let currencyRate = Double(Utilites.getCurrencyRate()) ?? 1
+                        let totalPrice = self.subTotal / currencyRate
 
+                        let formatter = NumberFormatter()
+                        formatter.numberStyle = .decimal
+                        formatter.maximumFractionDigits = 1
+
+                        if let formattedTotalPrice = formatter.string(from: NSNumber(value: totalPrice)) {
+                            self.totalPrice.text = "\(formattedTotalPrice) \(Utilites.getCurrencyCode())"
+                        }
                     }
                 }
             }
@@ -159,25 +169,48 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             if let priceDouble = Double(price) {
                 let totalPrice = Double(quantity) * priceDouble
                 print("Total price for \(quantity) items: \(totalPrice)")
-                
-                cell.cartPrice.text = "\(totalPrice * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                let formattedPrice = String(format: "%.1f", totalPrice / (Double(Utilites.getCurrencyRate()) ?? 1))
+
+                cell.cartPrice.text = "\(formattedPrice)  \(Utilites.getCurrencyCode())"
             } else {
                 print("Invalid price format")
             }
             //cell.cartPrice.text = "\(lineItem.quantity * Int(lineItem.price)! )test"
             
             cell.incrementAction = { [weak self] in
-                self?.updateQuantity(for: lineItem.id ?? 0, increment: true)
+                self?.updateQuantity(for: lineItem.id, increment: true)
                 var itemPrice = lineItem.quantity * (Int(lineItem.price) ?? 0)
                 
-                cell.cartPrice.text = "\(Double(itemPrice) * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+//                cell.cartPrice.text = "\(Double(itemPrice) / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                
+                let currencyRate = Double(Utilites.getCurrencyRate()) ?? 1
+                let totalPrice = Double(itemPrice) / currencyRate
+
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                formatter.maximumFractionDigits = 1
+
+                if let formattedTotalPrice = formatter.string(from: NSNumber(value: totalPrice)) {
+                    cell.cartPrice.text = "\(formattedTotalPrice) \(Utilites.getCurrencyCode())"
+                }
             }
         
             cell.decrementAction = { [weak self] in
                 self?.updateQuantity(for: lineItem.id ?? 0, increment: false)
                 var itemPrice = lineItem.quantity * (Int(lineItem.price) ?? 0)
                 
-                cell.cartPrice.text = "\(Double(itemPrice) * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+//                cell.cartPrice.text = "\(Double(itemPrice) / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                
+                let currencyRate = Double(Utilites.getCurrencyRate()) ?? 1
+                let totalPrice = Double(itemPrice) / currencyRate
+
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                formatter.maximumFractionDigits = 1
+
+                if let formattedTotalPrice = formatter.string(from: NSNumber(value: totalPrice)) {
+                    cell.cartPrice.text = "\(formattedTotalPrice) \(Utilites.getCurrencyCode())"
+                }
 
             }
         
@@ -246,8 +279,19 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                             } else {
                                 self.noCart.isHidden = true
                             }
+//                            self.subTotal = self.calculateTotal(lineItems: self.lineItems)
+//                            self.totalPrice.text = "\(self.subTotal / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
                             self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-                            self.totalPrice.text = "\(self.subTotal * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                            let currencyRate = Double(Utilites.getCurrencyRate()) ?? 1
+                            let totalPrice = self.subTotal / currencyRate
+
+                            let formatter = NumberFormatter()
+                            formatter.numberStyle = .decimal
+                            formatter.maximumFractionDigits = 1
+
+                            if let formattedTotalPrice = formatter.string(from: NSNumber(value: totalPrice)) {
+                                self.totalPrice.text = "\(formattedTotalPrice) \(Utilites.getCurrencyCode())"
+                            }
                         }
                     } else {
                         print("error")
@@ -282,8 +326,20 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                         } else {
                             self.noCart.isHidden = true
                         }
+//                        self.subTotal = self.calculateTotal(lineItems: self.lineItems)
+//                        self.totalPrice.text = "\(self.subTotal / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                        
                         self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-                        self.totalPrice.text = "\(self.subTotal * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                        let currencyRate = Double(Utilites.getCurrencyRate()) ?? 1
+                        let totalPrice = self.subTotal / currencyRate
+
+                        let formatter = NumberFormatter()
+                        formatter.numberStyle = .decimal
+                        formatter.maximumFractionDigits = 1
+
+                        if let formattedTotalPrice = formatter.string(from: NSNumber(value: totalPrice)) {
+                            self.totalPrice.text = "\(formattedTotalPrice) \(Utilites.getCurrencyCode())"
+                        }
                     }
                 } else {
                     print("Error updating draft order")
@@ -321,8 +377,21 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                             } else {
                                 self.noCart.isHidden = true
                             }
+//                            self.subTotal = self.calculateTotal(lineItems: self.lineItems)
+//                            let formattedPrice = String(format: "%.1f", self.subTotal)
+//                            self.totalPrice.text = "\(self.subTotal / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
                             self.subTotal = self.calculateTotal(lineItems: self.lineItems)
-                            self.totalPrice.text = "\(self.subTotal * (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                            let currencyRate = Double(Utilites.getCurrencyRate()) ?? 1
+                            let totalPrice = self.subTotal / currencyRate
+
+                            let formatter = NumberFormatter()
+                            formatter.numberStyle = .decimal
+                            formatter.maximumFractionDigits = 1
+
+                            if let formattedTotalPrice = formatter.string(from: NSNumber(value: totalPrice)) {
+                                self.totalPrice.text = "\(formattedTotalPrice) \(Utilites.getCurrencyCode())"
+                            }
+
                         }
                     } else {
                         print("Error updating draft order")
