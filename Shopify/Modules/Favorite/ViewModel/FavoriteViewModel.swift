@@ -60,7 +60,7 @@ class FavoriteViewModel {
     }
    
     func removeProductFromDraftOrder(productTitle: String) {
-         let draftOrderIDFavorite = Utilites.getDraftOrderIDFavorite() 
+        let draftOrderIDFavorite = Utilites.getDraftOrderIDFavoriteFromNote()
         
         NetworkManager.removeLineItemFromDraftOrder(draftOrderId: draftOrderIDFavorite, productTitle: productTitle) { statusCode in
             if statusCode == 200 {

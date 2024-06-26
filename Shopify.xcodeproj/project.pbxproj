@@ -667,7 +667,6 @@
 		40D96F6F2C112E83000B8D34 /* Shopify */ = {
 			isa = PBXGroup;
 			children = (
-				B087C1EC2C2303E60021D74D /* Shopify.entitlements */,
 				40CCD8E92C19466D005513B2 /* Constants */,
 				407BF89A2C139FFF00DD45A7 /* Model */,
 				407BF8952C139F5F00DD45A7 /* View */,
@@ -678,6 +677,7 @@
 				40D96F722C112E83000B8D34 /* SceneDelegate.swift */,
 				40D96F742C112E83000B8D34 /* ViewController.swift */,
 				40D96F7C2C112E85000B8D34 /* Assets.xcassets */,
+				B087C1EC2C2303E60021D74D /* Shopify.entitlements */,
 				40D96F812C112E85000B8D34 /* Info.plist */,
 				102965712C24060700484931 /* GoogleService-Info.plist */,
 				40D96F792C112E83000B8D34 /* Shopify.xcdatamodeld */,
