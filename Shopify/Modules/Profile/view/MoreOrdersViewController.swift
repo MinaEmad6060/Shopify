@@ -12,6 +12,7 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var moreOrdersTable: UITableView!
     
+    @IBOutlet weak var noDataImage: UIImageView!
     var profileViewModel: ProfileViewModelProtocol!
     var complectedOrders: [OrderViewData]!
     
@@ -25,7 +26,7 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
         complectedOrders = [OrderViewData]()
         
         fetchProductsFromApi()
-
+        noDataImage.isHidden = true
         self.moreOrdersTable.reloadData()
         
         let nibCustomCell = UINib(nibName: "OrdersTableViewCell", bundle: nil)
@@ -36,8 +37,17 @@ class MoreOrdersViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let ordersConut = complectedOrders{
             if ordersConut.count > 0{
+                noDataImage.isHidden = true
+                moreOrdersTable.isHidden = false
                 return complectedOrders.count
+            }else{
+                noDataImage.isHidden = false
+                moreOrdersTable.isHidden = true
+                return 0
             }
+//            if ordersConut.count > 0{
+//                return complectedOrders.count
+//            }
         }
         return 0
     }

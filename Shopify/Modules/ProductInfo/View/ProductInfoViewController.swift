@@ -194,38 +194,20 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
                return
            }
         productInfoViewModel?.updateCartDraftOrder( product: (productInfoViewModel?.product)!)
+        Utilites.displayToast(message: "Added to cart!", seconds: 2.0, controller: self)
     }
     
     
     @IBAction func favBtn(_ sender: UIBarButtonItem) {
-       
-   /* guard let productTitle = productInfoViewModel?.product?.title else { return }
-    
-    guard let productTitle = productInfoViewModel?.product?.title else { return }
-
-            guard let productId = productInfoViewModel?.product?.id else { return }
         
-            favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
-
-            if let isFavorite = favoriteProducts[productId] {
-                updateFavoriteButtonImage(isFavorite)
-
-                if isFavorite ,(favViewMode.displayedLineItems.contains(where: { $0.productID == productId })) == false{
-                    print("productId ** from fav(productId)")
-                    productInfoViewModel?.updateFavoriteDraftOrder(product: productInfoViewModel!.product!)
-                } else {
-                   
-                    productInfoViewModel?.removeProductFromDraftOrder(productTitle: productTitle)
-                }
-           }*/
-       
         guard let productTitle = productInfoViewModel?.product?.title,
                   let productId = productInfoViewModel?.product?.id else { return }
-        let customerId = Utilites.getCustomerID()
-           if customerId == 0 {
-               Utilites.displayGuestAlert(in:self, message: "Please log in to add favorites.")
-               return
-           }
+            
+            let customerId = Utilites.getCustomerID()
+            if customerId == 0 {
+                Utilites.displayGuestAlert(in:self, message: "Please log in to add favorites.")
+                return
+            }
 
             favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
 
@@ -237,12 +219,18 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
                         if !isInDraftOrder {
                             print("Adding productId ** from fav(productId)")
                             self.productInfoViewModel?.updateFavoriteDraftOrder(product: self.productInfoViewModel!.product!)
+                            Utilites.displayToast(message: "Added to favourites!", seconds: 2.0, controller: self)
                         } else {
                             print("Product already in draft order, not adding again.")
                         }
                     }
                 } else {
-                    productInfoViewModel?.removeProductFromDraftOrder(productTitle: productTitle)
+                    let alert = UIAlertController(title: "Remove from Favorites", message: "Are you sure you want to remove this item from your favorites?", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in
+                        self.productInfoViewModel?.removeProductFromDraftOrder(productTitle: productTitle)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
 

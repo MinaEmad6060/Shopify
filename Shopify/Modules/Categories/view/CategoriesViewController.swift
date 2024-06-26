@@ -116,22 +116,32 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
                                 cell.updateFavoriteButtonImage(isInDraftOrder)
                             }
                         }
-                        
-                        cell.favButtonTapped = { [weak self] in
-                            guard let self = self else { return }
-                            let customerId = Utilites.getCustomerID()
-                               if customerId == 0 {
-                                   Utilites.displayGuestAlert(in:self, message: "Please log in to add favorites.")
-                                   return
-                               }
-                            let isFavorite = cell.btnFavCategoryItem.isSelected
-                            cell.updateFavoriteButtonImage(!isFavorite)
-                            if isFavorite {
-                                self.categoriesViewModel.removeProductFromDraftOrder(productTitle: categoriesViewModel.categoriesViewData[indexPath.row].title ?? "")
-                            } else {
-                                self.categoriesViewModel.updateFavoriteDraftOrder(product: categoriesViewModel.categoriesViewData[indexPath.row])
-                            }
-                        }
+
+            
+            cell.favButtonTapped = { [weak self] in
+                guard let self = self else { return }
+                let customerId = Utilites.getCustomerID()
+                if customerId == 0 {
+                    Utilites.displayGuestAlert(in: self, message: "Please log in to add favorites.")
+                    return
+                }
+                
+                let isFavorite = cell.btnFavCategoryItem.isSelected
+                cell.updateFavoriteButtonImage(!isFavorite)
+                
+                if isFavorite {
+                    let alert = UIAlertController(title: "Confirm Deletion", message: "Are you sure you want to remove this item from your favorites?", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                        self.categoriesViewModel.removeProductFromDraftOrder(productTitle: self.categoriesViewModel.categoriesViewData[indexPath.row].title ?? "")
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    self.categoriesViewModel.updateFavoriteDraftOrder(product: self.categoriesViewModel.categoriesViewData[indexPath.row])
+                    Utilites.displayToast(message: "Added to favourites!", seconds: 2.0, controller: self)
+                }
+            }
+
         }
         
         return cell
