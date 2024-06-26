@@ -170,7 +170,6 @@ class FetchDataFromApi{
                 print("Post Order Succeeded: \(orderResponse)")
                 let lineItem = LineItemm(
                     id: 1,
-                    product_id: 1,
                     title: "Sample Product",
                     quantity: 2,
                     price: "30.00",

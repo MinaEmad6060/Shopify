@@ -19,7 +19,7 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchDataFromApi = FetchDataFromApi()
-
+        
         // Do any additional setup after loading the view.
         self.allAddressessTableView.delegate = self
         self.allAddressessTableView.dataSource = self
@@ -36,10 +36,10 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
     }
     /*
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+     func numberOfSections(in tableView: UITableView) -> Int {
+     // #warning Incomplete implementation, return the number of sections
+     return 1
+     }
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allAddressesViewModel?.addresses.count ?? 0
@@ -49,7 +49,7 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AllAddressessTableViewCell
         
         
-
+        
         if let addresses = allAddressesViewModel?.addresses {
             for address in addresses {
                 if allAddressesViewModel?.addresses[indexPath.row].default == true {
@@ -64,7 +64,7 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
             print("error")
         }
         
-       
+        
         cell.cityLabel.text = "\(allAddressesViewModel?.addresses[indexPath.row].country_name ?? "Country"), \(allAddressesViewModel?.addresses[indexPath.row].city ?? "City")"
         
         cell.phoneLabel.text = allAddressesViewModel?.addresses[indexPath.row].phone
@@ -89,15 +89,15 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         print("error")
                     }
                     
-                   
+                    
                     self?.allAddressesViewModel?.addresses[indexPath.row].default = true
                 } else {
                     print("Failed to set address as default")
                 }
                 tableView.reloadData()
-
+                
             }
-
+            
         }
         
         return cell
@@ -108,7 +108,7 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-
+            
             guard let addressId = allAddressesViewModel?.addresses[indexPath.row].id else { return }
             
             
@@ -119,15 +119,11 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         //tableView.deleteRows(at: [indexPath], with: .fade)
                         tableView.reloadData()
                     }
-                } else {
-                    
-
                 }
-            }else{
-                self.view.makeToast("Can't delete default address")
+                else{
+                    self?.view.makeToast("Can't delete default address")
+                }
             }
-        
-            
         }
     }
 }

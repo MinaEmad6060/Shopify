@@ -27,7 +27,6 @@ struct DraftOrderr: Codable {
 
 struct LineItemm: Codable {
     let id: Int
-    let product_id: Int
     let title: String
     var quantity: Int
     let price: String

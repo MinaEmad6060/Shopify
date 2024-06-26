@@ -18,6 +18,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet weak var tableView: UITableView!
     var lineItems: [LineItemm] = []
     var myLine: [LineItemm] = []
+    var items: [LineItemm] = []
 
     var subTotal = 0.0
     
@@ -64,11 +65,11 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             if let draftOrder = draftOrderResponsee {
                 self?.lineItems = draftOrder.draft_order.lineItems
                 print("FirstID :::: \(self?.lineItems[1].product_id ?? -1)")
-               print(draftOrder.lineItems)
+               print(draftOrder.draft_order.lineItems)
                 
                 var itemDictionary: [String: LineItemm] = [:]
 
-                for item in lineItems {
+                for item in self!.lineItems {
                     let propertiesString = item.properties?.map { "\($0.name)=\($0.value)" }.joined(separator: "&") ?? ""
                     let key = "\(item.title)-\(item.price)-\(String(describing: item.variant_id))-\(String(describing: item.variant_title))-\(propertiesString)"
                     
@@ -86,9 +87,9 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
                 for item in combinedLineItems {
                     print("Title: \(item.title), Quantity: \(item.quantity), Price: \(item.price), Variant: \(String(describing: item.variant_title)), Properties: \(String(describing: item.properties))")
                 }
-                self.lineItems = combinedLineItems
-                myLine = lineItems
-                lineItems = lineItems.filter { $0.title != "Sample Product"}
+                self?.lineItems = combinedLineItems
+                self?.myLine = self?.lineItems ?? []
+                self?.lineItems = (self?.lineItems.filter { $0.title != "Sample Product"})!
 
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
@@ -198,7 +199,7 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
         let productId = lineItems[index].product_id ?? 0
         fetchDataFromApi?.getDataFromApi(url: fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl,request: "products/\(productId)") ?? ""){[weak self] (availableQuantity: ProductResponse?) in
             if let availableQuantity = availableQuantity {
-                if increment && self.lineItems[index].quantity ?? 5 < availableQuantity {
+                if increment && self?.lineItems[index].quantity ?? 5 < availableQuantity {
                     self.lineItems[index].quantity += 1
                     self.myLine[index + 1].quantity += 1
                     
