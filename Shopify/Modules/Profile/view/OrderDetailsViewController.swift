@@ -77,8 +77,19 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "orderDetailsCell", for: indexPath) as! ProductOfOrderViewCell
         
         cell.productName.text = self.productsOfOrder?[indexPath.row].title
-        cell.productPrice.text = self.productsOfOrder?[indexPath.row].amount
-        cell.priceCurrency.text = self.productsOfOrder?[indexPath.row].currency_code
+        
+        
+//        cell.productPrice.text = self.productsOfOrder?[indexPath.row].amount
+//        cell.priceCurrency.text = self.productsOfOrder?[indexPath.row].currency_code
+        
+        let priceString = self.productsOfOrder?[indexPath.row].amount ?? "0"
+        print("Currency String :: \(self.productsOfOrder?[indexPath.row].amount  ?? "0")")
+        let priceInt = Double(priceString) ?? 0
+        print("Currency Int :: \(priceInt)")
+        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+        cell.productPrice.text = "\(convertedPrice)"
+        cell.priceCurrency.text = Utilites.getCurrencyCode()
+        
         cell.productQuantity.text = "\(self.productsOfOrder?[indexPath.row].quantity ?? 0)"
         
         return cell

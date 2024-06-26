@@ -78,7 +78,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegateFlowLa
         
         
         if filterdBrandProducts.count > indexPath.row{
-            cell.categoryItemPrice.text = filterdBrandProducts[indexPath.row].price
+            let priceString = filterdBrandProducts[indexPath.row].price ?? "0"
+            let priceInt = Double(priceString) ?? 0
+            let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+            cell.categoryItemPrice.text = "\(convertedPrice)"
+            
+            
+            cell.categoryItemCurrency.text = Utilites.getCurrencyCode()
             
             let productName = filterdBrandProducts[indexPath.row].title
             cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
