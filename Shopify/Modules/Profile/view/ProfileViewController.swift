@@ -107,8 +107,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if tableView == ordersTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersTableViewCell
             if complectedOrders?.count ?? 0 > indexPath.row{
-                cell.totalPrice.text = (complectedOrders?[indexPath.row].total_price ?? "") + " $ "
-                    
+//                cell.totalPrice.text = (complectedOrders?[indexPath.row].total_price ?? "") + " $ "
+                let priceString = complectedOrders?[indexPath.row].total_price ?? "0"
+                let priceInt = Double(priceString) ?? 0
+                let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+                cell.totalPrice.text = "\(convertedPrice) " + Utilites.getCurrencyCode()
+                
+                                    
                     let dateTimeComponents = complectedOrders?[indexPath.row].created_at?.components(separatedBy: "T")
 
                     if dateTimeComponents?.count == 2 {

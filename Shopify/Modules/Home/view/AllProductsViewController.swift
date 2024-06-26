@@ -106,7 +106,20 @@ class AllProductsViewController: UIViewController, UICollectionViewDelegate, UIC
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! CategoryCollectionViewCell
         
-        cell.categoryItemPrice.text = filteredProducts?[indexPath.row].price
+//        cell.categoryItemPrice.text = filteredProducts?[indexPath.row].price
+        let priceString = filteredProducts?[indexPath.row].price ?? "0"
+        print("Currency String :: \(filteredProducts?[indexPath.row].price  ?? "0")")
+        let priceInt = Double(priceString) ?? 0
+        print("Currency Int :: \(priceInt)")
+        print("Currency Code :: \(Utilites.getCurrencyCode())")
+
+        let convertedPrice = priceInt * (Double(Utilites.getCurrencyRate()) ?? 1)
+        cell.categoryItemPrice.text = "\(convertedPrice)"
+        
+        
+        cell.categoryItemCurrency.text = Utilites.getCurrencyCode()
+        
+        
         
         let productName = filteredProducts?[indexPath.row].title
         cell.categoryItemName.text = productName?.components(separatedBy: " | ")[1]
