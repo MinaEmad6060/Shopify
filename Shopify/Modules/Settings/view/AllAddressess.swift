@@ -25,6 +25,10 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.allAddressessTableView.delegate = self
         self.allAddressessTableView.dataSource = self
         
+    
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         allAddressesViewModel = AllAddressesViewModel()
         allAddressesViewModel?.bindResultToAllAddressViewController = { [weak self] in
             DispatchQueue.main.async {
@@ -36,9 +40,8 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 }
             }
             
-        }//7445466022059
+        }
         allAddressesViewModel?.getAllAddress(customerId: Utilites.getCustomerID())
-        
         
     }
     /*
@@ -81,7 +84,7 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
         cell.setDefault = { [weak self] in
             
             guard let addressId = self?.allAddressesViewModel?.addresses[indexPath.row].id else { return }
-            NetworkManager.setDefaultAddress(customerID: 7445466022059, addressID: addressId) { success in
+            NetworkManager.setDefaultAddress(customerID: Utilites.getCustomerID(), addressID: addressId) { success in
                 if success {
                     print("Address set as default successfully")
                     
@@ -114,26 +117,37 @@ class AllAddressess: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let address = allAddressesViewModel?.addresses[indexPath.row]
             
-            guard let addressId = allAddressesViewModel?.addresses[indexPath.row].id else { return }
-            
-            
-            fetchDataFromApi?.deleteDataFromApi(url: fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl, request: "customers/\(7445466022059)/addresses/\(addressId)") ?? "") {[weak self] success in
-                if success {
-                    self?.allAddressesViewModel?.addresses.remove(at: indexPath.row)
-                    DispatchQueue.main.async {
-                        //tableView.deleteRows(at: [indexPath], with: .fade)
-                        tableView.reloadData()
-                        if self?.allAddressesViewModel?.addresses.count == 0{
-                            self?.noAddresses.isHidden = false
-                        }else{
-                            self?.noAddresses.isHidden = true
+            if address?.default == false {
+                let alert = UIAlertController(title: "Confirm Deletion", message: "Are you sure you want to delete this address?", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+                    guard let addressId = address?.id else { return }
+                    
+                    self?.fetchDataFromApi?.deleteDataFromApi(url: self?.fetchDataFromApi?.formatUrl(baseUrl: Constants.baseUrl, request: "customers/\(Utilites.getCustomerID())/addresses/\(addressId)") ?? "") { success in
+                        if success {
+                            print("del")
+                            self?.allAddressesViewModel?.addresses.remove(at: indexPath.row)
+                            DispatchQueue.main.async {
+                                tableView.reloadData()
+                                if self?.allAddressesViewModel?.addresses.count == 0 {
+                                    self?.noAddresses.isHidden = false
+                                } else {
+                                    self?.noAddresses.isHidden = true
+                                }
+                            }
+                        } else {
+                            print("error")
                         }
                     }
-                }
-                else{
-                    self?.view.makeToast("Can't delete default address")
-                }
+                }))
+                
+                present(alert, animated: true, completion: nil)
+            } else {
+                self.view.makeToast("Can't delete default address")
             }
         }
     }
