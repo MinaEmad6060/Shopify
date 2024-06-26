@@ -67,35 +67,31 @@ class AllProductsViewModel: AllProductsViewModelProtocol{
                 product.body_html = brandProducts.products?[i].body_html
                 product.product_type = brandProducts.products?[i].product_type
                 product.price = brandProducts.products?[i].variants?[0].price
-                
-                // product.variants = []
+                product.inventory_quantity = brandProducts.products?[i].variants?[0].inventory_quantity
+               // product.variants = []
                 for l in 0..<(brandProducts.products?[i].variants?.count ?? 0){
                     product.variants.append(brandProducts.products?[i].variants?[l].id ?? 0)
                     print(" product.variants?[0] *****----------------------\( brandProducts.products?[i].variants?[l].id  )")
-                    //                    product.quantity = brandProducts.products?[i].variants?[l].inventory_quantity
+//                    product.quantity = brandProducts.products?[i].variants?[l].inventory_quantity
                     let variantQuantity = brandProducts.products?[i].variants?[l].inventory_quantity ?? 0
                     product.quantity.append(variantQuantity)
                     print(" product.quantity *****----------------------\( variantQuantity)")
-                    for l in 0..<(brandProducts.products?[i].variants?.count ?? 0){
-                        product.variants.append(brandProducts.products?[i].variants?[l].id ?? 0)
-                    }
-                    for j in 0..<(brandProducts.products?[i].images?.count ?? 0){
-                        product.src.append(brandProducts.products?[i].images?[j].src ?? "")
-                    }
-                    for j in 0..<(brandProducts.products?[i].options[0].values?.count ?? 0){
-                        product.sizes.append(brandProducts.products?[i].options[0].values?[j] ?? "")
-                    }
-                    for k in 0..<(brandProducts.products?[i].options[1].values?.count ?? 0){
-                        product.colors.append(brandProducts.products?[i].options[1].values?[k] ?? "")
-                    }
-                    product.name = brandProducts.products?[i].options[0].name
-                    self?.brandProductsViewData.append(product)
                 }
-                
-                self?.bindBrandProductsToViewController?()
+                for j in 0..<(brandProducts.products?[i].images?.count ?? 0){
+                    product.src.append(brandProducts.products?[i].images?[j].src ?? "")
+                }
+                for j in 0..<(brandProducts.products?[i].options[0].values?.count ?? 0){
+                    product.sizes.append(brandProducts.products?[i].options[0].values?[j] ?? "")
+                }
+                for k in 0..<(brandProducts.products?[i].options[1].values?.count ?? 0){
+                    product.colors.append(brandProducts.products?[i].options[1].values?[k] ?? "")
+                }
+                product.name = brandProducts.products?[i].options[0].name
+                self?.brandProductsViewData.append(product)
             }
+            
+            self?.bindBrandProductsToViewController?()
         }
-        
         
     }
 }
