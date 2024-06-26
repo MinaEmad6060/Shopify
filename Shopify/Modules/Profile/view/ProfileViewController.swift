@@ -53,6 +53,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.welcomeUserTitle.text = "Welcome \(Utilites.getCustomerName())"
         
+        
         let nibCustomCell = UINib(nibName: "OrdersTableViewCell", bundle: nil)
             ordersTableView.register(nibCustomCell, forCellReuseIdentifier: "orderCell")
         
