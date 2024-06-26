@@ -819,6 +819,7 @@
                     </view>
                     <size key="freeformSize" width="393" height="1200"/>
                     <connections>
+                        <outlet property="cartBtn" destination="PEj-PB-xsa" id="sg8-3r-Myo"/>
                         <outlet property="colorSegment" destination="aug-Kg-T9h" id="fn3-Dz-fVM"/>
                         <outlet property="descTextView" destination="pw4-9D-Exp" id="Qte-68-GW0"/>
                         <outlet property="favBtn" destination="6np-Lo-NRa" id="49f-aK-ujS"/>
@@ -1256,8 +1257,8 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="bea-lD-kqM"/>
-        <segue reference="BIO-Jo-tmf"/>
+        <segue reference="68e-ip-Zy5"/>
+        <segue reference="Nsb-UZ-xE6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1" width="194" height="183"/>
