@@ -14,6 +14,14 @@ class Settings: UIViewController {
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    @IBAction func logoutBtn(_ sender: Any) {
+        Utilites.logout()
+        //let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+        /*if let login = storyboard.instantiateViewController(withIdentifier: "login") as? LoginViewController {
+            login.modalPresentationStyle = .fullScreen
+            self.present(login, animated: true, completion: nil)
+        }*/
+    }
     @IBAction func curruncyBtn(_ sender: Any) {
         curruncyDropDown.show()
     }
@@ -77,7 +85,7 @@ class Settings: UIViewController {
                 self.curruncyLabel.text = storedCurrencyCode
                 
             } else {
-                self.curruncyLabel.text = "USD"
+                self.curruncyLabel.text = "EGP"
             }
         }
 }
