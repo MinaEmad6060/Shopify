@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCyqxVTZFrs_V_00Bv3KI4jOJNaM7f8RXM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>387662365540</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ITI.Shopify</string>
+	<key>PROJECT_ID</key>
+	<string>shopify-b3c55</string>
+	<key>STORAGE_BUCKET</key>
+	<string>shopify-b3c55.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:387662365540:ios:6989fc4f989fe22d6eb071</string>
+</dict>
+</plist>
