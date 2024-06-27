@@ -67,7 +67,9 @@ class ReviewViewController: UIViewController , UITableViewDelegate, UITableViewD
     }
     
     @IBAction func backBtn(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true)
+      //self.dismiss(animated: true)
+        Utilites.displayGuestAlert(in: self, message: "lohoiimmm")
+       
     }
 }
 

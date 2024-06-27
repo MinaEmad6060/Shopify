@@ -42,6 +42,16 @@
             <point key="canvasLocation" x="-773.28244274809163" y="-108.45070422535211"/>
         </scene>
         <!--HomeVC-->
+        <scene sceneID="cxr-zR-qEa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="HomeVC" id="QO6-mg-L0R" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="hWs-r2-Kbm"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KSx-YJ-9nO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-467" y="261"/>
+        </scene>
+        <!--HomeVC-->
         <scene sceneID="Aam-zB-9IB">
             <objects>
                 <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="HomeVC" id="8gD-1x-KLB" sceneMemberID="viewController"/>
@@ -91,6 +101,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="guestBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="eHR-ox-V7D"/>
+                                    <segue destination="QO6-mg-L0R" kind="show" id="owx-jc-NNG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pd7-0T-LZs">
@@ -1294,8 +1305,8 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="68e-ip-Zy5"/>
-        <segue reference="Nsb-UZ-xE6"/>
+        <segue reference="bea-lD-kqM"/>
+        <segue reference="BIO-Jo-tmf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1" width="194" height="183"/>
