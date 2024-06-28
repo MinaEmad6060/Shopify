@@ -222,7 +222,7 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
             favoriteProducts[productId] = !(favoriteProducts[productId] ?? false)
 
             if let isFavorite = favoriteProducts[productId] {
-                updateFavoriteButtonImage(isFavorite)
+                
 
                 if isFavorite {
                     productInfoViewModel?.isProductInDraftOrder(productTitle: productTitle) { isInDraftOrder in
@@ -230,6 +230,7 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
                             print("Adding productId ** from fav(productId)")
                             self.productInfoViewModel?.updateFavoriteDraftOrder(product: self.productInfoViewModel!.product!)
                             Utilites.displayToast(message: "Added to favourites!", seconds: 2.0, controller: self)
+                            self.updateFavoriteButtonImage(isFavorite)
                         } else {
                             print("Product already in draft order, not adding again.")
                         }
@@ -238,6 +239,8 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
                     let alert = UIAlertController(title: "Remove from Favorites", message: "Are you sure you want to remove this item from your favorites?", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                     alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in
+                        let imageName = "heart"
+                        self.favBtn.image = UIImage(systemName: imageName)
                         self.productInfoViewModel?.removeProductFromDraftOrder(productTitle: productTitle)
                     }))
                     self.present(alert, animated: true, completion: nil)
