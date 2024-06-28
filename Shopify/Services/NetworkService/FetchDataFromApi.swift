@@ -156,7 +156,13 @@ class FetchDataFromApi{
         
         let order: [String: Any] = [
                 "customer": customer,
-                "line_items": lineItems.map { try! JSONSerialization.jsonObject(with: JSONEncoder().encode($0), options: []) }
+                "line_items": lineItems.map { try! JSONSerialization.jsonObject(with: JSONEncoder().encode($0), options: [])
+                    
+                    
+                },
+                
+                "inventory_behaviour": "decrement_obeying_policy",
+                "send_receipt": true
             ]
             
         let parameters: [String: Any] = [

@@ -186,6 +186,7 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
         if self.addressLabel.text != "No Address Set" && Utilites.getPaymentMethod() == "Cash"{
             print("1")
             FetchDataFromApi.postOrder(lineItems: lineItems, customer: customer)
+            Utilites.displayToast(message: "Added to cart!", seconds: 2.0, controller: self)
         } else if self.addressLabel.text == "No Address Set" {
             print("2")
 

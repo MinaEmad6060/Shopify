@@ -19,6 +19,8 @@ struct Order: Decodable{
     var created_at: String?
     var current_subtotal_price: String?
     var line_items: [OrderProduct]?
+    let inventory_behaviour: String?
+    let send_receipt: Bool?
 }
 
 struct OrderDetails: Decodable{
