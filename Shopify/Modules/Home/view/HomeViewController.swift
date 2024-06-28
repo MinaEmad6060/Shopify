@@ -186,8 +186,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             if discountCode.value == "-10.0"{
                 
                 cell.adImage.image = UIImage(named: "coupon10.jpeg")
-            }else{
+            }else if discountCode.value == "-20.0"{
                 cell.adImage.image = UIImage(named: "coupon20.jpeg")
+
+            }else{
+                cell.adImage.image = UIImage(named: "couopon30.jpeg")
 
             }
             cell.adsview.layer.cornerRadius = 20.0
@@ -260,12 +263,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func fetchDiscountCodes(for priceRuleId: Int, with value: String) {
         let discountCodesUrl = "\(Constants.baseUrl)price_rules/\(priceRuleId)/discount_codes.json"
         var discountCodesArray: [String] = []
+        
         AF.request(discountCodesUrl).responseJSON { response in
             switch response.result {
             case .success(let result):
                 if let json = result as? [String: Any],
                    let discountCodes = json["discount_codes"] as? [[String: Any]] {
-                    
                     
                     for code in discountCodes {
                         if let discountCode = code["code"] as? String {
@@ -273,10 +276,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             self.discountCodes.append(DiscountCode(code: discountCode, value: value))
                         }
                     }
-                    print("before")
+                    
+                    // Print the full array after adding all discount codes
+                    print("before saving to UserDefaults:")
                     print(discountCodesArray)
                     
-                    // Store the discount codes array in UserDefaults
+                    // Save the full array to UserDefaults
                     UserDefaults.standard.set(discountCodesArray, forKey: "AvailableDiscountCodes")
                     
                     DispatchQueue.main.async {

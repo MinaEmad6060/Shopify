@@ -74,7 +74,12 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
             return CGSize(width: 220.0, height: 40.0)
         }
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == orderCouponsCollectionView {
+            let selectedDiscountCode = discountCodes[indexPath.row]
+            self.couponTF.text = selectedDiscountCode
+        }
+    }
     @IBAction func changePayment(_ sender: Any) {
         let payment = UIStoryboard(name: "Payment", bundle: nil).instantiateViewController(withIdentifier: "PaymentOptionsVC") as! PaymentOptionsViewController
         present(payment, animated: true)
@@ -129,7 +134,8 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
         self.paymentLabel.text = "Payment: \(Utilites.getPaymentMethod())"
         allAddressesViewModel?.getAllAddress(customerId: Utilites.getCustomerID())
         
-        discountCodes = loadDiscountCodes()
+        discountCodes = ["7PB3SG334KMF" , "Z6WYNE5N2NJT" , "2BW156K44WAM" ]
+       
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -225,16 +231,22 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
     }
 
     func validateDiscountCode(_ code: String) {
-        let availableCodes = loadDiscountCodes()
-        print(availableCodes)
         
-        if availableCodes.contains(where: { $0 == code }) {
+        if discountCodes.contains(where: { $0 == code }) {
             if !isDiscountCodeUsed(code) {
                 useDiscountCode(code)
                 print("Discount code applied successfully!")
+                self.couponErrorLabel.text = "Applied successfully"
+                self.couponErrorLabel.textColor = .green
+                var discountValue = 10.0
+                if code == "Z6WYNE5N2NJT" {
+                    discountValue = 30.0
+                } else if code == "2BW156K44WAM"{
+                    discountValue = 10.0
+                } else {
+                    discountValue = 20.0
+                }
                 
-                // Assuming all discount codes have a fixed value of 10% discount for simplicity
-                let discountValue = 10.0 // Example discount value
                 let absoluteDiscountValue = abs(discountValue)
                 let discountAmount = calculateDiscount(totalPrice: subTotal, discountValue: absoluteDiscountValue)
                 let newTotalPrice = subTotal - discountAmount

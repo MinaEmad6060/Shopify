@@ -16,11 +16,11 @@ class Settings: UIViewController {
     }
     @IBAction func logoutBtn(_ sender: Any) {
         Utilites.logout()
-        //let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-        /*if let login = storyboard.instantiateViewController(withIdentifier: "login") as? LoginViewController {
-            login.modalPresentationStyle = .fullScreen
-            self.present(login, animated: true, completion: nil)
-        }*/
+        let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+        if let welcome = storyboard.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeViewController {
+            welcome.modalPresentationStyle = .fullScreen
+            self.present(welcome, animated: true, completion: nil)
+        }
     }
     @IBAction func curruncyBtn(_ sender: Any) {
         curruncyDropDown.show()
