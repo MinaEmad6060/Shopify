@@ -18,6 +18,9 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
 
     }
     @IBOutlet weak var searchTableView: UITableView!
+    
+
+    
     var viewModel = SearchViewModel()
     
     
@@ -75,6 +78,18 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
                     if let label = cell.contentView.viewWithTag(1) as? UILabel {
                         label.text = product.title?.components(separatedBy: " | ")[1]
                     }
+                    
+                    if let price = cell.contentView.viewWithTag(3) as? UILabel {
+                        let priceString =  product.variants?[0].price ?? ""
+                        let priceInt = Double(priceString) ?? 0
+                        let convertedPrice = priceInt / (Double(Utilites.getCurrencyRate()) ?? 1)
+                        let formattedPrice = String(format: "%.1f", convertedPrice)
+
+                        price.text = "\(formattedPrice) " + Utilites.getCurrencyCode()
+                        
+                        
+                    }
+                    
                     if Constants.isAllProductsScreen ?? true {
                         
                         let product = viewModel.filteredProducts[indexPath.row]
@@ -87,6 +102,16 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
                         
                         if let label = cell.contentView.viewWithTag(1) as? UILabel {
                             label.text = product.title
+                        }
+                        if let price = cell.contentView.viewWithTag(3) as? UILabel {
+                            let priceString =  product.variants?[0].price ?? ""
+                            let priceInt = Double(priceString) ?? 0
+                            let convertedPrice = priceInt / (Double(Utilites.getCurrencyRate()) ?? 1)
+                            let formattedPrice = String(format: "%.1f", convertedPrice)
+
+                            price.text = "\(formattedPrice) " + Utilites.getCurrencyCode()
+                            
+                            
                         }
                         
                     }
@@ -105,6 +130,18 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
                     if let label = cell.contentView.viewWithTag(1) as? UILabel {
                         label.text = product?.title
                     }
+                    if let price = cell.contentView.viewWithTag(3) as? UILabel {
+                        let priceString =  product?.price ?? ""
+                            //.variants[0].price ?? ""
+                        let priceInt = Double(priceString) ?? 0
+                        let convertedPrice = priceInt / (Double(Utilites.getCurrencyRate()) ?? 1)
+                        let formattedPrice = String(format: "%.1f", convertedPrice)
+
+                        price.text = "\(formattedPrice) " + Utilites.getCurrencyCode()
+                        
+                        
+                    }
+                    
                 }
             }
                 

@@ -117,6 +117,7 @@ class ProductInfoViewController: UIViewController , ImageSlideshowDelegate{
         let formattedPrice = String(format: "%.1f", convertedPrice)
 
         priceLB.text = "\(formattedPrice) " + Utilites.getCurrencyCode()
+        
         if let quantity = productInfoViewModel?.product?.inventory_quantity {
             if quantity == 0 {
                 
