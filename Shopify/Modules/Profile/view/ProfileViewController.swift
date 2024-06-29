@@ -18,6 +18,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var wishListTitle: UILabel!
     @IBOutlet weak var welcomeUserTitle: UILabel!
     
+    @IBAction func btnSettings(_ sender: UIBarButtonItem) {
+        let customerId = Utilites.getCustomerID()
+           if customerId == 0 {
+               Utilites.displayGuestAlert(in:self, message: "Please log in to access settings.")
+               return
+           }
+        let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+        let productInfoVC = storyboard.instantiateViewController(withIdentifier: "SettingsVC")
+
+        productInfoVC.modalPresentationStyle = .fullScreen
+        present(productInfoVC, animated: true, completion: nil)
+    }
     @IBAction func btnCart(_ sender: UIBarButtonItem) {
         let customerId = Utilites.getCustomerID()
            if customerId == 0 {

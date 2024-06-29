@@ -353,7 +353,7 @@
                                             <barButtonItem title="Item" image="gearshape.fill" catalog="system" id="cre-sx-bab">
                                                 <color key="tintColor" red="0.68235294120000001" green="0.57647058819999997" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
-                                                    <segue destination="cdj-Yj-ZDM" kind="show" id="3uL-ia-9zb"/>
+                                                    <action selector="btnSettings:" destination="89N-VV-bip" id="vCf-N0-34m"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="cart.fill" catalog="system" id="nRN-bW-a9A">
