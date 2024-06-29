@@ -8,7 +8,27 @@
 import UIKit
 import PassKit
 
-class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PKPaymentAuthorizationViewControllerDelegate {
+    
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+            // Handle authorized payment here
+            completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+        }
+
+        func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+            print("ddddd")
+            controller.dismiss(animated: true, completion: nil)
+            FetchDataFromApi.postOrder(lineItems: lineItems, customer: customer)
+            Utilites.displayToast(message: "Order done successfully", seconds: 2.0, controller: self)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let home = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? UITabBarController {
+                    self.present(home, animated: true, completion: nil)
+                }
+            }
+
+
+        }
     
     @IBOutlet weak var orderCouponsCollectionView: UICollectionView!
     @IBOutlet weak var orderCollectionView: UICollectionView!
@@ -155,7 +175,7 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
                     self?.changeAddress.titleLabel?.text = "Set"
                 }else{
                     var addresses: [AddressId] = []
-                    addresses = (self?.allAddressesViewModel!.addresses)!
+                    addresses = self?.allAddressesViewModel?.addresses ?? []
                     for address in addresses{
                         if address.default == true {
                             print("testttttttt")
@@ -205,7 +225,7 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
             
             let controller = PKPaymentAuthorizationViewController(paymentRequest: payment)
             if let paymentController = controller {
-                //paymentController.delegate = paymentController
+                paymentController.delegate = self
                 present(paymentController, animated: true, completion: nil)
             }
             
@@ -284,14 +304,17 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
 }
+/*
 extension PaymentOptionsViewController : PKPaymentAuthorizationViewControllerDelegate {
     
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
             controller.dismiss(animated: true) { [weak self] in
                 // animation and navigate to home
+                print("dddd")
             }
         }
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
     }
 }
+*/

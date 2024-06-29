@@ -214,6 +214,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let customerId = Utilites.getCustomerID()
+            print("testtest\(customerId)")
                if customerId == 0 {
                    Utilites.displayGuestAlert(in:self, message: "Please log in to access coupons.")
                    return
@@ -221,8 +222,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             let selectedCode = discountCodes[indexPath.row].code
             saveSelectedDiscountCode(selectedCode)
-            self.view.makeToast("Promocode \(selectedCode) Saved ")
-
+            
+            UIPasteboard.general.string = selectedCode
+            Utilites.displayToast(message: "Promocode copied successfully", seconds: 1.0, controller: self)
+        
         }else{
             
             guard let allProductsViewController = storyboard?.instantiateViewController(withIdentifier: "AllProductsVC") as? AllProductsViewController else {

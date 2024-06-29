@@ -16,7 +16,7 @@ class Settings: UIViewController {
     }
     
     @IBAction func logoutBtn(_ sender: Any) {
-        let alertController = UIAlertController(title: "Guest Mode", message: "Do you want to logout?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Logout", message: "Do you want to logout?", preferredStyle: .alert)
         
         let loginAction = UIAlertAction(title: "OK", style: .default) { _ in
             Utilites.logout()

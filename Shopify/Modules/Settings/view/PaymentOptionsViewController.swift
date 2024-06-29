@@ -18,49 +18,54 @@ class PaymentOptionsViewController: UIViewController {
 
     var lineItems: [LineItemm] = []
     var subTotal = 0.0
-
+/*
     @IBAction func continuePaymentBtn(_ sender: Any) {
         if type == "cash"{
             navigateToPlaceOrder()
-            
         }else{
-            
-            
         }
-        
     }
-    
+  */
     var type = "cash"
     @IBOutlet weak var onlinePaymentV: UIView!
+    
     @IBAction func onlinePaymentBtn(_ sender: Any) {
-        self.onlinePaymentV.backgroundColor = UIColor(hexString: "2C1E0F")
+        self.onlinePaymentV.backgroundColor = UIColor(hexString: "84715D")
         self.cashPaymentV.backgroundColor = .white
         self.type = "Visa"
         UserDefaults.standard.set(type, forKey: "paymentMethod")
     }
     @IBOutlet weak var cashPaymentV: UIView!
+    
     @IBAction func cashPaymentBtn(_ sender: Any) {
         self.onlinePaymentV.backgroundColor = .white
-        self.cashPaymentV.backgroundColor = UIColor(hexString: "2C1E0F")
+        self.cashPaymentV.backgroundColor = UIColor(hexString: "84715D")
         self.type = "Cash"
         UserDefaults.standard.set(type, forKey: "paymentMethod")
 
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.onlinePaymentV.backgroundColor = .white
-        self.cashPaymentV.backgroundColor = UIColor(hexString: "2C1E0F")
         self.onlinePaymentV.layer.cornerRadius = 12
         self.cashPaymentMV.layer.cornerRadius = 17
         self.onlinePaymentMV.layer.cornerRadius = 17
         self.cashPaymentV.layer.cornerRadius = 12
         self.onlineTitleView.roundCorners(corners: [.topRight, .bottomRight], radius: 20.0)
         self.cashTitleView.roundCorners(corners: [.topRight, .bottomRight], radius: 20.0)
-        self.type = "cash"
-                
+        
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.type = Utilites.getPaymentMethod()
+        if self.type == "Cash"{
+            self.onlinePaymentV.backgroundColor = .white
+            self.cashPaymentV.backgroundColor = UIColor(hexString: "84715D")
+
+        }else{
+            self.onlinePaymentV.backgroundColor = UIColor(hexString: "84715D")
+            self.cashPaymentV.backgroundColor = .white
+        }
+    }
     /*
      // MARK: - Navigation
      
