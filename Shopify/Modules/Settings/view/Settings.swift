@@ -14,13 +14,24 @@ class Settings: UIViewController {
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func logoutBtn(_ sender: Any) {
-        Utilites.logout()
-        let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-        if let welcome = storyboard.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeViewController {
-            welcome.modalPresentationStyle = .fullScreen
-            self.present(welcome, animated: true, completion: nil)
+        let alertController = UIAlertController(title: "Guest Mode", message: "Do you want to logout?", preferredStyle: .alert)
+        
+        let loginAction = UIAlertAction(title: "OK", style: .default) { _ in
+            Utilites.logout()
+            let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+            if let welcome = storyboard.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeViewController {
+                welcome.modalPresentationStyle = .fullScreen
+                self.present(welcome, animated: true, completion: nil)
+            }
         }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(loginAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     @IBAction func curruncyBtn(_ sender: Any) {
         curruncyDropDown.show()
