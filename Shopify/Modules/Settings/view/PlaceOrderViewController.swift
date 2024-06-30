@@ -36,7 +36,8 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var orderCollectionView: UICollectionView!
     var appliedCode: String = ""
     private var payment : PKPaymentRequest = PKPaymentRequest()
-    
+    var totalValue = 0.0
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == orderCollectionView {
             return lineItems.count
@@ -204,7 +205,7 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
         let formattedPrice = String(format: "%.1f", Double(self.subTotal))
 
         self.subTotalLabel.text =  "\((Double(formattedPrice) ?? 0) / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
-        self.discountAmountLabel.text = "-0.0 \(Utilites.getCurrencyCode())"
+        self.discountAmountLabel.text = "0.0 \(Utilites.getCurrencyCode())"
         self.totalLabel.text = "\(Double(self.subTotal) / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
 
         
@@ -229,7 +230,6 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBAction func placeOrderBtn(_ sender: Any) {
         print("placeOrderBtnCount :: \(lineItems.count)")
         let amount = self.totalLabel.text
-        var totalValue = 0.0
         if let value = extractNumericValue(from: amount ?? "") {
             totalValue = value
         } else {
@@ -245,7 +245,7 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { _ in
                     FetchDataFromApi.postOrder(lineItems: self.lineItems, customer: self.customer)
-                    Utilites.displayToast(message: "Order Added!", seconds: 2.0, controller: self)
+                    Utilites.displayToast(message: "Order done successfully", seconds: 2.0, controller: self)
                     self.useDiscountCode(self.appliedCode)
                 }))
                 self.present(alert, animated: true, completion: nil)
