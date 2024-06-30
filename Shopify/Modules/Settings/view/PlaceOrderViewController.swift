@@ -11,28 +11,30 @@ import PassKit
 class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PKPaymentAuthorizationViewControllerDelegate {
     
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
-            // Handle authorized payment here
             completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+        FetchDataFromApi.postOrder(lineItems: lineItems, customer: customer)
+        Utilites.displayToast(message: "Order done successfully", seconds: 2.0, controller: self)
+        
+        useDiscountCode(appliedCode)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let home = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? UITabBarController {
+                self.present(home, animated: true, completion: nil)
+            }
+        }
+
         }
 
         func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
             print("ddddd")
             controller.dismiss(animated: true, completion: nil)
-            FetchDataFromApi.postOrder(lineItems: lineItems, customer: customer)
-            Utilites.displayToast(message: "Order done successfully", seconds: 2.0, controller: self)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let home = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? UITabBarController {
-                    self.present(home, animated: true, completion: nil)
-                }
-            }
-
 
         }
     
     @IBOutlet weak var orderCouponsCollectionView: UICollectionView!
     @IBOutlet weak var orderCollectionView: UICollectionView!
-    
+    var appliedCode: String = ""
     private var payment : PKPaymentRequest = PKPaymentRequest()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -145,11 +147,12 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var subTotalLabel: UILabel!
     override func viewWillAppear(_ animated: Bool) {
-        if self.addressLabel.text == "Address"{
-            self.changeAddress.titleLabel?.text = "Set"
-            
-        }else{
-            self.changeAddress.titleLabel?.text = "Change"
+        if self.addressLabel.text == "No Address Set" {
+            let boldTitle = NSAttributedString(string: "Set", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)])
+            self.changeAddress.setAttributedTitle(boldTitle, for: .normal)
+        } else {
+            let boldTitle = NSAttributedString(string: "Change", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)])
+            self.changeAddress.setAttributedTitle(boldTitle, for: .normal)
         }
         self.paymentLabel.text = "Payment: \(Utilites.getPaymentMethod())"
         allAddressesViewModel?.getAllAddress(customerId: Utilites.getCustomerID())
@@ -163,8 +166,8 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
         orderCollectionView.delegate = self
         orderCollectionView.dataSource = self
         
-        orderCouponsCollectionView.delegate = self
-        orderCouponsCollectionView.dataSource = self
+        //orderCouponsCollectionView.delegate = self
+        //orderCouponsCollectionView.dataSource = self
         
         print("/*///*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/")
         print(discountCodes)
@@ -172,8 +175,11 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
         allAddressesViewModel?.bindResultToAllAddressViewController = { [weak self] in
             DispatchQueue.main.async {
                 if self?.allAddressesViewModel?.addresses.count == 0{
-                    self?.changeAddress.titleLabel?.text = "Set"
+                    let boldTitle = NSAttributedString(string: "Set", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)])
+                    self?.changeAddress.setAttributedTitle(boldTitle, for: .normal)
                 }else{
+                    let boldTitle = NSAttributedString(string: "Change", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)])
+                    self?.changeAddress.setAttributedTitle(boldTitle, for: .normal)
                     var addresses: [AddressId] = []
                     addresses = self?.allAddressesViewModel?.addresses ?? []
                     for address in addresses{
@@ -186,9 +192,13 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }
         
-        
-        
-        
+        if self.addressLabel.text == "No Address Set" {
+            let boldTitle = NSAttributedString(string: "Set", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)])
+            self.changeAddress.setAttributedTitle(boldTitle, for: .normal)
+        } else {
+            let boldTitle = NSAttributedString(string: "Change", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)])
+            self.changeAddress.setAttributedTitle(boldTitle, for: .normal)
+        }
         print(self.lineItems)
         // Do any additional setup after loading the view.
         let formattedPrice = String(format: "%.1f", Double(self.subTotal))
@@ -206,29 +216,52 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
         payment.currencyCode = Utilites.getCurrencyCode()
 
     }
+    func extractNumericValue(from text: String) -> Double? {
+        let components = text.split(separator: " ")
+        if let numberString = components.first, let number = Double(numberString) {
+            return number
+        }
+        return nil
+    }
+
     
+
     @IBAction func placeOrderBtn(_ sender: Any) {
         print("placeOrderBtnCount :: \(lineItems.count)")
-        if self.addressLabel.text != "No Address Set" && Utilites.getPaymentMethod() == "Cash"{
-            print("1")
-            FetchDataFromApi.postOrder(lineItems: lineItems, customer: customer)
-            Utilites.displayToast(message: "Order Added!", seconds: 2.0, controller: self)
+        let amount = self.totalLabel.text
+        var totalValue = 0.0
+        if let value = extractNumericValue(from: amount ?? "") {
+            totalValue = value
+        } else {
+            print("No numeric value found.")
+        }
+
+        if self.addressLabel.text != "No Address Set" && Utilites.getPaymentMethod() == "Cash" {
+            if totalValue > 3000 {
+                Utilites.displayToast(message: "Cash payment not allowed for amounts greater than 3000", seconds: 2.0, controller: self)
+            } else {
+                print("1")
+                let alert = UIAlertController(title: "Confirm Order", message: "Do you want to place the order?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { _ in
+                    FetchDataFromApi.postOrder(lineItems: self.lineItems, customer: self.customer)
+                    Utilites.displayToast(message: "Order Added!", seconds: 2.0, controller: self)
+                    self.useDiscountCode(self.appliedCode)
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
         } else if self.addressLabel.text == "No Address Set" {
             print("2")
-
             Utilites.displayToast(message: "Please set your address first", seconds: 2.0, controller: self)
         } else {
             print("3")
-
-            let amount = String(self.subTotal)
-            payment.paymentSummaryItems = [PKPaymentSummaryItem(label: "iPhone XR 128 GB", amount: NSDecimalNumber(string: amount))]
+            payment.paymentSummaryItems = [PKPaymentSummaryItem(label: "iPhone XR 128 GB", amount: NSDecimalNumber(string: "\(totalValue)"))]
             
             let controller = PKPaymentAuthorizationViewController(paymentRequest: payment)
             if let paymentController = controller {
                 paymentController.delegate = self
                 present(paymentController, animated: true, completion: nil)
             }
-            
         }
     }
 
@@ -254,7 +287,8 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
         
         if discountCodes.contains(where: { $0 == code }) {
             if !isDiscountCodeUsed(code) {
-                useDiscountCode(code)
+                appliedCode = code
+                //useDiscountCode(code)
                 print("Discount code applied successfully!")
                 self.couponErrorLabel.text = "Applied successfully"
                 self.couponErrorLabel.textColor = .green
@@ -276,6 +310,7 @@ class PlaceOrderViewController: UIViewController, UICollectionViewDelegate, UICo
                 
                 self.discountAmountLabel.text = "\(discountAmount / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
                 self.totalLabel.text = "\(newTotalPrice / (Double(Utilites.getCurrencyRate()) ?? 1)) \(Utilites.getCurrencyCode())"
+                self.total = (newTotalPrice / (Double(Utilites.getCurrencyRate()) ?? 1))
             } else {
                 print("This discount code has already been used.")
                 self.couponErrorLabel.text = "Already used"

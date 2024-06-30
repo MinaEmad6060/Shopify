@@ -79,6 +79,8 @@
 		653D21757C14EE1F07300ACC /* Pods_Shopify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE8DF2200CDF97D2F50F7E2 /* Pods_Shopify.framework */; };
 		AA07553DBEBE337097B63BB9 /* Pods_Shopify_ShopifyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E4699A20A7679CB3AC13F07 /* Pods_Shopify_ShopifyUITests.framework */; };
 		B01F78702C1C1E6600D9ABEA /* DiscountCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F786F2C1C1E6600D9ABEA /* DiscountCodes.swift */; };
+		B03638582C3111C70054A579 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03638572C3111C70054A579 /* AboutUsViewController.swift */; };
+		B036385A2C3111EC0054A579 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03638592C3111EC0054A579 /* ContactUsViewController.swift */; };
 		B087C1EB2C22F5730021D74D /* PlaceOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B087C1EA2C22F5730021D74D /* PlaceOrderViewController.swift */; };
 		B087E8812C1ACC6200526CF0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B087E8802C1ACC6200526CF0 /* Settings.swift */; };
 		B08D6A372C14E93200894358 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D6A362C14E93200894358 /* Address.swift */; };
@@ -200,6 +202,8 @@
 		8E4699A20A7679CB3AC13F07 /* Pods_Shopify_ShopifyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopify_ShopifyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4EE0B7AB52F0226EDB94ED3 /* Pods_ShopifyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopifyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B01F786F2C1C1E6600D9ABEA /* DiscountCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountCodes.swift; sourceTree = "<group>"; };
+		B03638572C3111C70054A579 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		B03638592C3111EC0054A579 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		B087C1EA2C22F5730021D74D /* PlaceOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderViewController.swift; sourceTree = "<group>"; };
 		B087C1EC2C2303E60021D74D /* Shopify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Shopify.entitlements; sourceTree = "<group>"; };
 		B087E8802C1ACC6200526CF0 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -767,6 +771,8 @@
 				B0C25E2E2C22EF120019817D /* PaymentOptionsViewController.swift */,
 				B087C1EA2C22F5730021D74D /* PlaceOrderViewController.swift */,
 				B09DFF532C2C8EE4008404F8 /* OrderSummaryCollectionViewCell.swift */,
+				B03638572C3111C70054A579 /* AboutUsViewController.swift */,
+				B03638592C3111EC0054A579 /* ContactUsViewController.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1045,6 +1051,7 @@
 			files = (
 				10AC405E2C1B464800F8B4B2 /* DraftOrder.swift in Sources */,
 				10090CB42C1822E1000ABDE6 /* LoginViewModel.swift in Sources */,
+				B036385A2C3111EC0054A579 /* ContactUsViewController.swift in Sources */,
 				B08D6A372C14E93200894358 /* Address.swift in Sources */,
 				4078A6D42C186D6600CF6D02 /* MoreWishesViewController.swift in Sources */,
 				1033DECF2C22322100B26DC2 /* FavoriteViewModel.swift in Sources */,
@@ -1109,6 +1116,7 @@
 				105EEAAE2C16D50300E19566 /* ProductInfoViewController.swift in Sources */,
 				B09B09822C19C7AE00A4233B /* AllAddressessViewModel.swift in Sources */,
 				B09DFF542C2C8EE4008404F8 /* OrderSummaryCollectionViewCell.swift in Sources */,
+				B03638582C3111C70054A579 /* AboutUsViewController.swift in Sources */,
 				4054539A2C211FD200190528 /* CategoriesViewModelProtocol.swift in Sources */,
 				B08D6A392C15338F00894358 /* AddNewAddressViewModel.swift in Sources */,
 				4054538F2C21020400190528 /* AllProductsViewModel.swift in Sources */,

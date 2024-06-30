@@ -179,14 +179,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bq-nP-zLs">
-                                <rect key="frame" x="31" y="560" width="73" height="21"/>
+                                <rect key="frame" x="31" y="507" width="73" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.44326490159999998" green="0.36155840750000001" blue="0.26493316890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y36-6Y-fPg">
-                                <rect key="frame" x="31" y="612" width="41" height="21"/>
+                                <rect key="frame" x="31" y="559" width="41" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.44326490159999998" green="0.36155840750000001" blue="0.26493316890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -200,14 +200,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-0.00 EGP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYp-zv-ny8">
-                                <rect key="frame" x="253" y="549" width="124" height="42"/>
+                                <rect key="frame" x="253" y="496" width="124" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.81246787310000002" green="0.45555335279999998" blue="0.45427852870000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60.89 EGP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYX-Ax-m5M">
-                                <rect key="frame" x="253" y="599" width="124" height="47"/>
+                                <rect key="frame" x="253" y="546" width="124" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.81246787310000002" green="0.45555335279999998" blue="0.45427852870000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -395,49 +395,8 @@
                                     <action selector="backBtn:" destination="HbR-6M-UEY" eventType="touchUpInside" id="hvm-d6-nt1"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yj6-4x-qIJ">
-                                <rect key="frame" x="31" y="481" width="360" height="39"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZMv-dR-ZmT">
-                                    <size key="itemSize" width="217" height="39"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="orderCouponsCell" id="cd9-Wb-urA" customClass="OrderCouponsCollectionViewCell" customModule="Shopify" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="220" height="39"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="220" height="39"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m5a-sc-fZy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="220" height="40"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTt-Q2-5RV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="220" height="40"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" red="0.83896416429999998" green="0.77273398640000002" blue="0.66396337750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </view>
-                                            </subviews>
-                                        </view>
-                                        <size key="customSize" width="220" height="39"/>
-                                        <connections>
-                                            <outlet property="orderCoupon" destination="NTt-Q2-5RV" id="gDd-3r-7QR"/>
-                                            <outlet property="orderCouponView" destination="m5a-sc-fZy" id="ecb-zb-g1Q"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQe-re-nEE">
-                                <rect key="frame" x="31" y="524" width="330" height="21"/>
+                                <rect key="frame" x="31" y="481" width="330" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -454,12 +413,8 @@
                         <viewLayoutGuide key="safeArea" id="Cbd-o0-njm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="yj6-4x-qIJ" firstAttribute="top" secondItem="Cbd-o0-njm" secondAttribute="top" constant="422" id="5Zi-3Q-Dvv"/>
-                            <constraint firstItem="yj6-4x-qIJ" firstAttribute="width" secondItem="2iP-3z-8ia" secondAttribute="width" multiplier="0.916031" id="B7l-Gh-Lf0"/>
                             <constraint firstItem="jnt-KW-JKI" firstAttribute="centerX" secondItem="Cbd-o0-njm" secondAttribute="centerX" constant="3.6000000000000001" id="DOK-Hx-hR3"/>
-                            <constraint firstItem="yj6-4x-qIJ" firstAttribute="centerX" secondItem="Cbd-o0-njm" secondAttribute="centerX" constant="14.5" id="LvI-ce-Lcd"/>
                             <constraint firstItem="jnt-KW-JKI" firstAttribute="top" secondItem="Cbd-o0-njm" secondAttribute="top" constant="83" id="gme-DO-nfC"/>
-                            <constraint firstItem="yj6-4x-qIJ" firstAttribute="height" secondItem="2iP-3z-8ia" secondAttribute="height" multiplier="0.0457746" id="qjX-z2-UH3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="77u-h3-pPV"/>
@@ -470,7 +425,6 @@
                         <outlet property="couponTF" destination="ogs-9E-mpd" id="Xww-q4-C8W"/>
                         <outlet property="discountAmountLabel" destination="UYp-zv-ny8" id="AxB-kk-GtB"/>
                         <outlet property="orderCollectionView" destination="jnt-KW-JKI" id="4mG-Un-wJw"/>
-                        <outlet property="orderCouponsCollectionView" destination="yj6-4x-qIJ" id="x2U-E2-BuO"/>
                         <outlet property="paymentLabel" destination="pp3-Vj-Flf" id="ZrE-nb-nqg"/>
                         <outlet property="subTotalLabel" destination="Eyk-7e-SSH" id="OkF-RY-X2h"/>
                         <outlet property="totalLabel" destination="dYX-Ax-m5M" id="dO2-1x-wxW"/>

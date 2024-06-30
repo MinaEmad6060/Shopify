@@ -254,21 +254,21 @@ class ShoppingCartTableViewController: UIViewController, UITableViewDelegate, UI
             guard let self = self else { return }
             
             if let availableQuantity = availableQuantity?.product.variants?.first?.inventory_quantity {
-                if increment && self.lineItems[index].quantity ?? 0 < availableQuantity {
+                let quarterQuantity = availableQuantity / 4
+
+                if increment && self.lineItems[index].quantity ?? 0 < quarterQuantity {
                     self.lineItems[index].quantity += 1
                     self.myLine[index + 1].quantity += 1
-                    
                 } else if !increment && self.lineItems[index].quantity ?? 0 > 1 {
                     self.lineItems[index].quantity -= 1
                     self.myLine[index + 1].quantity -= 1
-                    
                 } else if !increment && self.lineItems[index].quantity ?? 0 == 1 {
                     self.confirmDeleteItem(index: index, lineItemId: lineItemId)
                     return
                 } else {
-                    print("Requested quantity not available or minimum quantity is 1")
+                    Utilites.displayToast(message: "Sorry, Requested quantity not available", seconds: 2.0, controller: self)
                 }
-                
+            
                 NetworkManager.updateDraftOrder(draftOrderId: Utilites.getDraftOrderIDCartFromNote(), lineItems: self.myLine) { success in
                     
                     if success {
